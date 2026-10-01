@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Academic Profile - StudyNest</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f8f7ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(75, 60, 150, 0.12);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #171717;
+            margin-bottom: 35px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #4d1df2, #663cff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 7px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: #e9e5ff;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .progress {
+            width: 75%;
+            height: 100%;
+            background: #5425f5;
+        }
+
+        .top-icon {
+            width: 48px;
+            height: 48px;
+            background: #f0edff;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 24px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 23px;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #667085;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .required {
+            color: #e5484d;
+        }
+
+        .selected-info {
+            background: #f5f3ff;
+            border: 1px solid #e4dfff;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 0;
+            font-size: 12px;
+        }
+
+        .info-label {
+            color: #777;
+        }
+
+        .info-value {
+            color: #5425f5;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        select,
+        input {
+            width: 100%;
+            height: 46px;
+            padding: 0 13px;
+            border: 1px solid #d9d9d9;
+            border-radius: 9px;
+            outline: none;
+            background: white;
+            color: #333;
+            font-size: 13px;
+        }
+
+        select:focus,
+        input:focus {
+            border-color: #5425f5;
+        }
+
+        .continue-btn {
+            width: 100%;
+            margin-top: 8px;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            background: #5425f5;
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .continue-btn:hover {
+            background: #4520d4;
+        }
+
+        .error {
+            display: none;
+            text-align: center;
+            color: #e5484d;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 21px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Logo -->
+
+    <div class="logo">
+        <div class="logo-icon">🎓</div>
+        <span>StudyNest</span>
+    </div>
+
+
+    <!-- Progress -->
+
+    <div class="progress-header">
+        <span>Set up your profile</span>
+        <span>3 of 4</span>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress"></div>
+    </div>
+
+
+    <div class="top-icon">
+        🏫
+    </div>
+
+
+    <h1>
+        Complete your academic profile
+    </h1>
+
+    <p class="subtitle">
+        Select the information that matches your current
+        academic institution.
+    </p>
+
+
+    <!-- Country + Study Level -->
+
+    <div class="selected-info">
+
+        <div class="info-row">
+            <span class="info-label">Country</span>
+
+            <span
+                class="info-value"
+                id="countryName">
+                —
+            </span>
+        </div>
+
+        <div class="info-row">
+            <span class="info-label">Study Level</span>
+
+            <span
+                class="info-value"
+                id="studyLevel">
+                —
+            </span>
+        </div>
+
+    </div>
+
+
+    <!-- Dynamic Fields -->
+
+    <div id="dynamicFields"></div>
+
+
+    <button type="button"
+        class="continue-btn"
+        id="continueBtn">
+        Continue
+    </button>
+
+
+    <div
+        class="error"
+        id="error">
+        Please complete all required fields.
+    </div>
+
+</div>
+
+
+
+<script src="js/routes.js"></script>
+<script src="js/data-store.js"></script>
+<script src="js/auth.js"></script>
+
+<script>
+
+    /*
+        Previous selections from DataStore
+    */
+
+    const _user = DataStore.getUser();
+    const country = _user.country;
+    const studyLevel = _user.studyLevel;
+
+
+    if (!country) {
+        window.location.href = ROUTES.country;
+    }
+
+    else if (!studyLevel) {
+        window.location.href = ROUTES.studyLevel;
+    }
+
+
+    document.getElementById("countryName").textContent =
+        country;
+
+    document.getElementById("studyLevel").textContent =
+        studyLevel;
+
+
+    const dynamicFields =
+        document.getElementById("dynamicFields");
+
+    const continueBtn =
+        document.getElementById("continueBtn");
+
+    const error =
+        document.getElementById("error");
+
+
+    /*
+        Bangladesh Medical Universities
+    */
+
+    const medicalUniversities = {
+
+        "Dhaka University (DU)": {
+            "MBBS": [
+                "Dhaka Medical College",
+                "Sir Salimullah Medical College",
+                "Shaheed Suhrawardy Medical College",
+                "Mymensingh Medical College",
+                "Faridpur Medical College",
+                "Sher-E-Bangla Medical College",
+                "Shaheed Tajuddin Ahmad Medical College",
+                "Sheikh Sayera Khatun Medical College, Gopalganj",
+                "Enam Medical College",
+                "Bangladesh Medical College",
+                "Ibrahim Medical College (BIRDEM)",
+                "Holy Family Red Crescent Medical College",
+                "Anwer Khan Modern Medical College",
+                "Kumudini Women's Medical College"
+            ],
+            "BDS": [
+                "Dhaka Dental College",
+                "Dental Unit, Sir Salimullah Medical College",
+                "Dental Unit, Shaheed Suhrawardy Medical College",
+                "Dental Unit, Mymensingh Medical College",
+                "Dental Unit, Sher-E-Bangla Medical College",
+                "Pioneer Dental College",
+                "Sapporo Dental College",
+                "City Dental College, Dhaka",
+                "Bangladesh Dental College",
+                "University Dental College",
+                "Marks Dental College",
+                "Mandi Dental College"
+            ]
+        },
+
+        "Rajshahi Medical University (RMU)": {
+            "MBBS": [
+                "Rajshahi Medical College",
+                "Rangpur Medical College",
+                "Shaheed Ziaur Rahman Medical College, Bogura",
+                "Dinajpur Medical College (M Abdur Rahim)",
+                "Pabna Medical College",
+                "Kushtia Medical College",
+                "Shaheed M. Monsur Ali Medical College, Sirajganj",
+                "Naogaon Medical College",
+                "Nilphamari Medical College",
+                "Islami Bank Medical College, Rajshahi",
+                "Barind Medical College, Rajshahi",
+                "TMSS Medical College, Bogura",
+                "North Bengal Medical College, Sirajganj",
+                "Prime Medical College, Rangpur"
+            ],
+            "BDS": [
+                "Dental Unit, Rajshahi Medical College",
+                "Dental Unit, Rangpur Medical College",
+                "Udayan Dental College, Rajshahi",
+                "Dental Unit, Islami Bank Medical College, Rajshahi",
+                "Rangpur Community Dental College",
+                "Dental Unit, TMSS Medical College, Bogura"
+            ]
+        },
+
+        "Chittagong Medical University (CMU)": {
+            "MBBS": [
+                "Chittagong Medical College",
+                "Comilla Medical College",
+                "Noakhali Medical College (Abdul Malek Ukil)",
+                "Cox's Bazar Medical College",
+                "Chandpur Medical College",
+                "Rangamati Medical College",
+                "Brahmanbaria Medical College",
+                "Southern Medical College",
+                "Marine City Medical College",
+                "BGC Trust Medical College",
+                "Eastern Medical College, Comilla",
+                "Mainamoti Medical College, Comilla"
+            ],
+            "BDS": [
+                "Dental Unit, Chittagong Medical College",
+                "Chittagong International Dental College",
+                "Dental Unit, Southern Medical College"
+            ]
+        },
+
+        "Sylhet Medical University (SMU)": {
+            "MBBS": [
+                "Sylhet MAG Osmani Medical College",
+                "Jalalabad Ragib-Rabeya Medical College",
+                "North East Medical College",
+                "Parkview Medical College",
+                "Sylhet Women's Medical College",
+                "Bangabandhu Medical College, Sunamganj"
+            ],
+            "BDS": [
+                "Dental Unit, Sylhet MAG Osmani Medical College",
+                "Dental Unit, Jalalabad Ragib-Rabeya Medical College",
+                "Dental Unit, North East Medical College"
+            ]
+        },
+
+        "Khulna Medical University (KMU)": {
+            "MBBS": [
+                "Khulna Medical College",
+                "Jessore Medical College",
+                "Satkhira Medical College",
+                "Magura Medical College",
+                "Ad-din Akij Medical College, Khulna",
+                "Gazi Medical College, Khulna",
+                "Ad-din Sakina Medical College, Jessore"
+            ],
+            "BDS": [
+                "Dental Unit, Khulna Medical College",
+                "Dental Unit, Jessore Medical College",
+                "City Dental College, Khulna"
+            ]
+        },
+
+        "Bangabandhu Sheikh Mujib Medical University (BSMMU)": {
+            "MBBS": [
+                "Faculty of Medicine, BSMMU",
+                "National Institute of Cardiovascular Diseases (NICVD)",
+                "National Institute of Neurosciences & Hospital (NINS)",
+                "National Institute of Cancer Research & Hospital (NICRH)"
+            ],
+            "BDS": [
+                "Faculty of Dentistry, BSMMU"
+            ]
+        }
+
+    };
+
+
+    /*
+        Bangladesh Education Boards
+    */
+
+    const boards = [
+
+        "Dhaka Board",
+        "Rajshahi Board",
+        "Comilla Board",
+        "Jessore Board",
+        "Chittagong Board",
+        "Barisal Board",
+        "Sylhet Board",
+        "Dinajpur Board",
+        "Mymensingh Board",
+        "Madrasah Education Board",
+        "Technical Education Board"
+
+    ];
+
+
+    /*
+        Helper function
+    */
+
+    function createSelect(
+        id,
+        label,
+        options,
+        placeholder
+    ) {
+
+        let html = `
+
+            <div class="form-group">
+
+                <label for="${id}">
+                    ${label}
+                    <span class="required">*</span>
+                </label>
+
+                <select id="${id}">
+
+                    <option value="">
+                        ${placeholder}
+                    </option>
+
+        `;
+
+
+        options.forEach(option => {
+
+            html += `
+                <option value="${option}">
+                    ${option}
+                </option>
+            `;
+
+        });
+
+
+        html += `
+
+                </select>
+
+            </div>
+
+        `;
+
+
+        return html;
+
+    }
+
+
+    /*
+        UNIVERSITY
+        University → Department
+    */
+
+    if (studyLevel === "University") {
+
+        dynamicFields.innerHTML = `
+
+            ${createSelect(
+                "institution",
+                "University",
+                [
+                    "Daffodil International University",
+                    "University of Dhaka",
+                    "Bangladesh University of Engineering and Technology",
+                    "BRAC University"
+                ],
+                "Select university"
+            )}
+
+            <div id="departmentContainer"></div>
+
+        `;
+
+
+        const institution =
+            document.getElementById("institution");
+
+        const departmentContainer =
+            document.getElementById(
+                "departmentContainer"
+            );
+
+
+        institution.addEventListener("change", function () {
+
+            /*
+                Department options can later come
+                from database according to university.
+            */
+
+            departmentContainer.innerHTML = createSelect(
+                "department",
+                "Department",
+                [
+                    "Computer Science & Engineering",
+                    "Software Engineering",
+                    "Electrical & Electronic Engineering",
+                    "Civil Engineering",
+                    "Business Administration",
+                    "English"
+                ],
+                "Select department"
+            );
+
+        });
+
+    }
+
+
+    /*
+        MEDICAL
+        Medical University → Course (MBBS / BDS) → Medical/Dental College
+    */
+
+    else if (studyLevel === "Medical") {
+
+        dynamicFields.innerHTML = `
+
+            ${createSelect(
+                "medicalUniversity",
+                "Medical University",
+                Object.keys(medicalUniversities),
+                "Select medical university"
+            )}
+
+            <div id="medicalCourseContainer"></div>
+
+            <div id="medicalCollegeContainer"></div>
+
+        `;
+
+
+        const medicalUniversity =
+            document.getElementById(
+                "medicalUniversity"
+            );
+
+        const medicalCourseContainer =
+            document.getElementById(
+                "medicalCourseContainer"
+            );
+
+        const medicalCollegeContainer =
+            document.getElementById(
+                "medicalCollegeContainer"
+            );
+
+        function updateCollegeField() {
+            const courseSelect = document.getElementById("medicalCourse");
+            if (!courseSelect || !courseSelect.value || !medicalUniversity.value) {
+                medicalCollegeContainer.innerHTML = "";
+                return;
+            }
+
+            const selectedUni = medicalUniversity.value;
+            const selectedCourse = courseSelect.value;
+            const uniData = medicalUniversities[selectedUni];
+            const colleges = (uniData && uniData[selectedCourse]) ? uniData[selectedCourse] : [];
+
+            if (colleges.length === 0) {
+                medicalCollegeContainer.innerHTML = "";
+                return;
+            }
+
+            const label = selectedCourse === "BDS" ? "Dental College" : "Medical College";
+            const placeholder = selectedCourse === "BDS" ? "Select dental college" : "Select medical college";
+
+            medicalCollegeContainer.innerHTML = createSelect(
+                "medicalCollege",
+                label,
+                colleges,
+                placeholder
+            );
+        }
+
+        medicalUniversity.addEventListener(
+            "change",
+            function () {
+                if (!this.value) {
+                    medicalCourseContainer.innerHTML = "";
+                    medicalCollegeContainer.innerHTML = "";
+                    return;
+                }
+
+                const prevCourse = document.getElementById("medicalCourse") ? document.getElementById("medicalCourse").value : "";
+
+                medicalCourseContainer.innerHTML = createSelect(
+                    "medicalCourse",
+                    "Course",
+                    ["MBBS", "BDS"],
+                    "Select course"
+                );
+
+                const courseSelect = document.getElementById("medicalCourse");
+                if (prevCourse) {
+                    courseSelect.value = prevCourse;
+                }
+
+                courseSelect.addEventListener("change", function () {
+                    updateCollegeField();
+                });
+
+                updateCollegeField();
+            }
+        );
+
+    }
+
+
+    /*
+        POLYTECHNIC
+        Polytechnic → Department/Technology
+    */
+
+    else if (studyLevel === "Polytechnic") {
+
+        dynamicFields.innerHTML = `
+
+            ${createSelect(
+                "polytechnic",
+                "Polytechnic Institute",
+                [
+                    "Dhaka Polytechnic Institute",
+                    "Chittagong Polytechnic Institute",
+                    "Rajshahi Polytechnic Institute",
+                    "Rangpur Polytechnic Institute",
+                    "Khulna Polytechnic Institute",
+                    "Mymensingh Polytechnic Institute"
+                ],
+                "Select polytechnic institute"
+            )}
+
+            ${createSelect(
+                "polyDepartment",
+                "Department / Technology",
+                [
+                    "Computer Technology",
+                    "Electrical Technology",
+                    "Electronics Technology",
+                    "Civil Technology",
+                    "Mechanical Technology",
+                    "Architecture Technology"
+                ],
+                "Select department"
+            )}
+
+        `;
+
+    }
+
+
+    /*
+        SCHOOL
+        Board → School → Class 1-10
+    */
+
+    else if (studyLevel === "School") {
+
+        dynamicFields.innerHTML = `
+
+            ${createSelect(
+                "board",
+                "Education Board",
+                boards,
+                "Select education board"
+            )}
+
+            <div id="schoolContainer"></div>
+
+        `;
+
+
+        const board =
+            document.getElementById("board");
+
+        const schoolContainer =
+            document.getElementById(
+                "schoolContainer"
+            );
+
+
+        board.addEventListener("change", function () {
+
+            schoolContainer.innerHTML = `
+
+                <div class="form-group">
+
+                    <label>
+                        School Name
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="schoolName"
+                        placeholder="Enter your school name"
+                    >
+
+                </div>
+
+                ${createSelect(
+                    "class",
+                    "Class",
+                    [
+                        "Class 1",
+                        "Class 2",
+                        "Class 3",
+                        "Class 4",
+                        "Class 5",
+                        "Class 6",
+                        "Class 7",
+                        "Class 8",
+                        "Class 9",
+                        "Class 10"
+                    ],
+                    "Select class"
+                )}
+
+            `;
+
+        });
+
+    }
+
+
+    /*
+        COLLEGE
+        Board → College → Class 11-12
+    */
+
+    else if (studyLevel === "College") {
+
+        dynamicFields.innerHTML = `
+
+            ${createSelect(
+                "board",
+                "Education Board",
+                boards,
+                "Select education board"
+            )}
+
+            <div id="collegeContainer"></div>
+
+        `;
+
+
+        const board =
+            document.getElementById("board");
+
+        const collegeContainer =
+            document.getElementById(
+                "collegeContainer"
+            );
+
+
+        board.addEventListener("change", function () {
+
+            collegeContainer.innerHTML = `
+
+                <div class="form-group">
+
+                    <label>
+                        College Name
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="collegeName"
+                        placeholder="Enter your college name"
+                    >
+
+                </div>
+
+                ${createSelect(
+                    "class",
+                    "Class",
+                    [
+                        "Class 11",
+                        "Class 12"
+                    ],
+                    "Select class"
+                )}
+
+            `;
+
+        });
+
+    }
+
+
+    /*
+        NATIONAL UNIVERSITY
+        College → Department
+    */
+
+    else if (studyLevel === "National University") {
+
+        dynamicFields.innerHTML = `
+
+            <div class="form-group">
+
+                <label>
+                    College Name
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="nuCollege"
+                    placeholder="Enter your college name"
+                >
+
+            </div>
+
+
+            ${createSelect(
+                "nuDepartment",
+                "Department",
+                [
+                    "Computer Science",
+                    "Accounting",
+                    "Management",
+                    "Finance & Banking",
+                    "English",
+                    "Bangla",
+                    "Economics"
+                ],
+                "Select department"
+            )}
+
+        `;
+
+    }
+
+
+    /*
+        Continue button
+    */
+
+    continueBtn.addEventListener("click", function () {
+
+        let valid = true;
+
+
+        /*
+            UNIVERSITY
+        */
+
+        if (studyLevel === "University") {
+
+            const institution =
+                document.getElementById(
+                    "institution"
+                );
+
+            const department =
+                document.getElementById(
+                    "department"
+                );
+
+
+            if (
+                !institution ||
+                !institution.value ||
+                !department ||
+                !department.value
+            ) {
+
+                valid = false;
+
+            }
+
+        }
+
+
+        /*
+            MEDICAL
+        */
+
+        else if (studyLevel === "Medical") {
+
+            const university =
+                document.getElementById(
+                    "medicalUniversity"
+                );
+
+            const course =
+                document.getElementById(
+                    "medicalCourse"
+                );
+
+            const college =
+                document.getElementById(
+                    "medicalCollege"
+                );
+
+
+            if (
+                !university ||
+                !university.value ||
+                !course ||
+                !course.value ||
+                !college ||
+                !college.value
+            ) {
+
+                valid = false;
+
+            }
+
+        }
+
+
+        /*
+            POLYTECHNIC
+        */
+
+        else if (studyLevel === "Polytechnic") {
+
+            const institute =
+                document.getElementById(
+                    "polytechnic"
+                );
+
+            const department =
+                document.getElementById(
+                    "polyDepartment"
+                );
+
+
+            if (
+                !institute.value ||
+                !department.value
+            ) {
+
+                valid = false;
+
+            }
+
+        }
+
+
+        /*
+            SCHOOL
+        */
+
+        else if (studyLevel === "School") {
+
+            const board =
+                document.getElementById("board");
+
+            const school =
+                document.getElementById("schoolName");
+
+            const className =
+                document.getElementById("class");
+
+
+            if (
+                !board.value ||
+                !school.value.trim() ||
+                !className.value
+            ) {
+
+                valid = false;
+
+            }
+
+        }
+
+
+        /*
+            COLLEGE
+        */
+
+        else if (studyLevel === "College") {
+
+            const board =
+                document.getElementById("board");
+
+            const college =
+                document.getElementById("collegeName");
+
+            const className =
+                document.getElementById("class");
+
+
+            if (
+                !board.value ||
+                !college.value.trim() ||
+                !className.value
+            ) {
+
+                valid = false;
+
+            }
+
+        }
+
+
+        /*
+            NATIONAL UNIVERSITY
+        */
+
+        else if (
+            studyLevel === "National University"
+        ) {
+
+            const college =
+                document.getElementById("nuCollege");
+
+            const department =
+                document.getElementById(
+                    "nuDepartment"
+                );
+
+
+            if (
+                !college.value.trim() ||
+                !department.value
+            ) {
+
+                valid = false;
+
+            }
+
+        }
+
+
+        /*
+            Validation
+        */
+
+        if (!valid) {
+
+            error.style.display = "block";
+
+            return;
+
+        }
+
+
+        error.style.display = "none";
+
+
+        /*
+            Save common profile data
+        */
+        DataStore.setAuth({ profileCompleted: true });
+
+        const userData = {};
+
+        /*
+            Save study-level-specific data
+        */
+        if (studyLevel === "University") {
+            userData.institution = document.getElementById("institution").value;
+            userData.department = document.getElementById("department").value;
+        }
+        else if (studyLevel === "Medical") {
+            const medUni = document.getElementById("medicalUniversity").value;
+            const course = document.getElementById("medicalCourse").value;
+            const college = document.getElementById("medicalCollege").value;
+
+            userData.institution = college;
+            userData.college = college;
+            userData.medicalUniversity = medUni;
+            userData.course = course;
+            userData.department = course;
+
+            localStorage.setItem("studynest_medical_university", medUni);
+            localStorage.setItem("studynest_course", course);
+            localStorage.setItem("studynest_medical_college", college);
+            localStorage.setItem("studynest_institution", college);
+            localStorage.setItem("studynest_department", course);
+        }
+        else if (studyLevel === "Polytechnic") {
+            userData.institution = document.getElementById("polytechnic").value;
+            userData.department = document.getElementById("polyDepartment").value;
+        }
+        else if (studyLevel === "School") {
+            userData.board = document.getElementById("board").value;
+            userData.institution = document.getElementById("schoolName").value;
+            userData.class = document.getElementById("class").value;
+        }
+        else if (studyLevel === "College") {
+            userData.board = document.getElementById("board").value;
+            userData.institution = document.getElementById("collegeName").value;
+            userData.class = document.getElementById("class").value;
+        }
+        else if (studyLevel === "National University") {
+            userData.institution = document.getElementById("nuCollege").value;
+            userData.department = document.getElementById("nuDepartment").value;
+        }
+
+        DataStore.setUser(userData);
+
+        /*
+            Profile complete
+        */
+        window.location.href = ROUTES.home;
+
+    });
+
+</script>
+
+</body>
+</html>

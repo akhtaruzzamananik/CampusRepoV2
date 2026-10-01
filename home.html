@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudyNest - Home</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #ffffff;
+            color: #101b3a;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =========================================
+           MAIN
+        ========================================= */
+
+        .main-container {
+            padding: 0 36px 15px;
+        }
+
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .hero {
+            min-height:  230px;
+
+            border-radius: 16px;
+
+            padding:  24px 34px;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    #f0f1ff 0%,
+                    #f3f4ff 48%,
+                    #f7f8ff 100%
+                );
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+        .hero-content {
+            width: 50%;
+            z-index: 2;
+        }
+
+        .welcome {
+            font-size:  15px;
+
+            color: #271cff;
+
+            font-weight: 600;
+
+            margin-bottom:  5px;
+        }
+
+        .hero-title {
+            font-size:  36px;
+
+            line-height: 1.1;
+
+            color: #101a38;
+
+            font-weight: 800;
+
+            letter-spacing: -1.5px;
+        }
+
+        .hero-title span {
+            color: #321cff;
+        }
+
+        .hero-description {
+            margin-top:  8px;
+
+            max-width:  500px;
+
+            font-size:  14px;
+
+            line-height:  1.5;
+
+            color: #52658b;
+        }
+
+        .hero-buttons {
+            display: flex;
+
+            gap:  16px;
+
+            margin-top:  16px;
+        }
+
+        .btn {
+            min-width:  170px;
+            height:  44px;
+
+            padding: 0  20px;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap:  10px;
+
+            font-size:  14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .btn-primary {
+            background:
+                linear-gradient(
+                    90deg,
+                    #3518f5,
+                    #4027ff
+                );
+
+            color: white;
+
+            border: 2px solid #3518f5;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(54, 27, 245, 0.25);
+        }
+
+        .btn-outline {
+            background: white;
+
+            color: #3020ed;
+
+            border: 2px solid #3924ff;
+        }
+
+        .btn-outline:hover {
+            background: #f3f2ff;
+        }
+
+
+        /* HERO VISUAL */
+
+        .hero-visual {
+            width: 48%;
+            height: 100%;
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .student {
+            width:  170px;
+            height:  170px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #dddfff,
+                    #f7f7ff
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size:  80px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .floating-card {
+            position: absolute;
+
+            width:  40px;
+            height:  40px;
+
+            background: white;
+
+            border-radius: 13px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow:
+                0 8px 25px
+                rgba(50, 50, 100, 0.13);
+
+            font-size:  18px;
+
+            z-index: 3;
+        }
+
+        .floating-card.one {
+            top:  -5px;
+            left:  40px;
+
+            color: #3b1fff;
+        }
+
+        .floating-card.two {
+            top:  45px;
+            left:  0px;
+
+            color: #087fff;
+        }
+
+        .floating-card.three {
+            top:  5px;
+            right:  60px;
+
+            color: #ffae00;
+        }
+
+        .floating-card.four {
+            right:  -5px;
+            top:  65px;
+
+            color: #10ad76;
+        }
+
+        .books {
+            position: absolute;
+
+            bottom: 10px;
+            right: 5px;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 3px;
+        }
+
+        .book {
+            width:  110px;
+            height:  22px;
+
+            border-radius:  5px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+
+            font-weight: 600;
+        }
+
+        .book.one {
+            background: #5034e9;
+        }
+
+        .book.two {
+            background: #0ca97c;
+        }
+
+        .book.three {
+            background: #1475dc;
+        }
+
+
+        /* =========================================
+           FEATURE CARDS
+        ========================================= */
+
+        .feature-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr
+                1fr
+                1.15fr;
+
+            gap: 16px;
+
+            margin-top: 18px;
+        }
+
+        .feature-card {
+            min-height: 150px;
+
+            border: 1px solid #e1e6f2;
+
+            border-radius: 13px;
+
+            background: white;
+
+            padding: 20px;
+
+            display: flex;
+
+            gap: 15px;
+        }
+
+        .feature-icon {
+            min-width: 65px;
+            height: 65px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+
+            font-size: 30px;
+        }
+
+        .academic-icon {
+            background:
+                linear-gradient(
+                    145deg,
+                    #3b14f5,
+                    #4e27ed
+                );
+        }
+
+        .question-icon {
+            background:
+                linear-gradient(
+                    145deg,
+                    #1681ff,
+                    #2d61dd
+                );
+        }
+
+        .feature-content h3 {
+            font-size: 17px;
+
+            margin-bottom: 6px;
+
+            color: #101a38;
+        }
+
+        .feature-content p {
+            font-size: 13px;
+
+            line-height: 1.65;
+
+            color: #52658b;
+
+            max-width: 310px;
+        }
+
+        .feature-link {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin-top: 20px;
+
+            color: #321cff;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        .feature-link i {
+            font-size: 13px;
+        }
+
+
+        /* =========================================
+           COMMUNITY
+        ========================================= */
+
+        .community-card {
+            min-height: 200px;
+
+            border: 1px solid #e1e6f2;
+
+            border-radius: 13px;
+
+            background: white;
+
+            padding: 17px;
+        }
+
+        .community-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 13px;
+        }
+
+        .community-title i {
+            color: #1474dc;
+            font-size: 21px;
+        }
+
+        .community-title h3 {
+            font-size: 19px;
+        }
+
+        .community-items {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 10px;
+        }
+
+        .community-item {
+            border: 1px solid #edf0f6;
+
+            border-radius: 10px;
+
+            padding: 15px;
+
+            display: flex;
+
+            gap: 12px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .community-item:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 7px 18px
+                rgba(40, 50, 100, 0.07);
+        }
+
+        .community-item-icon {
+            min-width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+        }
+
+        .leader-icon {
+            background: #ff9e00;
+        }
+
+        .contribute-icon {
+            background: #ef3f6b;
+        }
+
+        .community-item h4 {
+            font-size: 14px;
+
+            margin-bottom: 5px;
+        }
+
+        .community-item p {
+            font-size: 11px;
+
+            line-height: 1.5;
+
+            color: #52658b;
+        }
+
+        .community-link {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            margin-top: 10px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+        .leader-link {
+            color: #ee8d00;
+        }
+
+        .contribute-link {
+            color: #ed315d;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1200px) {
+
+            .hero-title {
+                font-size: 46px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .community-card {
+                grid-column: span 2;
+            }
+
+        }
+
+
+        @media (max-width: 850px) {
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .main-container {
+                padding: 0 18px 25px;
+            }
+
+            .hero {
+                flex-direction: column;
+
+                padding: 35px 25px;
+
+                min-height: auto;
+            }
+
+            .hero-content {
+                width: 100%;
+            }
+
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .hero-visual {
+                width: 100%;
+
+                height: 290px;
+
+                margin-top: 20px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .community-card {
+                grid-column: span 1;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+
+                padding: 30px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .logo-text {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .community-items {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="css/shared.css">
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+<header class="navbar">
+
+
+    <div class="nav-left">
+
+
+        <button type="button"
+            class="hamburger"
+            id="hamburgerBtn"
+            aria-label="Open menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+        <a
+            href="home.html"
+            class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <div class="logo-text">
+
+                <h2>
+                    StudyNest
+                </h2>
+
+                <p>
+                    Learn. Share. Grow.
+                </p>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="nav-right">
+
+
+        <div class="notification">
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span class="notification-badge">
+                3
+            </span>
+
+        </div>
+
+
+        <div class="nav-divider"></div>
+
+
+        <div class="profile">
+
+            <div class="profile-img">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="profile-info">
+
+                <strong id="userName">
+                    Anik
+                </strong>
+
+                <span>
+                    DIU Student
+                </span>
+
+            </div>
+
+            <div class="profile-arrow">
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="main-container">
+
+
+    <!-- =========================================
+         HERO
+    ========================================= -->
+
+    <section class="hero">
+
+
+        <div class="hero-content">
+
+
+            <div class="welcome">
+
+                Welcome back,
+                <span id="welcomeName">
+                    Anik
+                </span>! 👋
+
+            </div>
+
+
+            <h1 class="hero-title">
+
+                Learn. Share.
+                <span>Grow.</span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Explore high-quality courses, access resources,
+                solve questions and grow together with the student
+                community.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+
+                <a
+                    href="academic_courses.html"
+                    class="btn btn-primary protected-link">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                    Explore Courses
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+
+                <a
+                    href="question_bank.html"
+                    class="btn btn-outline protected-link">
+
+                    <i class="fa-regular fa-file-lines"></i>
+
+                    Explore Resources
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HERO VISUAL -->
+
+        <div class="hero-visual">
+
+
+            <div class="floating-card one">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+
+            <div class="floating-card two">
+                <i class="fa-solid fa-book"></i>
+            </div>
+
+
+            <div class="floating-card three">
+                <i class="fa-solid fa-lightbulb"></i>
+            </div>
+
+
+            <div class="floating-card four">
+                <i class="fa-solid fa-chart-simple"></i>
+            </div>
+
+
+            <div class="student">
+                👨‍💻
+            </div>
+
+
+            <div class="books">
+
+                <div class="book one">
+                    Learn
+                </div>
+
+                <div class="book two">
+                    Share
+                </div>
+
+                <div class="book three">
+                    Grow
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         FEATURE GRID
+    ========================================= -->
+
+    <section class="feature-grid">
+
+
+        <!-- ACADEMIC COURSES -->
+
+        <div
+            class="feature-card protected-link"
+            data-link="academic_courses.html">
+
+
+            <div class="feature-icon academic-icon">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+            </div>
+
+
+            <div class="feature-content">
+
+                <h3>
+                    Academic Courses
+                </h3>
+
+                <p>
+                    Access high-quality academic courses,
+                    notes, playlists and resources for free.
+                </p>
+
+
+                <a
+                    href="academic_courses.html"
+                    class="feature-link">
+
+                    Explore Courses
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUESTION BANK -->
+
+        <div
+            class="feature-card protected-link"
+            data-link="question_bank.html">
+
+
+            <div class="feature-icon question-icon">
+
+                <i class="fa-solid fa-question"></i>
+
+            </div>
+
+
+            <div class="feature-content">
+
+                <h3>
+                    Campus Question Bank
+                </h3>
+
+                <p>
+                    Find previous questions, solutions and
+                    important notes from your university
+                    and department.
+                </p>
+
+
+                <a
+                    href="question_bank.html"
+                    class="feature-link">
+
+                    Explore Questions
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- COMMUNITY -->
+
+        <div class="community-card">
+
+
+            <div class="community-title">
+
+                <i class="fa-solid fa-users"></i>
+
+                <h3>
+                    Community
+                </h3>
+
+            </div>
+
+
+            <div class="community-items">
+
+
+                <!-- LEADERBOARD -->
+
+                <div
+                    class="community-item protected-link"
+                    data-link="leaderboard.html">
+
+
+                    <div
+                        class="community-item-icon leader-icon">
+
+                        <i class="fa-solid fa-trophy"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h4>
+                            Leaderboards
+                        </h4>
+
+                        <p>
+                            Check top students and departments.
+                        </p>
+
+
+                        <a
+                            href="leaderboard.html"
+                            class="community-link leader-link">
+
+                            View Leaderboard
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CONTRIBUTE -->
+
+                <div
+                    class="community-item protected-link"
+                    data-link="contribute.html">
+
+
+                    <div
+                        class="community-item-icon contribute-icon">
+
+                        <i class="fa-solid fa-heart"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h4>
+                            Contribute
+                        </h4>
+
+                        <p>
+                            Share your resources and help
+                            the student community.
+                        </p>
+
+
+                        <a
+                            href="contribute.html"
+                            class="community-link contribute-link">
+
+                            Start Contributing
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <div class="footer-logo-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h3>StudyNest</h3>
+                    <p>Learn. Share. Grow.</p>
+                </div>
+            </div>
+            <p class="footer-description">
+                A student-driven platform for learning, sharing and growing together.
+            </p>
+            <div class="socials">
+                <a href="#" class="social" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="social" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="social" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-headset"></i>&nbsp; Support</h4>
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="help.html">Help &amp; FAQ</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4><i class="fa-regular fa-envelope"></i>&nbsp; Contact Us</h4>
+            <div class="contact-box">
+                <div class="contact-icon">
+                    <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div>
+                    <div class="contact-email">support@studynest.com</div>
+                    <div class="contact-sub">We'd love to hear from you!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div>&copy; 2026 StudyNest. All rights reserved.</div>
+        <div class="made">
+            <span>&hearts;</span>&nbsp; Made for students, by students.
+        </div>
+    </div>
+</footer>
+
+
+
+<!-- =========================================
+     OVERLAY
+========================================= -->
+
+<div
+    class="overlay"
+    id="overlay">
+</div>
+
+
+
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
+<aside
+    class="sidebar"
+    id="sidebar" aria-label="Main Navigation">
+
+
+    <!-- SIDEBAR HEADER -->
+
+    <div class="sidebar-header">
+
+
+        <div class="sidebar-logo">
+
+
+            <div class="sidebar-logo-icon">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    StudyNest
+                </h3>
+
+                <p>
+                    Learn. Share. Grow.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button type="button"
+            class="close-sidebar"
+            id="closeSidebar" aria-label="Close Sidebar">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- SIDEBAR MENU -->
+
+    <div class="sidebar-menu">
+
+
+        <!-- HOME -->
+
+        <a
+            href="home.html"
+            class="menu-item active">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                Home
+            </span>
+
+        </a>
+
+
+
+        <!-- ACADEMIC COURSES -->
+
+        <a
+            href="academic_courses.html"
+            class="menu-item protected-link">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            <span>
+                Academic Courses
+            </span>
+
+        </a>
+
+
+
+        <!-- QUESTION BANK -->
+
+        <a
+            href="question_bank.html"
+            class="menu-item protected-link">
+
+            <i class="fa-regular fa-square-question"></i>
+
+            <span>
+                Campus Question Bank
+            </span>
+
+        </a>
+
+
+
+        <!-- LEADERBOARDS -->
+
+        <a
+            href="leaderboard.html"
+            class="menu-item protected-link">
+
+            <i class="fa-solid fa-trophy"></i>
+
+            <span>
+                Leaderboards
+            </span>
+
+        </a>
+
+
+
+        <!-- CONTRIBUTE -->
+
+        <a
+            href="contribute.html"
+            class="menu-item protected-link">
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>
+                Contribute
+            </span>
+
+        </a>
+
+
+
+        <!-- MY LIBRARY -->
+
+        <a
+            href="my_library.html"
+            class="menu-item protected-link">
+
+            <i class="fa-regular fa-bookmark"></i>
+
+            <span>
+                My Library
+            </span>
+
+        </a>
+
+
+
+        <!-- SETTINGS -->
+
+        <a
+            href="settings.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>
+                Settings
+            </span>
+
+        </a>
+
+
+
+        <div class="sidebar-divider"></div>
+
+
+
+        <!-- ABOUT -->
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <span>
+                About Us
+            </span>
+
+        </a>
+
+
+
+        <!-- CONTACT -->
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <i class="fa-regular fa-envelope"></i>
+
+            <span>
+                Contact Us
+            </span>
+
+        </a>
+
+
+
+        <!-- TERMS -->
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <i class="fa-regular fa-file-lines"></i>
+
+            <span>
+                Terms of Service
+            </span>
+
+        </a>
+
+
+
+        <!-- PRIVACY -->
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <span>
+                Privacy Policy
+            </span>
+
+        </a>
+
+
+
+        <!-- HELP -->
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <i class="fa-regular fa-circle-question"></i>
+
+            <span>
+                Help &amp; FAQ
+            </span>
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+    <!-- Shared JS Modules -->
+    <script src="js/routes.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/shared-ui.js"></script>
+
+<script>
+
+
+    /* =========================================
+       USER NAME
+    ========================================= */
+
+    const savedName =
+        localStorage.getItem(
+            "studynest_user_name"
+        );
+
+
+    if (savedName) {
+
+        document.getElementById(
+            "userName"
+        ).textContent = savedName;
+
+
+        document.getElementById(
+            "welcomeName"
+        ).textContent = savedName;
+
+    }
+
+
+
+    /* =========================================
+       PROFILE COMPLETION PROTECTION
+    ========================================= */
+
+        const auth = DataStore.getAuth();
+    const profileCompleted = auth ? auth.profileCompleted : false;
+
+    document.querySelectorAll(".protected-link").forEach(function(link) {
+        link.addEventListener("click", function(e) {
+            if (!profileCompleted) {
+                e.preventDefault();
+                alert("Please complete your academic profile first.");
+                window.location.href = ROUTES.institution;
+            }
+        });
+    });</script>
+
+
+
+
+
+    <script>
+        // Initialize shared UI components (header, sidebar, footer)
+        SharedUI.init('home');
+    </script>
+</body>
+
+</html>

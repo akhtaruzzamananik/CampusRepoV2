@@ -1,0 +1,2459 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Contribution Details - StudyNest</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: #f6f7fb;
+      color: #1d2233;
+      min-height: 100vh;
+    }
+
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+
+
+    /* ================= MAIN ================= */
+
+    .main {
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding:
+        35px 28px 70px;
+    }
+
+
+    .back-btn {
+      border: none;
+
+      background: transparent;
+
+      color: #5b4fd7;
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      margin-bottom: 22px;
+
+      padding: 0;
+    }
+
+
+
+    /* ================= HEADER ================= */
+
+    .hero-card {
+      background: white;
+
+      border:
+        1px solid #e7e8ef;
+
+      border-radius: 18px;
+
+      padding: 28px;
+
+      box-shadow:
+        0 6px 20px
+        rgba(30,35,55,.04);
+
+      margin-bottom: 20px;
+    }
+
+
+    .hero-top {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-start;
+
+      gap: 20px;
+    }
+
+
+    .hero-left {
+      display: flex;
+
+      gap: 16px;
+    }
+
+
+    .contribution-icon {
+      width: 58px;
+      height: 58px;
+
+      border-radius: 15px;
+
+      background: #f0eeff;
+
+      color: #5546d8;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      font-size: 25px;
+
+      flex-shrink: 0;
+    }
+
+
+    .hero-title h1 {
+      font-size: 26px;
+
+      line-height: 1.3;
+
+      margin-bottom: 8px;
+    }
+
+
+    .hero-meta {
+      display: flex;
+
+      align-items: center;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      color: #7a7f90;
+
+      font-size: 12px;
+    }
+
+
+    .status {
+      display: inline-flex;
+
+      padding: 6px 11px;
+
+      border-radius: 20px;
+
+      font-size: 11px;
+
+      font-weight: 700;
+    }
+
+
+    .approved {
+      color: #198754;
+
+      background: #e9f8ef;
+    }
+
+
+    .pending {
+      color: #a66a00;
+
+      background: #fff4d8;
+    }
+
+
+    .rejected {
+      color: #c83b3b;
+
+      background: #fdecec;
+    }
+
+
+    .point-badge {
+      background: #f1efff;
+
+      color: #5546d8;
+
+      padding: 9px 13px;
+
+      border-radius: 10px;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      white-space: nowrap;
+    }
+
+
+
+    /* ================= GRID ================= */
+
+    .content-grid {
+      display: grid;
+
+      grid-template-columns:
+        1fr 340px;
+
+      gap: 20px;
+    }
+
+
+    .card {
+      background: white;
+
+      border:
+        1px solid #e7e8ef;
+
+      border-radius: 17px;
+
+      padding: 24px;
+
+      margin-bottom: 20px;
+
+      box-shadow:
+        0 5px 18px
+        rgba(30,35,55,.035);
+    }
+
+
+    .card-title {
+      font-size: 16px;
+
+      font-weight: 700;
+
+      margin-bottom: 18px;
+    }
+
+
+
+    /* ================= INFO ================= */
+
+    .info-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 18px;
+    }
+
+
+    .info-item label {
+      display: block;
+
+      color: #8a8e9f;
+
+      font-size: 11px;
+
+      margin-bottom: 5px;
+    }
+
+
+    .info-item p {
+      font-size: 13px;
+
+      font-weight: 600;
+
+      color: #34394a;
+    }
+
+
+
+    /* ================= DESCRIPTION ================= */
+
+    .description {
+      color: #6e7385;
+
+      font-size: 13px;
+
+      line-height: 1.7;
+    }
+
+
+
+    /* ================= RESOURCE ================= */
+
+    .resource-box {
+      border:
+        1px solid #e5e5ee;
+
+      border-radius: 13px;
+
+      padding: 15px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+    }
+
+
+    .resource-left {
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+    }
+
+
+    .resource-icon {
+      width: 42px;
+      height: 42px;
+
+      border-radius: 10px;
+
+      background: #f1efff;
+
+      color: #5546d8;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+    }
+
+
+    .resource-name {
+      font-size: 13px;
+
+      font-weight: 700;
+
+      margin-bottom: 3px;
+    }
+
+
+    .resource-type {
+      font-size: 11px;
+
+      color: #85899a;
+    }
+
+
+    .resource-btn {
+      border:
+        1px solid #dddaf6;
+
+      background: white;
+
+      color: #5546d8;
+
+      padding: 8px 12px;
+
+      border-radius: 9px;
+
+      font-size: 11px;
+
+      font-weight: 700;
+    }
+
+
+    .resource-btn:hover {
+      background: #f4f2ff;
+    }
+
+
+
+    /* ================= TIMELINE ================= */
+
+    .timeline {
+      position: relative;
+
+      padding-left: 25px;
+    }
+
+
+    .timeline::before {
+      content: "";
+
+      position: absolute;
+
+      left: 6px;
+
+      top: 7px;
+
+      bottom: 7px;
+
+      width: 2px;
+
+      background: #e5e4ed;
+    }
+
+
+    .timeline-item {
+      position: relative;
+
+      margin-bottom: 22px;
+    }
+
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+
+    .timeline-dot {
+      position: absolute;
+
+      left: -25px;
+
+      top: 3px;
+
+      width: 14px;
+
+      height: 14px;
+
+      border-radius: 50%;
+
+      background: #d9d8e4;
+
+      border: 3px solid white;
+
+      box-shadow:
+        0 0 0 1px #dddce5;
+    }
+
+
+    .timeline-item.done
+    .timeline-dot {
+      background: #5b4fd7;
+    }
+
+
+    .timeline-item h4 {
+      font-size: 12px;
+
+      margin-bottom: 4px;
+    }
+
+
+    .timeline-item p {
+      font-size: 11px;
+
+      color: #8a8e9f;
+    }
+
+
+
+    /* ================= SIDE CARDS ================= */
+
+    .points-card {
+      text-align: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f3f1ff,
+          #faf9ff
+        );
+
+      border:
+        1px solid #e2dfff;
+    }
+
+
+    .points-number {
+      font-size: 32px;
+
+      font-weight: 800;
+
+      color: #5546d8;
+
+      margin: 8px 0 5px;
+    }
+
+
+    .points-label {
+      color: #7b7f91;
+
+      font-size: 12px;
+    }
+
+
+    .activity-list {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 14px;
+    }
+
+
+    .activity-row {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      font-size: 12px;
+    }
+
+
+    .activity-row span:first-child {
+      color: #85899a;
+    }
+
+
+    .activity-row span:last-child {
+      font-weight: 700;
+
+      color: #34394a;
+    }
+
+
+
+    /* ================= ACTIONS ================= */
+
+    .action-btn {
+      width: 100%;
+
+      padding: 11px;
+
+      border-radius: 10px;
+
+      border:
+        1px solid #deddf0;
+
+      background: white;
+
+      color: #5546d8;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      margin-bottom: 9px;
+    }
+
+
+    .action-btn.primary {
+      background: #5b4fd7;
+
+      border-color: #5b4fd7;
+
+      color: white;
+    }
+
+
+    .action-btn:hover {
+      opacity: .9;
+    }
+
+
+
+    /* ================= REVIEW NOTE ================= */
+
+    .review-note {
+      background: #f8f7ff;
+
+      border:
+        1px solid #e6e3ff;
+
+      border-radius: 12px;
+
+      padding: 15px;
+    }
+
+
+    .review-note-title {
+      font-size: 12px;
+
+      font-weight: 700;
+
+      color: #5546d8;
+
+      margin-bottom: 6px;
+    }
+
+
+    .review-note p {
+      color: #737789;
+
+      font-size: 12px;
+
+      line-height: 1.6;
+    }
+
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 850px) {
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .hero-top {
+        flex-direction: column;
+      }
+
+
+      .point-badge {
+        align-self: flex-start;
+      }
+
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+      }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      .navbar {
+        padding: 0 18px;
+      }
+
+
+      .profile-mini span {
+        display: none;
+      }
+
+
+      .main {
+        padding:
+          25px 16px 55px;
+      }
+
+
+      .hero-card,
+      .card {
+        padding: 20px;
+      }
+
+
+      .hero-left {
+        flex-direction: column;
+      }
+
+
+      .hero-title h1 {
+        font-size: 22px;
+      }
+
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .resource-box {
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
+
+
+      .resource-btn {
+        width: 100%;
+      }
+
+    }
+
+  </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <link rel="stylesheet" href="css/shared.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+
+
+  <!-- ================= NAVBAR ================= -->
+
+  <header class="navbar">
+
+
+    <div class="nav-left">
+
+
+      <button type="button"
+            class="hamburger"
+            id="hamburgerBtn"
+            onclick="openSidebar()"
+            aria-label="Open menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+      <a
+        href="home.html"
+        class="logo"
+      >
+        StudyNest
+      </a>
+
+
+    </div>
+
+
+
+    <div class="nav-right">
+
+
+      <button type="button"
+        class="notification-btn"
+        onclick="window.location.href='notifications.html'"
+      >
+
+        🔔
+
+        <span
+          class="notification-dot"
+        ></span>
+
+      </button>
+
+
+
+      <div
+        class="profile-mini"
+        onclick="window.location.href='profile.html'"
+      >
+
+        <div
+          class="avatar"
+          id="navAvatar"
+        >
+          A
+        </div>
+
+
+        <span id="navName">
+          Student
+        </span>
+
+      </div>
+
+
+    </div>
+
+  </header>
+
+
+
+  <!-- ================= SIDEBAR ================= -->
+
+  <div
+    class="overlay"
+    id="overlay"
+    onclick="closeSidebar()"
+  ></div>
+
+
+
+  <aside
+    class="sidebar"
+    id="sidebar"
+   aria-label="Main Navigation">
+
+
+    <div class="sidebar-header">
+
+
+      <div class="sidebar-logo">
+        StudyNest
+      </div>
+
+
+      <button type="button"
+        class="close-sidebar"
+        onclick="closeSidebar()"
+       aria-label="Close Sidebar">
+        ×
+      </button>
+
+
+    </div>
+
+
+
+    <div class="sidebar-content">
+
+
+      <div class="menu-label">
+        Main Menu
+      </div>
+
+
+
+      <a
+        href="home.html"
+        class="menu-item"
+      >
+
+        <span class="menu-icon">
+          ⌂
+        </span>
+
+        <span>
+          Home
+        </span>
+
+      </a>
+
+
+
+      <a
+        href="academic_courses.html"
+        class="menu-item"
+      >
+
+        <span class="menu-icon">
+          ▣
+        </span>
+
+        <span>
+          Academic Courses
+        </span>
+
+      </a>
+
+
+
+      <a
+        href="question_bank.html"
+        class="menu-item"
+      >
+
+        <span class="menu-icon">
+          📄
+        </span>
+
+        <span>
+          Campus Question Bank
+        </span>
+
+      </a>
+
+
+
+      <a
+        href="leaderboard.html"
+        class="menu-item"
+      >
+
+        <span class="menu-icon">
+          🏆
+        </span>
+
+        <span>
+          Leaderboards
+        </span>
+
+      </a>
+
+
+
+      <a
+        href="contribute.html"
+        class="menu-item active"
+      >
+
+        <span class="menu-icon">
+          ＋
+        </span>
+
+        <span>
+          Contribute
+        </span>
+
+      </a>
+
+
+
+      <a
+        href="my_library.html"
+        class="menu-item"
+      >
+
+        <span class="menu-icon">
+          🔖
+        </span>
+
+        <span>
+          My Library
+        </span>
+
+      </a>
+
+
+
+      <a
+        href="settings.html"
+        class="menu-item"
+      >
+
+        <span class="menu-icon">
+          ⚙
+        </span>
+
+        <span>
+          Settings
+        </span>
+
+      </a>
+
+
+
+      <div class="sidebar-divider"></div>
+
+
+
+      <div class="menu-label">
+        Information
+      </div>
+
+
+
+      <a
+        href="about.html"
+        class="menu-item"
+      >
+
+        <span class="menu-icon">
+          ⓘ
+        </span>
+
+        <span>
+          About Us
+        </span>
+
+      </a>
+
+
+
+      <a
+        href="contact.html"
+        class="menu-item"
+      >
+
+        <span class="menu-icon">
+          ✉
+        </span>
+
+        <span>
+          Contact Us
+        </span>
+
+      </a>
+
+
+
+      <a
+        href="terms.html"
+        class="menu-item"
+      >
+
+        <span class="menu-icon">
+          ▤
+        </span>
+
+        <span>
+          Terms of Service
+        </span>
+
+      </a>
+
+
+
+      <a
+        href="privacy.html"
+        class="menu-item"
+      >
+
+        <span class="menu-icon">
+          🔒
+        </span>
+
+        <span>
+          Privacy Policy
+        </span>
+
+      </a>
+
+
+
+      <a
+        href="help.html"
+        class="menu-item"
+      >
+
+        <span class="menu-icon">
+          ?
+        </span>
+
+        <span>
+          Help &amp; FAQ
+        </span>
+
+      </a>
+
+
+    </div>
+
+
+
+    <div class="sidebar-footer">
+
+      © 2026 StudyNest
+
+      <br>
+
+      Learn. Share. Grow Together.
+
+    </div>
+
+
+  </aside>
+
+
+
+  <!-- ================= MAIN ================= -->
+
+  <main class="main">
+
+
+    <button
+      type="button"
+      class="back-btn"
+      onclick="goToMyContributions()"
+    >
+
+      ← Back to My Contributions
+
+    </button>
+
+
+
+    <!-- ================= HEADER ================= -->
+
+    <section class="hero-card">
+
+
+      <div class="hero-top">
+
+
+        <div class="hero-left">
+
+
+          <div
+            class="contribution-icon"
+            id="typeIcon"
+          >
+            ▶
+          </div>
+
+
+
+          <div class="hero-title">
+
+
+            <h1 id="contributionTitle">
+              Data Structures Complete Playlist
+            </h1>
+
+
+
+            <div class="hero-meta">
+
+
+              <span id="contributionType">
+                Video Playlist
+              </span>
+
+
+              <span>
+                •
+              </span>
+
+
+              <span id="contributionDate">
+                September 23, 2026
+              </span>
+
+
+              <span>
+                •
+              </span>
+
+
+              <span
+                class="status approved"
+                id="statusBadge"
+              >
+                ● Approved
+              </span>
+
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+
+
+        <div
+          class="point-badge"
+          id="pointBadge"
+        >
+          +5 Points
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <div class="content-grid">
+
+
+      <!-- ================= LEFT ================= -->
+
+      <div>
+
+
+        <!-- CONTRIBUTION INFORMATION -->
+
+        <section class="card">
+
+
+          <h2 class="card-title">
+            Contribution Information
+          </h2>
+
+
+
+          <div class="info-grid">
+
+
+            <div class="info-item">
+
+              <label>
+                Contribution Type
+              </label>
+
+              <p id="infoType">
+                Video Playlist
+              </p>
+
+            </div>
+
+
+
+            <div class="info-item">
+
+              <label>
+                Institution
+              </label>
+
+              <p>
+                Daffodil International University
+              </p>
+
+            </div>
+
+
+
+            <div class="info-item">
+
+              <label>
+                Department
+              </label>
+
+              <p>
+                Computer Science &amp; Engineering
+              </p>
+
+            </div>
+
+
+
+            <div class="info-item">
+
+              <label>
+                Course
+              </label>
+
+              <p id="infoCourse">
+                Data Structures
+              </p>
+
+            </div>
+
+
+
+            <div class="info-item">
+
+              <label>
+                Language
+              </label>
+
+              <p id="infoLanguage">
+                Bangla
+              </p>
+
+            </div>
+
+
+
+            <div class="info-item">
+
+              <label>
+                Submitted On
+              </label>
+
+              <p>
+                September 23, 2026
+              </p>
+
+            </div>
+
+
+
+            <div class="info-item">
+
+              <label>
+                Contribution ID
+              </label>
+
+              <p>
+                #SN-10284
+              </p>
+
+            </div>
+
+
+
+            <div class="info-item">
+
+              <label>
+                Contributor
+              </label>
+
+              <p id="contributorName">
+                Student
+              </p>
+
+            </div>
+
+
+          </div>
+
+
+        </section>
+
+
+
+        <!-- DESCRIPTION -->
+
+        <section class="card">
+
+
+          <h2 class="card-title">
+            Description
+          </h2>
+
+
+
+          <p
+            class="description"
+            id="descriptionText"
+          >
+
+            A complete playlist covering important Data
+            Structures topics including arrays, linked lists,
+            stacks, queues, trees and other fundamental
+            concepts. This contribution was submitted to
+            help students find useful learning resources
+            for the course.
+
+          </p>
+
+
+        </section>
+
+
+
+        <!-- SUBMITTED RESOURCE -->
+
+        <section class="card">
+
+
+          <h2 class="card-title">
+            Submitted Resource
+          </h2>
+
+
+
+          <div class="resource-box">
+
+
+            <div class="resource-left">
+
+
+              <div
+                class="resource-icon"
+                id="resourceIcon"
+              >
+                ▶
+              </div>
+
+
+
+              <div>
+
+
+                <div
+                  class="resource-name"
+                  id="resourceName"
+                >
+                  Data Structures Complete Playlist
+                </div>
+
+
+                <div
+                  class="resource-type"
+                  id="resourceType"
+                >
+                  YouTube Playlist
+                </div>
+
+
+              </div>
+
+
+            </div>
+
+
+
+            <button
+              type="button"
+              class="resource-btn"
+              id="resourceButton"
+              onclick="openResource()"
+            >
+              View Playlist
+            </button>
+
+
+          </div>
+
+
+        </section>
+
+
+
+        <!-- REVIEW NOTE -->
+
+        <section class="card">
+
+
+          <h2 class="card-title">
+            Review Note
+          </h2>
+
+
+
+          <div
+            class="review-note"
+            id="reviewNote"
+          >
+
+
+            <div
+              class="review-note-title"
+              id="reviewTitle"
+            >
+              Contribution Approved
+            </div>
+
+
+            <p id="reviewText">
+
+              Your contribution has been reviewed and
+              approved. It is now available to students
+              on StudyNest.
+
+            </p>
+
+
+          </div>
+
+
+        </section>
+
+
+      </div>
+
+
+
+      <!-- ================= RIGHT ================= -->
+
+      <div>
+
+
+        <!-- POINTS -->
+
+        <section class="card points-card">
+
+
+          <div class="card-title">
+            Contribution Reward
+          </div>
+
+
+          <div
+            class="points-number"
+            id="pointsNumber"
+          >
+            +5
+          </div>
+
+
+          <div class="points-label">
+            Contribution Points
+          </div>
+
+
+        </section>
+
+
+
+        <!-- STATUS -->
+
+        <section class="card">
+
+
+          <h2 class="card-title">
+            Contribution Status
+          </h2>
+
+
+
+          <div class="timeline">
+
+
+            <div
+              class="timeline-item done"
+              id="timelineSubmitted"
+            >
+
+              <div class="timeline-dot"></div>
+
+
+              <h4>
+                Submitted
+              </h4>
+
+
+              <p>
+                September 23, 2026
+              </p>
+
+            </div>
+
+
+
+            <div
+              class="timeline-item done"
+              id="timelineReview"
+            >
+
+              <div class="timeline-dot"></div>
+
+
+              <h4>
+                Under Review
+              </h4>
+
+
+              <p>
+                Contribution checked by StudyNest
+              </p>
+
+            </div>
+
+
+
+            <div
+              class="timeline-item done"
+              id="timelineFinal"
+            >
+
+              <div class="timeline-dot"></div>
+
+
+              <h4 id="timelineFinalTitle">
+                Approved
+              </h4>
+
+
+              <p id="timelineFinalText">
+                Resource is now available to students
+              </p>
+
+            </div>
+
+
+          </div>
+
+
+        </section>
+
+
+
+        <!-- ACTIVITY -->
+
+        <section class="card">
+
+
+          <h2 class="card-title">
+            Activity
+          </h2>
+
+
+
+          <div class="activity-list">
+
+
+            <div class="activity-row">
+
+              <span>
+                Votes
+              </span>
+
+              <span>
+                24
+              </span>
+
+            </div>
+
+
+
+            <div class="activity-row">
+
+              <span>
+                Views
+              </span>
+
+              <span>
+                156
+              </span>
+
+            </div>
+
+
+
+            <div class="activity-row">
+
+              <span>
+                Points Earned
+              </span>
+
+              <span id="activityPoints">
+                +5
+              </span>
+
+            </div>
+
+
+          </div>
+
+
+        </section>
+
+
+
+        <!-- ACTIONS -->
+
+        <section class="card">
+
+
+          <h2 class="card-title">
+            Actions
+          </h2>
+
+
+
+          <button
+            type="button"
+            class="action-btn primary"
+            id="viewContributionBtn"
+            onclick="openResource()"
+          >
+            View Contribution
+          </button>
+
+
+
+          <button
+            type="button"
+            class="action-btn"
+            onclick="window.location.href='contribute.html'"
+          >
+            Make Another Contribution
+          </button>
+
+
+
+          <!-- FIXED MY CONTRIBUTIONS BUTTON -->
+
+          <button
+            type="button"
+            class="action-btn"
+            onclick="goToMyContributions()"
+          >
+            My Contributions
+          </button>
+
+
+        </section>
+
+
+      </div>
+
+
+    </div>
+
+
+  </main>
+
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <div class="footer-logo-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h3>StudyNest</h3>
+                    <p>Learn. Share. Grow.</p>
+                </div>
+            </div>
+            <p class="footer-description">
+                A student-driven platform for learning, sharing and growing together.
+            </p>
+            <div class="socials">
+                <a href="#" class="social" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="social" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="social" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-headset"></i>&nbsp; Support</h4>
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="help.html">Help &amp; FAQ</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4><i class="fa-regular fa-envelope"></i>&nbsp; Contact Us</h4>
+            <div class="contact-box">
+                <div class="contact-icon">
+                    <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div>
+                    <div class="contact-email">support@studynest.com</div>
+                    <div class="contact-sub">We'd love to hear from you!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div>&copy; 2026 StudyNest. All rights reserved.</div>
+        <div class="made">
+            <span>&hearts;</span>&nbsp; Made for students, by students.
+        </div>
+    </div>
+</footer>
+
+
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script>
+
+
+    /* =====================================================
+       GO TO MY CONTRIBUTIONS
+       ===================================================== */
+
+    function goToMyContributions() {
+
+      window.location.href =
+        "my_contributions.html";
+
+    }
+
+
+
+    /* ================= USER ================= */
+
+    const savedName =
+      localStorage.getItem(
+        "studynest_user_name"
+      ) || "Student";
+
+
+    document.getElementById(
+      "navName"
+    ).textContent =
+      savedName;
+
+
+    document.getElementById(
+      "contributorName"
+    ).textContent =
+      savedName;
+
+
+    const initials =
+      savedName
+        .split(" ")
+        .map(word =>
+          word.charAt(0)
+        )
+        .join("")
+        .substring(0, 2)
+        .toUpperCase();
+
+
+    document.getElementById(
+      "navAvatar"
+    ).textContent =
+      initials || "S";
+
+
+
+    /* =====================================================
+       GET DATA FROM URL
+       ===================================================== */
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const type =
+      params.get("type");
+
+
+    const title =
+      params.get("title");
+
+
+
+    /* =====================================================
+       DEMO CONTRIBUTION DATA
+       ===================================================== */
+
+    const contributions = {
+
+      "Data Structures Complete Playlist": {
+
+        type: "playlist",
+
+        typeName: "Video Playlist",
+
+        icon: "▶",
+
+        course: "Data Structures",
+
+        language: "Bangla",
+
+        resourceType: "YouTube Playlist",
+
+        points: 5,
+
+        status: "approved",
+
+        statusText: "Approved",
+
+        description:
+          "A complete playlist covering arrays, linked lists, stacks, queues, trees and other important Data Structures topics.",
+
+        reviewTitle:
+          "Contribution Approved",
+
+        reviewText:
+          "Your contribution has been reviewed and approved. It is now available to students on StudyNest."
+
+      },
+
+
+      "Bangladesh Studies Midterm Question Paper": {
+
+        type: "question-paper",
+
+        typeName: "Question Paper",
+
+        icon: "📄",
+
+        course: "Bangladesh Studies",
+
+        language: "English",
+
+        resourceType: "PDF Question Paper",
+
+        points: 5,
+
+        status: "approved",
+
+        statusText: "Approved",
+
+        description:
+          "Midterm examination question paper submitted for students preparing for Bangladesh Studies.",
+
+        reviewTitle:
+          "Contribution Approved",
+
+        reviewText:
+          "Your submitted question paper has been reviewed and approved. It is now available in the Campus Question Bank."
+
+      },
+
+
+      "Object Oriented Programming Playlist": {
+
+        type: "playlist",
+
+        typeName: "Video Playlist",
+
+        icon: "▶",
+
+        course: "Object Oriented Programming",
+
+        language: "Bangla",
+
+        resourceType: "YouTube Playlist",
+
+        points: 5,
+
+        status: "approved",
+
+        statusText: "Approved",
+
+        description:
+          "A curated playlist for learning object-oriented programming concepts with practical examples.",
+
+        reviewTitle:
+          "Contribution Approved",
+
+        reviewText:
+          "Your contribution has been reviewed and approved. Students can now access this playlist."
+
+      },
+
+
+      "Database Management System Custom Playlist": {
+
+        type: "custom-playlist",
+
+        typeName: "Custom Playlist",
+
+        icon: "▶",
+
+        course: "Database Management System",
+
+        language: "Bangla",
+
+        resourceType: "Custom Video Playlist",
+
+        points: 0,
+
+        status: "pending",
+
+        statusText: "Pending Review",
+
+        description:
+          "A custom playlist containing selected DBMS lectures from different YouTube channels.",
+
+        reviewTitle:
+          "Contribution Under Review",
+
+        reviewText:
+          "Your contribution is currently being reviewed by the StudyNest team. Points will be added if the contribution is approved."
+
+      },
+
+
+      "Computer Networks Final Question Paper": {
+
+        type: "question-paper",
+
+        typeName: "Question Paper",
+
+        icon: "📄",
+
+        course: "Computer Networks",
+
+        language: "English",
+
+        resourceType: "PDF Question Paper",
+
+        points: 5,
+
+        status: "approved",
+
+        statusText: "Approved",
+
+        description:
+          "Final examination question paper contributed to help students prepare for future examinations.",
+
+        reviewTitle:
+          "Contribution Approved",
+
+        reviewText:
+          "Your question paper has been reviewed and approved and is now available to students."
+
+      },
+
+
+      "Discrete Mathematics Playlist": {
+
+        type: "playlist",
+
+        typeName: "Video Playlist",
+
+        icon: "▶",
+
+        course: "Discrete Mathematics",
+
+        language: "Bangla",
+
+        resourceType: "YouTube Playlist",
+
+        points: 0,
+
+        status: "rejected",
+
+        statusText: "Rejected",
+
+        description:
+          "The submitted playlist could not be approved because the provided resource did not meet the contribution requirements.",
+
+        reviewTitle:
+          "Contribution Rejected",
+
+        reviewText:
+          "This contribution was not approved because the submitted resource did not meet the required contribution guidelines."
+
+      },
+
+
+      "Software Engineering Question Paper": {
+
+        type: "question-paper",
+
+        typeName: "Question Paper",
+
+        icon: "📄",
+
+        course: "Software Engineering",
+
+        language: "English",
+
+        resourceType: "PDF Question Paper",
+
+        points: 5,
+
+        status: "approved",
+
+        statusText: "Approved",
+
+        description:
+          "A previous examination paper submitted for the StudyNest Campus Question Bank.",
+
+        reviewTitle:
+          "Contribution Approved",
+
+        reviewText:
+          "Your question paper has been reviewed and approved and is now available to students."
+
+      },
+
+
+      "Computer Graphics Playlist": {
+
+        type: "playlist",
+
+        typeName: "Video Playlist",
+
+        icon: "▶",
+
+        course: "Computer Graphics",
+
+        language: "Bangla",
+
+        resourceType: "YouTube Playlist",
+
+        points: 5,
+
+        status: "approved",
+
+        statusText: "Approved",
+
+        description:
+          "Lecture playlist covering transformation, clipping, projection and other Computer Graphics topics.",
+
+        reviewTitle:
+          "Contribution Approved",
+
+        reviewText:
+          "Your contribution has been reviewed and approved. Students can now access this learning resource."
+
+      }
+
+    };
+
+
+
+    /* =====================================================
+       DEFAULT DATA
+       ===================================================== */
+
+    let contribution =
+      contributions[title];
+
+
+    if (!contribution) {
+
+      contribution = {
+
+        type:
+          type || "playlist",
+
+        typeName:
+          type === "question-paper"
+            ? "Question Paper"
+            : "Video Playlist",
+
+        icon:
+          type === "question-paper"
+            ? "📄"
+            : "▶",
+
+        course:
+          "Academic Resource",
+
+        language:
+          "Not specified",
+
+        resourceType:
+          type === "question-paper"
+            ? "PDF Question Paper"
+            : "YouTube Playlist",
+
+        points: 5,
+
+        status: "approved",
+
+        statusText: "Approved",
+
+        description:
+          "Contribution details will be available here.",
+
+        reviewTitle:
+          "Contribution Approved",
+
+        reviewText:
+          "This contribution has been approved by StudyNest."
+
+      };
+
+    }
+
+
+
+    /* =====================================================
+       UPDATE PAGE
+       ===================================================== */
+
+    document.getElementById(
+      "contributionTitle"
+    ).textContent =
+      title ||
+      "Contribution Details";
+
+
+    document.getElementById(
+      "contributionType"
+    ).textContent =
+      contribution.typeName;
+
+
+    document.getElementById(
+      "infoType"
+    ).textContent =
+      contribution.typeName;
+
+
+    document.getElementById(
+      "infoCourse"
+    ).textContent =
+      contribution.course;
+
+
+    document.getElementById(
+      "infoLanguage"
+    ).textContent =
+      contribution.language;
+
+
+    document.getElementById(
+      "typeIcon"
+    ).textContent =
+      contribution.icon;
+
+
+    document.getElementById(
+      "resourceIcon"
+    ).textContent =
+      contribution.icon;
+
+
+    document.getElementById(
+      "resourceName"
+    ).textContent =
+      title ||
+      "Contribution Resource";
+
+
+    document.getElementById(
+      "resourceType"
+    ).textContent =
+      contribution.resourceType;
+
+
+    document.getElementById(
+      "descriptionText"
+    ).textContent =
+      contribution.description;
+
+
+    document.getElementById(
+      "pointsNumber"
+    ).textContent =
+      "+" +
+      contribution.points;
+
+
+    document.getElementById(
+      "activityPoints"
+    ).textContent =
+      "+" +
+      contribution.points;
+
+
+    document.getElementById(
+      "pointBadge"
+    ).textContent =
+      "+" +
+      contribution.points +
+      " Points";
+
+
+    document.getElementById(
+      "reviewTitle"
+    ).textContent =
+      contribution.reviewTitle;
+
+
+    document.getElementById(
+      "reviewText"
+    ).textContent =
+      contribution.reviewText;
+
+
+
+    /* =====================================================
+       STATUS
+       ===================================================== */
+
+    const statusBadge =
+      document.getElementById(
+        "statusBadge"
+      );
+
+
+    statusBadge.className =
+      "status " +
+      contribution.status;
+
+
+    statusBadge.textContent =
+      "● " +
+      contribution.statusText;
+
+
+
+    /* =====================================================
+       STATUS TIMELINE
+       ===================================================== */
+
+    const finalTimeline =
+      document.getElementById(
+        "timelineFinal"
+      );
+
+
+    const finalTitle =
+      document.getElementById(
+        "timelineFinalTitle"
+      );
+
+
+    const finalText =
+      document.getElementById(
+        "timelineFinalText"
+      );
+
+
+    const reviewNote =
+      document.getElementById(
+        "reviewNote"
+      );
+
+
+    if (
+      contribution.status ===
+      "pending"
+    ) {
+
+      finalTimeline.classList.remove(
+        "done"
+      );
+
+
+      finalTitle.textContent =
+        "Pending Review";
+
+
+      finalText.textContent =
+        "Waiting for StudyNest review";
+
+
+      reviewNote.style.background =
+        "#fffaf0";
+
+
+      reviewNote.style.borderColor =
+        "#f2dfad";
+
+    }
+
+
+    else if (
+      contribution.status ===
+      "rejected"
+    ) {
+
+      finalTimeline.classList.remove(
+        "done"
+      );
+
+
+      finalTitle.textContent =
+        "Rejected";
+
+
+      finalText.textContent =
+        "Contribution was not approved";
+
+
+      reviewNote.style.background =
+        "#fff5f5";
+
+
+      reviewNote.style.borderColor =
+        "#f1d0d0";
+
+    }
+
+
+    else {
+
+      finalTimeline.classList.add(
+        "done"
+      );
+
+
+      finalTitle.textContent =
+        "Approved";
+
+
+      finalText.textContent =
+        "Resource is now available to students";
+
+    }
+
+
+
+    /* =====================================================
+       RESOURCE BUTTON
+       ===================================================== */
+
+    const resourceButton =
+      document.getElementById(
+        "resourceButton"
+      );
+
+
+    const viewContributionBtn =
+      document.getElementById(
+        "viewContributionBtn"
+      );
+
+
+    if (
+      contribution.type ===
+      "question-paper"
+    ) {
+
+      resourceButton.textContent =
+        "View Question Paper";
+
+
+      viewContributionBtn.textContent =
+        "View Question Paper";
+
+    }
+
+    else {
+
+      resourceButton.textContent =
+        "View Playlist";
+
+
+      viewContributionBtn.textContent =
+        "View Playlist";
+
+    }
+
+
+
+    /* =====================================================
+       OPEN CONTRIBUTION
+       ===================================================== */
+
+    function openResource() {
+
+      if (
+        contribution.type ===
+        "question-paper"
+      ) {
+
+        if (contribution.fileUrl) {
+          window.open(contribution.fileUrl, "_blank", "noopener,noreferrer");
+        } else {
+          alert("File URL is not available for this question paper.");
+        }
+
+        return;
+      }
+
+
+      if (contribution.youtubeUrl) {
+        window.open(contribution.youtubeUrl, "_blank", "noopener,noreferrer");
+      } else {
+        alert("YouTube URL is not available for this playlist.");
+      }
+
+    }
+
+
+  </script>
+
+
+
+    <!-- Shared JS Modules -->
+    <script src="js/routes.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/shared-ui.js"></script>
+
+    <script>
+        // Initialize shared UI components (header, sidebar, footer)
+        SharedUI.init('contributionDetails');
+    </script>
+</body>
+
+</html>

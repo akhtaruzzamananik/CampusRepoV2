@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Country - StudyNest</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f8f7ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(75, 60, 150, 0.12);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #171717;
+            margin-bottom: 35px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #4d1df2, #663cff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 7px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: #e9e5ff;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+
+        .progress {
+            width: 25%;
+            height: 100%;
+            background: #5425f5;
+        }
+
+        .top-icon {
+            width: 48px;
+            height: 48px;
+            background: #f0edff;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 24px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 23px;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #667085;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .required {
+            color: #e5484d;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d9d9d9;
+            border-radius: 10px;
+            outline: none;
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+
+        .search-box:focus {
+            border-color: #5425f5;
+        }
+
+        .countries {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .country {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 14px;
+            background: white;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .country:last-child {
+            border-bottom: none;
+        }
+
+        .country:hover {
+            background: #faf9ff;
+        }
+
+        .country.selected {
+            background: #f0edff;
+            border-left: 3px solid #5425f5;
+        }
+
+        .country-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .country-code {
+            width: 28px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .country-name {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .radio {
+            width: 16px;
+            height: 16px;
+            border: 1.5px solid #ccd2dc;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .country.selected .radio {
+            border-color: #5425f5;
+        }
+
+        .country.selected .radio::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #5425f5;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .no-result {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .continue-btn {
+            width: 100%;
+            margin-top: 22px;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            background: #5425f5;
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            opacity: 0.45;
+            pointer-events: none;
+        }
+
+        .continue-btn.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .continue-btn.active:hover {
+            background: #4520d4;
+        }
+
+        .error {
+            display: none;
+            text-align: center;
+            color: #e5484d;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="logo">
+            <div class="logo-icon">🎓</div>
+            <span>StudyNest</span>
+        </div>
+
+        <div class="progress-header">
+            <span>Set up your profile</span>
+            <span>1 of 4</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+
+        <div class="top-icon">
+            🌍
+        </div>
+
+        <h1>
+            Where are you from? <span class="required">*</span>
+        </h1>
+
+        <p class="subtitle">
+            Select your country so we can show you relevant
+            universities, courses and academic resources.
+        </p>
+
+        <input type="text" id="searchCountry" class="search-box" placeholder="Search country...">
+
+        <div class="countries">
+
+            <div class="country" data-country="Bangladesh">
+                <div class="country-left">
+                    <div class="country-code">BD</div>
+                    <div class="country-name">Bangladesh</div>
+                </div>
+                <div class="radio"></div>
+            </div>
+
+            <div class="country" data-country="India">
+                <div class="country-left">
+                    <div class="country-code">IN</div>
+                    <div class="country-name">India</div>
+                </div>
+                <div class="radio"></div>
+            </div>
+
+            <div class="country" data-country="Pakistan">
+                <div class="country-left">
+                    <div class="country-code">PK</div>
+                    <div class="country-name">Pakistan</div>
+                </div>
+                <div class="radio"></div>
+            </div>
+
+            <div class="country" data-country="United States">
+                <div class="country-left">
+                    <div class="country-code">US</div>
+                    <div class="country-name">United States</div>
+                </div>
+                <div class="radio"></div>
+            </div>
+
+            <div class="country" data-country="United Kingdom">
+                <div class="country-left">
+                    <div class="country-code">GB</div>
+                    <div class="country-name">United Kingdom</div>
+                </div>
+                <div class="radio"></div>
+            </div>
+
+        </div>
+
+        <div class="no-result" id="noResult">
+            No country found.
+        </div>
+
+        <button type="button" id="continueBtn" class="continue-btn">
+            Continue
+        </button>
+
+        <div id="error" class="error">
+            Please select a country to continue.
+        </div>
+
+    </div>
+
+
+    <script src="js/routes.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/auth.js"></script>
+
+    <script>
+
+        let selectedCountry = null;
+
+        const countries = document.querySelectorAll(".country");
+        const searchBox = document.getElementById("searchCountry");
+        const continueBtn = document.getElementById("continueBtn");
+        const error = document.getElementById("error");
+        const noResult = document.getElementById("noResult");
+
+
+        // Select country
+
+        countries.forEach(country => {
+
+            country.addEventListener("click", function () {
+
+                countries.forEach(item => {
+                    item.classList.remove("selected");
+                });
+
+                this.classList.add("selected");
+
+                selectedCountry = this.dataset.country;
+
+                continueBtn.classList.add("active");
+
+                error.style.display = "none";
+
+            });
+
+        });
+
+
+        // Search country
+
+        searchBox.addEventListener("input", function () {
+
+            const value = this.value.toLowerCase().trim();
+
+            let found = false;
+
+            countries.forEach(country => {
+
+                const name =
+                    country.dataset.country.toLowerCase();
+
+                if (name.includes(value)) {
+
+                    country.style.display = "flex";
+                    found = true;
+
+                } else {
+
+                    country.style.display = "none";
+
+                }
+
+            });
+
+            noResult.style.display =
+                found ? "none" : "block";
+
+        });
+
+
+        // Continue
+
+        continueBtn.addEventListener("click", function () {
+
+            if (!selectedCountry) {
+
+                error.style.display = "block";
+                return;
+
+            }
+
+            DataStore.setUser({ country: selectedCountry });
+
+            window.location.href = ROUTES.studyLevel;
+
+        });
+
+    </script>
+
+</body>
+
+</html>

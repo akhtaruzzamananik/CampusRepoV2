@@ -1,0 +1,3854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>StudyNest - Settings</title>
+
+
+    <!-- Google Font -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: "Poppins", sans-serif;
+
+            background: #f7f8fc;
+
+            color: #101a3b;
+
+            min-height: 100vh;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+
+        .notification-dot {
+
+            position: absolute;
+
+            width: 7px;
+            height: 7px;
+
+            background: #5a2aed;
+
+            border-radius: 50%;
+
+            top: 7px;
+            right: 7px;
+        }
+
+
+        .profile-avatar {
+
+            width: 39px;
+            height: 39px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #5425f5,
+                    #8064ff
+                );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .profile-name {
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: #1b2545;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .page {
+
+            max-width: 1180px;
+
+            margin: 0 auto;
+
+            padding: 38px 35px 70px;
+        }
+
+
+        .page-header {
+
+            margin-bottom: 28px;
+        }
+
+
+        .page-header h1 {
+
+            font-size: 28px;
+
+            color: #101a3b;
+
+            font-weight: 700;
+        }
+
+
+        .page-header p {
+
+            margin-top: 6px;
+
+            font-size: 13px;
+
+            color: #68738e;
+        }
+
+
+        /* =====================================================
+           SETTINGS LAYOUT
+        ===================================================== */
+
+        .settings-layout {
+
+            display: grid;
+
+            grid-template-columns: 245px 1fr;
+
+            gap: 24px;
+
+            align-items: start;
+        }
+
+
+        /* =====================================================
+           SETTINGS MENU
+        ===================================================== */
+
+        .settings-menu {
+
+            background: white;
+
+            border: 1px solid #e9ebf2;
+
+            border-radius: 14px;
+
+            padding: 8px;
+
+            box-shadow:
+                0 5px 18px
+                rgba(40, 50, 90, 0.04);
+
+            position: sticky;
+
+            top: 20px;
+        }
+
+
+        .settings-menu-item {
+
+            width: 100%;
+
+            min-height: 48px;
+
+            padding: 0 14px;
+
+            border: none;
+
+            background: transparent;
+
+            border-radius: 9px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color: #53617f;
+
+            font-size: 13px;
+
+            cursor: pointer;
+
+            text-align: left;
+
+            transition: 0.2s;
+        }
+
+
+        .settings-menu-item i {
+
+            width: 20px;
+
+            text-align: center;
+        }
+
+
+        .settings-menu-item:hover {
+
+            background: #f6f4ff;
+
+            color: #4c28ed;
+        }
+
+
+        .settings-menu-item.active {
+
+            background: #f0edff;
+
+            color: #4c28ed;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           CONTENT
+        ===================================================== */
+
+        .settings-content {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 20px;
+        }
+
+
+        .settings-card {
+
+            background: white;
+
+            border: 1px solid #e8eaf1;
+
+            border-radius: 15px;
+
+            padding: 24px;
+
+            box-shadow:
+                0 5px 18px
+                rgba(40, 50, 90, 0.04);
+        }
+
+
+        .card-header {
+
+            padding-bottom: 18px;
+
+            margin-bottom: 20px;
+
+            border-bottom: 1px solid #edf0f5;
+        }
+
+
+        .card-header h2 {
+
+            font-size: 17px;
+
+            color: #17203f;
+
+            font-weight: 600;
+        }
+
+
+        .card-header p {
+
+            margin-top: 4px;
+
+            font-size: 12px;
+
+            color: #7a849c;
+        }
+
+
+        /* =====================================================
+           PROFILE
+        ===================================================== */
+
+        .profile-section {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .large-avatar {
+
+            width: 68px;
+            height: 68px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #5425f5,
+                    #8064ff
+                );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 21px;
+
+            font-weight: 600;
+
+            flex-shrink: 0;
+        }
+
+
+        /* =====================================================
+           DISPLAY INFO
+        ===================================================== */
+
+        .info-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 18px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .info-item {
+
+            padding: 16px;
+
+            background: #fafbfe;
+
+            border: 1px solid #e5e8f0;
+
+            border-radius: 9px;
+        }
+
+
+        .info-item label,
+        .academic-display-item label {
+
+            display: block;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            color: #405174;
+
+            margin-bottom: 8px;
+        }
+
+
+        .info-item div,
+        .academic-display-item div {
+
+            font-size: 13px;
+
+            color: #74809a;
+
+            min-height: 20px;
+        }
+
+
+        /* =====================================================
+           ACADEMIC DISPLAY
+        ===================================================== */
+
+        .academic-display-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 18px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .academic-display-item {
+
+            padding: 15px;
+
+            background: #fafbfe;
+
+            border: 1px solid #dfe3ec;
+
+            border-radius: 9px;
+        }
+
+
+        .academic-display-item.full {
+
+            grid-column: 1 / -1;
+        }
+
+
+        /* =====================================================
+           EDIT BUTTON
+        ===================================================== */
+
+        .edit-btn {
+
+            height: 42px;
+
+            padding: 0 18px;
+
+            border: 1px solid #d9d4ff;
+
+            border-radius: 8px;
+
+            background: #f4f1ff;
+
+            color: #4d28e8;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .edit-btn:hover {
+
+            background: #ebe7ff;
+
+            border-color: #c9c0ff;
+        }
+
+
+        .edit-btn i {
+
+            margin-right: 7px;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 18px;
+        }
+
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .form-group.full {
+
+            grid-column: 1 / -1;
+        }
+
+
+        .form-group label {
+
+            font-size: 12px;
+
+            color: #4f5c79;
+
+            font-weight: 600;
+
+            margin-bottom: 7px;
+        }
+
+
+        .form-group input,
+        .form-group select {
+
+            width: 100%;
+
+            height: 44px;
+
+            padding: 0 12px;
+
+            border: 1px solid #dfe2eb;
+
+            border-radius: 8px;
+
+            outline: none;
+
+            background: white;
+
+            color: #293352;
+
+            font-size: 12px;
+
+            transition: 0.2s;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus {
+
+            border-color: #5a2aed;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(90, 42, 237, 0.07);
+        }
+
+
+        .form-group input:disabled {
+
+            background: #f6f7fa;
+
+            color: #858ea4;
+
+            cursor: not-allowed;
+        }
+
+
+        /* =====================================================
+           EDIT ACTIONS
+        ===================================================== */
+
+        .edit-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 22px;
+        }
+
+
+        .cancel-btn {
+
+            height: 42px;
+
+            padding: 0 18px;
+
+            border: 1px solid #dfe2eb;
+
+            border-radius: 8px;
+
+            background: white;
+
+            color: #5c6780;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .cancel-btn:hover {
+
+            background: #f7f8fb;
+        }
+
+
+        .save-changes {
+
+            height: 42px;
+
+            padding: 0 20px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4d1ff0,
+                    #5126dc
+                );
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .save-changes:hover {
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 6px 15px
+                rgba(76, 31, 229, 0.20);
+        }
+
+
+        /* =====================================================
+           SECURITY
+        ===================================================== */
+
+        .security-row {
+
+            min-height: 62px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            border-bottom: 1px solid #edf0f5;
+
+            gap: 20px;
+        }
+
+
+        .security-row:last-child {
+
+            border-bottom: none;
+        }
+
+
+        .security-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+        }
+
+
+        .security-icon {
+
+            width: 38px;
+            height: 38px;
+
+            border-radius: 9px;
+
+            background: #f1efff;
+
+            color: #5127eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .security-info h4 {
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: #202a48;
+        }
+
+
+        .security-info p {
+
+            margin-top: 3px;
+
+            font-size: 11px;
+
+            color: #818aa0;
+        }
+
+
+        .security-btn {
+
+            height: 35px;
+
+            padding: 0 13px;
+
+            border: 1px solid #dfe2eb;
+
+            border-radius: 7px;
+
+            background: white;
+
+            color: #4a5878;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .security-btn:hover {
+
+            border-color: #8e81ff;
+
+            color: #4c28ed;
+        }
+
+
+        /* =====================================================
+           ACCOUNT
+        ===================================================== */
+
+        .danger-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+
+        .danger-info h3 {
+
+            font-size: 14px;
+
+            color: #242c45;
+        }
+
+
+        .danger-info p {
+
+            margin-top: 4px;
+
+            font-size: 11px;
+
+            color: #81899f;
+        }
+
+
+        .logout-btn {
+
+            height: 38px;
+
+            padding: 0 17px;
+
+            border: 1px solid #f0b5b5;
+
+            border-radius: 7px;
+
+            background: #fff7f7;
+
+            color: #d34242;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            flex-shrink: 0;
+        }
+
+
+        .logout-btn:hover {
+
+            background: #fff0f0;
+        }
+
+
+        /* =====================================================
+           SUCCESS MESSAGE
+        ===================================================== */
+
+        .success-message {
+
+            position: fixed;
+
+            right: 25px;
+
+            bottom: 25px;
+
+            background: #14203f;
+
+            color: white;
+
+            padding: 13px 18px;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transform: translateY(15px);
+
+            transition: 0.25s;
+
+            z-index: 300;
+
+            box-shadow:
+                0 10px 25px
+                rgba(0,0,0,0.18);
+        }
+
+
+        .success-message.show {
+
+            opacity: 1;
+
+            visibility: visible;
+
+            transform: translateY(0);
+        }
+
+
+        .overlay.active {
+
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .settings-layout {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .settings-menu {
+
+                display: flex;
+
+                overflow-x: auto;
+
+                gap: 5px;
+
+                position: static;
+            }
+
+
+            .settings-menu-item {
+
+                min-width: max-content;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .navbar {
+
+                height: 74px;
+
+                padding: 0 18px;
+            }
+
+
+            .profile-name {
+
+                display: none;
+            }
+
+
+            .page {
+
+                padding: 25px 17px 50px;
+            }
+
+
+            .page-header h1 {
+
+                font-size: 24px;
+            }
+
+
+            .settings-card {
+
+                padding: 19px;
+            }
+
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .form-group.full {
+
+                grid-column: auto;
+            }
+
+
+            .info-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .academic-display-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .academic-display-item.full {
+
+                grid-column: auto;
+            }
+
+
+            .profile-section {
+
+                align-items: flex-start;
+            }
+
+
+            .security-row {
+
+                align-items: flex-start;
+
+                padding: 14px 0;
+
+                flex-direction: column;
+            }
+
+
+            .security-btn {
+
+                margin-left: 51px;
+            }
+
+
+            .danger-row {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+        }
+
+
+        @media (max-width: 430px) {
+
+            .large-avatar {
+
+                width: 55px;
+                height: 55px;
+
+                font-size: 17px;
+            }
+
+
+            .settings-menu {
+
+                scrollbar-width: none;
+            }
+
+
+            .settings-menu::-webkit-scrollbar {
+
+                display: none;
+            }
+
+
+            .edit-actions {
+
+                width: 100%;
+
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .cancel-btn,
+            .save-changes {
+
+                width: 100%;
+            }
+
+
+            .success-message {
+
+                left: 18px;
+
+                right: 18px;
+
+                bottom: 18px;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="css/shared.css">
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ===================================================== -->
+
+    <nav class="navbar">
+
+
+        <div class="nav-left">
+
+
+            <button type="button"
+            class="hamburger"
+            id="hamburgerBtn"
+            aria-label="Open menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+            <a
+                href="home.html"
+                class="logo"
+            >
+
+                <div class="logo-icon">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                </div>
+
+
+                <div class="logo-text">
+
+                    <h2>StudyNest</h2>
+
+                    <p>Learn. Share. Grow.</p>
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <div class="nav-right">
+
+
+            <div class="notification">
+
+                <i class="fa-regular fa-bell"></i>
+
+                <span class="notification-dot"></span>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div
+                    class="profile-avatar"
+                    id="profileAvatar"
+                >
+                    A
+                </div>
+
+
+                <span
+                    class="profile-name"
+                    id="profileName"
+                >
+                    Student
+                </span>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         MAIN PAGE
+    ===================================================== -->
+
+    <main class="page">
+
+
+        <div class="page-header">
+
+            <h1>
+                Settings
+            </h1>
+
+            <p>
+                Manage your profile, academic information and account settings.
+            </p>
+
+        </div>
+
+
+
+        <div class="settings-layout">
+
+
+            <!-- =================================================
+                 SETTINGS MENU
+            ================================================== -->
+
+            <aside class="settings-menu" aria-label="Additional Information">
+
+
+                <button type="button"
+                    class="settings-menu-item active"
+                    onclick="scrollToSection('profileSection', this)"
+                >
+
+                    <i class="fa-regular fa-user"></i>
+
+                    Profile
+
+                </button>
+
+
+                <button type="button"
+                    class="settings-menu-item"
+                    onclick="scrollToSection('academicSection', this)"
+                >
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                    Academic Information
+
+                </button>
+
+
+                <button type="button"
+                    class="settings-menu-item"
+                    onclick="scrollToSection('securitySection', this)"
+                >
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    Security
+
+                </button>
+
+
+                <button type="button"
+                    class="settings-menu-item"
+                    onclick="scrollToSection('accountSection', this)"
+                >
+
+                    <i class="fa-solid fa-user-gear"></i>
+
+                    Account
+
+                </button>
+
+            </aside>
+
+
+
+            <!-- =================================================
+                 SETTINGS CONTENT
+            ================================================== -->
+
+            <section class="settings-content">
+
+
+                <!-- =================================================
+                     PROFILE
+                ================================================== -->
+
+                <div
+                    class="settings-card"
+                    id="profileSection"
+                >
+
+
+                    <div class="card-header">
+
+                        <h2>
+                            Profile
+                        </h2>
+
+                        <p>
+                            Manage your basic StudyNest profile information.
+                        </p>
+
+                    </div>
+
+
+                    <div class="profile-section">
+
+
+                        <div
+                            class="large-avatar"
+                            id="largeAvatar"
+                        >
+                            A
+                        </div>
+
+
+                        <div class="profile-info">
+
+                            <h3 id="profileFullName">
+                                Student
+                            </h3>
+
+                            <p id="profileEmail">
+                                student@example.com
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROFILE VIEW -->
+
+                    <div
+                        class="profile-view"
+                        id="profileView"
+                    >
+
+
+                        <div class="info-grid">
+
+
+                            <div class="info-item">
+
+                                <label>
+                                    Full Name
+                                </label>
+
+                                <div id="displayName">
+                                    Student
+                                </div>
+
+                            </div>
+
+
+                            <div class="info-item">
+
+                                <label>
+                                    Email Address
+                                </label>
+
+                                <div id="displayEmail">
+                                    student@example.com
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <button type="button"
+                            class="edit-btn"
+                            onclick="editProfile()"
+                        >
+
+                            <i class="fa-solid fa-pen"></i>
+
+                            Edit Profile
+
+                        </button>
+
+
+                    </div>
+
+
+                    <!-- PROFILE EDIT -->
+
+                    <div
+                        class="profile-edit"
+                        id="profileEdit"
+                        style="display:none;"
+                    >
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="fullName"
+                                    placeholder="Your full name"
+                                >
+
+                            </div>
+
+
+
+                        </div>
+
+
+                        <div class="edit-actions">
+
+
+                            <button type="button"
+                                class="cancel-btn"
+                                onclick="cancelProfileEdit()"
+                            >
+
+                                Cancel
+
+                            </button>
+
+
+                            <button type="button"
+                                class="save-changes"
+                                onclick="saveProfile()"
+                            >
+
+                                Save Changes
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     ACADEMIC INFORMATION
+                ================================================== -->
+
+                <div
+                    class="settings-card"
+                    id="academicSection"
+                >
+
+
+                    <div class="card-header">
+
+                        <h2>
+                            Academic Information
+                        </h2>
+
+                        <p>
+                            Your current academic profile used for personalization.
+                        </p>
+
+                    </div>
+
+
+                    <!-- ACADEMIC VIEW -->
+
+                    <div
+                        id="academicView"
+                    >
+
+
+                        <div class="academic-display-grid">
+
+
+                            <div class="academic-display-item">
+
+                                <label>
+                                    Country
+                                </label>
+
+                                <div id="displayCountry">
+                                    Not set
+                                </div>
+
+                            </div>
+
+
+                            <div class="academic-display-item">
+
+                                <label>
+                                    Study Level
+                                </label>
+
+                                <div id="displayStudyLevel">
+                                    Not set
+                                </div>
+
+                            </div>
+
+
+                            <div class="academic-display-item full">
+
+                                <label>
+                                    Institution
+                                </label>
+
+                                <div id="displayInstitution">
+                                    Not set
+                                </div>
+
+                            </div>
+
+
+                            <div class="academic-display-item full">
+
+                                <label>
+                                    Department / Program
+                                </label>
+
+                                <div id="displayDepartment">
+                                    Not set
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <button type="button"
+                            class="edit-btn"
+                            onclick="editAcademicInformation()"
+                        >
+
+                            <i class="fa-solid fa-pen"></i>
+
+                            Edit Academic Information
+
+                        </button>
+
+
+                    </div>
+
+
+                    <!-- ACADEMIC EDIT -->
+
+                    <div
+                        id="academicEdit"
+                        style="display:none;"
+                    >
+
+
+                        <div class="form-grid">
+
+
+                            <!-- COUNTRY -->
+
+                            <div class="form-group">
+
+                                <label>
+                                    Country
+                                </label>
+
+                                <select
+                                    id="countrySelect"
+                                >
+
+                                    <option value="">
+                                        Select Country
+                                    </option>
+
+                                    <option value="Bangladesh">
+                                        Bangladesh
+                                    </option>
+
+                                    <option value="India">
+                                        India
+                                    </option>
+
+                                    <option value="Pakistan">
+                                        Pakistan
+                                    </option>
+
+                                    <option value="United States">
+                                        United States
+                                    </option>
+
+                                    <option value="United Kingdom">
+                                        United Kingdom
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- STUDY LEVEL -->
+
+                            <div class="form-group">
+
+                                <label>
+                                    Study Level
+                                </label>
+
+                                <select
+                                    id="studyLevelSelect"
+                                    onchange="updateAcademicFields()"
+                                >
+
+                                    <option value="">
+                                        Select Study Level
+                                    </option>
+
+                                    <option value="University">
+                                        University
+                                    </option>
+
+                                    <option value="Medical">
+                                        Medical
+                                    </option>
+
+                                    <option value="Polytechnic">
+                                        Polytechnic
+                                    </option>
+
+                                    <option value="National University">
+                                        National University
+                                    </option>
+
+                                    <option value="School">
+                                        School
+                                    </option>
+
+                                    <option value="College">
+                                        College
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- DYNAMIC FIELDS -->
+
+                            <div
+                                id="dynamicAcademicFields"
+                                class="form-group full"
+                            >
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="edit-actions">
+
+
+                            <button type="button"
+                                class="cancel-btn"
+                                onclick="cancelAcademicEdit()"
+                            >
+
+                                Cancel
+
+                            </button>
+
+
+                            <button type="button"
+                                class="save-changes"
+                                onclick="saveAcademicInformation()"
+                            >
+
+                                Save Changes
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SECURITY
+                ================================================== -->
+
+                <div
+                    class="settings-card"
+                    id="securitySection"
+                >
+
+
+                    <div class="card-header">
+
+                        <h2>
+                            Security
+                        </h2>
+
+                        <p>
+                            Manage your account security.
+                        </p>
+
+                    </div>
+
+
+                    <div class="security-row">
+
+
+                        <div class="security-left">
+
+
+                            <div class="security-icon">
+
+                                <i class="fa-solid fa-lock"></i>
+
+                            </div>
+
+
+                            <div class="security-info">
+
+                                <h4>
+                                    Password
+                                </h4>
+
+                                <p>
+                                    Change your account password.
+                                </p>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <button type="button"
+                            class="security-btn"
+                            onclick="changePassword()"
+                        >
+
+                            Change Password
+
+                        </button>
+
+
+                    </div>
+
+
+                    <div class="security-row">
+
+
+                        <div class="security-left">
+
+
+                            <div class="security-icon">
+
+                                <i class="fa-brands fa-google"></i>
+
+                            </div>
+
+
+                            <div class="security-info">
+
+                                <h4>
+                                    Google Account
+                                </h4>
+
+                                <p>
+                                    Manage Google login connection.
+                                </p>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <button type="button"
+                            class="security-btn"
+                            onclick="googleAccount()"
+                        >
+
+                            Manage
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     ACCOUNT
+                ================================================== -->
+
+                <div
+                    class="settings-card"
+                    id="accountSection"
+                >
+
+
+                    <div class="card-header">
+
+                        <h2>
+                            Account
+                        </h2>
+
+                        <p>
+                            Manage your StudyNest account.
+                        </p>
+
+                    </div>
+
+
+                    <div class="danger-row">
+
+
+                        <div class="danger-info">
+
+                            <h3>
+                                Log out of StudyNest
+                            </h3>
+
+                            <p>
+                                You will need to log in again to access your account.
+                            </p>
+
+                        </div>
+
+
+                        <button type="button"
+                            class="logout-btn"
+                            onclick="logoutUser()"
+                        >
+
+                            <i class="fa-solid fa-right-from-bracket"></i>
+
+                            Log Out
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         SUCCESS MESSAGE
+    ===================================================== -->
+
+    <div
+        class="success-message"
+        id="successMessage"
+    >
+        Changes saved successfully.
+    </div>
+
+
+
+    <!-- =====================================================
+         SIDEBAR OVERLAY
+    ===================================================== -->
+
+    <div
+        class="overlay"
+        id="overlay"
+    ></div>
+
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ===================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+     aria-label="Main Navigation">
+
+
+        <div class="sidebar-header">
+
+
+            <div class="sidebar-logo">
+
+
+                <div class="sidebar-logo-icon">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        StudyNest
+                    </h3>
+
+                    <p>
+                        Learn. Share. Grow.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <button type="button"
+                class="close-sidebar"
+                id="closeSidebar"
+             aria-label="Close Sidebar">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
+        </div>
+
+
+
+        <div class="sidebar-menu">
+
+
+            <a
+                href="home.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>
+                    Home
+                </span>
+
+            </a>
+
+
+            <a
+                href="academic_courses.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>
+                    Academic Courses
+                </span>
+
+            </a>
+
+
+            <a
+                href="question_bank.html"
+                class="menu-item"
+            >
+
+                <i class="fa-regular fa-file-lines"></i>
+
+                <span>
+                    Campus Question Bank
+                </span>
+
+            </a>
+
+
+            <a
+                href="leaderboard.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-trophy"></i>
+
+                <span>
+                    Leaderboards
+                </span>
+
+            </a>
+
+
+            <a
+                href="contribute.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>
+                    Contribute
+                </span>
+
+            </a>
+
+
+            <a
+                href="my_library.html"
+                class="menu-item"
+            >
+
+                <i class="fa-regular fa-bookmark"></i>
+
+                <span>
+                    My Library
+                </span>
+
+            </a>
+
+
+            <a
+                href="settings.html"
+                class="menu-item active"
+            >
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+            <div class="sidebar-divider"></div>
+
+
+            <a
+                href="#"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <span>
+                    About Us
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="menu-item"
+            >
+
+                <i class="fa-regular fa-envelope"></i>
+
+                <span>
+                    Contact Us
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-file-contract"></i>
+
+                <span>
+                    Terms of Service
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>
+                    Privacy Policy
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="menu-item"
+            >
+
+                <i class="fa-regular fa-circle-question"></i>
+
+                <span>
+                    Help &amp; FAQ
+                </span>
+
+            </a>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- Shared JS Modules -->
+    <script src="js/routes.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/shared-ui.js"></script>
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           LOCAL STORAGE & DATA STORE
+        ===================================================== */
+
+        const initialUser = (typeof DataStore !== 'undefined' && DataStore.getUser()) || {};
+
+        let savedName =
+            initialUser.name ||
+            localStorage.getItem(
+                "studynest_user_name"
+            ) || "Akhtaruzzaman Anik";
+
+
+        let savedEmail =
+            initialUser.email ||
+            localStorage.getItem(
+                "studynest_user_email"
+            ) || "anikanik@gmail.com";
+
+
+        let savedCountry =
+            initialUser.country ||
+            localStorage.getItem(
+                "studynest_country"
+            ) || "Bangladesh";
+
+
+        let savedStudyLevel =
+            initialUser.studyLevel ||
+            localStorage.getItem(
+                "studynest_study_level"
+            ) || "University";
+
+
+        /* =====================================================
+           ACADEMIC DATA
+        ===================================================== */
+
+        const universities = [
+
+            "Daffodil International University",
+
+            "University of Dhaka",
+
+            "Bangladesh University of Engineering and Technology",
+
+            "BRAC University"
+
+        ];
+
+
+        const universityDepartments = [
+
+            "Computer Science & Engineering",
+
+            "Software Engineering",
+
+            "Electrical & Electronic Engineering",
+
+            "Civil Engineering",
+
+            "Business Administration",
+
+            "English"
+
+        ];
+
+
+        const medicalUniversities = {
+
+            "Dhaka University (DU)": {
+                "MBBS": [
+                    "Dhaka Medical College",
+                    "Sir Salimullah Medical College",
+                    "Shaheed Suhrawardy Medical College",
+                    "Mymensingh Medical College",
+                    "Faridpur Medical College",
+                    "Sher-E-Bangla Medical College",
+                    "Shaheed Tajuddin Ahmad Medical College",
+                    "Sheikh Sayera Khatun Medical College, Gopalganj",
+                    "Enam Medical College",
+                    "Bangladesh Medical College",
+                    "Ibrahim Medical College (BIRDEM)",
+                    "Holy Family Red Crescent Medical College",
+                    "Anwer Khan Modern Medical College",
+                    "Kumudini Women's Medical College"
+                ],
+                "BDS": [
+                    "Dhaka Dental College",
+                    "Dental Unit, Sir Salimullah Medical College",
+                    "Dental Unit, Shaheed Suhrawardy Medical College",
+                    "Dental Unit, Mymensingh Medical College",
+                    "Dental Unit, Sher-E-Bangla Medical College",
+                    "Pioneer Dental College",
+                    "Sapporo Dental College",
+                    "City Dental College, Dhaka",
+                    "Bangladesh Dental College",
+                    "University Dental College",
+                    "Marks Dental College",
+                    "Mandi Dental College"
+                ]
+            },
+
+            "Rajshahi Medical University (RMU)": {
+                "MBBS": [
+                    "Rajshahi Medical College",
+                    "Rangpur Medical College",
+                    "Shaheed Ziaur Rahman Medical College, Bogura",
+                    "Dinajpur Medical College (M Abdur Rahim)",
+                    "Pabna Medical College",
+                    "Kushtia Medical College",
+                    "Shaheed M. Monsur Ali Medical College, Sirajganj",
+                    "Naogaon Medical College",
+                    "Nilphamari Medical College",
+                    "Islami Bank Medical College, Rajshahi",
+                    "Barind Medical College, Rajshahi",
+                    "TMSS Medical College, Bogura",
+                    "North Bengal Medical College, Sirajganj",
+                    "Prime Medical College, Rangpur"
+                ],
+                "BDS": [
+                    "Dental Unit, Rajshahi Medical College",
+                    "Dental Unit, Rangpur Medical College",
+                    "Udayan Dental College, Rajshahi",
+                    "Dental Unit, Islami Bank Medical College, Rajshahi",
+                    "Rangpur Community Dental College",
+                    "Dental Unit, TMSS Medical College, Bogura"
+                ]
+            },
+
+            "Chittagong Medical University (CMU)": {
+                "MBBS": [
+                    "Chittagong Medical College",
+                    "Comilla Medical College",
+                    "Noakhali Medical College (Abdul Malek Ukil)",
+                    "Cox's Bazar Medical College",
+                    "Chandpur Medical College",
+                    "Rangamati Medical College",
+                    "Brahmanbaria Medical College",
+                    "Southern Medical College",
+                    "Marine City Medical College",
+                    "BGC Trust Medical College",
+                    "Eastern Medical College, Comilla",
+                    "Mainamoti Medical College, Comilla"
+                ],
+                "BDS": [
+                    "Dental Unit, Chittagong Medical College",
+                    "Chittagong International Dental College",
+                    "Dental Unit, Southern Medical College"
+                ]
+            },
+
+            "Sylhet Medical University (SMU)": {
+                "MBBS": [
+                    "Sylhet MAG Osmani Medical College",
+                    "Jalalabad Ragib-Rabeya Medical College",
+                    "North East Medical College",
+                    "Parkview Medical College",
+                    "Sylhet Women's Medical College",
+                    "Bangabandhu Medical College, Sunamganj"
+                ],
+                "BDS": [
+                    "Dental Unit, Sylhet MAG Osmani Medical College",
+                    "Dental Unit, Jalalabad Ragib-Rabeya Medical College",
+                    "Dental Unit, North East Medical College"
+                ]
+            },
+
+            "Khulna Medical University (KMU)": {
+                "MBBS": [
+                    "Khulna Medical College",
+                    "Jessore Medical College",
+                    "Satkhira Medical College",
+                    "Magura Medical College",
+                    "Ad-din Akij Medical College, Khulna",
+                    "Gazi Medical College, Khulna",
+                    "Ad-din Sakina Medical College, Jessore"
+                ],
+                "BDS": [
+                    "Dental Unit, Khulna Medical College",
+                    "Dental Unit, Jessore Medical College",
+                    "City Dental College, Khulna"
+                ]
+            },
+
+            "Bangabandhu Sheikh Mujib Medical University (BSMMU)": {
+                "MBBS": [
+                    "Faculty of Medicine, BSMMU",
+                    "National Institute of Cardiovascular Diseases (NICVD)",
+                    "National Institute of Neurosciences & Hospital (NINS)",
+                    "National Institute of Cancer Research & Hospital (NICRH)"
+                ],
+                "BDS": [
+                    "Faculty of Dentistry, BSMMU"
+                ]
+            }
+
+        };
+
+
+        const polytechnicInstitutes = [
+
+            "Dhaka Polytechnic Institute",
+
+            "Chittagong Polytechnic Institute",
+
+            "Rajshahi Polytechnic Institute",
+
+            "Rangpur Polytechnic Institute",
+
+            "Khulna Polytechnic Institute",
+
+            "Mymensingh Polytechnic Institute"
+
+        ];
+
+
+        const polytechnicDepartments = [
+
+            "Computer Technology",
+
+            "Electrical Technology",
+
+            "Electronics Technology",
+
+            "Civil Technology",
+
+            "Mechanical Technology",
+
+            "Architecture Technology"
+
+        ];
+
+
+        const nuDepartments = [
+
+            "Computer Science",
+
+            "Accounting",
+
+            "Management",
+
+            "Finance & Banking",
+
+            "English",
+
+            "Bangla",
+
+            "Economics"
+
+        ];
+
+
+        const boards = [
+
+            "Dhaka Board",
+
+            "Rajshahi Board",
+
+            "Comilla Board",
+
+            "Jessore Board",
+
+            "Chittagong Board",
+
+            "Barisal Board",
+
+            "Sylhet Board",
+
+            "Dinajpur Board",
+
+            "Mymensingh Board",
+
+            "Madrasah Education Board",
+
+            "Technical Education Board"
+
+        ];
+
+
+        /* =====================================================
+           CREATE SELECT OPTIONS
+        ===================================================== */
+
+        function createOptions(
+            array,
+            selectedValue = ""
+        ) {
+
+            let html =
+                `<option value="">Select</option>`;
+
+
+            array.forEach(
+                function(item) {
+
+                    const selected =
+                        item === selectedValue
+                            ? "selected"
+                            : "";
+
+
+                    html += `
+                        <option
+                            value="${item}"
+                            ${selected}
+                        >
+                            ${item}
+                        </option>
+                    `;
+
+                }
+            );
+
+
+            return html;
+
+        }
+
+
+        /* =====================================================
+           INITIAL LOAD
+        ===================================================== */
+
+        function loadProfile() {
+
+            const user = (typeof DataStore !== 'undefined' && DataStore.getUser()) || {};
+            savedName = user.name || savedName;
+            savedEmail = user.email || savedEmail;
+
+            const letter =
+                (savedName || "A")
+                    .charAt(0)
+                    .toUpperCase();
+
+            const setSafe = (id, val) => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = val;
+            };
+
+            setSafe("profileAvatar", letter);
+            setSafe("largeAvatar", letter);
+            setSafe("profileName", savedName);
+            setSafe("profileFullName", savedName);
+            setSafe("profileEmail", savedEmail);
+            setSafe("displayName", savedName);
+            setSafe("displayEmail", savedEmail);
+
+        }
+
+
+        loadProfile();
+
+
+        /* =====================================================
+           PROFILE EDIT
+        ===================================================== */
+
+        function editProfile() {
+
+            const user = (typeof DataStore !== 'undefined' && DataStore.getUser()) || {};
+            savedName = user.name || savedName;
+            savedEmail = user.email || savedEmail;
+
+            document.getElementById(
+                "profileView"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "profileEdit"
+            ).style.display = "block";
+
+
+            document.getElementById(
+                "fullName"
+            ).value = savedName;
+
+
+            const emailInput = document.getElementById("email");
+            if (emailInput) {
+                emailInput.value = savedEmail;
+            }
+
+        }
+
+
+        function cancelProfileEdit() {
+
+            document.getElementById(
+                "profileEdit"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "profileView"
+            ).style.display = "block";
+
+        }
+
+
+        function saveProfile() {
+
+            const nameInput = document.getElementById("fullName");
+            const emailInput = document.getElementById("email");
+
+            const name = nameInput ? nameInput.value.trim() : "";
+            const email = emailInput ? emailInput.value.trim() : savedEmail;
+
+
+            if (!name) {
+
+                alert(
+                    "Please enter your name."
+                );
+
+                return;
+            }
+
+            if (!email) {
+
+                alert(
+                    "Please enter your email."
+                );
+
+                return;
+            }
+
+
+            savedName = name;
+            savedEmail = email;
+
+            if (typeof DataStore !== 'undefined') {
+                DataStore.setUser({
+                    name: savedName,
+                    email: savedEmail
+                });
+            } else {
+                localStorage.setItem("studynest_user_name", savedName);
+                localStorage.setItem("studynest_user_email", savedEmail);
+            }
+
+
+            loadProfile();
+
+
+            document.getElementById(
+                "profileEdit"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "profileView"
+            ).style.display = "block";
+
+
+            showSuccess(
+                "Profile changes saved successfully."
+            );
+
+        }
+
+
+        /* =====================================================
+           EDIT ACADEMIC INFORMATION
+        ===================================================== */
+
+        function editAcademicInformation() {
+
+            const user = (typeof DataStore !== 'undefined' && DataStore.getUser()) || {};
+            savedCountry = user.country || localStorage.getItem("studynest_country") || "Bangladesh";
+            savedStudyLevel = user.studyLevel || localStorage.getItem("studynest_study_level") || "University";
+
+            document.getElementById(
+                "academicView"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "academicEdit"
+            ).style.display = "block";
+
+
+            const countrySelect = document.getElementById("countrySelect");
+            if (countrySelect) countrySelect.value = savedCountry;
+
+
+            const levelSelect = document.getElementById("studyLevelSelect");
+            if (levelSelect) levelSelect.value = savedStudyLevel;
+
+
+            updateAcademicFields();
+
+        }
+
+
+        function cancelAcademicEdit() {
+
+            document.getElementById(
+                "academicEdit"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "academicView"
+            ).style.display = "block";
+
+        }
+
+
+        /* =====================================================
+           UPDATE ACADEMIC DISPLAY
+        ===================================================== */
+
+        function updateAcademicDisplay() {
+
+            const user = (typeof DataStore !== 'undefined' && DataStore.getUser()) || {};
+
+            const country =
+                user.country ||
+                localStorage.getItem(
+                    "studynest_country"
+                ) || "Bangladesh";
+
+
+            const level =
+                user.studyLevel ||
+                localStorage.getItem(
+                    "studynest_study_level"
+                ) || "University";
+
+            savedCountry = country;
+            savedStudyLevel = level;
+
+
+            document.getElementById(
+                "displayCountry"
+            ).textContent = country;
+
+
+            document.getElementById(
+                "displayStudyLevel"
+            ).textContent = level;
+
+
+            let institution = user.institution || localStorage.getItem("studynest_institution") || "Daffodil International University";
+
+            let department = user.department || localStorage.getItem("studynest_department") || "Computer Science & Engineering";
+
+
+            if (level === "Medical") {
+
+                institution =
+                    user.college ||
+                    user.institution ||
+                    localStorage.getItem(
+                        "studynest_medical_college"
+                    ) || "Not set";
+
+                const course =
+                    user.course ||
+                    localStorage.getItem(
+                        "studynest_course"
+                    ) || "MBBS";
+
+                const uni =
+                    user.medicalUniversity ||
+                    localStorage.getItem(
+                        "studynest_medical_university"
+                    ) || "";
+
+                department =
+                    uni ? `${course} (${uni})` : course;
+
+            }
+
+
+            else if (
+                level === "School" ||
+                level === "College"
+            ) {
+
+                institution =
+                    user.institution ||
+                    localStorage.getItem(
+                        "studynest_institution"
+                    ) || "Not set";
+
+
+                const board =
+                    user.board ||
+                    localStorage.getItem(
+                        "studynest_board"
+                    ) || "";
+
+
+                const classValue =
+                    user.class ||
+                    localStorage.getItem(
+                        "studynest_class"
+                    ) || "";
+
+
+                department =
+                    board;
+
+
+                if (classValue) {
+
+                    department +=
+                        " • " + classValue;
+
+                }
+
+            }
+
+
+            document.getElementById(
+                "displayInstitution"
+            ).textContent =
+                institution;
+
+
+            document.getElementById(
+                "displayDepartment"
+            ).textContent =
+                department;
+
+        }
+
+
+        updateAcademicDisplay();
+
+
+        /* =====================================================
+           UPDATE DYNAMIC FIELDS
+        ===================================================== */
+
+        function updateAcademicFields() {
+
+            const level =
+                document.getElementById(
+                    "studyLevelSelect"
+                ).value;
+
+
+            const dynamicFields =
+                document.getElementById(
+                    "dynamicAcademicFields"
+                );
+
+
+            dynamicFields.innerHTML = "";
+
+
+            /* =================================================
+               UNIVERSITY
+            ================================================= */
+
+            if (level === "University") {
+
+                const user = (typeof DataStore !== 'undefined' && DataStore.getUser()) || {};
+                const institution =
+                    user.institution ||
+                    localStorage.getItem(
+                        "studynest_institution"
+                    ) || "Daffodil International University";
+
+
+                const department =
+                    user.department ||
+                    localStorage.getItem(
+                        "studynest_department"
+                    ) || "Computer Science & Engineering";
+
+
+                dynamicFields.innerHTML = `
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                University
+                            </label>
+
+                            <select
+                                id="dynamicInstitution"
+                            >
+
+                                ${createOptions(
+                                    universities,
+                                    institution
+                                )}
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Department / Program
+                            </label>
+
+                            <select
+                                id="dynamicDepartment"
+                            >
+
+                                ${createOptions(
+                                    universityDepartments,
+                                    department
+                                )}
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            /* =================================================
+               MEDICAL
+            ================================================= */
+
+            else if (level === "Medical") {
+
+                const user = (typeof DataStore !== 'undefined' && DataStore.getUser()) || {};
+                const medicalUniversity =
+                    user.medicalUniversity ||
+                    localStorage.getItem(
+                        "studynest_medical_university"
+                    ) || "";
+
+                const medicalCourse =
+                    user.course ||
+                    localStorage.getItem(
+                        "studynest_course"
+                    ) || "MBBS";
+
+                const savedCollege =
+                    user.college ||
+                    user.institution ||
+                    localStorage.getItem(
+                        "studynest_medical_college"
+                    ) || "";
+
+
+                dynamicFields.innerHTML = `
+
+                    <div class="form-grid">
+
+                        <div class="form-group full">
+
+                            <label>
+                                Medical University
+                            </label>
+
+                            <select
+                                id="medicalUniversity"
+                                onchange="updateMedicalColleges()"
+                            >
+
+                                ${createOptions(
+                                    Object.keys(
+                                        medicalUniversities
+                                    ),
+                                    medicalUniversity
+                                )}
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Course
+                            </label>
+
+                            <select
+                                id="medicalCourse"
+                                onchange="updateMedicalColleges()"
+                            >
+
+                                <option value="MBBS" ${medicalCourse === 'MBBS' ? 'selected' : ''}>MBBS</option>
+                                <option value="BDS" ${medicalCourse === 'BDS' ? 'selected' : ''}>BDS</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label id="medicalCollegeLabel">
+                                ${medicalCourse === 'BDS' ? 'Dental College' : 'Medical College'}
+                            </label>
+
+                            <select
+                                id="medicalCollege"
+                            >
+
+                                <option value="">
+                                    Select
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                updateMedicalColleges(
+                    savedCollege
+                );
+
+            }
+
+
+            /* =================================================
+               POLYTECHNIC
+            ================================================= */
+
+            else if (
+                level === "Polytechnic"
+            ) {
+
+                const user = (typeof DataStore !== 'undefined' && DataStore.getUser()) || {};
+                const institution =
+                    user.institution ||
+                    localStorage.getItem(
+                        "studynest_institution"
+                    ) || "";
+
+
+                const department =
+                    user.department ||
+                    localStorage.getItem(
+                        "studynest_department"
+                    ) || "";
+
+
+                dynamicFields.innerHTML = `
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Polytechnic Institute
+                            </label>
+
+                            <select
+                                id="dynamicInstitution"
+                            >
+
+                                ${createOptions(
+                                    polytechnicInstitutes,
+                                    institution
+                                )}
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Technology / Department
+                            </label>
+
+                            <select
+                                id="dynamicDepartment"
+                            >
+
+                                ${createOptions(
+                                    polytechnicDepartments,
+                                    department
+                                )}
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            /* =================================================
+               NATIONAL UNIVERSITY
+            ================================================= */
+
+            else if (
+                level ===
+                "National University"
+            ) {
+
+                const user = (typeof DataStore !== 'undefined' && DataStore.getUser()) || {};
+                const institution =
+                    user.institution ||
+                    localStorage.getItem(
+                        "studynest_institution"
+                    ) || "";
+
+
+                const department =
+                    user.department ||
+                    localStorage.getItem(
+                        "studynest_department"
+                    ) || "";
+
+
+                dynamicFields.innerHTML = `
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                College Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="dynamicInstitution"
+                                placeholder="Enter college name"
+                                value="${institution}"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Department / Program
+                            </label>
+
+                            <select
+                                id="dynamicDepartment"
+                            >
+
+                                ${createOptions(
+                                    nuDepartments,
+                                    department
+                                )}
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            /* =================================================
+               SCHOOL
+            ================================================= */
+
+            else if (level === "School") {
+
+                const user = (typeof DataStore !== 'undefined' && DataStore.getUser()) || {};
+                const board =
+                    user.board ||
+                    localStorage.getItem(
+                        "studynest_board"
+                    ) || "";
+
+
+                const institution =
+                    user.institution ||
+                    localStorage.getItem(
+                        "studynest_institution"
+                    ) || "";
+
+
+                const classValue =
+                    user.class ||
+                    localStorage.getItem(
+                        "studynest_class"
+                    ) || "";
+
+
+                const classes = Array.from(
+                    { length: 10 },
+                    (_, index) =>
+                        `Class ${index + 1}`
+                );
+
+
+                dynamicFields.innerHTML = `
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Education Board
+                            </label>
+
+                            <select
+                                id="dynamicBoard"
+                            >
+
+                                ${createOptions(
+                                    boards,
+                                    board
+                                )}
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Class
+                            </label>
+
+                            <select
+                                id="dynamicClass"
+                            >
+
+                                ${createOptions(
+                                    classes,
+                                    classValue
+                                )}
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label>
+                                School Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="dynamicInstitution"
+                                placeholder="Enter school name"
+                                value="${institution}"
+                            >
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+
+            /* =================================================
+               COLLEGE
+            ================================================= */
+
+            else if (level === "College") {
+
+                const user = (typeof DataStore !== 'undefined' && DataStore.getUser()) || {};
+                const board =
+                    user.board ||
+                    localStorage.getItem(
+                        "studynest_board"
+                    ) || "";
+
+
+                const institution =
+                    user.institution ||
+                    localStorage.getItem(
+                        "studynest_institution"
+                    ) || "";
+
+
+                const classValue =
+                    user.class ||
+                    localStorage.getItem(
+                        "studynest_class"
+                    ) || "";
+
+
+                const classes = [
+
+                    "Class 11",
+
+                    "Class 12"
+
+                ];
+
+
+                dynamicFields.innerHTML = `
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Education Board
+                            </label>
+
+                            <select
+                                id="dynamicBoard"
+                            >
+
+                                ${createOptions(
+                                    boards,
+                                    board
+                                )}
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Class
+                            </label>
+
+                            <select
+                                id="dynamicClass"
+                            >
+
+                                ${createOptions(
+                                    classes,
+                                    classValue
+                                )}
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label>
+                                College Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="dynamicInstitution"
+                                placeholder="Enter college name"
+                                value="${institution}"
+                            >
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MEDICAL COLLEGE UPDATE
+        ===================================================== */
+
+        function updateMedicalColleges(
+            selectedCollege = ""
+        ) {
+
+            const university =
+                document.getElementById(
+                    "medicalUniversity"
+                );
+
+            const courseSelect =
+                document.getElementById(
+                    "medicalCourse"
+                );
+
+            const college =
+                document.getElementById(
+                    "medicalCollege"
+                );
+
+            const collegeLabel =
+                document.getElementById(
+                    "medicalCollegeLabel"
+                );
+
+
+            if (!university || !college) {
+                return;
+            }
+
+
+            const selectedUniversity =
+                university.value;
+
+            const selectedCourse =
+                courseSelect ? courseSelect.value : "MBBS";
+
+            if (collegeLabel) {
+                collegeLabel.textContent =
+                    selectedCourse === "BDS" ? "Dental College" : "Medical College";
+            }
+
+
+            const uniData =
+                medicalUniversities[
+                    selectedUniversity
+                ];
+
+            const colleges =
+                (uniData && uniData[selectedCourse]) ? uniData[selectedCourse] : [];
+
+
+            college.innerHTML =
+                createOptions(
+                    colleges,
+                    selectedCollege
+                );
+
+        }
+
+
+        /* =====================================================
+           SAVE ACADEMIC INFORMATION
+        ===================================================== */
+
+        function saveAcademicInformation() {
+
+            const country =
+                document.getElementById(
+                    "countrySelect"
+                ).value;
+
+
+            const level =
+                document.getElementById(
+                    "studyLevelSelect"
+                ).value;
+
+
+            if (!country) {
+
+                alert(
+                    "Please select your country."
+                );
+
+                return;
+            }
+
+
+            if (!level) {
+
+                alert(
+                    "Please select your study level."
+                );
+
+                return;
+            }
+
+
+            const academicData = {
+                country: country,
+                studyLevel: level
+            };
+
+
+            /* =================================================
+               UNIVERSITY
+            ================================================= */
+
+            if (level === "University") {
+
+                const institution =
+                    document.getElementById(
+                        "dynamicInstitution"
+                    ).value;
+
+
+                const department =
+                    document.getElementById(
+                        "dynamicDepartment"
+                    ).value;
+
+
+                if (!institution || !department) {
+
+                    alert(
+                        "Please select university and department."
+                    );
+
+                    return;
+                }
+
+                academicData.institution = institution;
+                academicData.department = department;
+
+            }
+
+
+            /* =================================================
+               MEDICAL
+            ================================================= */
+
+            else if (level === "Medical") {
+
+                const university =
+                    document.getElementById(
+                        "medicalUniversity"
+                    ).value;
+
+                const course =
+                    document.getElementById(
+                        "medicalCourse"
+                    ).value;
+
+                const college =
+                    document.getElementById(
+                        "medicalCollege"
+                    ).value;
+
+
+                if (!university || !course || !college) {
+
+                    alert(
+                        "Please select medical university, course, and college."
+                    );
+
+                    return;
+                }
+
+                academicData.medicalUniversity = university;
+                academicData.course = course;
+                academicData.college = college;
+                academicData.institution = college;
+                academicData.department = course;
+
+            }
+
+
+            /* =================================================
+               POLYTECHNIC
+            ================================================= */
+
+            else if (
+                level === "Polytechnic"
+            ) {
+
+                const institution =
+                    document.getElementById(
+                        "dynamicInstitution"
+                    ).value;
+
+
+                const department =
+                    document.getElementById(
+                        "dynamicDepartment"
+                    ).value;
+
+
+                if (!institution || !department) {
+
+                    alert(
+                        "Please select institute and technology."
+                    );
+
+                    return;
+                }
+
+                academicData.institution = institution;
+                academicData.department = department;
+
+            }
+
+
+            /* =================================================
+               NATIONAL UNIVERSITY
+            ================================================= */
+
+            else if (
+                level ===
+                "National University"
+            ) {
+
+                const institution =
+                    document.getElementById(
+                        "dynamicInstitution"
+                    ).value.trim();
+
+
+                const department =
+                    document.getElementById(
+                        "dynamicDepartment"
+                    ).value;
+
+
+                if (!institution || !department) {
+
+                    alert(
+                        "Please enter college name and select department."
+                    );
+
+                    return;
+                }
+
+                academicData.institution = institution;
+                academicData.department = department;
+
+            }
+
+
+            /* =================================================
+               SCHOOL
+            ================================================= */
+
+            else if (
+                level === "School"
+            ) {
+
+                const board =
+                    document.getElementById(
+                        "dynamicBoard"
+                    ).value;
+
+
+                const institution =
+                    document.getElementById(
+                        "dynamicInstitution"
+                    ).value.trim();
+
+
+                const classValue =
+                    document.getElementById(
+                        "dynamicClass"
+                    ).value;
+
+
+                if (
+                    !board ||
+                    !institution ||
+                    !classValue
+                ) {
+
+                    alert(
+                        "Please complete your school information."
+                    );
+
+                    return;
+                }
+
+                academicData.board = board;
+                academicData.institution = institution;
+                academicData.class = classValue;
+                academicData.department = board;
+
+            }
+
+
+            /* =================================================
+               COLLEGE
+            ================================================= */
+
+            else if (
+                level === "College"
+            ) {
+
+                const board =
+                    document.getElementById(
+                        "dynamicBoard"
+                    ).value;
+
+
+                const institution =
+                    document.getElementById(
+                        "dynamicInstitution"
+                    ).value.trim();
+
+
+                const classValue =
+                    document.getElementById(
+                        "dynamicClass"
+                    ).value;
+
+
+                if (
+                    !board ||
+                    !institution ||
+                    !classValue
+                ) {
+
+                    alert(
+                        "Please complete your college information."
+                    );
+
+                    return;
+                }
+
+                academicData.board = board;
+                academicData.institution = institution;
+                academicData.class = classValue;
+                academicData.department = board;
+
+            }
+
+
+            /* SAVE TO DATASTORE & LEGACY LOCALSTORAGE */
+
+            if (typeof DataStore !== 'undefined') {
+                DataStore.setUser(academicData);
+            } else {
+                localStorage.setItem("studynest_country", country);
+                localStorage.setItem("studynest_study_level", level);
+                if (academicData.institution) localStorage.setItem("studynest_institution", academicData.institution);
+                if (academicData.department) localStorage.setItem("studynest_department", academicData.department);
+            }
+
+
+            /* UPDATE VARIABLES */
+
+            savedCountry =
+                country;
+
+
+            savedStudyLevel =
+                level;
+
+
+            /* UPDATE DISPLAY */
+
+            updateAcademicDisplay();
+
+
+            /* BACK TO VIEW MODE */
+
+            document.getElementById(
+                "academicEdit"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "academicView"
+            ).style.display = "block";
+
+
+            showSuccess(
+                "Academic information saved successfully."
+            );
+
+
+            document.getElementById(
+                "academicView"
+            ).style.display = "block";
+
+
+            showSuccess(
+                "Academic information saved successfully."
+            );
+
+        }
+
+
+        /* =====================================================
+           SUCCESS MESSAGE
+        ===================================================== */
+
+        function showSuccess(message) {
+
+            const box =
+                document.getElementById(
+                    "successMessage"
+                );
+
+
+            box.textContent =
+                message;
+
+
+            box.classList.add(
+                "show"
+            );
+
+
+            setTimeout(
+                function() {
+
+                    box.classList.remove(
+                        "show"
+                    );
+
+                },
+                2500
+            );
+
+        }
+
+
+        /* =====================================================
+           SETTINGS MENU
+        ===================================================== */
+
+        function scrollToSection(
+            sectionId,
+            button
+        ) {
+
+            const section =
+                document.getElementById(
+                    sectionId
+                );
+
+
+            document
+                .querySelectorAll(
+                    ".settings-menu-item"
+                )
+                .forEach(
+                    function(item) {
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+            button.classList.add(
+                "active"
+            );
+
+
+            section.scrollIntoView({
+
+                behavior: "smooth",
+
+                block: "start"
+
+            });
+
+        }
+
+
+        /* =====================================================
+           SECURITY
+        ===================================================== */
+
+        function changePassword() {
+
+            alert(
+                "Password change will be connected with Django authentication later."
+            );
+
+        }
+
+
+        function googleAccount() {
+
+            alert(
+                "Google account management will be connected with Google OAuth later."
+            );
+
+        }
+
+
+        /* =====================================================
+           LOGOUT
+        ===================================================== */
+
+        function logoutUser() {
+
+            const confirmLogout =
+                confirm(
+                    "Are you sure you want to log out?"
+                );
+
+
+            if (!confirmLogout) {
+                return;
+            }
+
+
+            localStorage.removeItem(
+                "studynest_logged_in"
+            );
+
+
+            localStorage.removeItem(
+                "studynest_google_login"
+            );
+
+
+            window.location.href =
+                "index.html";
+
+        }
+
+
+
+
+        // Initialize shared UI components (header, sidebar, footer)
+        if (typeof SharedUI !== 'undefined') {
+            SharedUI.init('settings');
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Help &amp; FAQ - StudyNest</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f7f8fc;
+            color: #1e293b;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: min(1000px, calc(100% - 40px));
+            margin: auto;
+        }
+
+        /* ================= HERO ================= */
+
+        .help-hero {
+            text-align: center;
+            padding: 70px 0 45px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            padding: 8px 14px;
+            border-radius: 30px;
+            background: #eeecff;
+            color: #5b4bdc;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .help-hero h1 {
+            font-size: clamp(34px, 5vw, 48px);
+            color: #17143b;
+            margin-bottom: 14px;
+            font-weight: 800;
+        }
+
+        .help-hero h1 span {
+            color: #635bdb;
+        }
+
+        .help-hero p {
+            max-width: 680px;
+            margin: auto;
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* ================= HELP CARDS ================= */
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            color: #17143b;
+            font-size: 29px;
+            margin-bottom: 9px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 70px;
+        }
+
+        .help-card {
+            background: white;
+            border: 1px solid #e9eaf1;
+            border-radius: 18px;
+            padding: 25px;
+            transition: 0.2s;
+        }
+
+        .help-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(30,41,59,0.07);
+        }
+
+        .help-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: #eeecff;
+            color: #5b4bdc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+            margin-bottom: 16px;
+        }
+
+        .help-card h3 {
+            font-size: 16px;
+            color: #17143b;
+            margin-bottom: 8px;
+        }
+
+        .help-card p {
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        /* ================= FAQ ================= */
+
+        .faq-section {
+            margin-bottom: 70px;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #e9eaf1;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            border: none;
+            background: white;
+            padding: 19px 21px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            text-align: left;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            color: #17143b;
+            cursor: pointer;
+        }
+
+        .faq-arrow {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: #f3f1ff;
+            color: #5b4bdc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: 0.25s;
+        }
+
+        .faq-item.open .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-inner {
+            padding: 0 21px 19px;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.75;
+        }
+
+        /* ================= CONTACT CTA ================= */
+
+        .contact-cta {
+            background: linear-gradient(135deg, #24205b, #4f46a8);
+            border-radius: 22px;
+            padding: 45px 30px;
+            text-align: center;
+            color: white;
+            margin-bottom: 70px;
+        }
+
+        .contact-cta h2 {
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .contact-cta p {
+            color: #dcd9f4;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 21px;
+            background: white;
+            color: #4f46a8;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 850px) {
+
+            .help-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                padding: 0 16px;
+            }
+
+            .profile-name {
+                display: none;
+            }
+
+            .container {
+                width: min(100% - 28px, 1000px);
+            }
+
+            .help-hero {
+                padding: 50px 0 35px;
+            }
+
+            .help-hero h1 {
+                font-size: 34px;
+            }
+
+            .help-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-cta {
+                padding: 38px 22px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="css/shared.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+     NAVBAR
+========================================= -->
+
+<header class="navbar">
+
+
+    <div class="nav-left">
+
+
+        <button type="button"
+            class="hamburger"
+            id="hamburgerBtn"
+            aria-label="Open menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+        <a
+            href="home.html"
+            class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <div class="logo-text">
+
+                <h2>
+                    StudyNest
+                </h2>
+
+                <p>
+                    Learn. Share. Grow.
+                </p>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="nav-right">
+
+
+        <div class="notification">
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span class="notification-badge">
+                3
+            </span>
+
+        </div>
+
+
+        <div class="nav-divider"></div>
+
+
+        <div class="profile">
+
+            <div class="profile-img">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="profile-info">
+
+                <strong id="userName">
+                    Anik
+                </strong>
+
+                <span>
+                    DIU Student
+                </span>
+
+            </div>
+
+            <div class="profile-arrow">
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     OVERLAY
+========================================= -->
+
+<div
+    class="overlay"
+    id="overlay">
+</div>
+
+
+
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
+<aside
+    class="sidebar"
+    id="sidebar" aria-label="Main Navigation">
+
+
+    <!-- SIDEBAR HEADER -->
+
+    <div class="sidebar-header">
+
+
+        <div class="sidebar-logo">
+
+
+            <div class="sidebar-logo-icon">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    StudyNest
+                </h3>
+
+                <p>
+                    Learn. Share. Grow.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button type="button"
+            class="close-sidebar"
+            id="closeSidebar" aria-label="Close Sidebar">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- SIDEBAR MENU -->
+
+    <div class="sidebar-menu">
+
+
+        <!-- HOME -->
+
+        <a
+            href="home.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                Home
+            </span>
+
+        </a>
+
+
+
+        <!-- ACADEMIC COURSES -->
+
+        <a
+            href="academic_courses.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            <span>
+                Academic Courses
+            </span>
+
+        </a>
+
+
+
+        <!-- QUESTION BANK -->
+
+        <a
+            href="question_bank.html"
+            class="menu-item">
+
+            <i class="fa-regular fa-square-question"></i>
+
+            <span>
+                Campus Question Bank
+            </span>
+
+        </a>
+
+
+
+        <!-- LEADERBOARDS -->
+
+        <a
+            href="leaderboard.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-trophy"></i>
+
+            <span>
+                Leaderboards
+            </span>
+
+        </a>
+
+
+
+        <!-- CONTRIBUTE -->
+
+        <a
+            href="contribute.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>
+                Contribute
+            </span>
+
+        </a>
+
+
+
+        <!-- MY LIBRARY -->
+
+        <a
+            href="my_library.html"
+            class="menu-item">
+
+            <i class="fa-regular fa-bookmark"></i>
+
+            <span>
+                My Library
+            </span>
+
+        </a>
+
+
+
+        <!-- SETTINGS -->
+
+        <a
+            href="settings.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>
+                Settings
+            </span>
+
+        </a>
+
+
+
+        <div class="sidebar-divider"></div>
+
+
+
+        <!-- ABOUT -->
+
+        <a
+            href="about.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <span>
+                About Us
+            </span>
+
+        </a>
+
+
+
+        <!-- CONTACT -->
+
+        <a
+            href="contact.html"
+            class="menu-item">
+
+            <i class="fa-regular fa-envelope"></i>
+
+            <span>
+                Contact Us
+            </span>
+
+        </a>
+
+
+
+        <!-- TERMS -->
+
+        <a
+            href="terms.html"
+            class="menu-item">
+
+            <i class="fa-regular fa-file-lines"></i>
+
+            <span>
+                Terms of Service
+            </span>
+
+        </a>
+
+
+
+        <!-- PRIVACY -->
+
+        <a
+            href="privacy.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <span>
+                Privacy Policy
+            </span>
+
+        </a>
+
+
+
+        <!-- HELP -->
+
+        <a
+            href="help.html"
+            class="menu-item active">
+
+            <i class="fa-regular fa-circle-question"></i>
+
+            <span>
+                Help &amp; FAQ
+            </span>
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="help-hero">
+
+            <div class="container">
+
+                <div class="hero-badge">
+                    ❓ StudyNest Help Center
+                </div>
+
+                <h1>
+                    How can we <span>help?</span>
+                </h1>
+
+                <p>
+                    Find answers to common questions about StudyNest,
+                    academic resources, contributions, your library,
+                    and your account.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <div class="container">
+
+            <!-- ================= HELP TOPICS ================= -->
+
+            <section>
+
+                <div class="section-title">
+
+                    <h2>Help Topics</h2>
+
+                    <p>
+                        Quick information about the main StudyNest features.
+                    </p>
+
+                </div>
+
+
+                <div class="help-grid">
+
+                    <div class="help-card">
+
+                        <div class="help-icon">
+                            👤
+                        </div>
+
+                        <h3>Account &amp; Profile</h3>
+
+                        <p>
+                            Learn how to create your account, complete your
+                            academic profile, and update your information.
+                        </p>
+
+                    </div>
+
+
+                    <div class="help-card">
+
+                        <div class="help-icon">
+                            📚
+                        </div>
+
+                        <h3>Academic Courses</h3>
+
+                        <p>
+                            Explore course-specific playlists and academic
+                            resources based on your institution and department.
+                        </p>
+
+                    </div>
+
+
+                    <div class="help-card">
+
+                        <div class="help-icon">
+                            📄
+                        </div>
+
+                        <h3>Question Bank</h3>
+
+                        <p>
+                            Find question papers and save useful papers
+                            to your personal library.
+                        </p>
+
+                    </div>
+
+
+                    <div class="help-card">
+
+                        <div class="help-icon">
+                            ➕
+                        </div>
+
+                        <h3>Contributions</h3>
+
+                        <p>
+                            Learn how to submit question papers, playlists,
+                            custom playlists, and supporting resources.
+                        </p>
+
+                    </div>
+
+
+                    <div class="help-card">
+
+                        <div class="help-icon">
+                            🔖
+                        </div>
+
+                        <h3>My Library</h3>
+
+                        <p>
+                            Access playlists and question papers that
+                            you have saved for later.
+                        </p>
+
+                    </div>
+
+
+                    <div class="help-card">
+
+                        <div class="help-icon">
+                            🏆
+                        </div>
+
+                        <h3>Leaderboard</h3>
+
+                        <p>
+                            Learn how contributions and contribution points
+                            are reflected on the StudyNest leaderboard.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= FAQ ================= -->
+
+            <section class="faq-section">
+
+                <div class="section-title">
+
+                    <h2>Frequently Asked Questions</h2>
+
+                    <p>
+                        Answers to some common StudyNest questions.
+                    </p>
+
+                </div>
+
+
+                <div class="faq-list">
+
+
+                    <!-- FAQ 1 -->
+
+                    <div class="faq-item">
+
+                        <button type="button" class="faq-question">
+
+                            <span>
+                                What is StudyNest?
+                            </span>
+
+                            <span class="faq-arrow">
+                                ↓
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <div class="faq-answer-inner">
+
+                                StudyNest is a student-focused platform
+                                for discovering, organizing, saving, and
+                                sharing academic resources such as playlists
+                                and question papers.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 2 -->
+
+                    <div class="faq-item">
+
+                        <button type="button" class="faq-question">
+
+                            <span>
+                                How do I complete my academic profile?
+                            </span>
+
+                            <span class="faq-arrow">
+                                ↓
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <div class="faq-answer-inner">
+
+                                After registration, select your country,
+                                study level, institution, and the relevant
+                                academic information. This information helps
+                                StudyNest personalize academic resources for you.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 3 -->
+
+                    <div class="faq-item">
+
+                        <button type="button" class="faq-question">
+
+                            <span>
+                                Why do I need to complete my academic profile?
+                            </span>
+
+                            <span class="faq-arrow">
+                                ↓
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <div class="faq-answer-inner">
+
+                                StudyNest uses your academic information to
+                                show resources relevant to your country,
+                                study level, institution, department,
+                                course, or class.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 4 -->
+
+                    <div class="faq-item">
+
+                        <button type="button" class="faq-question">
+
+                            <span>
+                                How can I save a playlist?
+                            </span>
+
+                            <span class="faq-arrow">
+                                ↓
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <div class="faq-answer-inner">
+
+                                Open the playlist and select the Save Playlist
+                                option. The complete playlist will be added
+                                to your My Library.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 5 -->
+
+                    <div class="faq-item">
+
+                        <button type="button" class="faq-question">
+
+                            <span>
+                                Can I save individual videos from a custom playlist?
+                            </span>
+
+                            <span class="faq-arrow">
+                                ↓
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <div class="faq-answer-inner">
+
+                                No. Custom playlists are saved as a complete
+                                playlist. The playlist and its videos remain
+                                together in your My Library.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 6 -->
+
+                    <div class="faq-item">
+
+                        <button type="button" class="faq-question">
+
+                            <span>
+                                Can I save question papers?
+                            </span>
+
+                            <span class="faq-arrow">
+                                ↓
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <div class="faq-answer-inner">
+
+                                Yes. Question papers can be saved separately
+                                and will appear in your My Library.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 7 -->
+
+                    <div class="faq-item">
+
+                        <button type="button" class="faq-question">
+
+                            <span>
+                                What can I contribute?
+                            </span>
+
+                            <span class="faq-arrow">
+                                ↓
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <div class="faq-answer-inner">
+
+                                You can contribute question papers, full
+                                YouTube playlists, custom playlists, and
+                                relevant supporting resources.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 8 -->
+
+                    <div class="faq-item">
+
+                        <button type="button" class="faq-question">
+
+                            <span>
+                                How do contribution points work?
+                            </span>
+
+                            <span class="faq-arrow">
+                                ↓
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <div class="faq-answer-inner">
+
+                                Each approved contribution gives the
+                                contributor 5 points. Your contributions
+                                and points are reflected on the leaderboard.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 9 -->
+
+                    <div class="faq-item">
+
+                        <button type="button" class="faq-question">
+
+                            <span>
+                                Can I edit my profile information?
+                            </span>
+
+                            <span class="faq-arrow">
+                                ↓
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <div class="faq-answer-inner">
+
+                                Yes. You can go to Settings and edit your
+                                profile and academic information where
+                                applicable.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 10 -->
+
+                    <div class="faq-item">
+
+                        <button type="button" class="faq-question">
+
+                            <span>
+                                What should I do if I find an incorrect resource?
+                            </span>
+
+                            <span class="faq-arrow">
+                                ↓
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <div class="faq-answer-inner">
+
+                                If you find an incorrect, inappropriate,
+                                or problematic resource, please contact
+                                StudyNest with the relevant details so
+                                it can be reviewed.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 11 -->
+
+                    <div class="faq-item">
+
+                        <button type="button" class="faq-question">
+
+                            <span>
+                                Does StudyNest host all the videos?
+                            </span>
+
+                            <span class="faq-arrow">
+                                ↓
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <div class="faq-answer-inner">
+
+                                StudyNest can organize and link to educational
+                                videos hosted on platforms such as YouTube.
+                                The original videos remain hosted on their
+                                respective third-party platforms.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FAQ 12 -->
+
+                    <div class="faq-item">
+
+                        <button type="button" class="faq-question">
+
+                            <span>
+                                How can I contact StudyNest?
+                            </span>
+
+                            <span class="faq-arrow">
+                                ↓
+                            </span>
+
+                        </button>
+
+                        <div class="faq-answer">
+
+                            <div class="faq-answer-inner">
+
+                                You can visit the Contact Us page and send
+                                your question, feedback, or support request
+                                through the contact form.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= CONTACT CTA ================= -->
+
+            <section class="contact-cta">
+
+                <h2>
+                    Still need help?
+                </h2>
+
+                <p>
+                    If you couldn't find the answer you're looking for,
+                    send us a message and we'll be happy to help.
+                </p>
+
+                <a href="contact.html" class="contact-button">
+                    Contact Us →
+                </a>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <div class="footer-logo-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h3>StudyNest</h3>
+                    <p>Learn. Share. Grow.</p>
+                </div>
+            </div>
+            <p class="footer-description">
+                A student-driven platform for learning, sharing and growing together.
+            </p>
+            <div class="socials">
+                <a href="#" class="social" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="social" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="social" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-headset"></i>&nbsp; Support</h4>
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="help.html">Help &amp; FAQ</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4><i class="fa-regular fa-envelope"></i>&nbsp; Contact Us</h4>
+            <div class="contact-box">
+                <div class="contact-icon">
+                    <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div>
+                    <div class="contact-email">support@studynest.com</div>
+                    <div class="contact-sub">We'd love to hear from you!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div>&copy; 2026 StudyNest. All rights reserved.</div>
+        <div class="made">
+            <span>&hearts;</span>&nbsp; Made for students, by students.
+        </div>
+    </div>
+</footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+    
+    /* =========================================
+       USER NAME
+    ========================================= */
+
+    const savedName =
+        localStorage.getItem(
+            "studynest_user_name"
+        );
+
+
+    if (savedName) {
+
+        document.getElementById(
+            "userName"
+        ).textContent = savedName;
+
+        const welcomeName = document.getElementById("welcomeName");
+        if(welcomeName) welcomeName.textContent = savedName;
+    }
+
+
+    /* =========================================/* =========================================
+       SIDEBAR
+    ========================================= */
+
+    const hamburgerBtn =
+        document.getElementById(
+            "hamburgerBtn"
+        );
+
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
+
+    const overlay =
+        document.getElementById(
+            "overlay"
+        );
+
+    const closeSidebarBtn =
+        document.getElementById(
+            "closeSidebar"
+        );
+
+
+    function openSideMenu() {
+        sidebar.classList.add("active");
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeSideMenu() {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+    }
+
+    hamburgerBtn.addEventListener("click", openSideMenu);
+    closeSidebarBtn.addEventListener("click", closeSideMenu);
+    overlay.addEventListener("click", closeSideMenu);
+
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Escape") {
+            closeSideMenu();
+        }
+    });
+
+    </script>
+
+
+        <!-- Shared JS Modules -->
+    <script src="js/routes.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/shared-ui.js"></script>
+    <script>
+        SharedUI.init('help');
+    </script>
+</body>
+</html>

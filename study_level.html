@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Study Level - StudyNest</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f8f7ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(75, 60, 150, 0.12);
+        }
+
+        /* Logo */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #171717;
+            margin-bottom: 35px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #4d1df2, #663cff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 15px;
+        }
+
+        /* Progress */
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 7px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: #e9e5ff;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+
+        .progress {
+            width: 50%;
+            height: 100%;
+            background: #5425f5;
+            border-radius: 10px;
+        }
+
+        /* Icon */
+
+        .top-icon {
+            width: 48px;
+            height: 48px;
+            background: #f0edff;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 24px;
+        }
+
+        /* Heading */
+
+        h1 {
+            text-align: center;
+            font-size: 23px;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #667085;
+            font-size: 13px;
+            line-height: 1.5;
+            max-width: 430px;
+            margin: 0 auto 25px;
+        }
+
+        .required {
+            color: #e5484d;
+        }
+
+        /* Selected country */
+
+        .selected-country {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f5f3ff;
+            border: 1px solid #e4dfff;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 18px;
+            font-size: 12px;
+        }
+
+        .country-label {
+            color: #777;
+        }
+
+        .country-value {
+            color: #5425f5;
+            font-weight: 600;
+        }
+
+        /* Study levels */
+
+        .study-levels {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .study-level {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 14px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            background: white;
+            transition: 0.2s;
+        }
+
+        .study-level:last-child {
+            border-bottom: none;
+        }
+
+        .study-level:hover {
+            background: #faf9ff;
+        }
+
+        .study-level.selected {
+            background: #f0edff;
+            border-left: 3px solid #5425f5;
+        }
+
+        .level-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .level-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: #f3f1ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+        }
+
+        .level-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #222;
+        }
+
+        .level-description {
+            font-size: 11px;
+            color: #888;
+            margin-top: 3px;
+        }
+
+        /* Radio */
+
+        .radio {
+            width: 17px;
+            height: 17px;
+            border: 1.5px solid #ccd2dc;
+            border-radius: 50%;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .study-level.selected .radio {
+            border-color: #5425f5;
+        }
+
+        .study-level.selected .radio::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #5425f5;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Continue */
+
+        .continue-btn {
+            width: 100%;
+            margin-top: 22px;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            background: #5425f5;
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+
+            opacity: 0.45;
+            pointer-events: none;
+
+            transition: 0.2s;
+        }
+
+        .continue-btn.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .continue-btn.active:hover {
+            background: #4520d4;
+        }
+
+        .error {
+            display: none;
+            text-align: center;
+            color: #e5484d;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 500px) {
+
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 21px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Logo -->
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🎓
+        </div>
+
+        <span>
+            StudyNest
+        </span>
+
+    </div>
+
+
+    <!-- Progress -->
+
+    <div class="progress-header">
+
+        <span>
+            Set up your profile
+        </span>
+
+        <span>
+            2 of 4
+        </span>
+
+    </div>
+
+
+    <div class="progress-bar">
+
+        <div class="progress"></div>
+
+    </div>
+
+
+    <!-- Icon -->
+
+    <div class="top-icon">
+        🎓
+    </div>
+
+
+    <!-- Heading -->
+
+    <h1>
+        What are you studying? <span class="required">*</span>
+    </h1>
+
+    <p class="subtitle">
+        Select your study level so we can show you
+        the right institutions and academic resources.
+    </p>
+
+
+    <!-- Selected Country -->
+
+    <div class="selected-country">
+
+        <span class="country-label">
+            Country
+        </span>
+
+        <span
+            class="country-value"
+            id="countryName"
+        >
+            —
+        </span>
+
+    </div>
+
+
+    <!-- Study Levels -->
+
+    <div class="study-levels">
+
+
+        <!-- University -->
+
+        <div
+            class="study-level"
+            data-level="University"
+        >
+
+            <div class="level-left">
+
+                <div class="level-icon">
+                    🎓
+                </div>
+
+                <div>
+
+                    <div class="level-name">
+                        University
+                    </div>
+
+                    <div class="level-description">
+                        Undergraduate &amp; postgraduate studies
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="radio"></div>
+
+        </div>
+
+
+        <!-- Medical -->
+
+        <div
+            class="study-level"
+            data-level="Medical"
+        >
+
+            <div class="level-left">
+
+                <div class="level-icon">
+                    🩺
+                </div>
+
+                <div>
+
+                    <div class="level-name">
+                        Medical
+                    </div>
+
+                    <div class="level-description">
+                        MBBS, BDS and medical education
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="radio"></div>
+
+        </div>
+
+
+        <!-- Polytechnic -->
+
+        <div
+            class="study-level"
+            data-level="Polytechnic"
+        >
+
+            <div class="level-left">
+
+                <div class="level-icon">
+                    ⚙️
+                </div>
+
+                <div>
+
+                    <div class="level-name">
+                        Polytechnic
+                    </div>
+
+                    <div class="level-description">
+                        Diploma and technical education
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="radio"></div>
+
+        </div>
+
+
+        <!-- National University -->
+
+        <div
+            class="study-level"
+            data-level="National University"
+        >
+
+            <div class="level-left">
+
+                <div class="level-icon">
+                    📚
+                </div>
+
+                <div>
+
+                    <div class="level-name">
+                        National University
+                    </div>
+
+                    <div class="level-description">
+                        Undergraduate and postgraduate programs
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="radio"></div>
+
+        </div>
+
+
+        <!-- School -->
+
+        <div
+            class="study-level"
+            data-level="School"
+        >
+
+            <div class="level-left">
+
+                <div class="level-icon">
+                    🏫
+                </div>
+
+                <div>
+
+                    <div class="level-name">
+                        School
+                    </div>
+
+                    <div class="level-description">
+                        School-level education
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="radio"></div>
+
+        </div>
+
+
+        <!-- College -->
+
+        <div
+            class="study-level"
+            data-level="College"
+        >
+
+            <div class="level-left">
+
+                <div class="level-icon">
+                    📖
+                </div>
+
+                <div>
+
+                    <div class="level-name">
+                        College
+                    </div>
+
+                    <div class="level-description">
+                        Higher secondary education
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="radio"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Continue -->
+
+    <button type="button"
+        class="continue-btn"
+        id="continueBtn"
+    >
+        Continue
+    </button>
+
+
+    <div
+        class="error"
+        id="error"
+    >
+        Please select your study level to continue.
+    </div>
+
+</div>
+
+
+
+<script src="js/routes.js"></script>
+<script src="js/data-store.js"></script>
+<script src="js/auth.js"></script>
+
+<script>
+
+    /*
+        Get country from user profile
+    */
+
+    const user = DataStore.getUser();
+    const country = user.country;
+
+
+    if (!country) {
+        window.location.href = ROUTES.country;
+    }
+
+
+    document.getElementById("countryName").textContent =
+        country;
+
+
+    const levels =
+        document.querySelectorAll(".study-level");
+
+    const continueBtn =
+        document.getElementById("continueBtn");
+
+    const error =
+        document.getElementById("error");
+
+
+    let selectedLevel = null;
+
+
+    levels.forEach(level => {
+
+        level.addEventListener("click", function () {
+
+            levels.forEach(item => {
+                item.classList.remove("selected");
+            });
+
+            this.classList.add("selected");
+
+            selectedLevel =
+                this.dataset.level;
+
+            continueBtn.classList.add("active");
+
+            error.style.display = "none";
+
+        });
+
+    });
+
+
+    continueBtn.addEventListener("click", function () {
+
+        if (!selectedLevel) {
+
+            error.style.display = "block";
+
+            return;
+
+        }
+
+        DataStore.setUser({ studyLevel: selectedLevel });
+
+        window.location.href = ROUTES.institution;
+
+    });
+
+</script>
+
+</body>
+</html>

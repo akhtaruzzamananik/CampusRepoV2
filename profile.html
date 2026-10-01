@@ -1,0 +1,2494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>StudyNest - Profile</title>
+
+
+    <!-- Google Font -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: "Poppins", sans-serif;
+
+            background: #f7f8fc;
+
+            color: #101a3b;
+
+            min-height: 100vh;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        button {
+            font-family: inherit;
+        }
+
+
+        .notification-dot {
+
+            position: absolute;
+
+            width: 7px;
+            height: 7px;
+
+            background: #5a2aed;
+
+            border-radius: 50%;
+
+            top: 7px;
+            right: 7px;
+        }
+
+
+        .profile-avatar {
+
+            width: 39px;
+            height: 39px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #5425f5,
+                    #8064ff
+                );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .profile-name {
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: #1b2545;
+        }
+
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .page {
+
+            max-width: 1180px;
+
+            margin: 0 auto;
+
+            padding: 35px 35px 70px;
+        }
+
+
+        /* =====================================================
+           PROFILE HERO
+        ===================================================== */
+
+        .profile-hero {
+
+            background: white;
+
+            border: 1px solid #e7e9f0;
+
+            border-radius: 16px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 6px 20px
+                rgba(40, 50, 90, 0.05);
+
+            margin-bottom: 22px;
+        }
+
+
+        .profile-hero-content {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+        }
+
+
+        .profile-main {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 17px;
+
+            min-width: 0;
+        }
+
+
+        .big-avatar {
+
+            width: 82px;
+            height: 82px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f24f4,
+                    #8065ff
+                );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 28px;
+
+            font-weight: 600;
+
+            flex-shrink: 0;
+
+            box-shadow:
+                0 8px 20px
+                rgba(76, 36, 230, 0.18);
+        }
+
+
+        .profile-details {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+        }
+
+
+        .profile-tag {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            padding: 5px 8px;
+
+            background: #f7f8fb;
+
+            border: 1px solid #eceef3;
+
+            border-radius: 6px;
+
+            font-size: 9px;
+
+            color: #66728a;
+        }
+
+
+        .profile-tag i {
+
+            color: #6045dc;
+        }
+
+
+        .edit-profile-btn {
+
+            height: 40px;
+
+            padding: 0 16px;
+
+            border: 1px solid #dfe2eb;
+
+            background: white;
+
+            border-radius: 8px;
+
+            color: #53617d;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            flex-shrink: 0;
+        }
+
+
+        .edit-profile-btn:hover {
+
+            border-color: #c9c1ff;
+
+            color: #4d28e8;
+
+            background: #faf9ff;
+        }
+
+
+        /* =====================================================
+           STATS
+        ===================================================== */
+
+        .stats-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .stat-card {
+
+            background: white;
+
+            border: 1px solid #e7e9f0;
+
+            border-radius: 13px;
+
+            padding: 18px;
+
+            box-shadow:
+                0 5px 18px
+                rgba(40, 50, 90, 0.04);
+        }
+
+
+        .stat-top {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 13px;
+        }
+
+
+        .stat-icon {
+
+            width: 35px;
+            height: 35px;
+
+            border-radius: 8px;
+
+            background: #f0edff;
+
+            color: #5532dc;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 13px;
+        }
+
+
+        .stat-label {
+
+            font-size: 10px;
+
+            color: #7f899f;
+        }
+
+
+        .stat-number {
+
+            font-size: 23px;
+
+            font-weight: 700;
+
+            color: #26304e;
+        }
+
+
+        .stat-description {
+
+            font-size: 9px;
+
+            color: #939bae;
+
+            margin-top: 3px;
+        }
+
+
+        /* =====================================================
+           CONTENT LAYOUT
+        ===================================================== */
+
+        .content-layout {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 310px;
+
+            gap: 22px;
+
+            align-items: start;
+        }
+
+
+        /* =====================================================
+           MAIN CARD
+        ===================================================== */
+
+        .content-card {
+
+            background: white;
+
+            border: 1px solid #e7e9f0;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 5px 18px
+                rgba(40, 50, 90, 0.04);
+
+            overflow: hidden;
+        }
+
+
+        .tabs {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            padding: 15px 20px 0;
+
+            border-bottom: 1px solid #edf0f5;
+        }
+
+
+        .tab-btn {
+
+            height: 40px;
+
+            padding: 0 13px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #818ba0;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            position: relative;
+        }
+
+
+        .tab-btn.active {
+
+            color: #4d28e8;
+        }
+
+
+        .tab-btn.active::after {
+
+            content: "";
+
+            position: absolute;
+
+            bottom: -1px;
+
+            left: 0;
+            right: 0;
+
+            height: 2px;
+
+            background: #4d28e8;
+
+            border-radius: 3px 3px 0 0;
+        }
+
+
+        .tab-content {
+
+            padding: 20px;
+        }
+
+
+        .tab-panel {
+
+            display: none;
+        }
+
+
+        .tab-panel.active {
+
+            display: block;
+        }
+
+
+        /* =====================================================
+           CONTRIBUTION LIST
+        ===================================================== */
+
+        .contribution-item {
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid #edf0f5;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+        }
+
+
+        .contribution-item:first-child {
+
+            padding-top: 0;
+        }
+
+
+        .contribution-item:last-child {
+
+            border-bottom: none;
+
+            padding-bottom: 0;
+        }
+
+
+        .contribution-icon {
+
+            width: 39px;
+            height: 39px;
+
+            border-radius: 9px;
+
+            background: #f0edff;
+
+            color: #5433db;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+        }
+
+
+        .contribution-info {
+
+            flex: 1;
+
+            min-width: 0;
+        }
+
+
+        .contribution-title {
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            color: #2b3552;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+        }
+
+
+        .contribution-meta {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 4px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .contribution-meta span {
+
+            font-size: 9px;
+
+            color: #8b94a7;
+        }
+
+
+        .status {
+
+            padding: 4px 7px;
+
+            border-radius: 5px;
+
+            font-size: 8px;
+
+            font-weight: 600;
+
+            flex-shrink: 0;
+        }
+
+
+        .status.approved {
+
+            background: #eaf8f0;
+
+            color: #29935b;
+        }
+
+
+        .status.pending {
+
+            background: #fff6e7;
+
+            color: #b67820;
+        }
+
+
+        /* =====================================================
+           OVERVIEW
+        ===================================================== */
+
+        .overview-title {
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #26304e;
+
+            margin-bottom: 15px;
+        }
+
+
+        .overview-text {
+
+            font-size: 11px;
+
+            line-height: 1.8;
+
+            color: #7d879c;
+
+            margin-bottom: 20px;
+        }
+
+
+        .info-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .info-box {
+
+            padding: 13px;
+
+            border: 1px solid #e8eaf0;
+
+            border-radius: 9px;
+
+            background: #fafbfc;
+        }
+
+
+        .info-box span {
+
+            display: block;
+
+            font-size: 9px;
+
+            color: #8992a7;
+
+            margin-bottom: 4px;
+        }
+
+
+        .info-box strong {
+
+            display: block;
+
+            font-size: 11px;
+
+            color: #35405d;
+        }
+
+
+        /* =====================================================
+           RIGHT SIDEBAR
+        ===================================================== */
+
+        .side-card {
+
+            background: white;
+
+            border: 1px solid #e7e9f0;
+
+            border-radius: 14px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 5px 18px
+                rgba(40, 50, 90, 0.04);
+
+            margin-bottom: 18px;
+        }
+
+
+        .side-card:last-child {
+
+            margin-bottom: 0;
+        }
+
+
+        .side-card h3 {
+
+            font-size: 14px;
+
+            color: #202947;
+
+            font-weight: 600;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* =====================================================
+           RANK
+        ===================================================== */
+
+        .rank-box {
+
+            text-align: center;
+
+            padding: 8px 0;
+        }
+
+
+        .rank-number {
+
+            font-size: 35px;
+
+            line-height: 1;
+
+            font-weight: 700;
+
+            color: #4d28e8;
+
+            margin-bottom: 7px;
+        }
+
+
+        .rank-label {
+
+            font-size: 10px;
+
+            color: #8992a7;
+        }
+
+
+        .rank-info {
+
+            margin-top: 18px;
+
+            border-top: 1px solid #edf0f5;
+
+            padding-top: 13px;
+        }
+
+
+        .rank-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 7px 0;
+        }
+
+
+        .rank-row span {
+
+            font-size: 9px;
+
+            color: #8992a7;
+        }
+
+
+        .rank-row strong {
+
+            font-size: 10px;
+
+            color: #3b4561;
+        }
+
+
+        /* =====================================================
+           POINT INFO
+        ===================================================== */
+
+        .point-rule {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 11px;
+
+            border-radius: 9px;
+
+            background: #f6f4ff;
+
+            border: 1px solid #e9e5ff;
+        }
+
+
+        .point-rule-icon {
+
+            width: 33px;
+            height: 33px;
+
+            border-radius: 8px;
+
+            background: #e9e4ff;
+
+            color: #5332dc;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .point-rule strong {
+
+            display: block;
+
+            font-size: 10px;
+
+            color: #39425f;
+        }
+
+
+        .point-rule span {
+
+            display: block;
+
+            font-size: 8px;
+
+            color: #858ea2;
+
+            margin-top: 2px;
+        }
+
+
+        /* =====================================================
+           EDIT BUTTON
+        ===================================================== */
+
+        .full-button {
+
+            width: 100%;
+
+            height: 40px;
+
+            border: 1px solid #dfe2eb;
+
+            background: white;
+
+            color: #586680;
+
+            border-radius: 8px;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+        }
+
+
+        .full-button:hover {
+
+            color: #4d28e8;
+
+            border-color: #c9c1ff;
+
+            background: #faf9ff;
+        }
+
+
+        /* =====================================================
+           EMPTY
+        ===================================================== */
+
+        .empty {
+
+            text-align: center;
+
+            padding: 35px 15px;
+
+            color: #8992a7;
+        }
+
+
+        .empty i {
+
+            font-size: 27px;
+
+            color: #c6c9d5;
+
+            margin-bottom: 10px;
+        }
+
+
+        .empty p {
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 950px) {
+
+            .content-layout {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .stats-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .navbar {
+
+                height: 74px;
+
+                padding: 0 18px;
+            }
+
+
+            .profile-name {
+
+                display: none;
+            }
+
+
+            .page {
+
+                padding: 25px 17px 50px;
+            }
+
+
+            .profile-hero {
+
+                padding: 20px;
+            }
+
+
+            .profile-hero-content {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .edit-profile-btn {
+
+                width: 100%;
+
+                justify-content: center;
+            }
+
+
+            .big-avatar {
+
+                width: 67px;
+                height: 67px;
+
+                font-size: 23px;
+            }
+
+
+            .stats-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 10px;
+            }
+
+
+            .stat-card {
+
+                padding: 14px;
+            }
+
+
+            .info-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 420px) {
+
+            .profile-main {
+
+                align-items: flex-start;
+            }
+
+
+            .profile-main {
+
+                flex-direction: column;
+            }
+
+
+            .stats-grid {
+
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="css/shared.css">
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ===================================================== -->
+
+    <nav class="navbar">
+
+
+        <div class="nav-left">
+
+
+            <button type="button"
+            class="hamburger"
+            id="hamburgerBtn"
+            aria-label="Open menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+            <a
+                href="home.html"
+                class="logo"
+            >
+
+                <div class="logo-icon">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                </div>
+
+
+                <div class="logo-text">
+
+                    <h2>StudyNest</h2>
+
+                    <p>Learn. Share. Grow.</p>
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <div class="nav-right">
+
+
+            <div class="notification">
+
+                <i class="fa-regular fa-bell"></i>
+
+                <span class="notification-dot"></span>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div
+                    class="profile-avatar"
+                    id="navAvatar"
+                >
+                    A
+                </div>
+
+
+                <span
+                    class="profile-name"
+                    id="navName"
+                >
+                    Student
+                </span>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
+
+    <main class="page">
+
+
+        <!-- =================================================
+             PROFILE HERO
+        ================================================= -->
+
+        <section class="profile-hero">
+
+
+            <div class="profile-hero-content">
+
+
+                <div class="profile-main">
+
+
+                    <div
+                        class="big-avatar"
+                        id="bigAvatar"
+                    >
+                        A
+                    </div>
+
+
+                    <div class="profile-info">
+
+
+                        <h1
+                            id="userName"
+                        >
+                            Akhtaruzzaman Anik
+                        </h1>
+
+
+                        <div
+                            class="email"
+                            id="userEmail"
+                        >
+                            student@example.com
+                        </div>
+
+
+                        <div class="profile-details">
+
+
+                            <span class="profile-tag">
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                                <span id="userCountry">
+                                    Bangladesh
+                                </span>
+
+                            </span>
+
+
+                            <span class="profile-tag">
+
+                                <i class="fa-solid fa-building-columns"></i>
+
+                                <span id="userInstitution">
+                                    Daffodil International University
+                                </span>
+
+                            </span>
+
+
+                            <span class="profile-tag">
+
+                                <i class="fa-solid fa-code"></i>
+
+                                <span id="userDepartment">
+                                    Computer Science &amp; Engineering
+                                </span>
+
+                            </span>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <button type="button"
+                    class="edit-profile-btn"
+                    onclick="goToSettings('profile')"
+                >
+
+                    <i class="fa-solid fa-pen"></i>
+
+                    Edit Profile
+
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             STATS
+        ================================================= -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        Contributions
+                    </span>
+
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-upload"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="stat-number"
+                    id="contributionCount"
+                >
+                    24
+                </div>
+
+
+                <div class="stat-description">
+                    Approved contributions
+                </div>
+
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        Points
+                    </span>
+
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-star"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="stat-number"
+                    id="pointsCount"
+                >
+                    120
+                </div>
+
+
+                <div class="stat-description">
+                    1 contribution = 5 points
+                </div>
+
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        Saved Items
+                    </span>
+
+
+                    <div class="stat-icon">
+
+                        <i class="fa-regular fa-bookmark"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="stat-number"
+                    id="savedCount"
+                >
+                    0
+                </div>
+
+
+                <div class="stat-description">
+                    Playlists &amp; question papers
+                </div>
+
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        Rank
+                    </span>
+
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-trophy"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="stat-number"
+                    id="rankCount"
+                >
+                    #18
+                </div>
+
+
+                <div class="stat-description">
+                    Overall leaderboard
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             CONTENT
+        ================================================= -->
+
+        <div class="content-layout">
+
+
+            <!-- =================================================
+                 LEFT
+            ================================================= -->
+
+            <section class="content-card">
+
+
+                <div class="tabs">
+
+
+                    <button type="button"
+                        class="tab-btn active"
+                        data-tab="overview"
+                    >
+
+                        Overview
+
+                    </button>
+
+
+                    <button type="button"
+                        class="tab-btn"
+                        data-tab="contributions"
+                    >
+
+                        Contributions
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     OVERVIEW
+                ================================================= -->
+
+                <div
+                    class="tab-panel active"
+                    id="overview"
+                >
+
+                    <div class="tab-content">
+
+
+                        <h3 class="overview-title">
+                            About
+                        </h3>
+
+
+                        <p class="overview-text">
+                            Student profile on StudyNest. Contributions shared by this student help other learners discover useful academic resources.
+                        </p>
+
+
+                        <h3 class="overview-title">
+                            Academic Information
+                        </h3>
+
+
+                        <div class="info-grid">
+
+
+                            <div class="info-box">
+
+                                <span>
+                                    Country
+                                </span>
+
+                                <strong id="overviewCountry">
+                                    Bangladesh
+                                </strong>
+
+                            </div>
+
+
+                            <div class="info-box">
+
+                                <span>
+                                    Study Level
+                                </span>
+
+                                <strong id="overviewStudyLevel">
+                                    University
+                                </strong>
+
+                            </div>
+
+
+                            <div class="info-box">
+
+                                <span>
+                                    Institution
+                                </span>
+
+                                <strong id="overviewInstitution">
+                                    Daffodil International University
+                                </strong>
+
+                            </div>
+
+
+                            <div class="info-box">
+
+                                <span>
+                                    Department
+                                </span>
+
+                                <strong id="overviewDepartment">
+                                    Computer Science &amp; Engineering
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CONTRIBUTIONS
+                ================================================= -->
+
+                <div
+                    class="tab-panel"
+                    id="contributions"
+                >
+
+                    <div class="tab-content">
+
+
+                        <h3 class="overview-title">
+                            Contribution History
+                        </h3>
+
+
+                        <div id="contributionList"></div>
+
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 RIGHT SIDEBAR
+            ================================================= -->
+
+            <aside aria-label="Additional Information">
+
+
+                <!-- RANK -->
+
+                <div class="side-card">
+
+
+                    <h3>
+                        Leaderboard Rank
+                    </h3>
+
+
+                    <div class="rank-box">
+
+
+                        <div
+                            class="rank-number"
+                            id="sideRank"
+                        >
+                            #18
+                        </div>
+
+
+                        <div class="rank-label">
+                            Overall Rank
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="rank-info">
+
+
+                        <div class="rank-row">
+
+                            <span>
+                                Contributions
+                            </span>
+
+                            <strong id="sideContributions">
+                                24
+                            </strong>
+
+                        </div>
+
+
+                        <div class="rank-row">
+
+                            <span>
+                                Points
+                            </span>
+
+                            <strong id="sidePoints">
+                                120
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- POINTS -->
+
+                <div class="side-card">
+
+
+                    <h3>
+                        Contribution Points
+                    </h3>
+
+
+                    <div class="point-rule">
+
+
+                        <div class="point-rule-icon">
+
+                            <i class="fa-solid fa-star"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                1 Contribution = 5 Points
+                            </strong>
+
+                            <span>
+                                Points are awarded after approval.
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- SETTINGS -->
+
+                <div class="side-card">
+
+
+                    <h3>
+                        Profile Settings
+                    </h3>
+
+
+                    <button type="button"
+                        class="full-button"
+                        onclick="goToSettings()"
+                    >
+
+                        <i class="fa-solid fa-gear"></i>
+
+                        Manage Profile
+
+                    </button>
+
+
+                </div>
+
+
+            </aside>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         OVERLAY
+    ===================================================== -->
+
+    <div
+        class="overlay"
+        id="overlay"
+    ></div>
+
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ===================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+     aria-label="Main Navigation">
+
+
+        <div class="sidebar-header">
+
+
+            <div class="sidebar-logo">
+
+
+                <div class="sidebar-logo-icon">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        StudyNest
+                    </h3>
+
+                    <p>
+                        Learn. Share. Grow.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <button type="button"
+                class="close-sidebar"
+                id="closeSidebar"
+             aria-label="Close Sidebar">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
+        </div>
+
+
+
+        <div class="sidebar-menu">
+
+
+            <a
+                href="home.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>
+                    Home
+                </span>
+
+            </a>
+
+
+            <a
+                href="academic_courses.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>
+                    Academic Courses
+                </span>
+
+            </a>
+
+
+            <a
+                href="question_bank.html"
+                class="menu-item"
+            >
+
+                <i class="fa-regular fa-file-lines"></i>
+
+                <span>
+                    Campus Question Bank
+                </span>
+
+            </a>
+
+
+            <a
+                href="leaderboard.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-trophy"></i>
+
+                <span>
+                    Leaderboards
+                </span>
+
+            </a>
+
+
+            <a
+                href="contribute.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>
+                    Contribute
+                </span>
+
+            </a>
+
+
+            <a
+                href="my_library.html"
+                class="menu-item"
+            >
+
+                <i class="fa-regular fa-bookmark"></i>
+
+                <span>
+                    My Library
+                </span>
+
+            </a>
+
+
+            <a
+                href="settings.html"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+            <div class="sidebar-divider"></div>
+
+
+            <a
+                href="#"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <span>
+                    About Us
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="menu-item"
+            >
+
+                <i class="fa-regular fa-envelope"></i>
+
+                <span>
+                    Contact Us
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-file-contract"></i>
+
+                <span>
+                    Terms of Service
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="menu-item"
+            >
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>
+                    Privacy Policy
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="menu-item"
+            >
+
+                <i class="fa-regular fa-circle-question"></i>
+
+                <span>
+                    Help &amp; FAQ
+                </span>
+
+            </a>
+
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <!-- Shared JS Modules -->
+    <script src="js/routes.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/shared-ui.js"></script>
+
+    <script>
+
+
+        /* =====================================================
+           USER DATA
+        ===================================================== */
+
+        const currentUser = (typeof DataStore !== 'undefined' && DataStore.getUser()) || {};
+        const userName = currentUser.name ||
+            localStorage.getItem(
+                "studynest_user_name"
+            ) || "Akhtaruzzaman Anik";
+
+
+        const userEmail = currentUser.email ||
+            localStorage.getItem(
+                "studynest_user_email"
+            ) || "anikanik@gmail.com";
+
+
+        const country = currentUser.country ||
+            localStorage.getItem(
+                "studynest_country"
+            ) || "Bangladesh";
+
+
+        const studyLevel = currentUser.studyLevel ||
+            localStorage.getItem(
+                "studynest_study_level"
+            ) || "University";
+
+
+        const institution = currentUser.institution ||
+            localStorage.getItem(
+                "studynest_institution"
+            ) ||
+            "Daffodil International University";
+
+
+        const department = currentUser.department ||
+            localStorage.getItem(
+                "studynest_department"
+            ) ||
+            "Computer Science & Engineering";
+
+
+
+        /* =====================================================
+           PROFILE
+        ===================================================== */
+
+        const initial =
+            userName
+                .charAt(0)
+                .toUpperCase();
+
+
+        document.getElementById(
+            "navAvatar"
+        ).textContent = initial;
+
+
+        document.getElementById(
+            "bigAvatar"
+        ).textContent = initial;
+
+
+        document.getElementById(
+            "navName"
+        ).textContent = userName;
+
+
+        document.getElementById(
+            "userName"
+        ).textContent = userName;
+
+
+        document.getElementById(
+            "userEmail"
+        ).textContent = userEmail;
+
+
+        document.getElementById(
+            "userCountry"
+        ).textContent = country;
+
+
+        document.getElementById(
+            "userInstitution"
+        ).textContent = institution;
+
+
+        document.getElementById(
+            "userDepartment"
+        ).textContent = department;
+
+
+        document.getElementById(
+            "overviewCountry"
+        ).textContent = country;
+
+
+        document.getElementById(
+            "overviewStudyLevel"
+        ).textContent = studyLevel;
+
+
+        document.getElementById(
+            "overviewInstitution"
+        ).textContent = institution;
+
+
+        document.getElementById(
+            "overviewDepartment"
+        ).textContent = department;
+
+
+
+        /* =====================================================
+           CONTRIBUTION DATA
+        ===================================================== */
+
+        const contributions = [
+
+            {
+                title:
+                    "Data Structures Complete Playlist",
+
+                type:
+                    "Video Playlist",
+
+                date:
+                    "22 Sep 2026",
+
+                points:
+                    5,
+
+                status:
+                    "Approved"
+
+            },
+
+
+            {
+                title:
+                    "Computer Graphics Midterm Question Paper",
+
+                type:
+                    "Question Paper",
+
+                date:
+                    "19 Sep 2026",
+
+                points:
+                    5,
+
+                status:
+                    "Approved"
+
+            },
+
+
+            {
+                title:
+                    "Object Oriented Programming Custom Playlist",
+
+                type:
+                    "Custom Playlist",
+
+                date:
+                    "16 Sep 2026",
+
+                points:
+                    5,
+
+                status:
+                    "Approved"
+
+            },
+
+
+            {
+                title:
+                    "Data Communication Final Question Paper",
+
+                type:
+                    "Question Paper",
+
+                date:
+                    "12 Sep 2026",
+
+                points:
+                    5,
+
+                status:
+                    "Approved"
+
+            }
+
+        ];
+
+
+
+        /* =====================================================
+           STATS
+        ===================================================== */
+
+        const approvedContributions =
+            contributions.filter(
+                function(item) {
+
+                    return (
+                        item.status ===
+                        "Approved"
+                    );
+
+                }
+            ).length;
+
+
+        const points =
+            approvedContributions * 5;
+
+
+        const library =
+            JSON.parse(
+                localStorage.getItem(
+                    "studynest_library"
+                )
+            ) || [];
+
+
+        document.getElementById(
+            "contributionCount"
+        ).textContent =
+            approvedContributions;
+
+
+        document.getElementById(
+            "pointsCount"
+        ).textContent =
+            points;
+
+
+        document.getElementById(
+            "savedCount"
+        ).textContent =
+            library.length;
+
+
+        document.getElementById(
+            "sideContributions"
+        ).textContent =
+            approvedContributions;
+
+
+        document.getElementById(
+            "sidePoints"
+        ).textContent =
+            points;
+
+
+
+        /* =====================================================
+           CONTRIBUTION LIST
+        ===================================================== */
+
+        function renderContributions() {
+
+            const container =
+                document.getElementById(
+                    "contributionList"
+                );
+
+
+            if (
+                contributions.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div class="empty">
+
+                        <i class="fa-regular fa-folder-open"></i>
+
+                        <p>
+                            No contributions yet.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            container.innerHTML =
+                contributions
+                    .map(
+                        function(item) {
+
+                            let icon =
+                                "fa-solid fa-video";
+
+
+                            if (
+                                item.type ===
+                                "Question Paper"
+                            ) {
+
+                                icon =
+                                    "fa-regular fa-file-lines";
+
+                            }
+
+
+                            if (
+                                item.type ===
+                                "Custom Playlist"
+                            ) {
+
+                                icon =
+                                    "fa-solid fa-list";
+
+                            }
+
+
+                            return `
+
+                                <div class="contribution-item">
+
+
+                                    <div class="contribution-icon">
+
+                                        <i class="${icon}"></i>
+
+                                    </div>
+
+
+                                    <div class="contribution-info">
+
+
+                                        <div class="contribution-title">
+
+                                            ${item.title}
+
+                                        </div>
+
+
+                                        <div class="contribution-meta">
+
+                                            <span>
+
+                                                ${item.type}
+
+                                            </span>
+
+
+                                            <span>
+
+                                                ${item.date}
+
+                                            </span>
+
+
+                                            <span>
+
+                                                +${item.points} points
+
+                                            </span>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <span class="status approved">
+
+                                        ${item.status}
+
+                                    </span>
+
+
+                                </div>
+
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+        }
+
+
+        renderContributions();
+
+
+
+        /* =====================================================
+           TABS
+        ===================================================== */
+
+        document
+            .querySelectorAll(
+                ".tab-btn"
+            )
+            .forEach(
+                function(button) {
+
+                    button.addEventListener(
+                        "click",
+                        function() {
+
+                            document
+                                .querySelectorAll(
+                                    ".tab-btn"
+                                )
+                                .forEach(
+                                    function(btn) {
+
+                                        btn.classList.remove(
+                                            "active"
+                                        );
+
+                                    }
+                                );
+
+
+                            document
+                                .querySelectorAll(
+                                    ".tab-panel"
+                                )
+                                .forEach(
+                                    function(panel) {
+
+                                        panel.classList.remove(
+                                            "active"
+                                        );
+
+                                    }
+                                );
+
+
+                            button.classList.add(
+                                "active"
+                            );
+
+
+                            document
+                                .getElementById(
+                                    button.dataset.tab
+                                )
+                                .classList.add(
+                                    "active"
+                                );
+
+                        }
+                    );
+
+                }
+            );
+
+
+
+        /* =====================================================
+           SETTINGS
+        ===================================================== */
+
+        function goToSettings(section = 'profile') {
+
+            window.location.href =
+                "settings.html?edit=" + section;
+
+        }
+
+
+
+        </script>
+
+
+
+
+
+    <script>
+        // Initialize shared UI components (header, sidebar, footer)
+        SharedUI.init('profile');
+    </script>
+</body>
+
+</html>

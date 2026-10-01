@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us - StudyNest</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f7f8fc;
+            color: #1e293b;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: min(1150px, calc(100% - 40px));
+            margin: auto;
+        }
+
+        /* ================= HERO ================= */
+
+        .contact-hero {
+            text-align: center;
+            padding: 75px 0 55px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            padding: 8px 14px;
+            border-radius: 30px;
+            background: #eeecff;
+            color: #5b4bdc;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .contact-hero h1 {
+            font-size: clamp(34px, 5vw, 50px);
+            line-height: 1.15;
+            color: #17143b;
+            margin-bottom: 17px;
+            font-weight: 800;
+        }
+
+        .contact-hero h1 span {
+            color: #635bdb;
+        }
+
+        .contact-hero p {
+            max-width: 680px;
+            margin: auto;
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* ================= CONTACT AREA ================= */
+
+        .contact-area {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 25px;
+            margin-bottom: 75px;
+        }
+
+        /* ================= INFO ================= */
+
+        .contact-info {
+            background: linear-gradient(145deg, #24205b, #4b3ca8);
+            border-radius: 22px;
+            padding: 35px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::before {
+            content: "";
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            top: -80px;
+            right: -70px;
+        }
+
+        .contact-info h2 {
+            font-size: 25px;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .contact-info > p {
+            color: #dcd9f4;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 23px;
+            position: relative;
+        }
+
+        .info-icon {
+            width: 45px;
+            height: 45px;
+            flex-shrink: 0;
+            border-radius: 13px;
+            background: rgba(255,255,255,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+        }
+
+        .info-text h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .info-text p {
+            color: #d0cdeb;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .info-text a {
+            color: #ffffff;
+        }
+
+        /* ================= FORM ================= */
+
+        .contact-form {
+            background: white;
+            border: 1px solid #e9eaf1;
+            border-radius: 22px;
+            padding: 35px;
+            box-shadow: 0 8px 30px rgba(30, 41, 59, 0.05);
+        }
+
+        .contact-form h2 {
+            font-size: 25px;
+            color: #17143b;
+            margin-bottom: 7px;
+        }
+
+        .form-subtitle {
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 27px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid #dfe2ea;
+            border-radius: 10px;
+            padding: 12px 13px;
+            font-family: inherit;
+            font-size: 13px;
+            color: #1e293b;
+            outline: none;
+            transition: 0.2s;
+            background: #fff;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #635bdb;
+            box-shadow: 0 0 0 3px rgba(99,91,219,0.10);
+        }
+
+        .form-group textarea {
+            min-height: 145px;
+            resize: vertical;
+        }
+
+        .send-button {
+            width: 100%;
+            border: none;
+            border-radius: 11px;
+            background: #635bdb;
+            color: white;
+            padding: 13px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .send-button:hover {
+            background: #5148c5;
+            transform: translateY(-1px);
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 16px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: #ecfdf5;
+            color: #047857;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* ================= FAQ ================= */
+
+        .faq-section {
+            margin-bottom: 75px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .section-title h2 {
+            font-size: 29px;
+            color: #17143b;
+            margin-bottom: 9px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 17px;
+        }
+
+        .faq-card {
+            background: white;
+            border: 1px solid #e9eaf1;
+            border-radius: 16px;
+            padding: 22px;
+        }
+
+        .faq-card h3 {
+            font-size: 15px;
+            color: #17143b;
+            margin-bottom: 8px;
+        }
+
+        .faq-card p {
+            font-size: 12px;
+            line-height: 1.7;
+            color: #64748b;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 850px) {
+
+            .contact-area {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                padding: 0 16px;
+            }
+
+            .profile-name {
+                display: none;
+            }
+
+            .container {
+                width: min(100% - 28px, 1150px);
+            }
+
+            .contact-hero {
+                padding: 50px 0 40px;
+            }
+
+            .contact-hero h1 {
+                font-size: 34px;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 27px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="css/shared.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+     NAVBAR
+========================================= -->
+
+<header class="navbar">
+
+
+    <div class="nav-left">
+
+
+        <button type="button"
+            class="hamburger"
+            id="hamburgerBtn"
+            aria-label="Open menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+        <a
+            href="home.html"
+            class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <div class="logo-text">
+
+                <h2>
+                    StudyNest
+                </h2>
+
+                <p>
+                    Learn. Share. Grow.
+                </p>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="nav-right">
+
+
+        <div class="notification">
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span class="notification-badge">
+                3
+            </span>
+
+        </div>
+
+
+        <div class="nav-divider"></div>
+
+
+        <div class="profile">
+
+            <div class="profile-img">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="profile-info">
+
+                <strong id="userName">
+                    Anik
+                </strong>
+
+                <span>
+                    DIU Student
+                </span>
+
+            </div>
+
+            <div class="profile-arrow">
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     OVERLAY
+========================================= -->
+
+<div
+    class="overlay"
+    id="overlay">
+</div>
+
+
+
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
+<aside
+    class="sidebar"
+    id="sidebar" aria-label="Main Navigation">
+
+
+    <!-- SIDEBAR HEADER -->
+
+    <div class="sidebar-header">
+
+
+        <div class="sidebar-logo">
+
+
+            <div class="sidebar-logo-icon">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    StudyNest
+                </h3>
+
+                <p>
+                    Learn. Share. Grow.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button type="button"
+            class="close-sidebar"
+            id="closeSidebar" aria-label="Close Sidebar">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- SIDEBAR MENU -->
+
+    <div class="sidebar-menu">
+
+
+        <!-- HOME -->
+
+        <a
+            href="home.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                Home
+            </span>
+
+        </a>
+
+
+
+        <!-- ACADEMIC COURSES -->
+
+        <a
+            href="academic_courses.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            <span>
+                Academic Courses
+            </span>
+
+        </a>
+
+
+
+        <!-- QUESTION BANK -->
+
+        <a
+            href="question_bank.html"
+            class="menu-item">
+
+            <i class="fa-regular fa-square-question"></i>
+
+            <span>
+                Campus Question Bank
+            </span>
+
+        </a>
+
+
+
+        <!-- LEADERBOARDS -->
+
+        <a
+            href="leaderboard.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-trophy"></i>
+
+            <span>
+                Leaderboards
+            </span>
+
+        </a>
+
+
+
+        <!-- CONTRIBUTE -->
+
+        <a
+            href="contribute.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>
+                Contribute
+            </span>
+
+        </a>
+
+
+
+        <!-- MY LIBRARY -->
+
+        <a
+            href="my_library.html"
+            class="menu-item">
+
+            <i class="fa-regular fa-bookmark"></i>
+
+            <span>
+                My Library
+            </span>
+
+        </a>
+
+
+
+        <!-- SETTINGS -->
+
+        <a
+            href="settings.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>
+                Settings
+            </span>
+
+        </a>
+
+
+
+        <div class="sidebar-divider"></div>
+
+
+
+        <!-- ABOUT -->
+
+        <a
+            href="about.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <span>
+                About Us
+            </span>
+
+        </a>
+
+
+
+        <!-- CONTACT -->
+
+        <a
+            href="contact.html"
+            class="menu-item active">
+
+            <i class="fa-regular fa-envelope"></i>
+
+            <span>
+                Contact Us
+            </span>
+
+        </a>
+
+
+
+        <!-- TERMS -->
+
+        <a
+            href="terms.html"
+            class="menu-item">
+
+            <i class="fa-regular fa-file-lines"></i>
+
+            <span>
+                Terms of Service
+            </span>
+
+        </a>
+
+
+
+        <!-- PRIVACY -->
+
+        <a
+            href="privacy.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <span>
+                Privacy Policy
+            </span>
+
+        </a>
+
+
+
+        <!-- HELP -->
+
+        <a
+            href="help.html"
+            class="menu-item">
+
+            <i class="fa-regular fa-circle-question"></i>
+
+            <span>
+                Help &amp; FAQ
+            </span>
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="contact-hero">
+
+            <div class="container">
+
+                <div class="hero-badge">
+                    💬 Contact StudyNest
+                </div>
+
+                <h1>
+                    We'd love to<br>
+                    <span>hear from you.</span>
+                </h1>
+
+                <p>
+                    Have a question, suggestion, or need help with something?
+                    Send us a message and we'll get back to you.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <div class="container">
+
+            <!-- CONTACT AREA -->
+
+            <section class="contact-area">
+
+                <!-- INFO -->
+
+                <div class="contact-info">
+
+                    <h2>Get in Touch</h2>
+
+                    <p>
+                        Whether you need help, want to share feedback, or
+                        have an idea for StudyNest, feel free to reach out.
+                    </p>
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            ✉
+                        </div>
+
+                        <div class="info-text">
+
+                            <h3>Email</h3>
+
+                            <p>
+                                <a href="mailto:support@studynest.com">
+                                    support@studynest.com
+                                </a>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            🛠
+                        </div>
+
+                        <div class="info-text">
+
+                            <h3>General Support</h3>
+
+                            <p>
+                                Questions about your account, resources,
+                                or using StudyNest.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            📚
+                        </div>
+
+                        <div class="info-text">
+
+                            <h3>Contribution Support</h3>
+
+                            <p>
+                                Need help submitting playlists,
+                                question papers, or resources?
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="info-icon">
+                            💡
+                        </div>
+
+                        <div class="info-text">
+
+                            <h3>Feedback &amp; Ideas</h3>
+
+                            <p>
+                                Have an idea that could make StudyNest
+                                better? We'd love to hear it.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FORM -->
+
+                <div class="contact-form">
+
+                    <h2>Send us a Message</h2>
+
+                    <p class="form-subtitle">
+                        Fill out the form below and we'll receive your message.
+                    </p>
+
+
+                    <form id="contactForm">
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="name">
+                                    Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="name"
+                                    placeholder="Enter your name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="email">
+                                    Email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="Enter your email"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="subject">
+                                Subject
+                            </label>
+
+                            <input
+                                type="text"
+                                id="subject"
+                                placeholder="What is this about?"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="message">
+                                Message
+                            </label>
+
+                            <textarea
+                                id="message"
+                                placeholder="Write your message..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="send-button"
+                        >
+                            Send Message →
+                        </button>
+
+
+                        <div
+                            class="success-message"
+                            id="successMessage"
+                        >
+                            ✓ Your message has been submitted successfully.
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- FAQ -->
+
+            <section class="faq-section">
+
+                <div class="section-title">
+
+                    <h2>Frequently Asked Questions</h2>
+
+                    <p>
+                        Here are some common questions about contacting StudyNest.
+                    </p>
+
+                </div>
+
+
+                <div class="faq-grid">
+
+                    <div class="faq-card">
+
+                        <h3>
+                            How can I contribute a resource?
+                        </h3>
+
+                        <p>
+                            Go to the Contribute section from the sidebar
+                            and choose the type of resource you want to share.
+                        </p>
+
+                    </div>
+
+
+                    <div class="faq-card">
+
+                        <h3>
+                            I found an incorrect resource. What should I do?
+                        </h3>
+
+                        <p>
+                            Send us the details through the contact form so
+                            the resource can be reviewed.
+                        </p>
+
+                    </div>
+
+
+                    <div class="faq-card">
+
+                        <h3>
+                            Can I suggest a new feature?
+                        </h3>
+
+                        <p>
+                            Yes. We welcome suggestions that can improve
+                            the learning experience for students.
+                        </p>
+
+                    </div>
+
+
+                    <div class="faq-card">
+
+                        <h3>
+                            How can I get help with my account?
+                        </h3>
+
+                        <p>
+                            Send us a message with your issue and the email
+                            associated with your StudyNest account.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <div class="footer-logo-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h3>StudyNest</h3>
+                    <p>Learn. Share. Grow.</p>
+                </div>
+            </div>
+            <p class="footer-description">
+                A student-driven platform for learning, sharing and growing together.
+            </p>
+            <div class="socials">
+                <a href="#" class="social" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="social" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="social" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-headset"></i>&nbsp; Support</h4>
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="help.html">Help &amp; FAQ</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4><i class="fa-regular fa-envelope"></i>&nbsp; Contact Us</h4>
+            <div class="contact-box">
+                <div class="contact-icon">
+                    <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div>
+                    <div class="contact-email">support@studynest.com</div>
+                    <div class="contact-sub">We'd love to hear from you!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div>&copy; 2026 StudyNest. All rights reserved.</div>
+        <div class="made">
+            <span>&hearts;</span>&nbsp; Made for students, by students.
+        </div>
+    </div>
+</footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+    
+    /* =========================================
+       USER NAME
+    ========================================= */
+
+    const savedName =
+        localStorage.getItem(
+            "studynest_user_name"
+        );
+
+
+    if (savedName) {
+
+        document.getElementById(
+            "userName"
+        ).textContent = savedName;
+
+        const welcomeName = document.getElementById("welcomeName");
+        if(welcomeName) welcomeName.textContent = savedName;
+    }
+
+
+    /* =========================================/* =========================================
+       SIDEBAR
+    ========================================= */
+
+    const hamburgerBtn =
+        document.getElementById(
+            "hamburgerBtn"
+        );
+
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
+
+    const overlay =
+        document.getElementById(
+            "overlay"
+        );
+
+    const closeSidebarBtn =
+        document.getElementById(
+            "closeSidebar"
+        );
+
+
+    function openSideMenu() {
+        sidebar.classList.add("active");
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeSideMenu() {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+    }
+
+    hamburgerBtn.addEventListener("click", openSideMenu);
+    closeSidebarBtn.addEventListener("click", closeSideMenu);
+    overlay.addEventListener("click", closeSideMenu);
+
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Escape") {
+            closeSideMenu();
+        }
+    });
+
+    </script>
+
+
+        <!-- Shared JS Modules -->
+    <script src="js/routes.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/shared-ui.js"></script>
+    <script>
+        SharedUI.init('contact');
+    </script>
+</body>
+</html>

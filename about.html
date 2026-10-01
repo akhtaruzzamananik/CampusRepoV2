@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us - StudyNest</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f7f8fc;
+            color: #1e293b;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ================= MAIN ================= */
+
+        .container {
+            width: min(1150px, calc(100% - 40px));
+            margin: auto;
+        }
+
+        /* ================= HERO ================= */
+
+        .about-hero {
+            padding: 75px 0 60px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 14px;
+            border-radius: 30px;
+            background: #eeecff;
+            color: #5b4bdc;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .about-hero h1 {
+            font-size: clamp(34px, 5vw, 52px);
+            line-height: 1.15;
+            color: #17143b;
+            margin-bottom: 18px;
+            font-weight: 800;
+        }
+
+        .about-hero h1 span {
+            color: #635bdb;
+        }
+
+        .about-hero p {
+            max-width: 720px;
+            margin: auto;
+            color: #64748b;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* ================= INTRO ================= */
+
+        .intro-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: stretch;
+            margin-bottom: 70px;
+        }
+
+        .intro-card {
+            background: white;
+            border: 1px solid #e9eaf1;
+            border-radius: 22px;
+            padding: 35px;
+            box-shadow: 0 8px 30px rgba(30, 41, 59, 0.05);
+        }
+
+        .intro-card h2 {
+            font-size: 25px;
+            color: #17143b;
+            margin-bottom: 15px;
+        }
+
+        .intro-card p {
+            color: #64748b;
+            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 14px;
+        }
+
+        .intro-visual {
+            background: linear-gradient(145deg, #24205b, #4b3ca8);
+            border-radius: 22px;
+            padding: 40px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro-visual::before {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            top: -70px;
+            right: -50px;
+        }
+
+        .intro-visual::after {
+            content: "";
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            bottom: -60px;
+            left: -40px;
+        }
+
+        .visual-icon {
+            width: 62px;
+            height: 62px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.13);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 29px;
+            margin-bottom: 22px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .intro-visual h3 {
+            font-size: 26px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .intro-visual p {
+            color: #dddafa;
+            line-height: 1.7;
+            font-size: 14px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 30px;
+            color: #17143b;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* ================= CARDS ================= */
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-bottom: 75px;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid #e9eaf1;
+            border-radius: 18px;
+            padding: 27px;
+            transition: 0.25s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(30, 41, 59, 0.08);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: #eeecff;
+            color: #5b4bdc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            margin-bottom: 19px;
+        }
+
+        .feature-card h3 {
+            font-size: 17px;
+            color: #17143b;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* ================= HOW IT WORKS ================= */
+
+        .steps-section {
+            margin-bottom: 75px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .step {
+            text-align: center;
+            background: white;
+            border: 1px solid #e9eaf1;
+            border-radius: 18px;
+            padding: 27px 20px;
+        }
+
+        .step-number {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #635bdb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 17px;
+            font-weight: 800;
+        }
+
+        .step h3 {
+            font-size: 16px;
+            color: #17143b;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* ================= MISSION ================= */
+
+        .mission {
+            background: linear-gradient(135deg, #24205b, #4f46a8);
+            border-radius: 24px;
+            padding: 55px 45px;
+            text-align: center;
+            color: white;
+            margin-bottom: 75px;
+        }
+
+        .mission h2 {
+            font-size: 31px;
+            margin-bottom: 15px;
+        }
+
+        .mission p {
+            max-width: 750px;
+            margin: auto;
+            color: #dddafa;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        /* ================= CTA ================= */
+
+        .cta {
+            text-align: center;
+            margin-bottom: 75px;
+        }
+
+        .cta h2 {
+            color: #17143b;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .cta p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 13px 23px;
+            border-radius: 11px;
+            background: #635bdb;
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #5148c5;
+            transform: translateY(-2px);
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .intro-section {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                padding: 0 16px;
+            }
+
+            .profile-name {
+                display: none;
+            }
+
+            .container {
+                width: min(100% - 28px, 1150px);
+            }
+
+            .about-hero {
+                padding: 50px 0 45px;
+            }
+
+            .about-hero h1 {
+                font-size: 34px;
+            }
+
+            .intro-card,
+            .intro-visual {
+                padding: 27px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .mission {
+                padding: 40px 25px;
+            }
+
+            .mission h2 {
+                font-size: 25px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="css/shared.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+     NAVBAR
+========================================= -->
+
+<header class="navbar">
+
+
+    <div class="nav-left">
+
+
+        <button type="button"
+            class="hamburger"
+            id="hamburgerBtn"
+            aria-label="Open menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+        <a
+            href="home.html"
+            class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <div class="logo-text">
+
+                <h2>
+                    StudyNest
+                </h2>
+
+                <p>
+                    Learn. Share. Grow.
+                </p>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="nav-right">
+
+
+        <div class="notification">
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span class="notification-badge">
+                3
+            </span>
+
+        </div>
+
+
+        <div class="nav-divider"></div>
+
+
+        <div class="profile">
+
+            <div class="profile-img">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="profile-info">
+
+                <strong id="userName">
+                    Anik
+                </strong>
+
+                <span>
+                    DIU Student
+                </span>
+
+            </div>
+
+            <div class="profile-arrow">
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     OVERLAY
+========================================= -->
+
+<div
+    class="overlay"
+    id="overlay">
+</div>
+
+
+
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
+<aside
+    class="sidebar"
+    id="sidebar" aria-label="Main Navigation">
+
+
+    <!-- SIDEBAR HEADER -->
+
+    <div class="sidebar-header">
+
+
+        <div class="sidebar-logo">
+
+
+            <div class="sidebar-logo-icon">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    StudyNest
+                </h3>
+
+                <p>
+                    Learn. Share. Grow.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button type="button"
+            class="close-sidebar"
+            id="closeSidebar" aria-label="Close Sidebar">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- SIDEBAR MENU -->
+
+    <div class="sidebar-menu">
+
+
+        <!-- HOME -->
+
+        <a
+            href="home.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                Home
+            </span>
+
+        </a>
+
+
+
+        <!-- ACADEMIC COURSES -->
+
+        <a
+            href="academic_courses.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            <span>
+                Academic Courses
+            </span>
+
+        </a>
+
+
+
+        <!-- QUESTION BANK -->
+
+        <a
+            href="question_bank.html"
+            class="menu-item">
+
+            <i class="fa-regular fa-square-question"></i>
+
+            <span>
+                Campus Question Bank
+            </span>
+
+        </a>
+
+
+
+        <!-- LEADERBOARDS -->
+
+        <a
+            href="leaderboard.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-trophy"></i>
+
+            <span>
+                Leaderboards
+            </span>
+
+        </a>
+
+
+
+        <!-- CONTRIBUTE -->
+
+        <a
+            href="contribute.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>
+                Contribute
+            </span>
+
+        </a>
+
+
+
+        <!-- MY LIBRARY -->
+
+        <a
+            href="my_library.html"
+            class="menu-item">
+
+            <i class="fa-regular fa-bookmark"></i>
+
+            <span>
+                My Library
+            </span>
+
+        </a>
+
+
+
+        <!-- SETTINGS -->
+
+        <a
+            href="settings.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>
+                Settings
+            </span>
+
+        </a>
+
+
+
+        <div class="sidebar-divider"></div>
+
+
+
+        <!-- ABOUT -->
+
+        <a
+            href="about.html"
+            class="menu-item active">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <span>
+                About Us
+            </span>
+
+        </a>
+
+
+
+        <!-- CONTACT -->
+
+        <a
+            href="contact.html"
+            class="menu-item">
+
+            <i class="fa-regular fa-envelope"></i>
+
+            <span>
+                Contact Us
+            </span>
+
+        </a>
+
+
+
+        <!-- TERMS -->
+
+        <a
+            href="terms.html"
+            class="menu-item">
+
+            <i class="fa-regular fa-file-lines"></i>
+
+            <span>
+                Terms of Service
+            </span>
+
+        </a>
+
+
+
+        <!-- PRIVACY -->
+
+        <a
+            href="privacy.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <span>
+                Privacy Policy
+            </span>
+
+        </a>
+
+
+
+        <!-- HELP -->
+
+        <a
+            href="help.html"
+            class="menu-item">
+
+            <i class="fa-regular fa-circle-question"></i>
+
+            <span>
+                Help &amp; FAQ
+            </span>
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="about-hero">
+
+            <div class="container">
+
+                <div class="hero-badge">
+                    ✨ About StudyNest
+                </div>
+
+                <h1>
+                    Learning is better<br>
+                    <span>when we grow together.</span>
+                </h1>
+
+                <p>
+                    StudyNest is a student-focused learning platform designed to
+                    make academic resources easier to discover, organize, share,
+                    and access — all in one place.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <div class="container">
+
+            <!-- INTRO -->
+
+            <section class="intro-section">
+
+                <div class="intro-card">
+
+                    <h2>What is StudyNest?</h2>
+
+                    <p>
+                        StudyNest is built around a simple idea: students should
+                        be able to find the resources they need without searching
+                        through countless groups, posts, links, and scattered
+                        platforms.
+                    </p>
+
+                    <p>
+                        Students can discover academic playlists, question papers,
+                        and other useful learning resources based on their
+                        educational background.
+                    </p>
+
+                    <p>
+                        At the same time, students can contribute resources and
+                        help others in their academic journey.
+                    </p>
+
+                </div>
+
+
+                <div class="intro-visual">
+
+                    <div class="visual-icon">
+                        🎓
+                    </div>
+
+                    <h3>
+                        Built around students.
+                    </h3>
+
+                    <p>
+                        StudyNest brings learning resources and student
+                        contributions together into one organized academic
+                        ecosystem.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- WHAT WE DO -->
+
+            <section>
+
+                <div class="section-title">
+
+                    <h2>What We Do</h2>
+
+                    <p>
+                        Everything is designed to make academic learning simpler.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-grid">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            📚
+                        </div>
+
+                        <h3>Academic Resources</h3>
+
+                        <p>
+                            Find course-specific learning resources, playlists,
+                            videos, and supporting materials in one place.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            📝
+                        </div>
+
+                        <h3>Question Papers</h3>
+
+                        <p>
+                            Access community-contributed question papers to help
+                            students prepare for quizzes, exams, and assessments.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            🤝
+                        </div>
+
+                        <h3>Student Contributions</h3>
+
+                        <p>
+                            Students can share useful academic resources and help
+                            make learning easier for their peers.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            ⭐
+                        </div>
+
+                        <h3>Community Voting</h3>
+
+                        <p>
+                            Students can vote on useful resources so valuable
+                            learning materials can become easier to discover.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            🔖
+                        </div>
+
+                        <h3>My Library</h3>
+
+                        <p>
+                            Save useful playlists and question papers so you can
+                            easily return to them whenever you need them.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            🌍
+                        </div>
+
+                        <h3>Built to Grow</h3>
+
+                        <p>
+                            StudyNest is designed to support students from
+                            different educational systems and institutions.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- HOW IT WORKS -->
+
+            <section class="steps-section">
+
+                <div class="section-title">
+
+                    <h2>How StudyNest Works</h2>
+
+                    <p>
+                        A simple journey from discovering resources to sharing knowledge.
+                    </p>
+
+                </div>
+
+
+                <div class="steps">
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            1
+                        </div>
+
+                        <h3>Set Your Profile</h3>
+
+                        <p>
+                            Select your country, study level, institution,
+                            and academic information.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            2
+                        </div>
+
+                        <h3>Discover</h3>
+
+                        <p>
+                            Explore academic courses, playlists, question papers,
+                            and useful learning resources.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            3
+                        </div>
+
+                        <h3>Save</h3>
+
+                        <p>
+                            Save useful playlists and question papers to
+                            your personal library.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step">
+
+                        <div class="step-number">
+                            4
+                        </div>
+
+                        <h3>Contribute</h3>
+
+                        <p>
+                            Share useful resources with other students and
+                            contribute to the community.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- MISSION -->
+
+            <section class="mission">
+
+                <h2>Our Mission</h2>
+
+                <p>
+                    Our mission is to create a more organized and collaborative
+                    academic environment where students can easily discover
+                    resources, share knowledge, and support one another.
+                    We believe that useful learning resources should be easier
+                    to find and easier to share.
+                </p>
+
+            </section>
+
+
+            <!-- CTA -->
+
+            <section class="cta">
+
+                <h2>
+                    Learn. Share. Grow Together.
+                </h2>
+
+                <p>
+                    Start exploring the StudyNest community.
+                </p>
+
+                <a href="home.html" class="cta-button">
+                    Explore StudyNest →
+                </a>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <div class="footer-logo-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h3>StudyNest</h3>
+                    <p>Learn. Share. Grow.</p>
+                </div>
+            </div>
+            <p class="footer-description">
+                A student-driven platform for learning, sharing and growing together.
+            </p>
+            <div class="socials">
+                <a href="#" class="social" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="social" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="social" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-headset"></i>&nbsp; Support</h4>
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="help.html">Help &amp; FAQ</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4><i class="fa-regular fa-envelope"></i>&nbsp; Contact Us</h4>
+            <div class="contact-box">
+                <div class="contact-icon">
+                    <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div>
+                    <div class="contact-email">support@studynest.com</div>
+                    <div class="contact-sub">We'd love to hear from you!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div>&copy; 2026 StudyNest. All rights reserved.</div>
+        <div class="made">
+            <span>&hearts;</span>&nbsp; Made for students, by students.
+        </div>
+    </div>
+</footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+    
+    /* =========================================
+       USER NAME
+    ========================================= */
+
+    const savedName =
+        localStorage.getItem(
+            "studynest_user_name"
+        );
+
+
+    if (savedName) {
+
+        document.getElementById(
+            "userName"
+        ).textContent = savedName;
+
+        const welcomeName = document.getElementById("welcomeName");
+        if(welcomeName) welcomeName.textContent = savedName;
+    }
+
+
+    /* =========================================/* =========================================
+       SIDEBAR
+    ========================================= */
+
+    const hamburgerBtn =
+        document.getElementById(
+            "hamburgerBtn"
+        );
+
+    const sidebar =
+        document.getElementById(
+            "sidebar"
+        );
+
+    const overlay =
+        document.getElementById(
+            "overlay"
+        );
+
+    const closeSidebarBtn =
+        document.getElementById(
+            "closeSidebar"
+        );
+
+
+    function openSideMenu() {
+        sidebar.classList.add("active");
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeSideMenu() {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+    }
+
+    hamburgerBtn.addEventListener("click", openSideMenu);
+    closeSidebarBtn.addEventListener("click", closeSideMenu);
+    overlay.addEventListener("click", closeSideMenu);
+
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Escape") {
+            closeSideMenu();
+        }
+    });
+
+    </script>
+
+
+        <!-- Shared JS Modules -->
+    <script src="js/routes.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/shared-ui.js"></script>
+    <script>
+        SharedUI.init('about');
+    </script>
+</body>
+
+</html>

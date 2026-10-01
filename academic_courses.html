@@ -1,0 +1,4107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudyNest - Academic Courses</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <style>
+        .poly-academic-hidden-label {
+            visibility: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #ffffff;
+            color: #101a3b;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button,
+        select {
+            font-family: inherit;
+        }
+
+
+        /* =========================================
+           MAIN
+        ========================================= */
+
+        .main {
+            padding: 0 28px 35px;
+        }
+
+
+
+        /* =========================================
+           FILTER BAR
+        ========================================= */
+
+        .filter-bar {
+
+            min-height: 78px;
+
+            border: 1px solid #e7eaf2;
+            border-top: none;
+
+            border-radius: 0 0 10px 10px;
+
+            display: grid;
+
+            grid-template-columns:
+                1.2fr 1.35fr 1.1fr 105px;
+
+            gap: 10px;
+
+            padding: 13px 15px;
+
+            align-items: center;
+
+            background: white;
+        }
+
+
+        .filter-group label {
+
+            display: block;
+
+            font-size: 11px;
+            font-weight: 600;
+
+            color: #152043;
+
+            margin-bottom: 5px;
+        }
+
+
+        .select-wrapper {
+            position: relative;
+        }
+
+
+        .select-wrapper select {
+
+            width: 100%;
+            height: 39px;
+
+            border: 1px solid #e2e6ef;
+
+            border-radius: 7px;
+
+            padding: 0 35px 0 12px;
+
+            color: #172044;
+
+            font-size: 12px;
+
+            background: white;
+
+            appearance: none;
+
+            outline: none;
+
+            cursor: pointer;
+        }
+
+
+        .select-wrapper i {
+
+            position: absolute;
+
+            right: 12px;
+            top: 13px;
+
+            font-size: 11px;
+
+            color: #415477;
+
+            pointer-events: none;
+        }
+
+
+        .search-btn {
+
+            margin-top: 17px;
+
+            height: 39px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background:
+                linear-gradient(90deg,
+                    #3a16f3,
+                    #4529ff);
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .search-btn:hover {
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 7px 18px rgba(59, 28, 243, 0.2);
+        }
+
+
+
+        /* =========================================
+           COURSE CONTAINER
+        ========================================= */
+
+        .course-container {
+
+            margin-top: 13px;
+
+            border: 1px solid #e4e8f1;
+
+            border-radius: 9px;
+
+            overflow: hidden;
+
+            background: white;
+        }
+
+
+        /* COURSE HEADER */
+
+        .course-header {
+
+            min-height: 68px;
+
+            padding: 0 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            border-bottom: 1px solid #e6e9f1;
+        }
+
+
+        .course-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .course-icon {
+
+            width: 45px;
+            height: 45px;
+
+            border-radius: 7px;
+
+            background:
+                linear-gradient(145deg,
+                    #3d16f3,
+                    #4b27ff);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+
+            font-size: 23px;
+        }
+
+
+        .course-title h1 {
+
+            font-size: 21px;
+
+            color: #10183b;
+        }
+
+
+        /* SORT */
+
+        .sort-box {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 12px;
+        }
+
+
+        .sort-box span {
+            color: #324367;
+        }
+
+
+        .sort-select {
+
+            border: none;
+
+            outline: none;
+
+            color: #2815e9;
+
+            font-weight: 600;
+
+            font-size: 12px;
+
+            background: white;
+
+            cursor: pointer;
+        }
+
+
+
+        /* =========================================
+           PLAYLIST
+        ========================================= */
+
+        .playlist {
+
+            border-bottom: 1px solid #e8ebf2;
+        }
+
+
+        .playlist:last-child {
+            border-bottom: none;
+        }
+
+
+        .playlist-main {
+
+            min-height: 115px;
+
+            padding: 20px 18px;
+
+            display: grid;
+
+            grid-template-columns:
+                42px 1fr auto;
+
+            gap: 16px;
+
+            align-items: center;
+        }
+
+
+        /* RANK */
+
+        .rank {
+
+            width: 30px;
+            height: 30px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: white;
+
+            background: #7b8495;
+        }
+
+
+        .rank.first {
+            background: #ffad08;
+        }
+
+
+        .rank.third {
+            background: #ed7d0d;
+        }
+
+
+
+        /* PLAYLIST INFO */
+
+        .playlist-info {
+            min-width: 300px;
+        }
+
+
+        .playlist-type {
+
+            display: inline-block;
+
+            padding: 3px 9px;
+
+            border-radius: 4px;
+
+            background: #f0efff;
+
+            color: #3b21ee;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            margin-bottom: 5px;
+        }
+
+
+        .playlist-name {
+
+            font-size: 17px;
+
+            font-weight: 600;
+
+            color: #111a3f;
+        }
+
+
+        .playlist-name span {
+
+            font-weight: 500;
+
+            margin-left: 5px;
+        }
+
+
+        .playlist-meta {
+
+            display: flex;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 13px;
+
+            margin-top: 9px;
+
+            font-size: 12px;
+
+            color: #263b64;
+        }
+
+
+        .rating {
+            color: #152042;
+        }
+
+
+        .rating i {
+
+            color: #ffad00;
+
+            margin-right: 4px;
+        }
+
+
+        .meta-divider {
+            color: #b6bdcb;
+        }
+
+
+
+        /* =========================================
+           ACTION BUTTONS
+        ========================================= */
+
+        .playlist-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .action-btn {
+
+            height: 37px;
+
+            min-width: 135px;
+
+            padding: 0 15px;
+
+            border: 1px solid #988aff;
+
+            background: white;
+
+            border-radius: 6px;
+
+            color: #3019ee;
+
+            font-size: 12px;
+
+            font-weight: 500;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .action-btn:hover {
+
+            background: #f7f5ff;
+        }
+
+
+        .vote-btn {
+            min-width: 125px;
+        }
+
+
+        .save-btn {
+            min-width: 90px;
+        }
+
+
+        .save-btn.saved {
+
+            background: #f0efff;
+
+            color: #3019ee;
+        }
+
+
+        .expand-btn {
+
+            width: 43px;
+
+            min-width: 43px;
+
+            padding: 0;
+        }
+
+
+
+        /* =========================================
+           CUSTOM PLAYLIST CONTENT
+        ========================================= */
+
+        .playlist-content {
+
+            display: none;
+
+            margin: 0 16px 16px;
+
+            border: 1px solid #e5e9f2;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+        }
+
+
+        .playlist-content.active {
+            display: block;
+        }
+
+
+        .video-row {
+
+            min-height: 57px;
+
+            padding: 8px 16px;
+
+            display: grid;
+
+            grid-template-columns:
+                45px 1fr 145px 120px;
+
+            gap: 12px;
+
+            align-items: center;
+
+            border-bottom: 1px solid #edf0f5;
+        }
+
+
+        .video-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .video-number {
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .video-name {
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: #182247;
+        }
+
+
+        .small-action {
+
+            height: 36px;
+
+            border: 1px solid #9a8cff;
+
+            background: white;
+
+            border-radius: 6px;
+
+            color: #321df1;
+
+            font-size: 11px;
+
+            font-weight: 500;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .small-action:hover {
+
+            background: #f7f5ff;
+        }
+
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1250px) {
+
+            .playlist-main {
+
+                grid-template-columns:
+                    38px 1fr;
+            }
+
+
+            .playlist-actions {
+
+                grid-column: 2;
+
+                flex-wrap: wrap;
+            }
+        }
+
+
+        @media (max-width: 1000px) {
+
+            .filter-bar {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .search-btn {
+
+                margin-top: 0;
+            }
+
+
+            .video-row {
+
+                grid-template-columns:
+                    35px 1fr 120px 100px;
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .navbar {
+
+                padding: 0 18px;
+            }
+
+
+            .main {
+
+                padding: 0 15px 25px;
+            }
+
+
+            .filter-bar {
+
+                grid-template-columns: 1fr;
+
+                padding: 15px;
+            }
+
+
+            .search-btn {
+
+                width: 100%;
+            }
+
+
+            .course-header {
+
+                padding: 15px;
+
+                gap: 15px;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .playlist-actions {
+
+                gap: 8px;
+            }
+
+
+            .action-btn {
+
+                min-width: 115px;
+            }
+
+
+            .video-row {
+
+                grid-template-columns:
+                    30px 1fr;
+            }
+
+
+            .video-row .small-action {
+
+                display: none;
+            }
+        }
+
+        /* School Mode Specific Styles */
+        .school-page-header { padding: 28px 0 20px; }
+        .school-page-title { font-size: 27px; color: #10183b; margin-bottom: 5px; }
+        .school-breadcrumb { display: flex; align-items: center; gap: 9px; font-size: 12px; color: #647493; }
+
+        .school-filter-box { border: 1px solid #e4e8f1; border-radius: 10px; padding: 17px; background: white; margin-bottom: 25px; }
+        .school-filter-row { display: grid; grid-template-columns: 1fr 1fr 100px; gap: 15px; align-items: end; }
+        .school-filter-label { display: block; font-size: 12px; font-weight: 600; color: #152043; margin-bottom: 7px; }
+        .school-filter-select-wrapper { position: relative; }
+        .school-filter-select { width: 100%; height: 42px; border: 1px solid #e2e6ef; border-radius: 7px; padding: 0 35px 0 12px; font-size: 13px; color: #172044; background: white; appearance: none; outline: none; cursor: pointer; }
+        .school-filter-icon { position: absolute; right: 12px; top: 15px; font-size: 11px; color: #415477; pointer-events: none; }
+        .school-search-btn { height: 42px; border: none; border-radius: 7px; background: linear-gradient(90deg, #3a16f3, #4529ff); color: white; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+
+        .school-container { min-height: 200px; }
+        .school-empty-state { background: white; border: 1px solid #e4e8f1; border-radius: 10px; padding: 40px; text-align: center; color: #647493; }
+        .school-empty-icon { font-size: 35px; color: #a0abc0; margin-bottom: 15px; }
+        .school-empty-title { color: #10183b; font-size: 18px; margin-bottom: 8px; }
+        .school-empty-desc { font-size: 13px; max-width: 400px; margin: 0 auto; }
+
+        .school-results-header { margin-bottom: 20px; }
+        .school-results-title { font-size: 20px; color: #10183b; margin-bottom: 4px; }
+        .school-results-subtitle { font-size: 13px; color: #647493; margin-bottom: 20px; }
+
+        .school-section-title { font-size: 16px; color: #10183b; margin-bottom: 12px; border-bottom: 1px solid #e6e9f1; padding-bottom: 8px; }
+        .school-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; margin-bottom: 30px; }
+
+        .school-card { border: 1px solid #e4e8f1; border-radius: 9px; background: white; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; }
+        .school-card-badge-video { display: inline-block; padding: 3px 9px; border-radius: 4px; background: #f0efff; color: #3b21ee; font-size: 10px; font-weight: 600; margin-bottom: 8px; }
+        .school-card-badge-custom { display: inline-block; padding: 3px 9px; border-radius: 4px; background: #fff4e5; color: #e88b00; font-size: 10px; font-weight: 600; margin-bottom: 8px; }
+        .school-card-title { font-size: 15px; color: #111a3f; margin-bottom: 5px; line-height: 1.4; }
+        .school-card-author { font-size: 12px; color: #647493; margin-bottom: 12px; }
+        .school-card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #edf0f5; padding-top: 12px; }
+        .school-card-rating { font-size: 12px; color: #263b64; font-weight: 500; }
+        .school-card-btn { height: 32px; padding: 0 12px; border: 1px solid #988aff; background: white; border-radius: 6px; color: #3019ee; font-size: 12px; font-weight: 500; cursor: pointer; }
+
+        /* College Mode Specific Styles */
+        .college-page-header { padding: 28px 0 20px; }
+        .college-page-title { font-size: 27px; color: #10183b; margin-bottom: 5px; }
+        .college-breadcrumb { display: flex; align-items: center; gap: 9px; font-size: 12px; color: #647493; }
+
+        .college-filter-box { border: 1px solid #e4e8f1; border-radius: 10px; padding: 17px; background: white; margin-bottom: 25px; }
+        .college-filter-row { display: grid; grid-template-columns: 1fr 100px; gap: 15px; align-items: end; }
+        .college-filter-field { flex: 1; }
+        .college-filter-label { display: block; font-size: 12px; font-weight: 600; color: #152043; margin-bottom: 7px; }
+        .college-filter-select-wrapper { position: relative; }
+        .college-filter-select { width: 100%; height: 42px; border: 1px solid #e2e6ef; border-radius: 7px; padding: 0 35px 0 12px; font-size: 13px; color: #172044; background: white; appearance: none; outline: none; cursor: pointer; }
+        .college-filter-icon { position: absolute; right: 12px; top: 15px; font-size: 11px; color: #415477; pointer-events: none; }
+        .college-search-btn { width: 100%; height: 42px; border: none; border-radius: 7px; background: linear-gradient(90deg, #3a16f3, #4529ff); color: white; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+
+        .college-container { min-height: 60vh; }
+        .college-empty-state { background: white; border: 1px solid #e4e8f1; border-radius: 10px; padding: 40px; text-align: center; color: #647493; }
+        .college-empty-icon { font-size: 35px; color: #a0abc0; margin-bottom: 15px; }
+        .college-empty-title { color: #10183b; font-size: 18px; margin-bottom: 8px; }
+        .college-empty-desc { font-size: 13px; max-width: 400px; margin: 0 auto; }
+
+        .college-results-header { margin-bottom: 20px; }
+        .college-results-title { font-size: 20px; color: #10183b; margin-bottom: 4px; }
+        .college-section-title { font-size: 16px; color: #10183b; margin-bottom: 12px; border-bottom: 1px solid #e6e9f1; padding-bottom: 8px; }
+        .college-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; margin-bottom: 30px; }
+
+        .college-card { border: 1px solid #e4e8f1; border-radius: 9px; background: white; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; }
+        .college-card-badge-video { display: inline-block; padding: 3px 9px; border-radius: 4px; background: #f0efff; color: #3b21ee; font-size: 10px; font-weight: 600; margin-bottom: 8px; }
+        .college-card-badge-custom { display: inline-block; padding: 3px 9px; border-radius: 4px; background: #fff4e5; color: #e88b00; font-size: 10px; font-weight: 600; margin-bottom: 8px; }
+        .college-card-title { font-size: 15px; color: #111a3f; margin-bottom: 5px; line-height: 1.4; }
+        .college-card-author { font-size: 12px; color: #647493; margin-bottom: 12px; }
+        .college-card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #edf0f5; padding-top: 12px; }
+        .college-card-rating { font-size: 12px; color: #263b64; font-weight: 500; }
+        .college-card-btn { height: 32px; padding: 0 12px; border: 1px solid #988aff; background: white; border-radius: 6px; color: #3019ee; font-size: 12px; font-weight: 500; cursor: pointer; }
+        .college-card-btn-empty { height: 32px; padding: 0 16px; border: none; background: #3019ee; border-radius: 6px; color: white; font-size: 12px; font-weight: 500; cursor: pointer; margin-top: 10px; }
+
+        @media (max-width: 768px) {
+            .college-filter-row { grid-template-columns: 1fr; }
+        }
+
+        /* =========================================
+           NATIONAL UNIVERSITY MODE
+        ========================================= */
+        .nu-academic-courses { padding: 28px 0 20px; }
+        .nu-academic-header h1 { font-size: 27px; color: #10183b; margin-bottom: 5px; }
+        .nu-academic-header p { display: flex; align-items: center; gap: 9px; font-size: 12px; color: #647493; margin-bottom: 25px;}
+
+        .nu-academic-filter-card { border: 1px solid #e4e8f1; border-radius: 10px; padding: 17px; background: white; margin-bottom: 25px; position: relative; }
+        .nu-academic-filter-row { display: grid; grid-template-columns: 1.5fr 1fr 1.5fr 120px; gap: 15px; align-items: end; }
+
+        .nu-academic-filter-label { display: block; font-size: 12px; font-weight: 600; color: #152043; margin-bottom: 7px; }
+        .nu-academic-filter-select-wrapper { position: relative; width: 100%; }
+        .nu-academic-filter-select { width: 100%; height: 42px; border: 1px solid #e2e6ef; border-radius: 7px; padding: 0 12px; font-size: 13px; color: #172044; background: white; appearance: none; outline: none; cursor: pointer; }
+        .nu-academic-filter-select:disabled { background: #f8f9fb; color: #a1abc0; cursor: not-allowed; }
+        .nu-academic-filter-select-wrapper i { position: absolute; right: 12px; top: 15px; font-size: 11px; color: #415477; pointer-events: none; }
+        
+        .nu-academic-search-btn { width: 100%; height: 42px; border: none; border-radius: 7px; background: #3019ee; color: white; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .nu-academic-search-btn:disabled { background: #c6cbea; cursor: not-allowed; }
+        .nu-academic-search-btn:not(:disabled):hover { background: #2614bd; }
+
+        .nu-academic-results { min-height: 200px; }
+        .nu-academic-empty-state { background: white; border: 1px solid #e4e8f1; border-radius: 10px; padding: 40px; text-align: center; color: #647493; }
+        .nu-academic-empty-icon { font-size: 35px; color: #a0abc0; margin-bottom: 15px; }
+        .nu-academic-empty-title { color: #10183b; font-size: 18px; margin-bottom: 8px; font-weight: 600; }
+        .nu-academic-empty-desc { font-size: 13px; max-width: 400px; margin: 0 auto; }
+        
+        .nu-academic-results-title { font-size: 20px; color: #10183b; margin-bottom: 4px; font-weight: 600; }
+        .nu-academic-results-subtitle { font-size: 13px; color: #647493; margin-bottom: 20px; }
+        .nu-academic-section-title { font-size: 16px; color: #152043; margin-bottom: 15px; margin-top: 25px; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            .nu-academic-filter-row { grid-template-columns: 1fr; }
+        }
+
+        /* =========================================
+           MEDICAL MODE
+        ========================================= */
+        .med-academic-courses { padding: 28px 0 20px; }
+        .med-academic-header h1 { font-size: 27px; color: #10183b; margin-bottom: 5px; }
+        .med-academic-header p { display: flex; align-items: center; gap: 9px; font-size: 12px; color: #647493; margin-bottom: 25px;}
+
+        .med-academic-filter-card { border: 1px solid #e4e8f1; border-radius: 10px; padding: 17px; background: white; margin-bottom: 25px; position: relative; }
+        .med-academic-filter-row { display: grid; grid-template-columns: 1fr 1.5fr 1.5fr 120px; gap: 15px; align-items: end; }
+
+        .med-academic-filter-label { display: block; font-size: 12px; font-weight: 600; color: #152043; margin-bottom: 7px; }
+        .med-academic-required { color: #ef3159; }
+        .med-academic-yt { color: #ef3159; }
+        .med-academic-filter-select-wrapper { position: relative; width: 100%; }
+        .med-academic-filter-select { width: 100%; height: 42px; border: 1px solid #e2e6ef; border-radius: 7px; padding: 0 12px; font-size: 13px; color: #172044; background: white; appearance: none; outline: none; cursor: pointer; }
+        .med-academic-filter-select:disabled { background: #f8f9fb; color: #a1abc0; cursor: not-allowed; }
+        .med-academic-filter-select-wrapper i { position: absolute; right: 12px; top: 15px; font-size: 11px; color: #415477; pointer-events: none; }
+        
+        .med-academic-search-btn { width: 100%; height: 42px; border: none; border-radius: 7px; background: #3019ee; color: white; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .med-academic-search-btn:disabled { background: #c6cbea; cursor: not-allowed; }
+        .med-academic-search-btn:not(:disabled):hover { background: #2614bd; }
+
+        .med-academic-results { min-height: 200px; }
+        .med-academic-empty-state { background: white; border: 1px solid #e4e8f1; border-radius: 10px; padding: 40px; text-align: center; color: #647493; }
+        .med-academic-empty-icon { font-size: 35px; color: #a0abc0; margin-bottom: 15px; }
+        .med-academic-empty-title { color: #10183b; font-size: 18px; margin-bottom: 8px; font-weight: 600; }
+        .med-academic-empty-desc { font-size: 13px; max-width: 400px; margin: 0 auto; }
+        
+        .med-academic-results-title { font-size: 20px; color: #10183b; margin-bottom: 4px; font-weight: 600; }
+        .med-academic-results-subtitle { font-size: 13px; color: #647493; margin-bottom: 20px; }
+        .med-academic-section-title { font-size: 16px; color: #152043; margin-bottom: 15px; margin-top: 25px; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            .med-academic-filter-row { grid-template-columns: 1fr; }
+        }
+    /* =========================================
+           POLYTECHNIC MODE
+        ========================================= */
+        .poly-academic-courses { padding: 28px 0 20px; }
+        .poly-academic-header h1 { font-size: 27px; color: #10183b; margin-bottom: 5px; }
+        .poly-academic-header p { display: flex; align-items: center; gap: 9px; font-size: 12px; color: #647493; margin-bottom: 25px;}
+
+        .poly-academic-filter-card { border: 1px solid #e4e8f1; border-radius: 10px; padding: 17px; background: white; margin-bottom: 25px; position: relative; }
+        .poly-academic-filter-row { display: grid; grid-template-columns: 1fr 1.5fr 1.5fr 120px; gap: 15px; align-items: end; }
+
+        .poly-academic-filter-label { display: block; font-size: 12px; font-weight: 600; color: #152043; margin-bottom: 7px; }
+        .poly-academic-required { color: #ef3159; }
+        .poly-academic-yt { color: #ef3159; }
+        .poly-academic-filter-select-wrapper { position: relative; width: 100%; }
+        .poly-academic-filter-select { width: 100%; height: 42px; border: 1px solid #e2e6ef; border-radius: 7px; padding: 0 12px; font-size: 13px; color: #172044; background: white; appearance: none; outline: none; cursor: pointer; }
+        .poly-academic-filter-select:disabled { background: #f8f9fb; color: #a1abc0; cursor: not-allowed; }
+        .poly-academic-filter-select-wrapper i { position: absolute; right: 12px; top: 15px; font-size: 11px; color: #415477; pointer-events: none; }
+        
+        .poly-academic-search-btn { width: 100%; height: 42px; border: none; border-radius: 7px; background: #3019ee; color: white; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        .poly-academic-search-btn:disabled { background: #c6cbea; cursor: not-allowed; }
+        .poly-academic-search-btn:not(:disabled):hover { background: #2614bd; }
+
+        .poly-academic-results { min-height: 200px; }
+        .poly-academic-empty-state { background: white; border: 1px solid #e4e8f1; border-radius: 10px; padding: 40px; text-align: center; color: #647493; }
+        .poly-academic-empty-icon { font-size: 35px; color: #a0abc0; margin-bottom: 15px; }
+        .poly-academic-empty-title { color: #10183b; font-size: 18px; margin-bottom: 8px; font-weight: 600; }
+        .poly-academic-empty-desc { font-size: 13px; max-width: 400px; margin: 0 auto; }
+        
+        .poly-academic-results-title { font-size: 20px; color: #10183b; margin-bottom: 4px; font-weight: 600; }
+        .poly-academic-results-subtitle { font-size: 13px; color: #647493; margin-bottom: 20px; }
+        .poly-academic-section-title { font-size: 16px; color: #152043; margin-bottom: 15px; margin-top: 25px; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            .poly-academic-filter-row { grid-template-columns: 1fr; }
+        }
+    </style>
+
+    <link rel="stylesheet" href="css/shared.css">
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+     NAVBAR
+========================================= -->
+
+    <header class="navbar">
+
+        <div class="nav-left">
+
+            <button type="button"
+            class="hamburger"
+            id="hamburgerBtn"
+            aria-label="Open menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+            <a href="home.html" class="logo">
+
+                <div class="logo-icon">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                </div>
+
+
+                <div class="logo-text">
+
+                    <h2>StudyNest</h2>
+
+                    <p>
+                        Learn. Share. Grow.
+                    </p>
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <div class="nav-right">
+
+            <div class="nav-icon">
+
+                <i class="fa-regular fa-bell"></i>
+
+                <span class="badge">
+                    3
+                </span>
+
+            </div>
+
+
+            <div class="nav-divider"></div>
+
+
+            <div class="profile">
+
+                <div class="profile-img">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+
+                <div class="profile-info">
+
+                    <strong id="userName">
+                        Anik
+                    </strong>
+
+                    <span>
+                        DIU Student
+                    </span>
+
+                </div>
+
+
+                <div class="profile-arrow">
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+     MAIN
+========================================= -->
+
+    <section class="main" id="universityMain" aria-label="University Academic Courses">
+
+
+        <!-- FILTER BAR -->
+
+        <section class="filter-bar">
+
+
+            <!-- UNIVERSITY -->
+
+            <div class="filter-group">
+
+                <label>
+                    University
+                </label>
+
+
+                <div class="select-wrapper">
+
+                    <select id="universitySelect">
+
+                        <option>
+                            Daffodil International University
+                        </option>
+
+                        <option>
+                            University of Dhaka
+                        </option>
+
+                        <option>
+                            Bangladesh University of Engineering and Technology
+                        </option>
+
+                        <option>
+                            BRAC University
+                        </option>
+
+                    </select>
+
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- DEPARTMENT -->
+
+            <div class="filter-group">
+
+                <label>
+                    Department
+                </label>
+
+
+                <div class="select-wrapper">
+
+                    <select id="departmentSelect">
+
+                        <option>
+                            Computer Science &amp; Engineering (CSE)
+                        </option>
+
+                        <option>
+                            Software Engineering
+                        </option>
+
+                        <option>
+                            Electrical &amp; Electronic Engineering
+                        </option>
+
+                        <option>
+                            Civil Engineering
+                        </option>
+
+                        <option>
+                            Business Administration
+                        </option>
+
+                        <option>
+                            English
+                        </option>
+
+                    </select>
+
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- COURSE -->
+
+            <div class="filter-group">
+
+                <label>
+                    Course / Subject
+                </label>
+
+
+                <div class="select-wrapper">
+
+                    <select id="courseSelect">
+
+                        <option>
+                            Data Structures
+                        </option>
+
+                        <option>
+                            Object Oriented Programming
+                        </option>
+
+                        <option>
+                            Database Management System
+                        </option>
+
+                        <option>
+                            Computer Networks
+                        </option>
+
+                        <option>
+                            Operating System
+                        </option>
+
+                        <option>
+                            Computer Graphics
+                        </option>
+
+                    </select>
+
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SEARCH -->
+
+            <button type="button" class="search-btn" onclick="searchCourse()">
+
+                Search
+
+            </button>
+
+        </section>
+
+
+
+        <!-- COURSE CONTAINER -->
+
+        <section class="course-container">
+
+
+            <!-- COURSE HEADER -->
+
+            <div class="course-header">
+
+
+                <div class="course-title">
+
+                    <div class="course-icon">
+
+                        <i class="fa-solid fa-code"></i>
+
+                    </div>
+
+
+                    <h1 id="courseTitle">
+                        Data Structures
+                    </h1>
+
+                </div>
+
+
+
+                <!-- SORT -->
+
+                <div class="sort-box">
+
+                    <span>
+                        Sort by:
+                    </span>
+
+
+                    <select class="sort-select">
+
+                        <option>
+                            Highest Voted
+                        </option>
+
+                        <option>
+                            Highest Rated
+                        </option>
+
+                        <option>
+                            Most Resources
+                        </option>
+
+                        <option>
+                            Newest
+                        </option>
+
+                    </select>
+
+
+                    <i class="fa-solid fa-chevron-down">
+                    </i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================================
+             PLAYLIST 1
+        ========================================= -->
+
+            <div class="playlist">
+
+                <div class="playlist-main">
+
+
+                    <div class="rank first">
+                        1
+                    </div>
+
+
+                    <div class="playlist-info">
+
+                        <span class="playlist-type">
+                            Full Playlist
+                        </span>
+
+
+                        <div class="playlist-name">
+
+                            Data Structures
+
+                            <span>
+                                by Anik
+                            </span>
+
+                        </div>
+
+
+                        <div class="playlist-meta">
+
+                            <span class="rating">
+
+                                <i class="fa-solid fa-star"></i>
+
+                                4.9
+                                (2.6k votes)
+
+                            </span>
+
+
+                            <span class="meta-divider">
+                                |
+                            </span>
+
+
+                            <span>
+
+                                <i class="fa-solid fa-globe"></i>
+
+                                Bangla
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="playlist-actions">
+
+
+                        <button type="button" class="action-btn">
+
+                            <i class="fa-regular fa-circle-play"></i>
+
+                            View Playlist
+
+                        </button>
+
+
+                        <button type="button" class="action-btn">
+
+                            <i class="fa-regular fa-file-lines"></i>
+
+                            Resource (12)
+
+                        </button>
+
+
+                        <button type="button" class="action-btn vote-btn">
+
+                            <i class="fa-regular fa-thumbs-up"></i>
+
+                            Vote (2.6K)
+
+                        </button>
+
+
+                        <button type="button" class="action-btn save-btn save-playlist">
+
+                            <i class="fa-regular fa-bookmark"></i>
+
+                            Save
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================================
+             PLAYLIST 2
+        ========================================= -->
+
+            <div class="playlist">
+
+                <div class="playlist-main">
+
+
+                    <div class="rank">
+                        2
+                    </div>
+
+
+                    <div class="playlist-info">
+
+                        <span class="playlist-type">
+                            Full Playlist
+                        </span>
+
+
+                        <div class="playlist-name">
+
+                            Data Structures
+
+                            <span>
+                                by Asif C++
+                            </span>
+
+                        </div>
+
+
+                        <div class="playlist-meta">
+
+                            <span class="rating">
+
+                                <i class="fa-solid fa-star"></i>
+
+                                4.7
+                                (2.5k votes)
+
+                            </span>
+
+
+                            <span class="meta-divider">
+                                |
+                            </span>
+
+
+                            <span>
+
+                                <i class="fa-regular fa-calendar"></i>
+
+                                10 videos
+
+                            </span>
+
+
+                            <span class="meta-divider">
+                                |
+                            </span>
+
+
+                            <span>
+
+                                <i class="fa-solid fa-globe"></i>
+
+                                Bangla
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="playlist-actions">
+
+
+                        <button type="button" class="action-btn">
+
+                            <i class="fa-regular fa-circle-play"></i>
+
+                            View Playlist
+
+                        </button>
+
+
+                        <button type="button" class="action-btn">
+
+                            <i class="fa-regular fa-file-lines"></i>
+
+                            Resource (8)
+
+                        </button>
+
+
+                        <button type="button" class="action-btn vote-btn">
+
+                            <i class="fa-regular fa-thumbs-up"></i>
+
+                            Vote (2.5K)
+
+                        </button>
+
+
+                        <button type="button" class="action-btn save-btn save-playlist">
+
+                            <i class="fa-regular fa-bookmark"></i>
+
+                            Save
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================================
+             PLAYLIST 3 - CUSTOM
+        ========================================= -->
+
+            <div class="playlist">
+
+                <div class="playlist-main">
+
+
+                    <div class="rank third">
+                        3
+                    </div>
+
+
+                    <div class="playlist-info">
+
+                        <span class="playlist-type">
+                            Custom Playlist
+                        </span>
+
+
+                        <div class="playlist-name">
+
+                            Data Structures
+                            (Step by Step)
+
+                        </div>
+
+
+                        <div class="playlist-meta">
+
+                            <span class="rating">
+
+                                <i class="fa-solid fa-star"></i>
+
+                                4.6
+                                (1.8k votes)
+
+                            </span>
+
+
+                            <span class="meta-divider">
+                                |
+                            </span>
+
+
+                            <span>
+
+                                <i class="fa-regular fa-calendar"></i>
+
+                                8 videos
+
+                            </span>
+
+
+                            <span class="meta-divider">
+                                |
+                            </span>
+
+
+                            <span>
+
+                                <i class="fa-solid fa-globe"></i>
+
+                                Bangla
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="playlist-actions">
+
+                        <button type="button" class="action-btn">
+
+                            <i class="fa-regular fa-file-lines"></i>
+
+                            Resource (8)
+
+                        </button>
+
+
+                        <button type="button" class="action-btn vote-btn">
+
+                            <i class="fa-regular fa-thumbs-up"></i>
+
+                            Vote (1.8K)
+
+                        </button>
+
+
+                        <!-- SAVE FULL CUSTOM PLAYLIST -->
+
+                        <button type="button" class="action-btn save-btn save-playlist">
+
+                            <i class="fa-regular fa-bookmark"></i>
+
+                            Save
+
+                        </button>
+
+
+                        <!-- EXPAND -->
+
+                        <button type="button" class="action-btn expand-btn" id="expandBtn" onclick="togglePlaylist()" aria-label="Toggle Playlist">
+
+                            <i class="fa-solid fa-chevron-down"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CUSTOM PLAYLIST VIDEOS -->
+
+                <div class="playlist-content" id="customPlaylist">
+
+
+                    <!-- VIDEO 1 -->
+
+                    <div class="video-row">
+
+                        <div class="video-number">
+                            1
+                        </div>
+
+
+                        <div class="video-name">
+                            Intro to Data Structures
+                        </div>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-solid fa-link"></i>
+
+                            View Link
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        </button>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-regular fa-file-lines"></i>
+
+                            Resource
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- VIDEO 2 -->
+
+                    <div class="video-row">
+
+                        <div class="video-number">
+                            2
+                        </div>
+
+
+                        <div class="video-name">
+                            Singly Linked List
+                        </div>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-solid fa-link"></i>
+
+                            View Link
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        </button>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-regular fa-file-lines"></i>
+
+                            Resource
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- VIDEO 3 -->
+
+                    <div class="video-row">
+
+                        <div class="video-number">
+                            3
+                        </div>
+
+
+                        <div class="video-name">
+                            Doubly Linked List
+                        </div>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-solid fa-link"></i>
+
+                            View Link
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        </button>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-regular fa-file-lines"></i>
+
+                            Resource
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- VIDEO 4 -->
+
+                    <div class="video-row">
+
+                        <div class="video-number">
+                            4
+                        </div>
+
+
+                        <div class="video-name">
+                            BFS
+                        </div>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-solid fa-link"></i>
+
+                            View Link
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        </button>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-regular fa-file-lines"></i>
+
+                            Resource
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- VIDEO 5 -->
+
+                    <div class="video-row">
+
+                        <div class="video-number">
+                            5
+                        </div>
+
+
+                        <div class="video-name">
+                            DFS
+                        </div>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-solid fa-link"></i>
+
+                            View Link
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        </button>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-regular fa-file-lines"></i>
+
+                            Resource
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- VIDEO 6 -->
+
+                    <div class="video-row">
+
+                        <div class="video-number">
+                            6
+                        </div>
+
+
+                        <div class="video-name">
+                            Stack
+                        </div>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-solid fa-link"></i>
+
+                            View Link
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        </button>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-regular fa-file-lines"></i>
+
+                            Resource
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- VIDEO 7 -->
+
+                    <div class="video-row">
+
+                        <div class="video-number">
+                            7
+                        </div>
+
+
+                        <div class="video-name">
+                            Queue
+                        </div>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-solid fa-link"></i>
+
+                            View Link
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        </button>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-regular fa-file-lines"></i>
+
+                            Resource
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- VIDEO 8 -->
+
+                    <div class="video-row">
+
+                        <div class="video-number">
+                            8
+                        </div>
+
+
+                        <div class="video-name">
+                            Applications of Data Structures
+                        </div>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-solid fa-link"></i>
+
+                            View Link
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        </button>
+
+
+                        <button type="button" class="small-action">
+
+                            <i class="fa-regular fa-file-lines"></i>
+
+                            Resource
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </section>
+
+    <!-- =========================================
+         SCHOOL MAIN
+    ========================================= -->
+    <section class="main school-mode" id="schoolMain" aria-label="School Academic Courses" style="display: none;">
+
+        <!-- PAGE HEADER -->
+        <section class="school-page-header">
+            <h1 class="school-page-title">School Academic Resources</h1>
+            <div class="school-breadcrumb">
+                Explore video playlists and study resources for your class and subjects.
+            </div>
+        </section>
+
+        <!-- FILTER BOX -->
+        <section class="school-filter-box">
+            <div class="school-filter-row">
+
+                <!-- CLASS -->
+                <div class="filter-group">
+                    <label class="school-filter-label">Class</label>
+                    <div class="school-filter-select-wrapper">
+                        <select id="schoolClassSelect" class="school-filter-select" onchange="updateSchoolSubjects()"></select>
+                        <i class="fa-solid fa-chevron-down school-filter-icon"></i>
+                    </div>
+                </div>
+
+                <!-- SUBJECT -->
+                <div class="filter-group">
+                    <label class="school-filter-label">Subject</label>
+                    <div class="school-filter-select-wrapper">
+                        <select id="schoolSubjectSelect" class="school-filter-select"></select>
+                        <i class="fa-solid fa-chevron-down school-filter-icon"></i>
+                    </div>
+                </div>
+
+                <!-- SEARCH -->
+                <button type="button" class="school-search-btn" onclick="searchSchoolCourse()">
+                    Search
+                </button>
+
+            </div>
+        </section>
+
+        <!-- COURSE CONTAINER / RESULTS -->
+        <section id="schoolPlaylistsContainer" class="school-container">
+            <!-- Initial Empty State -->
+            <div class="school-empty-state">
+                <div class="school-empty-icon"><i class="fa-solid fa-book-open"></i></div>
+                <h3 class="school-empty-title">Select a Class and Subject</h3>
+                <p class="school-empty-desc">Choose your class and subject to explore available playlists and study resources.</p>
+            </div>
+        </section>
+    </section>
+
+    <!-- =========================================
+         COLLEGE MAIN
+    ========================================= -->
+    <section class="main college-mode" id="collegeMain" aria-label="College Academic Courses" style="display: none;">
+
+        <!-- PAGE HEADER -->
+        <section class="college-page-header">
+            <h1 class="college-page-title">College Academic Courses</h1>
+            <div class="college-breadcrumb">
+                Explore video playlists and study resources for your courses.
+            </div>
+        </section>
+
+        <!-- FILTER BOX -->
+        <section class="college-filter-box">
+            <div class="college-filter-row">
+                <div class="college-filter-field">
+                    <label class="college-filter-label">Subject</label>
+                    <div class="college-filter-select-wrapper">
+                        <select id="collegeCourseSelect" class="college-filter-select" onchange="searchCollegeCourses()">
+                            <option value="">Select Subject</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down college-filter-icon"></i>
+                    </div>
+                </div>
+
+                <button type="button" class="college-search-btn" onclick="searchCollegeCourses()">
+                    Search
+                </button>
+            </div>
+        </section>
+
+        <!-- RESULTS CONTAINER -->
+        <section id="collegeResultsContainer" class="college-container">
+            <!-- Initial Empty State -->
+            <div class="college-empty-state">
+                <div class="college-empty-icon">📚</div>
+                <h3 class="college-empty-title">Select a Subject</h3>
+                <p class="college-empty-desc">Choose a subject to explore available playlists and study resources.</p>
+            </div>
+        </section>
+    </section>
+
+    <!-- =========================================
+         NATIONAL UNIVERSITY MAIN
+    ========================================= -->
+    <section class="main nu-mode" id="nuMain" aria-label="National University Academic Courses" style="display: none;">
+
+        <div class="nu-academic-courses">
+            <!-- PAGE HEADER -->
+            <section class="nu-academic-header">
+                <h1>National University Academic Courses</h1>
+                <p>Explore course playlists and study resources for your program and subjects.</p>
+            </section>
+
+            <!-- FILTER BOX -->
+            <section class="nu-academic-filter-card">
+                <div class="nu-academic-filter-row">
+                    <div class="nu-academic-filter-field">
+                        <label class="nu-academic-filter-label">Program / Department</label>
+                        <div class="nu-academic-filter-select-wrapper">
+                            <select id="nuProgramSelect" class="nu-academic-filter-select" onchange="onNuProgramChange()">
+                                <option value="">Select Program</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <div class="nu-academic-filter-field">
+                        <label class="nu-academic-filter-label">Year</label>
+                        <div class="nu-academic-filter-select-wrapper">
+                            <select id="nuYearSelect" class="nu-academic-filter-select" onchange="onNuYearChange()" disabled>
+                                <option value="">Select Year</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <div class="nu-academic-filter-field">
+                        <label class="nu-academic-filter-label">Subject</label>
+                        <div class="nu-academic-filter-select-wrapper">
+                            <select id="nuSubjectSelect" class="nu-academic-filter-select" onchange="onNuSubjectChange()" disabled>
+                                <option value="">Select Subject</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <button type="button" id="nuSearchBtn" class="nu-academic-search-btn" onclick="searchNuCourses()" disabled>
+                        Search
+                    </button>
+                </div>
+            </section>
+
+            <!-- RESULTS CONTAINER -->
+            <section id="nuResultsContainer" class="nu-academic-results">
+                <!-- Initial Empty State -->
+                <div class="nu-academic-empty-state">
+                    <div class="nu-academic-empty-icon">📚</div>
+                    <h3 class="nu-academic-empty-title">Select a Program and Year</h3>
+                    <p class="nu-academic-empty-desc">Choose your program and year to explore available academic resources.</p>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- =========================================
+         MEDICAL MAIN
+    ========================================= -->
+    <section class="main med-mode" id="medMain" aria-label="Medical Academic Courses" style="display: none;">
+        <div class="med-academic-courses">
+            <header class="med-academic-header">
+                <h1>Medical Academic Resources</h1>
+                <p><i class="fa-solid fa-book-medical"></i> Find video playlists, lecture notes, and study resources.</p>
+            </header>
+
+            <section class="med-academic-filter-card">
+                <div class="med-academic-filter-row">
+                    <div class="med-academic-filter-field">
+                        <label class="med-academic-filter-label">Program <span class="med-academic-required">*</span></label>
+                        <div class="med-academic-filter-select-wrapper">
+                            <select id="medProgramSelect" class="med-academic-filter-select" onchange="onMedProgramChange()">
+                                <option value="">Select Program</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <div class="med-academic-filter-field">
+                        <label class="med-academic-filter-label">Professional Phase <span class="med-academic-required">*</span></label>
+                        <div class="med-academic-filter-select-wrapper">
+                            <select id="medPhaseSelect" class="med-academic-filter-select" onchange="onMedPhaseChange()" disabled>
+                                <option value="">Select Phase</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <div class="med-academic-filter-field">
+                        <label class="med-academic-filter-label">Subject <span class="med-academic-required">*</span></label>
+                        <div class="med-academic-filter-select-wrapper">
+                            <select id="medSubjectSelect" class="med-academic-filter-select" onchange="onMedSubjectChange()" disabled>
+                                <option value="">Select Subject</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <div class="med-academic-filter-field">
+                        <button type="button" id="medSearchBtn" class="med-academic-search-btn" onclick="searchMedCourses()" disabled>
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="med-academic-results" id="medResultsArea">
+                <div class="med-academic-empty-state" id="medEmptyState">
+                    <i class="fa-solid fa-magnifying-glass med-academic-empty-icon"></i>
+                    <h3 class="med-academic-empty-title" id="medEmptyTitle">Select a Professional Phase</h3>
+                    <p class="med-academic-empty-desc" id="medEmptyDesc">Choose a professional phase and subject to explore academic resources.</p>
+                </div>
+                <div id="medResultsContent"></div>
+            </section>
+        </div>
+    </section>
+
+    <!-- =========================================
+         POLYTECHNIC MAIN
+    ========================================= -->
+    <section class="main poly-mode" id="polyMain" aria-label="Polytechnic Academic Courses" style="display: none;">
+        <div class="poly-academic-courses">
+            <header class="poly-academic-header">
+                <h1>Polytechnic Academic Courses</h1>
+                <p><i class="fa-solid fa-microchip"></i> Explore technical courses, playlists and study resources for your technology and semester.</p>
+            </header>
+
+            <section class="poly-academic-filter-card">
+                <div class="poly-academic-filter-row">
+                    <div class="poly-academic-filter-field">
+                        <label class="poly-academic-filter-label">Technology / Department <span class="poly-academic-required">*</span></label>
+                        <div class="poly-academic-filter-select-wrapper">
+                            <select id="polyTechSelect" class="poly-academic-filter-select" onchange="onPolyTechChange()">
+                                <option value="">Select Technology</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <div class="poly-academic-filter-field">
+                        <label class="poly-academic-filter-label">Semester <span class="poly-academic-required">*</span></label>
+                        <div class="poly-academic-filter-select-wrapper">
+                            <select id="polySemSelect" class="poly-academic-filter-select" onchange="onPolySemChange()" disabled>
+                                <option value="">Select Semester</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <div class="poly-academic-filter-field">
+                        <label class="poly-academic-filter-label">Subject <span class="poly-academic-required">*</span></label>
+                        <div class="poly-academic-filter-select-wrapper">
+                            <select id="polySubjSelect" class="poly-academic-filter-select" onchange="onPolySubjChange()" disabled>
+                                <option value="">Select Subject</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <div class="poly-academic-filter-field">
+                        <label class="poly-academic-filter-label poly-academic-hidden-label">Search</label>
+                        <button type="button" id="polySearchBtn" class="poly-academic-search-btn" onclick="searchPolyCourses()" disabled>
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="poly-academic-results" id="polyResultsArea">
+                <div class="poly-academic-empty-state" id="polyEmptyState">
+                    <i class="fa-solid fa-book-open poly-academic-empty-icon"></i>
+                    <h3 class="poly-academic-empty-title" id="polyEmptyTitle">Select a Technology, Semester and Subject</h3>
+                    <p class="poly-academic-empty-desc" id="polyEmptyDesc">Choose your academic context to explore available playlists and resources.</p>
+                </div>
+                <div id="polyResultsContent" style="display: none;"></div>
+            </section>
+        </div>
+    </section>
+
+
+
+
+    <!-- =========================================
+     OVERLAY
+========================================= -->
+
+    <div class="overlay" id="overlay">
+    </div>
+
+
+
+    <!-- =========================================
+     SIDEBAR
+========================================= -->
+
+    <aside class="sidebar" id="sidebar" aria-label="Main Navigation">
+
+
+        <div class="sidebar-header">
+
+
+            <div class="sidebar-logo">
+
+                <div class="sidebar-logo-icon">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        StudyNest
+                    </h3>
+
+                    <p>
+                        Learn. Share. Grow.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button type="button" class="close-sidebar" id="closeSidebar" aria-label="Close Sidebar">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+
+        <div class="sidebar-menu">
+
+
+            <!-- HOME -->
+
+            <a href="home.html" class="menu-item">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>
+                    Home
+                </span>
+
+            </a>
+
+
+
+            <!-- ACADEMIC COURSES -->
+
+            <a href="academic_courses.html" class="menu-item active">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+                <span>
+                    Academic Courses (Free)
+                </span>
+
+            </a>
+
+
+
+            <!-- QUESTION BANK -->
+
+            <a href="question_bank.html" class="menu-item">
+
+                <i class="fa-regular fa-square-question"></i>
+
+                <span>
+                    Campus Question Bank
+                </span>
+
+            </a>
+
+
+
+            <!-- LEADERBOARDS -->
+
+            <a href="leaderboard.html" class="menu-item">
+
+                <i class="fa-solid fa-trophy"></i>
+
+                <span>
+                    Leaderboards
+                </span>
+
+            </a>
+
+
+
+            <!-- CONTRIBUTE -->
+
+            <a href="contribute.html" class="menu-item">
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>
+                    Contribute
+                </span>
+
+            </a>
+
+
+
+            <!-- MY LIBRARY -->
+
+            <a href="my_library.html" class="menu-item">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <span>
+                    My Library
+                </span>
+
+            </a>
+
+
+
+            <!-- SETTINGS -->
+
+            <a href="settings.html" class="menu-item">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+
+            <div class="sidebar-divider"></div>
+
+
+
+            <!-- ABOUT -->
+
+            <a href="#" class="menu-item">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <span>
+                    About Us
+                </span>
+
+            </a>
+
+
+
+            <!-- CONTACT -->
+
+            <a href="#" class="menu-item">
+
+                <i class="fa-regular fa-envelope"></i>
+
+                <span>
+                    Contact Us
+                </span>
+
+            </a>
+
+
+
+            <!-- TERMS -->
+
+            <a href="#" class="menu-item">
+
+                <i class="fa-regular fa-file-lines"></i>
+
+                <span>
+                    Terms of Service
+                </span>
+
+            </a>
+
+
+
+            <!-- PRIVACY -->
+
+            <a href="#" class="menu-item">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>
+                    Privacy Policy
+                </span>
+
+            </a>
+
+
+
+            <!-- HELP -->
+
+            <a href="#" class="menu-item">
+
+                <i class="fa-regular fa-circle-question"></i>
+
+                <span>
+                    Help &amp; FAQ
+                </span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+    <script>
+
+
+
+        /* =========================================
+           MODE SWITCHING (UNIVERSITY / SCHOOL)
+        ========================================= */
+        function initMode() {
+            const user = DataStore.getUser();
+            
+            document.getElementById('universityMain').style.display = 'none';
+            document.getElementById('schoolMain').style.display = 'none';
+            document.getElementById('collegeMain').style.display = 'none';
+            if (document.getElementById('nuMain')) document.getElementById('nuMain').style.display = 'none';
+            if (document.getElementById('medMain')) document.getElementById('medMain').style.display = 'none';
+            
+            if (document.getElementById('polyMain')) document.getElementById('polyMain').style.display = 'none';
+
+            if (user.studyLevel === 'School') {
+                document.getElementById('schoolMain').style.display = 'block';
+                initSchoolData();
+            } else if (user.studyLevel === 'College') {
+                document.getElementById('collegeMain').style.display = 'block';
+                initCollegeData();
+            } else if (user.studyLevel === 'National University') {
+                if (document.getElementById('nuMain')) document.getElementById('nuMain').style.display = 'block';
+                initNuData();
+            } else if (user.studyLevel === 'Medical') {
+                if (document.getElementById('medMain')) document.getElementById('medMain').style.display = 'block';
+                initMedData();
+            } else if (user.studyLevel === 'Polytechnic') {
+                if (document.getElementById('polyMain')) document.getElementById('polyMain').style.display = 'block';
+                initPolyData();
+            } else {
+                document.getElementById('universityMain').style.display = 'block';
+            }
+        }
+
+        /* =========================================
+           SCHOOL DATA LOGIC
+        ========================================= */
+        function initSchoolData() {
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+            const classes = AcademicData.getSchoolClasses(country);
+
+            const classSelect = document.getElementById('schoolClassSelect');
+            classSelect.innerHTML = '<option value="">Select Class</option>';
+            classes.forEach(c => {
+                const option = document.createElement('option');
+                option.value = c;
+                option.textContent = c;
+                if (user.class === c) option.selected = true;
+                classSelect.appendChild(option);
+            });
+
+            updateSchoolSubjects();
+        }
+
+        function updateSchoolSubjects() {
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+            const selectedClass = document.getElementById('schoolClassSelect').value;
+            const subjectSelect = document.getElementById('schoolSubjectSelect');
+
+            subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+            if (selectedClass) {
+                const subjects = AcademicData.getSchoolSubjects(country, selectedClass);
+                subjects.forEach(s => {
+                    const option = document.createElement('option');
+                    option.value = s;
+                    option.textContent = s;
+                    subjectSelect.appendChild(option);
+                });
+            }
+        }
+
+        function searchSchoolCourse() {
+            const selectedClass = document.getElementById('schoolClassSelect').value;
+            const selectedSubject = document.getElementById('schoolSubjectSelect').value;
+            const container = document.getElementById('schoolPlaylistsContainer');
+
+            if (selectedClass && selectedSubject) {
+                renderSchoolPlaylists(selectedClass, selectedSubject);
+            } else if (!selectedClass) {
+                container.innerHTML = `
+                    <div class="school-empty-state">
+                        <h3 class="school-empty-title">Select a Class</h3>
+                        <p class="school-empty-desc">Please select a class to view available subjects.</p>
+                    </div>`;
+            } else if (!selectedSubject) {
+                container.innerHTML = `
+                    <div class="school-empty-state">
+                        <h3 class="school-empty-title">Select a Subject</h3>
+                        <p class="school-empty-desc">Please select a subject to explore resources.</p>
+                    </div>`;
+            }
+        }
+
+        function renderSchoolPlaylists(schoolClass, subject) {
+            const container = document.getElementById('schoolPlaylistsContainer');
+            
+            container.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid #e6e9f1; padding-bottom: 15px;">
+                    <h2 style="font-size: 20px; color: #10183b; margin: 0; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: #3019ee; color: white; padding: 6px 12px; border-radius: 6px; font-size: 14px;"><i class="fa-solid fa-code"></i></span>
+                        ${subject}
+                    </h2>
+                    <div style="font-size: 13px; color: #647493;">
+                        Sort by: <span style="color: #3019ee; font-weight: 500; cursor: pointer;">Highest Voted <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 5px;"></i></span>
+                    </div>
+                </div>
+                
+                <!-- PLAYLIST 1 (Video Playlist) -->
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank first">1</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type">Full Playlist</span>
+                            <div class="playlist-name">
+                                Complete ${subject}
+                                <span>by Fahim Rahman</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.9 (2.6k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn view-btn">
+                                <i class="fa-regular fa-circle-play"></i> View Playlist
+                            </button>
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (12)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (2.6K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PLAYLIST 2 (Video Playlist) -->
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank">2</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type">Full Playlist</span>
+                            <div class="playlist-name">
+                                ${subject} Basic Concepts
+                                <span>by StudyNest Academic</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.7 (2.5k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-regular fa-calendar"></i> 10 videos</span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn view-btn">
+                                <i class="fa-regular fa-circle-play"></i> View Playlist
+                            </button>
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (8)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (2.5K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PLAYLIST 3 (Custom Playlist) -->
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank third">3</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type college-card-badge-video" style="background: #eff6ff; color: #2563eb;">Custom Playlist</span>
+                            <div class="playlist-name">
+                                ${subject} (Step by Step)
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.6 (1.8k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-regular fa-calendar"></i> 8 videos</span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (8)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (1.8K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                            <button type="button" class="action-btn expand-btn" onclick="this.closest('.playlist').querySelector('.playlist-content').style.display = this.closest('.playlist').querySelector('.playlist-content').style.display === 'block' ? 'none' : 'block'">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- CUSTOM PLAYLIST VIDEOS -->
+                    <div class="playlist-content" style="display: block;">
+                        <div class="video-row">
+                            <div class="video-number">1</div>
+                            <div class="video-name">Intro to ${subject}</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                        <div class="video-row">
+                            <div class="video-number">2</div>
+                            <div class="video-name">Chapter 1 Details</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                        <div class="video-row">
+                            <div class="video-number">3</div>
+                            <div class="video-name">Chapter 2 Details</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                        <div class="video-row">
+                            <div class="video-number">4</div>
+                            <div class="video-name">Chapter 3 Details</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                        <div class="video-row">
+                            <div class="video-number">5</div>
+                            <div class="video-name">Chapter 4 Details</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        
+        /* =========================================
+           USER NAME
+        ========================================= */
+
+        const savedName =
+            localStorage.getItem(
+                "studynest_user_name"
+            );
+
+
+        if (savedName) {
+
+            document.getElementById(
+                "userName"
+            ).textContent = savedName;
+
+        }
+
+
+
+        /* =========================================
+           SEARCH
+        ========================================= */
+
+        function searchCourse() {
+
+            const selectedCourse =
+                document.getElementById(
+                    "courseSelect"
+                ).value;
+
+
+            document.getElementById(
+                "courseTitle"
+            ).textContent =
+                selectedCourse;
+
+        }
+
+
+
+        /* =========================================
+       SAVE FULL PLAYLIST
+    ========================================= */
+        const saveButtons = document.querySelectorAll(".save-playlist");
+        saveButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const playlistEl = button.closest('.playlist');
+                const titleEl = playlistEl ? playlistEl.querySelector('.playlist-name') : null;
+                let title = titleEl ? titleEl.childNodes[0].textContent.trim() : 'Unknown Playlist';
+                const id = 'playlist-' + title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+
+                if (button.classList.contains("saved")) {
+                    button.classList.remove("saved");
+                    button.innerHTML = '<i class="fa-regular fa-bookmark"></i> Save';
+                    DataStore.removeFromLibrary(id, 'playlist');
+                } else {
+                    button.classList.add("saved");
+                    button.innerHTML = '<i class="fa-solid fa-bookmark"></i> Saved';
+                    DataStore.saveToLibrary({ id: id, type: 'playlist', title: title });
+                }
+            });
+        });
+
+        /* =========================================
+           VOTE PLAYLIST
+        ========================================= */
+        const voteButtons = document.querySelectorAll(".vote-btn");
+        voteButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const playlistEl = button.closest('.playlist');
+                const titleEl = playlistEl ? playlistEl.querySelector('.playlist-name') : null;
+                let title = titleEl ? titleEl.childNodes[0].textContent.trim() : 'Unknown Playlist';
+                const id = 'playlist-' + title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+
+                const isVoted = DataStore.toggleVote(id);
+                const icon = button.querySelector('i');
+                if (isVoted) {
+                    icon.className = 'fa-solid fa-thumbs-up';
+                    button.style.color = '#321cff';
+                } else {
+                    icon.className = 'fa-regular fa-thumbs-up';
+                    button.style.color = '';
+                }
+            });
+        });
+
+        // =========================================
+        // COLLEGE LOGIC
+        // =========================================
+
+        function initCollegeData() {
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+            
+            const courses = AcademicData.getCollegeCourses(country);
+            const courseSelect = document.getElementById('collegeCourseSelect');
+            
+            courseSelect.innerHTML = '<option value="">Select Subject</option>';
+            courses.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.id;
+                opt.textContent = c.name;
+                courseSelect.appendChild(opt);
+            });
+        }
+
+        function searchCollegeCourses() {
+            const course = document.getElementById('collegeCourseSelect').value;
+            const container = document.getElementById('collegeResultsContainer');
+            
+            if (!course) {
+                container.innerHTML = `
+                    <div class="college-empty-state">
+                        <div class="college-empty-icon">📚</div>
+                        <h3 class="college-empty-title">Select a Subject</h3>
+                        <p class="college-empty-desc">Choose a subject to explore available playlists and study resources.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const courseName = document.getElementById('collegeCourseSelect').options[document.getElementById('collegeCourseSelect').selectedIndex].text;
+
+            // Generate mock results
+            let html = `
+                <div class="course-header">
+                    <div class="course-title">
+                        <div class="course-icon">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h1>${courseName}</h1>
+                    </div>
+                    <div class="sort-box">
+                        <span>College Course</span>
+                        <select class="sort-select">
+                            <option>Highest Voted</option>
+                            
+                            <option>Most Resources</option>
+                            <option>Newest</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>`;
+            
+            if (Math.random() < 0.2 && course !== 'physics') { 
+                html += `
+                    <div class="college-empty-state">
+                        <div class="college-empty-icon">📝</div>
+                        <h3 class="college-empty-title">No resources available yet.</h3>
+                        <p class="college-empty-desc">Be the first to contribute a useful playlist for this course.</p>
+                        <button class="college-card-btn-empty" onclick="window.location.href='contribute.html'">Contribute a Playlist</button>
+                    </div>
+                `;
+                container.innerHTML = html;
+                return;
+            }
+
+            // Video Playlists Section
+            html += `
+                <h3 class="college-section-title">Video Playlists</h3>
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank first">1</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type college-card-badge-video" >Video Playlist</span>
+                            <div class="playlist-name">
+                                Complete ${courseName} Playlist
+                                <span>by Student Name</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.8 (3.2k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn view-btn">
+                                <i class="fa-regular fa-circle-play"></i> View Playlist
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (3.2K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank">2</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type college-card-badge-video" >Video Playlist</span>
+                            <div class="playlist-name">
+                                ${courseName} Chapter-wise Lectures
+                                <span>by John Doe</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.5 (1.5k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn view-btn">
+                                <i class="fa-regular fa-circle-play"></i> View Playlist
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (1.5K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Custom Playlists Section
+            html += `
+                <h3 class="college-section-title" >Custom Playlists</h3>
+                
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank first" class="college-card-badge-custom">1</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type college-card-badge-video" >Custom Playlist</span>
+                            <div class="playlist-name">
+                                HSC ${courseName} Revision
+                                <span>by Student Name</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.6 (1.8k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-regular fa-calendar"></i> 8 videos</span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (8)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (1.8K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                            <button type="button" class="action-btn expand-btn" onclick="this.closest('.playlist').querySelector('.playlist-content').style.display = this.closest('.playlist').querySelector('.playlist-content').style.display === 'block' ? 'none' : 'block'">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- CUSTOM PLAYLIST VIDEOS -->
+                    <div class="playlist-content" style="display: none;">
+                        <div class="video-row">
+                            <div class="video-number">1</div>
+                            <div class="video-name">Intro to ${courseName}</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                        <div class="video-row">
+                            <div class="video-number">2</div>
+                            <div class="video-name">Chapter 1 Details</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                        <div class="video-row">
+                            <div class="video-number">3</div>
+                            <div class="video-name">Chapter 2 Details</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                        <div class="video-row">
+                            <div class="video-number">4</div>
+                            <div class="video-name">Advanced Topics</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                        <div class="video-row">
+                            <div class="video-number">5</div>
+                            <div class="video-name">Exam Preparation Guide</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = html;
+        }
+
+        /* =========================================
+           NATIONAL UNIVERSITY DATA LOGIC
+        ========================================= */
+        function initNuData() {
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+            const programs = AcademicData.getNuPrograms(country);
+
+            const programSelect = document.getElementById('nuProgramSelect');
+            programSelect.innerHTML = '<option value="">Select Program</option>';
+            programs.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p.id;
+                opt.textContent = p.name;
+                programSelect.appendChild(opt);
+            });
+            
+            resetNuYear();
+            resetNuSubject();
+        }
+
+        function onNuProgramChange() {
+            resetNuSubject();
+            
+            const programId = document.getElementById('nuProgramSelect').value;
+            const yearSelect = document.getElementById('nuYearSelect');
+            const searchBtn = document.getElementById('nuSearchBtn');
+            searchBtn.disabled = true;
+            
+            if (!programId) {
+                resetNuYear();
+                document.getElementById('nuResultsContainer').innerHTML = `
+                    <div class="nu-academic-empty-state">
+                        <div class="nu-academic-empty-icon">📚</div>
+                        <h3 class="nu-academic-empty-title">Select a Program and Year</h3>
+                        <p class="nu-academic-empty-desc">Choose your program and year to explore available academic resources.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+            const years = AcademicData.getNuYears(country);
+            
+            yearSelect.innerHTML = '<option value="">Select Year</option>';
+            years.forEach(y => {
+                const opt = document.createElement('option');
+                opt.value = y;
+                opt.textContent = y;
+                yearSelect.appendChild(opt);
+            });
+            yearSelect.disabled = false;
+            
+            document.getElementById('nuResultsContainer').innerHTML = `
+                <div class="nu-academic-empty-state">
+                    <div class="nu-academic-empty-icon">📚</div>
+                    <h3 class="nu-academic-empty-title">Select a Year</h3>
+                    <p class="nu-academic-empty-desc">Choose your year to proceed.</p>
+                </div>
+            `;
+        }
+
+        function onNuYearChange() {
+            const programId = document.getElementById('nuProgramSelect').value;
+            const year = document.getElementById('nuYearSelect').value;
+            const subjectSelect = document.getElementById('nuSubjectSelect');
+            const searchBtn = document.getElementById('nuSearchBtn');
+            searchBtn.disabled = true;
+            
+            if (!year) {
+                resetNuSubject();
+                return;
+            }
+
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+            const subjects = AcademicData.getNuSubjects(country, programId, year);
+            
+            subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+            subjects.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.id;
+                opt.textContent = s.name;
+                subjectSelect.appendChild(opt);
+            });
+            subjectSelect.disabled = false;
+            
+            document.getElementById('nuResultsContainer').innerHTML = `
+                <div class="nu-academic-empty-state">
+                    <div class="nu-academic-empty-icon">📚</div>
+                    <h3 class="nu-academic-empty-title">Select a Subject</h3>
+                    <p class="nu-academic-empty-desc">Choose a subject to explore available playlists and study resources.</p>
+                </div>
+            `;
+        }
+
+        function onNuSubjectChange() {
+            const subject = document.getElementById('nuSubjectSelect').value;
+            document.getElementById('nuSearchBtn').disabled = !subject;
+        }
+
+        function resetNuYear() {
+            const yearSelect = document.getElementById('nuYearSelect');
+            yearSelect.innerHTML = '<option value="">Select Year</option>';
+            yearSelect.disabled = true;
+        }
+
+        function resetNuSubject() {
+            const subjectSelect = document.getElementById('nuSubjectSelect');
+            subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+            subjectSelect.disabled = true;
+        }
+
+        function searchNuCourses() {
+            const programSelect = document.getElementById('nuProgramSelect');
+            const yearSelect = document.getElementById('nuYearSelect');
+            const subjectSelect = document.getElementById('nuSubjectSelect');
+            
+            const programName = programSelect.options[programSelect.selectedIndex].text;
+            const yearName = yearSelect.options[yearSelect.selectedIndex].text;
+            const subjectName = subjectSelect.options[subjectSelect.selectedIndex].text;
+            
+            const container = document.getElementById('nuResultsContainer');
+            
+            let html = `
+                <div class="course-header">
+                    <div class="course-title">
+                        <div class="course-icon">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        <h1>${subjectName}</h1>
+                    </div>
+                    <div class="sort-box">
+                        <span>${programName} &bull; ${yearName}</span>
+                        <select class="sort-select">
+                            <option>Highest Voted</option>
+                            
+                            <option>Most Resources</option>
+                            <option>Newest</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>`;
+            
+            if (Math.random() < 0.2) { 
+                html += `
+                    <div class="nu-academic-empty-state">
+                        <div class="nu-academic-empty-icon">📝</div>
+                        <h3 class="nu-academic-empty-title">No resources available yet.</h3>
+                        <p class="nu-academic-empty-desc">Be the first to contribute a useful playlist for this subject.</p>
+                        <button class="college-card-btn-empty" onclick="window.location.href='contribute.html'">Contribute a Playlist</button>
+                    </div>
+                `;
+                
+            // CUSTOM PLAYLIST
+            html += `
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank third">3</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type" style="background: #eff6ff; color: #2563eb;">Custom Playlist</span>
+                            <div class="playlist-name">
+                                ${subjectName} (Step by Step)
+                                <span>by Community</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.5 (1.5k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-regular fa-calendar"></i> 8 videos</span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (8)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (1.5K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                            <button type="button" class="action-btn expand-btn" onclick="this.closest('.playlist').querySelector('.playlist-content').style.display = this.closest('.playlist').querySelector('.playlist-content').style.display === 'block' ? 'none' : 'block'">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- CUSTOM PLAYLIST VIDEOS -->
+                    <div class="playlist-content" style="display: none;">
+                        <div class="video-row">
+                            <div class="video-number">1</div>
+                            <div class="video-name">Intro to ${subjectName}</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                        <div class="video-row">
+                            <div class="video-number">2</div>
+                            <div class="video-name">Chapter 1 Details</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                    </div>
+                </div>`;
+
+            container.innerHTML = html;
+                return;
+            }
+
+            // Video Playlists Section
+            html += `
+                <h3 class="nu-academic-section-title">Video Playlists</h3>
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank first">1</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type college-card-badge-video" >Video Playlist</span>
+                            <div class="playlist-name">
+                                Complete ${subjectName} Course
+                                <span>by Student Name</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.8 (3.2k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn view-btn">
+                                <i class="fa-regular fa-circle-play"></i> View Playlist
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (3.2K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Custom Playlists Section
+            html += `
+                <h3 class="nu-academic-section-title" >Custom Playlists</h3>
+                
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank first" class="college-card-badge-custom">1</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type college-card-badge-video" >Custom Playlist</span>
+                            <div class="playlist-name">
+                                ${subjectName} Final Revision
+                                <span>by Student Name</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.6 (1.8k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-regular fa-calendar"></i> 18 Resources</span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> View Playlist
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (1.8K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                            <button type="button" class="action-btn expand-btn" onclick="this.closest('.playlist').querySelector('.playlist-content').style.display = this.closest('.playlist').querySelector('.playlist-content').style.display === 'block' ? 'none' : 'block'">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="playlist-content" style="display: none;">
+                        <div class="video-row">
+                            <div class="video-number">1</div>
+                            <div class="video-name">Intro to ${subjectName}</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                        <div class="video-row">
+                            <div class="video-number">2</div>
+                            <div class="video-name">Important Topics</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            
+            // PLAYLIST 1
+            html += `
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank first">1</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type">Full Playlist</span>
+                            <div class="playlist-name">
+                                Complete ${subjectName}
+                                <span>by Ayman Sadiq</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.9 (4.2k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn view-btn">
+                                <i class="fa-regular fa-circle-play"></i> View Playlist
+                            </button>
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (12)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (4.2K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+
+            
+            // PLAYLIST 1
+            html += `
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank first">1</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type">Full Playlist</span>
+                            <div class="playlist-name">
+                                Complete ${subjectName}
+                                <span>by Ten Minute School</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.8 (3.1k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn view-btn">
+                                <i class="fa-regular fa-circle-play"></i> View Playlist
+                            </button>
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (12)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (3.1K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+
+            container.innerHTML = html;
+        }
+
+        
+        /* =========================================
+           POLYTECHNIC DATA LOGIC
+        ========================================= */
+        function initPolyData() {
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+            let polyData = { departments: ['Computer Technology', 'Civil Technology', 'Electrical Technology', 'Electronics Technology', 'Mechanical Technology'] };
+            if (typeof AcademicData.getPolytechnicData === 'function') {
+                polyData = AcademicData.getPolytechnicData(country) || polyData;
+            }
+            const techs = polyData.departments || ['Computer Technology', 'Civil Technology', 'Electrical Technology'];
+            
+            const techSelect = document.getElementById('polyTechSelect');
+            techSelect.innerHTML = '<option value="">Select Technology</option>';
+            techs.forEach(t => {
+                const opt = document.createElement('option');
+                opt.value = t; opt.textContent = t;
+                techSelect.appendChild(opt);
+            });
+            
+            if (user.technology) {
+                techSelect.value = user.technology;
+                onPolyTechChange();
+                if (user.semester) {
+                    document.getElementById('polySemSelect').value = user.semester;
+                    onPolySemChange();
+                }
+            }
+        }
+
+        function onPolyTechChange() {
+            const tech = document.getElementById('polyTechSelect').value;
+            const semSelect = document.getElementById('polySemSelect');
+            const subSelect = document.getElementById('polySubjSelect');
+            const searchBtn = document.getElementById('polySearchBtn');
+            const resultsArea = document.getElementById('polyResultsContent');
+            const emptyState = document.getElementById('polyEmptyState');
+            
+            subSelect.innerHTML = '<option value="">Select Subject</option>';
+            subSelect.disabled = true;
+            searchBtn.disabled = true;
+            resultsArea.style.display = 'none';
+            emptyState.style.display = 'block';
+
+            if (!tech) {
+                semSelect.innerHTML = '<option value="">Select Semester</option>';
+                semSelect.disabled = true;
+                return;
+            }
+
+            semSelect.innerHTML = '<option value="">Select Semester</option>';
+            const semesters = ['1st Semester', '2nd Semester', '3rd Semester', '4th Semester', '5th Semester', '6th Semester', '7th Semester', '8th Semester'];
+            semesters.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s; opt.textContent = s;
+                semSelect.appendChild(opt);
+            });
+            semSelect.disabled = false;
+        }
+
+        function onPolySemChange() {
+            const sem = document.getElementById('polySemSelect').value;
+            const subSelect = document.getElementById('polySubjSelect');
+            const searchBtn = document.getElementById('polySearchBtn');
+            const resultsArea = document.getElementById('polyResultsContent');
+            const emptyState = document.getElementById('polyEmptyState');
+            
+            searchBtn.disabled = true;
+            resultsArea.style.display = 'none';
+            emptyState.style.display = 'block';
+
+            if (!sem) {
+                subSelect.innerHTML = '<option value="">Select Subject</option>';
+                subSelect.disabled = true;
+                return;
+            }
+
+            subSelect.innerHTML = '<option value="">Select Subject</option>';
+            const subjects = ['Data Communication', 'Microprocessor & Microcontroller', 'Object Oriented Programming', 'Environmental Studies', 'Mathematics-3'];
+            subjects.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s; opt.textContent = s;
+                subSelect.appendChild(opt);
+            });
+            subSelect.disabled = false;
+        }
+
+        function onPolySubjChange() {
+            const sub = document.getElementById('polySubjSelect').value;
+            document.getElementById('polySearchBtn').disabled = !sub;
+            
+            document.getElementById('polyResultsContent').style.display = 'none';
+            document.getElementById('polyEmptyState').style.display = 'block';
+        }
+
+        function searchPolyCourses() {
+            const tech = document.getElementById('polyTechSelect').value;
+            const sem = document.getElementById('polySemSelect').value;
+            const sub = document.getElementById('polySubjSelect').value;
+            
+            document.getElementById('polyEmptyState').style.display = 'none';
+            const resultsContainer = document.getElementById('polyResultsContent');
+            
+            let html = `
+                <div class="course-header">
+                    <div class="course-title">
+                        <div class="course-icon">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h1>${sub}</h1>
+                    </div>
+                    <div class="sort-box">
+                        <span>${tech} &bull; ${sem}</span>
+                        <select class="sort-select">
+                            <option>Highest Voted</option>
+                            
+                            <option>Most Resources</option>
+                            <option>Newest</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>`;
+            
+            
+            // PLAYLIST 1
+            html += `
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank first">1</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type">Full Playlist</span>
+                            <div class="playlist-name">
+                                Complete ${sub}
+                                <span>by Fahim Rahman</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.9 (2.6k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn view-btn">
+                                <i class="fa-regular fa-circle-play"></i> View Playlist
+                            </button>
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (12)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (2.6K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+
+            // PLAYLIST 2
+            html += `
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank">2</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type">Full Playlist</span>
+                            <div class="playlist-name">
+                                ${sub} Basic Concepts
+                                <span>by StudyNest Academic</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.7 (2.5k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-regular fa-calendar"></i> 10 videos</span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn view-btn">
+                                <i class="fa-regular fa-circle-play"></i> View Playlist
+                            </button>
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (8)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (2.5K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+
+            
+            // CUSTOM PLAYLIST
+            html += `
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank third">3</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type" style="background: #eff6ff; color: #2563eb;">Custom Playlist</span>
+                            <div class="playlist-name">
+                                ${sub} (Step by Step)
+                                <span>by Community</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.5 (1.5k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-regular fa-calendar"></i> 8 videos</span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (8)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (1.5K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                            <button type="button" class="action-btn expand-btn" onclick="this.closest('.playlist').querySelector('.playlist-content').style.display = this.closest('.playlist').querySelector('.playlist-content').style.display === 'block' ? 'none' : 'block'">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- CUSTOM PLAYLIST VIDEOS -->
+                    <div class="playlist-content" style="display: none;">
+                        <div class="video-row">
+                            <div class="video-number">1</div>
+                            <div class="video-name">Intro to ${sub}</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                        <div class="video-row">
+                            <div class="video-number">2</div>
+                            <div class="video-name">Chapter 1 Details</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                    </div>
+                </div>`;
+
+            resultsContainer.innerHTML = html;
+            resultsContainer.style.display = 'block';
+        }
+
+        /* =========================================
+           MEDICAL DATA LOGIC
+        ========================================= */
+        function initMedData() {
+            const user = DataStore.getUser();
+            const programSelect = document.getElementById('medProgramSelect');
+            
+            // 1. Load Program Options
+            const programs = AcademicData.getMedicalPrograms();
+            programSelect.innerHTML = '<option value="">Select Program</option>';
+            programs.forEach(prog => {
+                const opt = document.createElement('option');
+                opt.value = prog.id;
+                opt.textContent = prog.name;
+                programSelect.appendChild(opt);
+            });
+
+            // 2. Set Default Program from Profile
+            const defaultProgram = user.course || 'MBBS';
+            programSelect.value = defaultProgram;
+
+            // 3. Trigger initial setup
+            onMedProgramChange(true);
+        }
+
+        function onMedProgramChange(isInit = false) {
+            const programSelect = document.getElementById('medProgramSelect');
+            const phaseSelect = document.getElementById('medPhaseSelect');
+            const subjectSelect = document.getElementById('medSubjectSelect');
+            const searchBtn = document.getElementById('medSearchBtn');
+            const resultsArea = document.getElementById('medResultsContent');
+            const emptyState = document.getElementById('medEmptyState');
+
+            const selectedProgram = programSelect.value;
+
+            // Reset dependent dropdowns
+            phaseSelect.innerHTML = '<option value="">Select Phase</option>';
+            subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+            phaseSelect.disabled = true;
+            subjectSelect.disabled = true;
+            searchBtn.disabled = true;
+
+            // Hide results
+            if (!isInit) {
+                resultsArea.style.display = 'none';
+                emptyState.style.display = 'block';
+                document.getElementById('medEmptyTitle').textContent = 'Select a Professional Phase';
+            }
+
+            if (selectedProgram) {
+                const phases = AcademicData.getMedicalPhases(selectedProgram);
+                phases.forEach(phase => {
+                    const opt = document.createElement('option');
+                    opt.value = phase;
+                    opt.textContent = phase;
+                    phaseSelect.appendChild(opt);
+                });
+                phaseSelect.disabled = false;
+            }
+        }
+
+        function onMedPhaseChange() {
+            const programSelect = document.getElementById('medProgramSelect');
+            const phaseSelect = document.getElementById('medPhaseSelect');
+            const subjectSelect = document.getElementById('medSubjectSelect');
+            const searchBtn = document.getElementById('medSearchBtn');
+            const resultsArea = document.getElementById('medResultsContent');
+            const emptyState = document.getElementById('medEmptyState');
+
+            const selectedProgram = programSelect.value;
+            const selectedPhase = phaseSelect.value;
+
+            // Reset subject dropdown
+            subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+            subjectSelect.disabled = true;
+            searchBtn.disabled = true;
+
+            // Hide results
+            resultsArea.style.display = 'none';
+            emptyState.style.display = 'block';
+
+            if (selectedPhase) {
+                document.getElementById('medEmptyTitle').textContent = 'Select a Subject';
+                const subjects = AcademicData.getMedicalSubjects(selectedProgram, selectedPhase);
+                subjects.forEach(subject => {
+                    const opt = document.createElement('option');
+                    opt.value = subject;
+                    opt.textContent = subject;
+                    subjectSelect.appendChild(opt);
+                });
+                subjectSelect.disabled = false;
+            } else {
+                document.getElementById('medEmptyTitle').textContent = 'Select a Professional Phase';
+            }
+        }
+
+        function onMedSubjectChange() {
+            const subjectSelect = document.getElementById('medSubjectSelect');
+            const searchBtn = document.getElementById('medSearchBtn');
+            const resultsArea = document.getElementById('medResultsContent');
+            const emptyState = document.getElementById('medEmptyState');
+
+            // Hide results
+            resultsArea.style.display = 'none';
+            emptyState.style.display = 'block';
+
+            if (subjectSelect.value) {
+                searchBtn.disabled = false;
+            } else {
+                searchBtn.disabled = true;
+                document.getElementById('medEmptyTitle').textContent = 'Select a Subject';
+            }
+        }
+
+        function searchMedCourses() {
+            const programSelect = document.getElementById('medProgramSelect');
+            const phaseSelect = document.getElementById('medPhaseSelect');
+            const subjectSelect = document.getElementById('medSubjectSelect');
+            const emptyState = document.getElementById('medEmptyState');
+            const resultsArea = document.getElementById('medResultsContent');
+            
+            const programName = programSelect.options[programSelect.selectedIndex].text;
+            const phaseName = phaseSelect.options[phaseSelect.selectedIndex].text;
+            const subjectName = subjectSelect.options[subjectSelect.selectedIndex].text;
+            
+            emptyState.style.display = 'none';
+            resultsArea.style.display = 'block';
+
+            let html = `
+                <div class="course-header">
+                    <div class="course-title">
+                        <div class="course-icon">
+                            <i class="fa-solid fa-stethoscope"></i>
+                        </div>
+                        <h1>${subjectName}</h1>
+                    </div>
+                    <div class="sort-box">
+                        <span>${programName} &bull; ${phaseName}</span>
+                        <select class="sort-select">
+                            <option>Highest Voted</option>
+                            
+                            <option>Most Resources</option>
+                            <option>Newest</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>`;
+            
+            // Empty state simulation
+            if (Math.random() < 0.2) { 
+                html += `
+                    <div class="school-empty-state">
+                        <div class="school-empty-icon"><i class="fa-solid fa-book-open"></i></div>
+                        <h3 class="school-empty-title">No resources available yet.</h3>
+                        <p class="school-empty-desc">Be the first to contribute a useful playlist for this subject.</p>
+                        <button type="button" class="college-card-btn-empty" onclick="window.location.href='contribute.html'">Contribute a Playlist</button>
+                    </div>
+                `;
+                
+            // PLAYLIST 1
+            html += `
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank first">1</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type">Full Playlist</span>
+                            <div class="playlist-name">
+                                Complete ${subjectName} Course
+                                <span>by Dr. Hasan</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.8 (3.2k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> English</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn view-btn">
+                                <i class="fa-regular fa-circle-play"></i> View Playlist
+                            </button>
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (12)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (3.2K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+
+            
+            // CUSTOM PLAYLIST
+            html += `
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank third">3</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type" style="background: #eff6ff; color: #2563eb;">Custom Playlist</span>
+                            <div class="playlist-name">
+                                ${subjectName} (Step by Step)
+                                <span>by Community</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.5 (1.5k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-regular fa-calendar"></i> 8 videos</span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (8)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (1.5K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                            <button type="button" class="action-btn expand-btn" onclick="this.closest('.playlist').querySelector('.playlist-content').style.display = this.closest('.playlist').querySelector('.playlist-content').style.display === 'block' ? 'none' : 'block'">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- CUSTOM PLAYLIST VIDEOS -->
+                    <div class="playlist-content" style="display: none;">
+                        <div class="video-row">
+                            <div class="video-number">1</div>
+                            <div class="video-name">Intro to ${subjectName}</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                        <div class="video-row">
+                            <div class="video-number">2</div>
+                            <div class="video-name">Chapter 1 Details</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                    </div>
+                </div>`;
+
+            resultsArea.innerHTML = html;
+                return;
+            }
+
+            // PLAYLIST 1 (Video Playlist)
+            html += `
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank first">1</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type">Full Playlist</span>
+                            <div class="playlist-name">
+                                Complete ${subjectName} Course
+                                <span>by Dr. Hasan</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.8 (3.2k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> English</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn view-btn">
+                                <i class="fa-regular fa-circle-play"></i> View Playlist
+                            </button>
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (12)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (3.2K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // PLAYLIST 2 (Video Playlist 2)
+            html += `
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank">2</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type">Full Playlist</span>
+                            <div class="playlist-name">
+                                ${subjectName} Basic Concepts
+                                <span>by StudyNest Academic</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.7 (2.5k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-regular fa-calendar"></i> 10 videos</span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn view-btn">
+                                <i class="fa-regular fa-circle-play"></i> View Playlist
+                            </button>
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (8)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (2.5K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // PLAYLIST 3 (Custom Playlist)
+            html += `
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank third">3</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type college-card-badge-video" style="background: #eff6ff; color: #2563eb;">Custom Playlist</span>
+                            <div class="playlist-name">
+                                ${subjectName} (Step by Step)
+                                <span>by Rafiq</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.5 (1.5k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-regular fa-calendar"></i> 8 videos</span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (8)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (1.5K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                            <button type="button" class="action-btn expand-btn" onclick="this.closest('.playlist').querySelector('.playlist-content').style.display = this.closest('.playlist').querySelector('.playlist-content').style.display === 'block' ? 'none' : 'block'">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- CUSTOM PLAYLIST VIDEOS -->
+                    <div class="playlist-content" style="display: none;">
+                        <div class="video-row">
+                            <div class="video-number">1</div>
+                            <div class="video-name">Intro to ${subjectName}</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                        <div class="video-row">
+                            <div class="video-number">2</div>
+                            <div class="video-name">Chapter 1 Details</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            
+            // CUSTOM PLAYLIST
+            html += `
+                <div class="playlist">
+                    <div class="playlist-main">
+                        <div class="rank third">3</div>
+                        <div class="playlist-info">
+                            <span class="playlist-type" style="background: #eff6ff; color: #2563eb;">Custom Playlist</span>
+                            <div class="playlist-name">
+                                ${subjectName} (Step by Step)
+                                <span>by Community</span>
+                            </div>
+                            <div class="playlist-meta">
+                                <span class="rating">
+                                    <i class="fa-solid fa-star"></i> 4.5 (1.5k votes)
+                                </span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-regular fa-calendar"></i> 8 videos</span>
+                                <span class="meta-divider">|</span>
+                                <span><i class="fa-solid fa-globe"></i> Bangla</span>
+                            </div>
+                        </div>
+                        <div class="playlist-actions">
+                            <button type="button" class="action-btn resource-btn">
+                                <i class="fa-regular fa-file-lines"></i> Resource (8)
+                            </button>
+                            <button type="button" class="action-btn vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (1.5K)
+                            </button>
+                            <button type="button" class="action-btn save-btn save-playlist">
+                                <i class="fa-regular fa-bookmark"></i> Save
+                            </button>
+                            <button type="button" class="action-btn expand-btn" onclick="this.closest('.playlist').querySelector('.playlist-content').style.display = this.closest('.playlist').querySelector('.playlist-content').style.display === 'block' ? 'none' : 'block'">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- CUSTOM PLAYLIST VIDEOS -->
+                    <div class="playlist-content" style="display: none;">
+                        <div class="video-row">
+                            <div class="video-number">1</div>
+                            <div class="video-name">Intro to ${subjectName}</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                        <div class="video-row">
+                            <div class="video-number">2</div>
+                            <div class="video-name">Chapter 1 Details</div>
+                            <button type="button" class="small-action"><i class="fa-solid fa-link"></i> View Link <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i></button>
+                            <button type="button" class="small-action"><i class="fa-regular fa-file-lines"></i> Resource</button>
+                        </div>
+                    </div>
+                </div>`;
+
+            resultsArea.innerHTML = html;
+        }
+
+        </script>
+
+
+
+    <!-- Shared JS Modules -->
+    <script src="js/routes.js"></script>
+    <script src="js/academic-data.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/shared-ui.js"></script>
+
+    <script>
+        // Toggle Custom Playlist expand/collapse
+        function togglePlaylist() {
+            const content = document.getElementById('customPlaylist');
+            const btn = document.getElementById('expandBtn');
+            if (content && btn) {
+                content.classList.toggle('active');
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.style.transition = 'transform 0.3s ease';
+                    if (content.classList.contains('active')) {
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                }
+            }
+        }
+
+        // Initialize shared UI components (header, sidebar, footer)
+        SharedUI.init('academicCourses');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initMode();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Login | StudyNest</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: #f5f5fc;
+      color: #111936;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    /* =====================================================
+       MAIN
+    ===================================================== */
+
+    .page {
+      min-height: 100vh;
+      padding: 14px;
+    }
+
+    .container {
+      width: 100%;
+      min-height: calc(100vh - 28px);
+
+      display: flex;
+
+      background:
+        radial-gradient(
+          circle at 20% 30%,
+          rgba(91, 51, 239, 0.08),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 80% 40%,
+          rgba(91, 51, 239, 0.06),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #fafaff 0%,
+          #f4f3ff 100%
+        );
+
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    /* =====================================================
+       LEFT SECTION
+    ===================================================== */
+
+    .left {
+      width: 52%;
+      padding: 32px 7% 25px;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ---------------- BRAND ---------------- */
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+      color: #4d20e8;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-icon svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    .brand-text h1 {
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+    }
+
+    .brand-text p {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #56627f;
+    }
+
+    /* ---------------- WELCOME ---------------- */
+
+    .welcome {
+      margin-top: 55px;
+    }
+
+    .welcome h2 {
+      font-size: clamp(27px, 2.3vw, 35px);
+      line-height: 1.2;
+      font-weight: 800;
+    }
+
+    .welcome h3 {
+      margin-top: 9px;
+
+      font-size: clamp(27px, 2.3vw, 35px);
+      line-height: 1.2;
+      font-weight: 800;
+
+      color: #4d20e8;
+    }
+
+    .welcome-description {
+      margin-top: 14px;
+
+      max-width: 490px;
+
+      font-size: 16px;
+      line-height: 1.55;
+
+      color: #53617f;
+    }
+
+    /* ---------------- FEATURES ---------------- */
+
+    .features {
+      margin-top: 27px;
+
+      display: flex;
+      flex-direction: column;
+      gap: 17px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+
+      flex-shrink: 0;
+
+      border-radius: 13px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .feature-icon svg {
+      width: 25px;
+      height: 25px;
+    }
+
+    .purple {
+      background: #eee9ff;
+      color: #5830ed;
+    }
+
+    .green {
+      background: #e5f8ef;
+      color: #18a75a;
+    }
+
+    .orange {
+      background: #fff0d8;
+      color: #f59b08;
+    }
+
+    .feature-text h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .feature-text p {
+      font-size: 14px;
+      line-height: 1.4;
+      color: #455273;
+    }
+
+    /* =====================================================
+       ILLUSTRATION
+    ===================================================== */
+
+    .illustration {
+      position: relative;
+
+      width: 100%;
+      height: 230px;
+
+      margin-top: 32px;
+
+      flex-shrink: 0;
+    }
+
+    /* ---------------- BOOKS ---------------- */
+
+    .books {
+      position: absolute;
+
+      left: 0;
+      bottom: 4px;
+
+      width: 150px;
+    }
+
+    .book {
+      height: 31px;
+
+      margin-top: 3px;
+
+      border-radius: 6px 4px 4px 6px;
+
+      position: relative;
+
+      box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.13);
+    }
+
+    .book::after {
+      content: "";
+
+      position: absolute;
+
+      right: 8px;
+      top: 5px;
+
+      width: 7px;
+      height: 20px;
+
+      background: rgba(255, 255, 255, 0.8);
+
+      border-radius: 2px;
+    }
+
+    .book-1 {
+      width: 125px;
+      background: #5730ed;
+    }
+
+    .book-2 {
+      width: 138px;
+      background: #12a65b;
+    }
+
+    .book-3 {
+      width: 150px;
+      background: #f49b0a;
+    }
+
+    /* ---------------- LAPTOP ---------------- */
+
+    .laptop {
+      position: absolute;
+
+      left: 145px;
+      bottom: 0;
+
+      width: 280px;
+      height: 165px;
+
+      background: #d6d9e1;
+
+      border-radius: 11px 11px 5px 5px;
+
+      box-shadow:
+        0 10px 18px rgba(0, 0, 0, 0.13);
+    }
+
+    .screen {
+      position: absolute;
+
+      top: 11px;
+      left: 15px;
+      right: 15px;
+
+      height: 128px;
+
+      background: #f9f9ff;
+
+      border: 6px solid #30333d;
+
+      border-radius: 5px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .screen-logo {
+      color: #4b20ed;
+    }
+
+    .screen-logo svg {
+      width: 55px;
+      height: 55px;
+    }
+
+    .laptop-base {
+      position: absolute;
+
+      bottom: -15px;
+      left: -20px;
+
+      width: 320px;
+      height: 23px;
+
+      background: #bfc2cb;
+
+      border-radius: 4px 4px 14px 14px;
+    }
+
+    /* ---------------- PLANT ---------------- */
+
+    .plant {
+      position: absolute;
+
+      right: 5%;
+      bottom: 0;
+
+      width: 50px;
+      height: 72px;
+    }
+
+    .pot {
+      position: absolute;
+
+      bottom: 0;
+      left: 6px;
+
+      width: 38px;
+      height: 43px;
+
+      background: #e5e5e5;
+
+      border-radius: 5px 5px 13px 13px;
+
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .leaf {
+      position: absolute;
+
+      background: #18a34a;
+
+      border-radius: 100% 0 100% 0;
+
+      transform-origin: bottom;
+    }
+
+    .leaf-1 {
+      width: 17px;
+      height: 40px;
+
+      left: 19px;
+      top: 3px;
+
+      transform: rotate(15deg);
+    }
+
+    .leaf-2 {
+      width: 15px;
+      height: 35px;
+
+      left: 6px;
+      top: 13px;
+
+      transform: rotate(-35deg);
+    }
+
+    .leaf-3 {
+      width: 14px;
+      height: 31px;
+
+      left: 28px;
+      top: 18px;
+
+      transform: rotate(48deg);
+    }
+
+    /* =====================================================
+       RIGHT SECTION
+    ===================================================== */
+
+    .right {
+      width: 48%;
+
+      padding: 30px 6%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 590px;
+
+      background: rgba(255, 255, 255, 0.96);
+
+      border: 1px solid #e4e5ee;
+
+      border-radius: 17px;
+
+      padding: 42px 48px;
+
+      box-shadow:
+        0 12px 35px rgba(31, 35, 70, 0.08);
+    }
+
+    .login-card h2 {
+      text-align: center;
+
+      font-size: clamp(27px, 2.4vw, 35px);
+
+      line-height: 1.2;
+
+      font-weight: 800;
+
+      margin-bottom: 30px;
+    }
+
+    .login-card h2 span {
+      color: #4b21e9;
+    }
+
+    /* ---------------- GOOGLE ---------------- */
+
+    .google-btn {
+      width: 100%;
+      height: 58px;
+
+      border: 1px solid #d9dce7;
+
+      border-radius: 11px;
+
+      background: white;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 14px;
+
+      font-size: 15px;
+      font-weight: 700;
+
+      color: #11172f;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+    .google-btn:hover {
+      background: #fafaff;
+      border-color: #c9ccda;
+    }
+
+    .google-icon {
+      font-size: 20px;
+      font-weight: 800;
+      color: #4285f4;
+    }
+
+    /* ---------------- DIVIDER ---------------- */
+
+    .divider {
+      display: flex;
+      align-items: center;
+
+      gap: 18px;
+
+      margin: 24px 0;
+
+      color: #68728e;
+
+      font-size: 14px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+
+      height: 1px;
+
+      background: #e1e2ea;
+
+      flex: 1;
+    }
+
+    /* ---------------- INPUT ---------------- */
+
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    .input-wrapper {
+      height: 58px;
+
+      border: 1px solid #dce0ea;
+
+      border-radius: 11px;
+
+      display: flex;
+      align-items: center;
+
+      padding: 0 15px;
+
+      background: white;
+
+      transition: 0.2s;
+    }
+
+    .input-wrapper:focus-within {
+      border-color: #5a2aed;
+
+      box-shadow:
+        0 0 0 3px rgba(90, 42, 237, 0.08);
+    }
+
+    .input-icon {
+      width: 22px;
+      height: 22px;
+
+      color: #74809d;
+
+      margin-right: 14px;
+
+      flex-shrink: 0;
+    }
+
+    .input-wrapper input {
+      border: none;
+      outline: none;
+
+      width: 100%;
+
+      font-size: 15px;
+
+      color: #12172d;
+    }
+
+    .input-wrapper input::placeholder {
+      color: #707b99;
+    }
+
+    .toggle-password {
+      border: none;
+      background: none;
+
+      cursor: pointer;
+
+      color: #68728d;
+
+      font-size: 16px;
+    }
+
+    .error {
+      color: #dc3545;
+
+      font-size: 12px;
+
+      margin-top: 6px;
+
+      display: none;
+    }
+
+    /* ---------------- OPTIONS ---------------- */
+
+    .login-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin: 3px 0 22px;
+
+      font-size: 14px;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+
+      gap: 9px;
+
+      color: #606b88;
+
+      cursor: pointer;
+    }
+
+    .remember input {
+      width: 17px;
+      height: 17px;
+
+      accent-color: #4e20e9;
+
+      cursor: pointer;
+    }
+
+    .forgot {
+      color: #4e20e9;
+
+      text-decoration: none;
+
+      font-weight: 600;
+    }
+
+    .forgot:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------------- LOGIN BUTTON ---------------- */
+
+    .login-btn {
+      width: 100%;
+      height: 58px;
+
+      border: none;
+
+      border-radius: 11px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #4d1ff0,
+          #5126dc
+        );
+
+      color: white;
+
+      font-size: 16px;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 7px 16px rgba(76, 31, 229, 0.22);
+
+      transition: 0.2s;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-1px);
+
+      box-shadow:
+        0 10px 20px rgba(76, 31, 229, 0.28);
+    }
+
+    /* ---------------- REGISTER ---------------- */
+
+    .register-text {
+      text-align: center;
+
+      margin-top: 28px;
+
+      color: #4d5876;
+
+      font-size: 14px;
+    }
+
+    .register-link {
+      color: #4d21e8;
+
+      font-weight: 700;
+
+      text-decoration: none;
+
+      margin-left: 5px;
+    }
+
+    .register-link:hover {
+      text-decoration: underline;
+    }
+
+    .arrow {
+      font-size: 18px;
+      margin-left: 2px;
+    }
+
+    /* =====================================================
+       LARGE LAPTOP
+    ===================================================== */
+
+    @media (max-width: 1300px) {
+
+      .left {
+        padding-left: 5%;
+        padding-right: 4%;
+      }
+
+      .right {
+        padding-left: 4%;
+        padding-right: 5%;
+      }
+
+      .illustration {
+        margin-top: 28px;
+      }
+
+      .laptop {
+        left: 125px;
+        width: 250px;
+        height: 150px;
+      }
+
+      .screen {
+        height: 116px;
+      }
+
+      .laptop-base {
+        width: 285px;
+      }
+
+      .books {
+        width: 135px;
+      }
+
+      .book-1 {
+        width: 112px;
+      }
+
+      .book-2 {
+        width: 124px;
+      }
+
+      .book-3 {
+        width: 135px;
+      }
+    }
+
+    /* =====================================================
+       TABLET / SMALL LAPTOP
+    ===================================================== */
+
+    @media (max-width: 1000px) {
+
+      .page {
+        padding: 10px;
+      }
+
+      .container {
+        min-height: calc(100vh - 20px);
+      }
+
+      .left {
+        width: 50%;
+        padding: 28px 4%;
+      }
+
+      .right {
+        width: 50%;
+        padding: 25px 4%;
+      }
+
+      .welcome {
+        margin-top: 42px;
+      }
+
+      .welcome-description {
+        font-size: 14px;
+      }
+
+      .feature-icon {
+        width: 46px;
+        height: 46px;
+      }
+
+      .feature-text h4 {
+        font-size: 14px;
+      }
+
+      .feature-text p {
+        font-size: 12px;
+      }
+
+      .illustration {
+        height: 190px;
+        margin-top: 25px;
+      }
+
+      .laptop {
+        left: 105px;
+        width: 205px;
+        height: 125px;
+      }
+
+      .screen {
+        top: 9px;
+        left: 11px;
+        right: 11px;
+        height: 98px;
+        border-width: 5px;
+      }
+
+      .screen-logo svg {
+        width: 40px;
+        height: 40px;
+      }
+
+      .laptop-base {
+        left: -15px;
+        width: 235px;
+        height: 18px;
+        bottom: -12px;
+      }
+
+      .books {
+        width: 110px;
+      }
+
+      .book {
+        height: 26px;
+      }
+
+      .book-1 {
+        width: 90px;
+      }
+
+      .book-2 {
+        width: 102px;
+      }
+
+      .book-3 {
+        width: 110px;
+      }
+
+      .plant {
+        transform: scale(0.8);
+        transform-origin: bottom right;
+      }
+
+      .login-card {
+        padding: 35px 30px;
+      }
+    }
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 760px) {
+
+      .page {
+        padding: 0;
+      }
+
+      .container {
+        min-height: 100vh;
+
+        border-radius: 0;
+
+        flex-direction: column;
+      }
+
+      .left,
+      .right {
+        width: 100%;
+      }
+
+      /* LEFT */
+
+      .left {
+        padding: 28px 24px 15px;
+      }
+
+      .brand {
+        gap: 10px;
+      }
+
+      .brand-icon,
+      .brand-icon svg {
+        width: 40px;
+        height: 40px;
+      }
+
+      .brand-text h1 {
+        font-size: 24px;
+      }
+
+      .brand-text p {
+        font-size: 12px;
+      }
+
+      .welcome {
+        margin-top: 35px;
+      }
+
+      .welcome h2,
+      .welcome h3 {
+        font-size: 27px;
+      }
+
+      .welcome-description {
+        max-width: 550px;
+
+        font-size: 14px;
+      }
+
+      .features {
+        margin-top: 22px;
+
+        gap: 14px;
+      }
+
+      .feature-icon {
+        width: 44px;
+        height: 44px;
+
+        border-radius: 11px;
+      }
+
+      .feature-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .feature-text h4 {
+        font-size: 14px;
+      }
+
+      .feature-text p {
+        font-size: 12px;
+      }
+
+      /* ILLUSTRATION */
+
+      .illustration {
+        height: 175px;
+
+        margin-top: 20px;
+
+        max-width: 500px;
+
+        align-self: center;
+      }
+
+      .books {
+        left: 2%;
+      }
+
+      .laptop {
+        left: 25%;
+      }
+
+      .plant {
+        right: 2%;
+      }
+
+      /* RIGHT */
+
+      .right {
+        padding: 20px 24px 40px;
+
+        align-items: flex-start;
+      }
+
+      .login-card {
+        max-width: 600px;
+
+        padding: 32px 24px;
+
+        border-radius: 15px;
+      }
+
+      .login-card h2 {
+        font-size: 28px;
+
+        margin-bottom: 26px;
+      }
+
+      .google-btn,
+      .input-wrapper,
+      .login-btn {
+        height: 56px;
+      }
+    }
+
+    /* =====================================================
+       SMALL PHONE
+    ===================================================== */
+
+    @media (max-width: 480px) {
+
+      .left {
+        padding: 23px 18px 10px;
+      }
+
+      .brand-text h1 {
+        font-size: 22px;
+      }
+
+      .welcome {
+        margin-top: 30px;
+      }
+
+      .welcome h2,
+      .welcome h3 {
+        font-size: 24px;
+      }
+
+      .welcome-description {
+        font-size: 13px;
+      }
+
+      .features {
+        gap: 12px;
+      }
+
+      .feature-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .feature-text h4 {
+        font-size: 13px;
+      }
+
+      .feature-text p {
+        font-size: 11px;
+      }
+
+      .illustration {
+        height: 145px;
+
+        margin-top: 16px;
+      }
+
+      .books {
+        width: 75px;
+      }
+
+      .book {
+        height: 20px;
+
+        border-radius: 4px;
+      }
+
+      .book::after {
+        right: 5px;
+        top: 4px;
+
+        width: 4px;
+        height: 12px;
+      }
+
+      .book-1 {
+        width: 62px;
+      }
+
+      .book-2 {
+        width: 69px;
+      }
+
+      .book-3 {
+        width: 75px;
+      }
+
+      .laptop {
+        left: 22%;
+        width: 155px;
+        height: 96px;
+      }
+
+      .screen {
+        top: 7px;
+        left: 8px;
+        right: 8px;
+        height: 76px;
+        border-width: 4px;
+      }
+
+      .screen-logo svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      .laptop-base {
+        left: -10px;
+        width: 175px;
+        height: 14px;
+        bottom: -9px;
+      }
+
+      .plant {
+        transform: scale(0.65);
+      }
+
+      .right {
+        padding: 15px 18px 35px;
+      }
+
+      .login-card {
+        padding: 28px 19px;
+      }
+
+      .login-card h2 {
+        font-size: 25px;
+      }
+
+      .google-btn {
+        font-size: 14px;
+      }
+
+      .login-options {
+        font-size: 12px;
+      }
+
+      .register-text {
+        font-size: 13px;
+      }
+    }
+
+    /* =====================================================
+       VERY SMALL PHONE
+    ===================================================== */
+
+    @media (max-width: 360px) {
+
+      .welcome h2,
+      .welcome h3 {
+        font-size: 22px;
+      }
+
+      .illustration {
+        height: 125px;
+      }
+
+      .laptop {
+        left: 20%;
+        width: 135px;
+        height: 82px;
+      }
+
+      .screen {
+        height: 64px;
+      }
+
+      .laptop-base {
+        width: 153px;
+      }
+
+      .books {
+        transform: scale(0.8);
+        transform-origin: bottom left;
+      }
+
+      .login-card {
+        padding: 25px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <div class="container">
+
+      <!-- =================================================
+           LEFT SIDE
+      ================================================== -->
+
+      <section class="left">
+
+        <!-- Brand -->
+
+        <div class="brand">
+
+          <div class="brand-icon">
+
+            <svg viewBox="0 0 64 64" fill="none">
+              <path
+                d="M8 19L32 7L56 19L32 31L8 19Z"
+                fill="currentColor"
+              />
+
+              <path
+                d="M16 25V39C16 39 23 48 32 48C41 48 48 39 48 39V25L32 33L16 25Z"
+                fill="currentColor"
+              />
+
+              <path
+                d="M53 21V38"
+                stroke="currentColor"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+            </svg>
+
+          </div>
+
+          <div class="brand-text">
+            <h1>StudyNest</h1>
+            <p>Learn. Share. Grow.</p>
+          </div>
+
+        </div>
+
+
+        <!-- Welcome -->
+
+        <div class="welcome">
+
+          <h2>Welcome Back!</h2>
+
+          <h3>
+            Great to see you again 👋
+          </h3>
+
+          <p class="welcome-description">
+            Log in to continue your learning journey and
+            access thousands of resources.
+          </p>
+
+        </div>
+
+
+        <!-- Features -->
+
+        <div class="features">
+
+          <!-- Feature 1 -->
+
+          <div class="feature">
+
+            <div class="feature-icon purple">
+
+              <svg viewBox="0 0 24 24" fill="none">
+
+                <path
+                  d="M5 4.5C5 3.67 5.67 3 6.5 3H19V19H6.5C5.67 19 5 19.67 5 20.5V4.5Z"
+                  fill="currentColor"
+                />
+
+                <path
+                  d="M5 20.5C5 19.67 5.67 19 6.5 19H19V21H6.5C5.67 21 5 20.33 5 19.5V20.5Z"
+                  fill="currentColor"
+                />
+
+              </svg>
+
+            </div>
+
+            <div class="feature-text">
+
+              <h4>Access All Resources</h4>
+
+              <p>
+                Browse academic materials, courses and more.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- Feature 2 -->
+
+          <div class="feature">
+
+            <div class="feature-icon green">
+
+              <svg viewBox="0 0 24 24" fill="none">
+
+                <circle
+                  cx="9"
+                  cy="8"
+                  r="4"
+                  fill="currentColor"
+                />
+
+                <circle
+                  cx="17"
+                  cy="9"
+                  r="3"
+                  fill="currentColor"
+                />
+
+                <path
+                  d="M2 20C2 16.69 4.69 14 8 14H10C13.31 14 16 16.69 16 20V21H2V20Z"
+                  fill="currentColor"
+                />
+
+                <path
+                  d="M16 14.5C18.76 14.5 21 16.74 21 19.5V21H17"
+                  fill="currentColor"
+                />
+
+              </svg>
+
+            </div>
+
+            <div class="feature-text">
+
+              <h4>Personalized for You</h4>
+
+              <p>
+                Get recommendations tailored to your goals.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- Feature 3 -->
+
+          <div class="feature">
+
+            <div class="feature-icon orange">
+
+              <svg viewBox="0 0 24 24" fill="none">
+
+                <path
+                  d="M6 3H18V21L12 17L6 21V3Z"
+                  fill="currentColor"
+                />
+
+              </svg>
+
+            </div>
+
+            <div class="feature-text">
+
+              <h4>Save &amp; Continue</h4>
+
+              <p>
+                Bookmark, save and continue where you left off.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             ILLUSTRATION
+        ================================================== -->
+
+        <div class="illustration">
+
+          <!-- Books -->
+
+          <div class="books">
+
+            <div class="book book-1"></div>
+
+            <div class="book book-2"></div>
+
+            <div class="book book-3"></div>
+
+          </div>
+
+
+          <!-- Laptop -->
+
+          <div class="laptop">
+
+            <div class="screen">
+
+              <div class="screen-logo">
+
+                <svg viewBox="0 0 64 64" fill="none">
+
+                  <path
+                    d="M8 19L32 7L56 19L32 31L8 19Z"
+                    fill="currentColor"
+                  />
+
+                  <path
+                    d="M16 25V39C16 39 23 48 32 48C41 48 48 39 48 39V25L32 33L16 25Z"
+                    fill="currentColor"
+                  />
+
+                </svg>
+
+              </div>
+
+            </div>
+
+            <div class="laptop-base"></div>
+
+          </div>
+
+
+          <!-- Plant -->
+
+          <div class="plant">
+
+            <div class="leaf leaf-1"></div>
+            <div class="leaf leaf-2"></div>
+            <div class="leaf leaf-3"></div>
+
+            <div class="pot"></div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           RIGHT SIDE
+      ================================================== -->
+
+      <section class="right">
+
+        <div class="login-card">
+
+          <h2>
+            Log in to <span>StudyNest</span>
+          </h2>
+
+
+          <!-- Google -->
+
+          <button
+            class="google-btn"
+            type="button"
+            onclick="googleLogin()"
+          >
+
+            <span class="google-icon">
+              G
+            </span>
+
+            <span>
+              Continue with Google
+            </span>
+
+          </button>
+
+
+          <!-- Divider -->
+
+          <div class="divider">
+            <span>or</span>
+          </div>
+
+
+          <!-- Email -->
+
+          <div class="input-group">
+
+            <div class="input-wrapper">
+
+              <svg
+                class="input-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+
+                <rect
+                  x="3"
+                  y="5"
+                  width="18"
+                  height="14"
+                  rx="2"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+
+                <path
+                  d="M4 7L12 13L20 7"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+              </svg>
+
+              <input
+                type="email"
+                id="email"
+                placeholder="Email address">
+
+            </div>
+
+            <div
+              class="error"
+              id="emailError"
+            >
+              Please enter your email address.
+            </div>
+
+          </div>
+
+
+          <!-- Password -->
+
+          <div class="input-group">
+
+            <div class="input-wrapper">
+
+              <svg
+                class="input-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+
+                <rect
+                  x="5"
+                  y="10"
+                  width="14"
+                  height="10"
+                  rx="2"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+
+                <path
+                  d="M8 10V7C8 4.79 9.79 3 12 3C14.21 3 16 4.79 16 7V10"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+
+              </svg>
+
+              <input
+                type="password"
+                id="password"
+                placeholder="Password" autocomplete="current-password">
+
+              <button
+                type="button"
+                class="toggle-password"
+                onclick="togglePassword()"
+                id="passwordToggle"
+              >
+                ◉
+              </button>
+
+            </div>
+
+            <div
+              class="error"
+              id="passwordError"
+            >
+              Please enter your password.
+            </div>
+
+          </div>
+
+
+          <!-- Remember / Forgot -->
+
+          <div class="login-options">
+
+            <label class="remember">
+
+              <input
+                type="checkbox"
+                checked>
+
+              <span>
+                Remember me
+              </span>
+
+            </label>
+
+            <a
+              href="forgot_password.html"
+              class="forgot"
+            >
+              Forgot password?
+            </a>
+
+          </div>
+
+
+          <!-- Login -->
+
+          <button
+            class="login-btn"
+            type="button"
+            onclick="loginUser()"
+          >
+            Log In
+          </button>
+
+
+          <!-- Register -->
+
+          <div class="register-text">
+
+            Don't have an account?
+
+            <a
+              href="register.html"
+              class="register-link"
+            >
+              Register
+              <span class="arrow">→</span>
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+
+  <script src="js/routes.js"></script>
+  <script src="js/data-store.js"></script>
+  <script src="js/auth.js"></script>
+
+  <script>
+
+    /* =====================================================
+       LOGIN
+    ===================================================== */
+
+    function loginUser() {
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const password =
+        document.getElementById("password").value.trim();
+
+      const emailError =
+        document.getElementById("emailError");
+
+      const passwordError =
+        document.getElementById("passwordError");
+
+      emailError.style.display = "none";
+      passwordError.style.display = "none";
+
+      let valid = true;
+
+
+      if (!email) {
+
+        emailError.style.display = "block";
+
+        valid = false;
+      }
+
+
+      if (!password) {
+
+        passwordError.style.display = "block";
+
+        valid = false;
+      }
+
+
+      if (!valid) {
+        return;
+      }
+
+
+      /*
+        Use centralized Auth module for login.
+        Later Django backend will authenticate.
+      */
+
+      Auth.loginUser(email, password);
+
+      window.location.href = ROUTES.home;
+    }
+
+
+    /* =====================================================
+       GOOGLE LOGIN
+    ===================================================== */
+
+    function googleLogin() {
+
+      /*
+        Auth.googleLogin() handles:
+        - existing completed user → home.html
+        - new user → country → study_level → institution → home
+      */
+
+      Auth.googleLogin();
+    }
+
+
+    /* =====================================================
+       SHOW / HIDE PASSWORD
+    ===================================================== */
+
+    function togglePassword() {
+
+      const password =
+        document.getElementById("password");
+
+      const toggle =
+        document.getElementById("passwordToggle");
+
+
+      if (password.type === "password") {
+
+        password.type = "text";
+
+        toggle.textContent = "◉";
+
+      } else {
+
+        password.type = "password";
+
+        toggle.textContent = "◉";
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,2635 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Question Paper - StudyNest</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Inter, Arial, sans-serif;
+        }
+
+        body {
+            background: #f6f7fb;
+            color: #172033;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            max-width: 1400px;
+
+            margin: 0 auto;
+
+            padding: 32px 28px 70px;
+        }
+
+
+        /* ================= BREADCRUMB ================= */
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            color: #7b8497;
+
+            font-size: 13px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .breadcrumb a {
+            color: #6366f1;
+        }
+
+
+        .breadcrumb span {
+            color: #a3a9b6;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .paper-header {
+            margin-bottom: 25px;
+        }
+
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #4f46e5;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            margin-bottom: 18px;
+        }
+
+
+        .paper-title {
+            font-size: 32px;
+
+            font-weight: 800;
+
+            color: #111827;
+
+            line-height: 1.25;
+
+            margin-bottom: 15px;
+        }
+
+
+        .paper-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 9px;
+        }
+
+
+        .tag {
+            padding: 7px 12px;
+
+            border-radius: 999px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            background: #eef2ff;
+
+            color: #4f46e5;
+        }
+
+
+        .tag.green {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+
+        .tag.gray {
+            background: #eef0f4;
+            color: #596273;
+        }
+
+
+        .views {
+            color: #737c8d;
+            font-size: 13px;
+            margin-left: 3px;
+        }
+
+
+        /* ================= ACTION BAR ================= */
+
+        .action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 15px;
+
+            background: white;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 15px;
+
+            padding: 13px 15px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .left-actions,
+        .right-actions {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+
+        .action-btn {
+            border: 1px solid #dddff0;
+
+            background: white;
+
+            color: #4f46e5;
+
+            border-radius: 9px;
+
+            padding: 10px 15px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+
+            gap: 7px;
+        }
+
+
+        .action-btn:hover {
+            background: #f5f5ff;
+        }
+
+
+        .action-btn.primary {
+            background: #4f46e5;
+            border-color: #4f46e5;
+
+            color: white;
+        }
+
+
+        .action-btn.primary:hover {
+            background: #4338ca;
+        }
+
+
+        .action-btn.saved {
+            background: #eef2ff;
+            border-color: #c7d2fe;
+        }
+
+
+        .action-btn.voted {
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+            color: #15803d;
+        }
+
+
+        .report-btn {
+            border: none;
+
+            background: transparent;
+
+            color: #8a93a3;
+
+            padding: 9px;
+
+            cursor: pointer;
+
+            font-size: 13px;
+        }
+
+
+        .report-btn:hover {
+            color: #ef4444;
+        }
+
+
+        /* ================= CONTENT GRID ================= */
+
+        .content-grid {
+            display: grid;
+
+            grid-template-columns: minmax(0, 1fr) 330px;
+
+            gap: 22px;
+
+            align-items: start;
+        }
+
+
+        /* ================= PDF VIEWER ================= */
+
+        .viewer-card {
+            background: #ffffff;
+
+            border: 1px solid #e1e4eb;
+
+            border-radius: 17px;
+
+            overflow: hidden;
+
+            box-shadow: 0 5px 20px rgba(15, 23, 42, 0.04);
+        }
+
+
+        .viewer-header {
+            height: 57px;
+
+            padding: 0 17px;
+
+            background: #f8f9fc;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        .viewer-title {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            color: #374151;
+        }
+
+
+        .pdf-icon {
+            width: 30px;
+            height: 30px;
+
+            border-radius: 8px;
+
+            background: #fee2e2;
+
+            color: #dc2626;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 14px;
+        }
+
+
+        .viewer-tools {
+            display: flex;
+            gap: 6px;
+        }
+
+
+        .viewer-tool {
+            width: 34px;
+            height: 34px;
+
+            border: 1px solid #e2e5eb;
+
+            background: white;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            color: #596273;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 14px;
+        }
+
+
+        .viewer-tool:hover {
+            background: #f1f3f7;
+
+            color: #4f46e5;
+        }
+
+
+        .pdf-area {
+            height: 720px;
+
+            background: #eef0f3;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .pdf-frame {
+            width: 100%;
+            height: 100%;
+
+            border: none;
+
+            background: white;
+        }
+
+
+        .pdf-placeholder {
+            position: absolute;
+
+            inset: 0;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-direction: column;
+
+            text-align: center;
+
+            padding: 30px;
+        }
+
+
+        .pdf-placeholder-icon {
+            width: 70px;
+            height: 70px;
+
+            border-radius: 18px;
+
+            background: #fee2e2;
+
+            color: #dc2626;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .pdf-placeholder h3 {
+            font-size: 17px;
+
+            color: #374151;
+
+            margin-bottom: 7px;
+        }
+
+
+        .pdf-placeholder p {
+            color: #8a93a3;
+
+            font-size: 13px;
+
+            max-width: 360px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ================= SUBMISSION CARD ================= */
+
+        .submissions-card {
+            background: white;
+
+            border: 1px solid #e1e4eb;
+
+            border-radius: 17px;
+
+            padding: 18px;
+
+            box-shadow: 0 5px 20px rgba(15, 23, 42, 0.04);
+
+            position: sticky;
+
+            top: 95px;
+        }
+
+
+        .submission-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 17px;
+        }
+
+
+        .submission-title {
+            font-size: 15px;
+
+            font-weight: 800;
+
+            color: #263044;
+        }
+
+
+        .submission-count {
+            min-width: 27px;
+            height: 27px;
+
+            padding: 0 8px;
+
+            border-radius: 8px;
+
+            background: #eef2ff;
+
+            color: #4f46e5;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        .submission-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 9px;
+
+            max-height: 650px;
+
+            overflow-y: auto;
+
+            padding-right: 3px;
+        }
+
+
+        .submission {
+            width: 100%;
+
+            border: 1px solid #e5e7eb;
+
+            background: #ffffff;
+
+            border-radius: 12px;
+
+            padding: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .submission:hover {
+            border-color: #c7d2fe;
+
+            background: #fafaff;
+        }
+
+
+        .submission.active {
+            border: 2px solid #6366f1;
+
+            background: #f7f7ff;
+
+            padding: 11px;
+        }
+
+
+        .submission-avatar {
+            width: 40px;
+            height: 40px;
+
+            min-width: 40px;
+
+            border-radius: 50%;
+
+            background: #e0e7ff;
+
+            color: #4f46e5;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: 800;
+
+            font-size: 13px;
+        }
+
+
+        .submission-info {
+            min-width: 0;
+
+            flex: 1;
+        }
+
+
+        .submission-name {
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: #273043;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+            margin-bottom: 5px;
+        }
+
+
+        .submission-meta {
+            color: #8a93a3;
+
+            font-size: 11px;
+        }
+
+
+        .selected-check {
+            color: #4f46e5;
+
+            font-size: 14px;
+
+            display: none;
+        }
+
+
+        .submission.active .selected-check {
+            display: block;
+        }
+
+
+        /* ================= INFO GRID ================= */
+
+        .below-grid {
+            display: grid;
+
+            grid-template-columns: minmax(0, 1fr) 330px;
+
+            gap: 22px;
+
+            margin-top: 22px;
+        }
+
+
+        .info-card {
+            background: white;
+
+            border: 1px solid #e1e4eb;
+
+            border-radius: 17px;
+
+            padding: 22px;
+        }
+
+
+        .info-card h3 {
+            font-size: 16px;
+
+            color: #1f2937;
+
+            margin-bottom: 16px;
+        }
+
+
+        .info-text {
+            font-size: 13px;
+
+            color: #6b7280;
+
+            line-height: 1.7;
+        }
+
+
+        .details-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .detail-item {
+            background: #f8f9fc;
+
+            border-radius: 10px;
+
+            padding: 13px;
+        }
+
+
+        .detail-label {
+            color: #929aaa;
+
+            font-size: 11px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .detail-value {
+            color: #374151;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        /* ================= CONTRIBUTOR ================= */
+
+        .contributor {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding-bottom: 18px;
+
+            margin-bottom: 18px;
+
+            border-bottom: 1px solid #eceef3;
+        }
+
+
+        .contributor-avatar {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+
+            background: #e0e7ff;
+
+            color: #4f46e5;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: 800;
+        }
+
+
+        .contributor-name {
+            font-size: 14px;
+
+            font-weight: 800;
+
+            color: #273043;
+
+            margin-bottom: 4px;
+        }
+
+
+        .contributor-role {
+            color: #8a93a3;
+
+            font-size: 11px;
+        }
+
+
+        .file-stats {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 11px;
+        }
+
+
+        .file-stat {
+            display: flex;
+
+            justify-content: space-between;
+
+            font-size: 12px;
+        }
+
+
+        .file-stat span:first-child {
+            color: #8a93a3;
+        }
+
+
+        .file-stat span:last-child {
+            color: #374151;
+
+            font-weight: 700;
+        }
+
+
+        /* ================= TOAST ================= */
+
+        .toast {
+            position: fixed;
+
+            right: 25px;
+            bottom: 25px;
+
+            background: #111827;
+
+            color: white;
+
+            padding: 13px 17px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+            transform: translateY(80px);
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: 0.3s;
+
+            z-index: 500;
+        }
+
+
+        .toast.show {
+            transform: translateY(0);
+
+            opacity: 1;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1050px) {
+
+            .content-grid,
+            .below-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .submissions-card {
+                position: static;
+            }
+
+
+            .submission-list {
+                max-height: none;
+
+                display: grid;
+
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                height: 66px;
+
+                padding: 0 16px;
+            }
+
+
+            .profile-name {
+                display: none;
+            }
+
+
+            .main {
+                padding: 25px 16px 50px;
+            }
+
+
+            .paper-title {
+                font-size: 25px;
+            }
+
+
+            .action-bar {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .left-actions,
+            .right-actions {
+                width: 100%;
+            }
+
+
+            .action-btn {
+                flex: 1;
+
+                justify-content: center;
+            }
+
+
+            .pdf-area {
+                height: 550px;
+            }
+
+
+            .submission-list {
+                grid-template-columns: 1fr;
+            }
+
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .paper-meta {
+                gap: 6px;
+            }
+
+
+            .tag {
+                font-size: 10px;
+
+                padding: 6px 9px;
+            }
+
+
+            .views {
+                font-size: 11px;
+            }
+
+
+            .viewer-header {
+                padding: 0 10px;
+            }
+
+
+            .viewer-tool {
+                width: 30px;
+                height: 30px;
+            }
+
+
+            .pdf-area {
+                height: 500px;
+            }
+
+        }
+
+    
+        .submission-avatar, .submission-info, .submission-name, .submission-meta { display: block; }
+        .avatar-var-1 { background:#fef3c7; color:#92400e; }
+        .avatar-var-2 { background:#dcfce7; color:#14532d; }
+        .avatar-var-3 { background:#fee2e2; color:#7f1d1d; }
+        .avatar-var-4 { background:#e0e7ff; color:#3730a3; }
+        .avatar-var-5 { background:#f3e8ff; color:#6b21a8; }
+        .avatar-var-6 { background:#fce7f3; color:#831843; }
+        .mt-22 { margin-top: 22px; }
+    
+        .avatar-var-7 { background:#fce7f3; color:#be185d; }
+        .avatar-var-8 { background:#e0e7ff; color:#4338ca; }
+        .avatar-var-9 { background:#fef3c7; color:#b45309; }
+        .avatar-var-10 { background:#dcfce7; color:#15803d; }
+        .avatar-var-11 { background:#fee2e2; color:#b91c1c; }
+    
+        .avatar-var-12 { background:#f3e8ff; color:#7e22ce; }
+        .avatar-var-13 { background:#e0f2fe; color:#0369a1; }
+        .avatar-var-14 { background:#f1f5f9; color:#475569; }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <link rel="stylesheet" href="css/shared.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="nav-left">
+
+            <button type="button"
+            class="hamburger"
+            id="hamburgerBtn"
+            onclick="openSidebar()"
+            aria-label="Open menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+            <div class="logo">
+                StudyNest
+            </div>
+
+        </div>
+
+
+        <div class="nav-right">
+
+            <button type="button"
+                class="notification-btn"
+                onclick="window.location.href='notifications.html'"
+                title="Notifications"
+            >
+                🔔
+
+                <span
+                    class="notification-dot"
+                    id="notificationDot"
+                ></span>
+
+            </button>
+
+
+            <div
+                class="profile-mini"
+                onclick="window.location.href='profile.html'"
+            >
+
+                <div
+                    class="profile-avatar"
+                    id="navAvatar"
+                >
+                    A
+                </div>
+
+
+                <span
+                    class="profile-name"
+                    id="navName"
+                >
+                    Student
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= OVERLAY ================= -->
+
+    <div
+        class="overlay"
+        id="overlay"
+        onclick="closeSidebar()"
+    ></div>
+
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+     aria-label="Main Navigation">
+
+        <div class="sidebar-header">
+
+            <div class="sidebar-logo">
+                StudyNest
+            </div>
+
+
+            <button type="button"
+                class="close-btn"
+                onclick="closeSidebar()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="sidebar-section-title">
+            Main Menu
+        </div>
+
+
+        <a
+            href="home.html"
+            class="sidebar-link"
+        >
+            <span class="sidebar-icon">⌂</span>
+            <span>Home</span>
+        </a>
+
+
+        <a
+            href="academic_courses.html"
+            class="sidebar-link"
+        >
+            <span class="sidebar-icon">📚</span>
+            <span>Academic Courses</span>
+        </a>
+
+
+        <a
+            href="question_bank.html"
+            class="sidebar-link active"
+        >
+            <span class="sidebar-icon">📄</span>
+            <span>Campus Question Bank</span>
+        </a>
+
+
+        <a
+            href="leaderboard.html"
+            class="sidebar-link"
+        >
+            <span class="sidebar-icon">🏆</span>
+            <span>Leaderboards</span>
+        </a>
+
+
+        <a
+            href="contribute.html"
+            class="sidebar-link"
+        >
+            <span class="sidebar-icon">➕</span>
+            <span>Contribute</span>
+        </a>
+
+
+        <a
+            href="my_library.html"
+            class="sidebar-link"
+        >
+            <span class="sidebar-icon">🔖</span>
+            <span>My Library</span>
+        </a>
+
+
+        <a
+            href="settings.html"
+            class="sidebar-link"
+        >
+            <span class="sidebar-icon">⚙️</span>
+            <span>Settings</span>
+        </a>
+
+
+        <div class="sidebar-divider"></div>
+
+
+        <div class="sidebar-section-title">
+            Information
+        </div>
+
+
+        <a
+            href="about.html"
+            class="sidebar-link"
+        >
+            <span class="sidebar-icon">ℹ️</span>
+            <span>About Us</span>
+        </a>
+
+
+        <a
+            href="contact.html"
+            class="sidebar-link"
+        >
+            <span class="sidebar-icon">✉️</span>
+            <span>Contact Us</span>
+        </a>
+
+
+        <a
+            href="terms.html"
+            class="sidebar-link"
+        >
+            <span class="sidebar-icon">📜</span>
+            <span>Terms of Service</span>
+        </a>
+
+
+        <a
+            href="privacy.html"
+            class="sidebar-link"
+        >
+            <span class="sidebar-icon">🔒</span>
+            <span>Privacy Policy</span>
+        </a>
+
+
+        <a
+            href="help.html"
+            class="sidebar-link"
+        >
+            <span class="sidebar-icon">❓</span>
+            <span>Help &amp; FAQ</span>
+        </a>
+
+    </aside>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+
+        <!-- BREADCRUMB -->
+
+        <div class="breadcrumb">
+
+            <a href="home.html">
+                Home
+            </a>
+
+            <span>›</span>
+
+            <a href="question_bank.html">
+                Campus Question Bank
+            </a>
+
+            <span>›</span>
+
+            <span id="breadcrumbTitle">
+                Question Paper
+            </span>
+
+        </div>
+
+
+
+        <!-- HEADER -->
+
+        <section class="paper-header">
+
+
+            <button type="button"
+                class="back-btn"
+                onclick="window.location.href='question_bank.html'"
+            >
+                ← Back to Question Bank
+            </button>
+
+
+            <h1
+                class="paper-title"
+                id="paperTitle"
+            >
+                Bangladesh Studies (CSE), Spring 26, Final
+            </h1>
+
+
+            <div class="paper-meta">
+
+                <span class="tag">
+                    Computer Science and Engineering
+                </span>
+
+                <span class="tag gray">
+                    Bangladesh Studies
+                </span>
+
+                <span class="tag gray">
+                    Spring 26
+                </span>
+
+                <span class="tag green">
+                    Final
+                </span>
+
+                <span
+                    class="views"
+                    id="totalViews"
+                >
+                    27 views
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ACTION BAR -->
+
+        <div class="action-bar">
+
+
+            <div class="left-actions">
+
+                <button type="button"
+                    class="action-btn"
+                    id="voteBtn"
+                    onclick="votePaper()"
+                >
+                    👍 Vote
+                    <span id="voteCount">128</span>
+                </button>
+
+
+                <button type="button"
+                    class="action-btn"
+                    id="saveBtn"
+                    onclick="savePaper()"
+                >
+                    🔖
+                    <span id="saveText">
+                        Save to My Library
+                    </span>
+                </button>
+
+            </div>
+
+
+            <div class="right-actions">
+
+                <button type="button"
+                    class="report-btn"
+                    onclick="reportPaper()"
+                >
+                    ⚑ Report
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+
+        <div class="content-grid">
+
+
+            <!-- PDF VIEWER -->
+
+            <section class="viewer-card">
+
+
+                <div class="viewer-header">
+
+                    <div class="viewer-title">
+
+                        <div class="pdf-icon">
+                            PDF
+                        </div>
+
+                        <span>
+                            Question Paper
+                        </span>
+
+                    </div>
+
+
+                    <div class="viewer-tools">
+
+
+                        <button type="button"
+                            class="viewer-tool"
+                            onclick="openPDF()"
+                            title="Open in new tab"
+                        >
+                            ↗
+                        </button>
+
+
+                        <button type="button"
+                            class="viewer-tool"
+                            onclick="fullscreenPDF()"
+                            title="Fullscreen"
+                        >
+                            ⛶
+                        </button>
+
+
+                        <button type="button"
+                            class="viewer-tool"
+                            onclick="downloadPDF()"
+                            title="Download"
+                        >
+                            ↓
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    class="pdf-area"
+                    id="pdfArea"
+                >
+
+                    <iframe
+                        id="pdfFrame"
+                        class="pdf-frame"
+                        src="about:blank"
+                        title="Question Paper PDF"
+                    ></iframe>
+
+
+                    <div
+                        class="pdf-placeholder"
+                        id="pdfPlaceholder"
+                    >
+
+                        <div class="pdf-placeholder-icon">
+                            PDF
+                        </div>
+
+
+                        <h3>
+                            Question Paper Preview
+                        </h3>
+
+
+                        <p>
+                            The uploaded PDF will appear here.
+                            Select a submission from the right
+                            side to view that student's paper.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- SUBMISSIONS -->
+
+            <aside class="submissions-card" aria-label="Additional Information">
+
+
+                <div class="submission-header">
+
+                    <div class="submission-title">
+                        Submissions
+                    </div>
+
+
+                    <div
+                        class="submission-count"
+                        id="submissionCount"
+                    >
+                        7
+                    </div>
+
+                </div>
+
+
+
+                <div
+                    class="submission-list"
+                    id="submissionList"
+                >
+
+                    <!-- Submission 1 -->
+
+                    <button type="button"
+                        class="submission active"
+                        onclick="selectSubmission(0)"
+                    >
+
+                        <span class="submission-avatar">
+                            OI
+                        </span>
+
+
+                        <span class="submission-info">
+
+                            <span class="submission-name">
+                                Md. Oliul Islam Bappy
+                            </span>
+
+                            <span class="submission-meta">
+                                Aug 27, 2026 · 23 views
+                            </span>
+
+                        </span>
+
+
+                        <span class="selected-check">
+                            ✓
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- Submission 2 -->
+
+                    <button type="button"
+                        class="submission"
+                        onclick="selectSubmission(1)"
+                    >
+
+                        <span
+                            class="submission-avatar avatar-var-1"
+                        >
+                            AR
+                        </span>
+
+
+                        <span class="submission-info">
+
+                            <span class="submission-name">
+                                Md. Ashfaq Shahamat Rahi
+                            </span>
+
+                            <span class="submission-meta">
+                                Aug 27, 2026 · 1 view
+                            </span>
+
+                        </span>
+
+
+                        <span class="selected-check">
+                            ✓
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- Submission 3 -->
+
+                    <button type="button"
+                        class="submission"
+                        onclick="selectSubmission(2)"
+                    >
+
+                        <span
+                            class="submission-avatar avatar-var-7"
+                        >
+                            SG
+                        </span>
+
+
+                        <span class="submission-info">
+
+                            <span class="submission-name">
+                                Sreadam Ghosh Sohag
+                            </span>
+
+                            <span class="submission-meta">
+                                Aug 26, 2026 · 1 view
+                            </span>
+
+                        </span>
+
+
+                        <span class="selected-check">
+                            ✓
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- Submission 4 -->
+
+                    <button type="button"
+                        class="submission"
+                        onclick="selectSubmission(3)"
+                    >
+
+                        <span
+                            class="submission-avatar avatar-var-10"
+                        >
+                            R
+                        </span>
+
+
+                        <span class="submission-info">
+
+                            <span class="submission-name">
+                                Riti 787
+                            </span>
+
+                            <span class="submission-meta">
+                                Aug 26, 2026 · 0 views
+                            </span>
+
+                        </span>
+
+
+                        <span class="selected-check">
+                            ✓
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- Submission 5 -->
+
+                    <button type="button"
+                        class="submission"
+                        onclick="selectSubmission(4)"
+                    >
+
+                        <span
+                            class="submission-avatar avatar-var-12"
+                        >
+                            SP
+                        </span>
+
+
+                        <span class="submission-info">
+
+                            <span class="submission-name">
+                                Sowrov Paul
+                            </span>
+
+                            <span class="submission-meta">
+                                Aug 26, 2026 · 1 view
+                            </span>
+
+                        </span>
+
+
+                        <span class="selected-check">
+                            ✓
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- Submission 6 -->
+
+                    <button type="button"
+                        class="submission"
+                        onclick="selectSubmission(5)"
+                    >
+
+                        <span
+                            class="submission-avatar avatar-var-13"
+                        >
+                            AH
+                        </span>
+
+
+                        <span class="submission-info">
+
+                            <span class="submission-name">
+                                Anik Hasan
+                            </span>
+
+                            <span class="submission-meta">
+                                Aug 25, 2026 · 4 views
+                            </span>
+
+                        </span>
+
+
+                        <span class="selected-check">
+                            ✓
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- Submission 7 -->
+
+                    <button type="button"
+                        class="submission"
+                        onclick="selectSubmission(6)"
+                    >
+
+                        <span
+                            class="submission-avatar avatar-var-14"
+                        >
+                            NS
+                        </span>
+
+
+                        <span class="submission-info">
+
+                            <span class="submission-name">
+                                Nabila Sultana
+                            </span>
+
+                            <span class="submission-meta">
+                                Aug 24, 2026 · 2 views
+                            </span>
+
+                        </span>
+
+
+                        <span class="selected-check">
+                            ✓
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+
+
+        <!-- ================= BELOW CONTENT ================= -->
+
+        <div class="below-grid">
+
+
+            <!-- PAPER DETAILS -->
+
+            <section class="info-card">
+
+                <h3>
+                    Question Paper Details
+                </h3>
+
+
+                <div class="details-grid">
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Institution
+                        </div>
+
+                        <div class="detail-value">
+                            Daffodil International University
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Department
+                        </div>
+
+                        <div class="detail-value">
+                            Computer Science &amp; Engineering
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Course
+                        </div>
+
+                        <div class="detail-value">
+                            Bangladesh Studies
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Course Code
+                        </div>
+
+                        <div class="detail-value">
+                            BNS101
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Semester
+                        </div>
+
+                        <div class="detail-value">
+                            Spring 2026
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Exam Type
+                        </div>
+
+                        <div class="detail-value">
+                            Final Examination
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- CONTRIBUTOR / FILE INFO -->
+
+            <section class="info-card">
+
+
+                <h3>
+                    Selected Submission
+                </h3>
+
+
+                <div class="contributor">
+
+                    <div
+                        class="contributor-avatar"
+                        id="contributorAvatar"
+                    >
+                        OI
+                    </div>
+
+
+                    <div>
+
+                        <div
+                            class="contributor-name"
+                            id="contributorName"
+                        >
+                            Md. Oliul Islam Bappy
+                        </div>
+
+
+                        <div
+                            class="contributor-role"
+                            id="contributorDate"
+                        >
+                            Submitted Aug 27, 2026
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="file-stats">
+
+
+                    <div class="file-stat">
+
+                        <span>
+                            File type
+                        </span>
+
+                        <span>
+                            PDF
+                        </span>
+
+                    </div>
+
+
+                    <div class="file-stat">
+
+                        <span>
+                            Pages
+                        </span>
+
+                        <span>
+                            1 page
+                        </span>
+
+                    </div>
+
+
+                    <div class="file-stat">
+
+                        <span>
+                            File size
+                        </span>
+
+                        <span>
+                            1.2 MB
+                        </span>
+
+                    </div>
+
+
+                    <div class="file-stat">
+
+                        <span>
+                            Views
+                        </span>
+
+                        <span id="selectedViews">
+                            23
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+
+        <!-- DESCRIPTION -->
+
+        <section
+            class="info-card mt-22"
+        >
+
+            <h3>
+                About This Question Paper
+            </h3>
+
+
+            <p class="info-text">
+                This question paper was contributed by a StudyNest
+                student. Multiple students may submit the same
+                examination paper, and each submission is kept
+                separately so students can choose the available
+                version they want to view.
+            </p>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <div class="footer-logo-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h3>StudyNest</h3>
+                    <p>Learn. Share. Grow.</p>
+                </div>
+            </div>
+            <p class="footer-description">
+                A student-driven platform for learning, sharing and growing together.
+            </p>
+            <div class="socials">
+                <a href="#" class="social" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="social" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="social" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4><i class="fa-solid fa-headset"></i>&nbsp; Support</h4>
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="help.html">Help &amp; FAQ</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4><i class="fa-regular fa-envelope"></i>&nbsp; Contact Us</h4>
+            <div class="contact-box">
+                <div class="contact-icon">
+                    <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div>
+                    <div class="contact-email">support@studynest.com</div>
+                    <div class="contact-sub">We'd love to hear from you!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div>&copy; 2026 StudyNest. All rights reserved.</div>
+        <div class="made">
+            <span>&hearts;</span>&nbsp; Made for students, by students.
+        </div>
+    </div>
+</footer>
+
+
+
+    <!-- ================= TOAST ================= -->
+
+    <div
+        class="toast"
+        id="toast"
+    ></div>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+
+        /* ================= USER ================= */
+
+        const savedName =
+            localStorage.getItem("studynest_user_name")
+            || "Student";
+
+
+        document.getElementById("navName").textContent =
+            savedName;
+
+
+        document.getElementById("navAvatar").textContent =
+            savedName.charAt(0).toUpperCase();
+
+
+
+        /* ================= PAPER DATA ================= */
+
+        const submissions = [
+
+            {
+                name: "Md. Oliul Islam Bappy",
+                initials: "OI",
+                date: "Aug 27, 2026",
+                views: 23,
+                pdfUrl: "pdfs/bangladesh-studies-submission-1.pdf"
+            },
+
+            {
+                name: "Md. Ashfaq Shahamat Rahi",
+                initials: "AR",
+                date: "Aug 27, 2026",
+                views: 1,
+                pdfUrl: "pdfs/bangladesh-studies-submission-2.pdf"
+            },
+
+            {
+                name: "Sreadam Ghosh Sohag",
+                initials: "SG",
+                date: "Aug 26, 2026",
+                views: 1,
+                pdfUrl: "pdfs/bangladesh-studies-submission-3.pdf"
+            },
+
+            {
+                name: "Riti 787",
+                initials: "R",
+                date: "Aug 26, 2026",
+                views: 0,
+                pdfUrl: "pdfs/bangladesh-studies-submission-4.pdf"
+            },
+
+            {
+                name: "Sowrov Paul",
+                initials: "SP",
+                date: "Aug 26, 2026",
+                views: 1,
+                pdfUrl: "pdfs/bangladesh-studies-submission-5.pdf"
+            },
+
+            {
+                name: "Anik Hasan",
+                initials: "AH",
+                date: "Aug 25, 2026",
+                views: 4,
+                pdfUrl: "pdfs/bangladesh-studies-submission-6.pdf"
+            },
+
+            {
+                name: "Nabila Sultana",
+                initials: "NS",
+                date: "Aug 24, 2026",
+                views: 2,
+                pdfUrl: "pdfs/bangladesh-studies-submission-7.pdf"
+            }
+
+        ];
+
+
+        let selectedIndex = 0;
+
+        let currentPDF =
+            submissions[0].pdfUrl;
+
+
+
+        /* ================= SELECT SUBMISSION ================= */
+
+        function selectSubmission(index) {
+
+            selectedIndex = index;
+
+            const selected =
+                submissions[index];
+
+
+            currentPDF =
+                selected.pdfUrl;
+
+
+            /*
+                Active submission update
+            */
+
+            const allSubmissions =
+                document.querySelectorAll(
+                    ".submission"
+                );
+
+
+            allSubmissions.forEach(
+                (item, i) => {
+
+                    item.classList.toggle(
+                        "active",
+                        i === index
+                    );
+
+                }
+            );
+
+
+            /*
+                Contributor information
+            */
+
+            document.getElementById(
+                "contributorName"
+            ).textContent =
+                selected.name;
+
+
+            document.getElementById(
+                "contributorAvatar"
+            ).textContent =
+                selected.initials;
+
+
+            document.getElementById(
+                "contributorDate"
+            ).textContent =
+                "Submitted " + selected.date;
+
+
+            document.getElementById(
+                "selectedViews"
+            ).textContent =
+                selected.views;
+
+
+            /*
+                Change PDF
+            */
+
+            loadPDF(selected.pdfUrl);
+
+
+            showToast(
+                "Showing submission by " +
+                selected.name
+            );
+
+        }
+
+
+
+        /* ================= LOAD PDF ================= */
+
+        function loadPDF(url) {
+
+            const frame =
+                document.getElementById(
+                    "pdfFrame"
+                );
+
+
+            const placeholder =
+                document.getElementById(
+                    "pdfPlaceholder"
+                );
+
+
+            /*
+                Local PDF path.
+
+                Later Django backend থেকে
+                actual PDF URL আসবে।
+            */
+
+            frame.src = url;
+
+
+            frame.style.display = "block";
+
+
+            placeholder.style.display = "none";
+
+
+            /*
+                If the PDF does not exist,
+                browser may show its own
+                PDF error page.
+            */
+
+        }
+
+
+
+        /* ================= OPEN PDF ================= */
+
+        function openPDF() {
+
+            if (!currentPDF) {
+
+                showToast(
+                    "No PDF available."
+                );
+
+                return;
+            }
+
+
+            window.open(
+                currentPDF,
+                "_blank"
+            );
+
+        }
+
+
+
+        /* ================= DOWNLOAD ================= */
+
+        function downloadPDF() {
+
+            if (!currentPDF) {
+
+                showToast(
+                    "No PDF available."
+                );
+
+                return;
+            }
+
+
+            const link =
+                document.createElement("a");
+
+
+            link.href = currentPDF;
+
+            link.download =
+                "question-paper.pdf";
+
+
+            document.body.appendChild(link);
+
+            link.click();
+
+            link.remove();
+
+
+            showToast(
+                "Download started."
+            );
+
+        }
+
+
+
+        /* ================= FULLSCREEN ================= */
+
+        function fullscreenPDF() {
+
+            const viewer =
+                document.getElementById(
+                    "pdfArea"
+                );
+
+
+            if (viewer.requestFullscreen) {
+
+                viewer.requestFullscreen();
+
+            } else {
+
+                showToast(
+                    "Fullscreen is not supported."
+                );
+
+            }
+
+        }
+
+
+
+        /* ================= VOTE ================= */
+
+        function votePaper() {
+
+            const button =
+                document.getElementById(
+                    "voteBtn"
+                );
+
+
+            const count =
+                document.getElementById(
+                    "voteCount"
+                );
+
+
+            if (
+                button.classList.contains(
+                    "voted"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            let votes =
+                parseInt(
+                    count.textContent
+                );
+
+
+            votes++;
+
+
+            count.textContent =
+                votes;
+
+
+            button.classList.add(
+                "voted"
+            );
+
+
+            button.innerHTML =
+                "✓ Voted <span id='voteCount'>" +
+                votes +
+                "</span>";
+
+
+            showToast(
+                "Your vote has been recorded."
+            );
+
+        }
+
+
+
+        /* ================= SAVE ================= */
+
+        function savePaper() {
+
+            const button =
+                document.getElementById(
+                    "saveBtn"
+                );
+
+
+            const text =
+                document.getElementById(
+                    "saveText"
+                );
+
+
+            let library =
+                JSON.parse(
+                    localStorage.getItem(
+                        "studynest_library"
+                    ) || "[]"
+                );
+
+
+            const paperId =
+                "question-paper-bns101-spring26";
+
+
+            const existing =
+                library.find(
+                    item =>
+                        item.id === paperId
+                );
+
+
+            if (existing) {
+
+                library =
+                    library.filter(
+                        item =>
+                            item.id !== paperId
+                    );
+
+
+                localStorage.setItem(
+                    "studynest_library",
+                    JSON.stringify(library)
+                );
+
+
+                button.classList.remove(
+                    "saved"
+                );
+
+
+                text.textContent =
+                    "Save to My Library";
+
+
+                showToast(
+                    "Removed from My Library."
+                );
+
+
+                return;
+            }
+
+
+            const paper = {
+
+                id: paperId,
+
+                type: "question-paper",
+
+                title:
+                    "Bangladesh Studies (CSE), Spring 26, Final",
+
+                course:
+                    "Bangladesh Studies",
+
+                courseCode:
+                    "BNS101",
+
+                institution:
+                    "Daffodil International University",
+
+                department:
+                    "Computer Science & Engineering",
+
+                semester:
+                    "Spring 2026",
+
+                examType:
+                    "Final Examination",
+
+                submission:
+                    submissions[selectedIndex].name,
+
+                pdfUrl:
+                    submissions[selectedIndex].pdfUrl
+
+            };
+
+
+            library.push(paper);
+
+
+            localStorage.setItem(
+                "studynest_library",
+                JSON.stringify(library)
+            );
+
+
+            button.classList.add(
+                "saved"
+            );
+
+
+            text.textContent =
+                "Saved to My Library";
+
+
+            showToast(
+                "Question paper saved."
+            );
+
+        }
+
+
+
+        /* ================= CHECK SAVED ================= */
+
+        function checkSaved() {
+
+            const library =
+                JSON.parse(
+                    localStorage.getItem(
+                        "studynest_library"
+                    ) || "[]"
+                );
+
+
+            const exists =
+                library.some(
+                    item =>
+                        item.id ===
+                        "question-paper-bns101-spring26"
+                );
+
+
+            if (exists) {
+
+                document
+                    .getElementById("saveBtn")
+                    .classList
+                    .add("saved");
+
+
+                document
+                    .getElementById("saveText")
+                    .textContent =
+                    "Saved to My Library";
+
+            }
+
+        }
+
+
+
+        /* ================= REPORT ================= */
+
+        function reportPaper() {
+
+            showToast(
+                "Thanks. Your report has been noted."
+            );
+
+        }
+
+
+
+        /* ================= TOAST ================= */
+
+        function showToast(message) {
+
+            const toast =
+                document.getElementById(
+                    "toast"
+                );
+
+
+            toast.textContent =
+                message;
+
+
+            toast.classList.add(
+                "show"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                },
+                2500
+            );
+
+        }
+
+
+
+        /* ================= INITIAL LOAD ================= */
+
+        checkSaved();
+
+        /*
+            Demo mode:
+            PDF path দেওয়া আছে।
+
+            তোমার project-এ যদি PDF থাকে:
+            
+            UI/
+            ├── question-paper.html
+            └── pdfs/
+                ├── bangladesh-studies-submission-1.pdf
+                ├── bangladesh-studies-submission-2.pdf
+                └── ...
+
+            তাহলে viewer-এ actual PDF দেখাবে।
+        */
+
+        loadPDF(
+            submissions[0].pdfUrl
+        );
+
+    </script>
+
+
+    <!-- Shared JS Modules -->
+    <script src="js/routes.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/shared-ui.js"></script>
+
+    <script>
+        // Check for subject query parameter and update titles
+        const urlParams = new URLSearchParams(window.location.search);
+        const subject = urlParams.get('subject');
+        
+        if (subject) {
+            document.getElementById('paperTitle').textContent = subject;
+            document.getElementById('breadcrumbTitle').textContent = subject;
+            document.title = subject + ' - StudyNest';
+        }
+
+        // Initialize shared UI components (header, sidebar, footer)
+        SharedUI.init('questionPaper');
+    </script>
+</body>
+</html>

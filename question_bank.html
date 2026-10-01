@@ -1,0 +1,4638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudyNest - Campus Question Bank</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: #ffffff;
+            color: #101a3b;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        button,
+        select {
+            font-family: inherit;
+        }
+
+
+
+        /* =========================================
+           MAIN
+        ========================================= */
+
+        .main {
+
+            padding: 0 28px 40px;
+        }
+
+
+
+        /* =========================================
+           PAGE HEADER
+        ========================================= */
+
+        .page-header {
+
+            padding: 28px 10px 20px;
+        }
+
+
+        .page-header h1 {
+
+            font-size: 27px;
+
+            color: #10183b;
+
+            margin-bottom: 5px;
+        }
+
+
+        .breadcrumb {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 12px;
+
+            color: #647493;
+        }
+
+
+        .breadcrumb .active {
+
+            color: #3019ee;
+
+            font-weight: 500;
+        }
+
+
+
+        /* =========================================
+           FILTER BOX
+        ========================================= */
+
+        .filter-box {
+
+            border: 1px solid #e4e8f1;
+
+            border-radius: 10px;
+
+            padding: 17px;
+
+            background: white;
+        }
+
+
+        .filter-row {
+
+            display: grid;
+
+            grid-template-columns:
+                1.25fr
+                1fr
+                1fr
+                1.1fr
+                100px;
+
+            gap: 12px;
+
+            align-items: end;
+        }
+
+
+        .filter-group label {
+
+            display: block;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            color: #152043;
+
+            margin-bottom: 6px;
+        }
+
+
+        .select-wrapper {
+
+            position: relative;
+        }
+
+
+        .select-wrapper select {
+
+            width: 100%;
+
+            height: 41px;
+
+            border: 1px solid #e0e5ee;
+
+            border-radius: 7px;
+
+            padding: 0 35px 0 12px;
+
+            background: white;
+
+            color: #172044;
+
+            font-size: 12px;
+
+            appearance: none;
+
+            outline: none;
+
+            cursor: pointer;
+        }
+
+
+        .select-wrapper i {
+
+            position: absolute;
+
+            right: 12px;
+
+            top: 14px;
+
+            font-size: 10px;
+
+            color: #415477;
+
+            pointer-events: none;
+        }
+
+
+        .filter-btn {
+
+            height: 41px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #3a16f3,
+                    #4529ff
+                );
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .filter-btn i {
+
+            margin-right: 6px;
+        }
+
+
+
+        /* =========================================
+           RESULT HEADER
+        ========================================= */
+
+        .result-header {
+
+            margin-top: 20px;
+
+            margin-bottom: 13px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .result-count {
+
+            font-size: 13px;
+
+            color: #25375b;
+        }
+
+
+        .result-count strong {
+
+            font-size: 19px;
+
+            color: #10183b;
+        }
+
+
+        .result-right {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .sort-label {
+
+            font-size: 12px;
+
+            color: #556783;
+        }
+
+
+        .sort-select {
+
+            height: 36px;
+
+            padding: 0 32px 0 12px;
+
+            border: 1px solid #e0e5ee;
+
+            border-radius: 7px;
+
+            background: white;
+
+            color: #172044;
+
+            font-size: 12px;
+
+            outline: none;
+
+            cursor: pointer;
+        }
+
+
+
+        /* =========================================
+           QUESTION LIST
+        ========================================= */
+
+        .question-list {
+
+            border: 1px solid #e3e7f0;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            background: white;
+        }
+
+
+        .question-card {
+
+            min-height: 105px;
+
+            padding: 17px 18px;
+
+            display: grid;
+
+            grid-template-columns:
+                58px
+                1fr
+                auto;
+
+            gap: 16px;
+
+            align-items: center;
+
+            border-bottom: 1px solid #e9ecf3;
+        }
+
+
+        .question-card:last-child {
+
+            border-bottom: none;
+        }
+
+
+
+        /* QUESTION ICON */
+
+        .question-icon {
+
+            width: 52px;
+            height: 52px;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 23px;
+
+            color: #4322ef;
+
+            background: #f0eeff;
+        }
+
+
+        .question-icon.green {
+
+            color: #00a86b;
+
+            background: #e5f8ef;
+        }
+
+
+        .question-icon.orange {
+
+            color: #ef641c;
+
+            background: #fff0e8;
+        }
+
+
+        .question-icon.blue {
+
+            color: #1769e0;
+
+            background: #e9f1ff;
+        }
+
+
+        .question-icon.purple {
+
+            color: #6532e8;
+
+            background: #f0eaff;
+        }
+
+
+        .question-icon.yellow {
+
+            color: #e99b00;
+
+            background: #fff5df;
+        }
+
+
+
+        /* QUESTION INFO */
+
+        .question-info {
+
+            min-width: 0;
+        }
+
+
+        .question-title {
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            color: #111a3f;
+
+            margin-bottom: 4px;
+        }
+
+
+        .question-subtitle {
+
+            font-size: 11px;
+
+            color: #52658b;
+
+            margin-bottom: 8px;
+        }
+
+
+        .question-tags {
+
+            display: flex;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+        }
+
+
+        .tag {
+
+            padding: 3px 9px;
+
+            border-radius: 5px;
+
+            font-size: 9px;
+
+            font-weight: 600;
+
+            background: #edf3ff;
+
+            color: #2761c9;
+        }
+
+
+        .tag.semester {
+
+            background: #f1f2f7;
+
+            color: #4e5d79;
+        }
+
+
+        .tag.exam {
+
+            background: #e5f8ed;
+
+            color: #16844d;
+        }
+
+
+        .tag.mid {
+
+            background: #fff3dc;
+
+            color: #bd7a00;
+        }
+
+
+
+        /* QUESTION ACTIONS */
+
+        .question-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+        }
+
+
+        .view-btn {
+
+            height: 38px;
+
+            min-width: 118px;
+
+            padding: 0 15px;
+
+            border: 1px solid #9688ff;
+
+            border-radius: 6px;
+
+            background: white;
+
+            color: #3019ee;
+
+            font-size: 11px;
+
+            font-weight: 500;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+        }
+
+
+        .view-btn:hover {
+
+            background: #f7f5ff;
+        }
+
+
+        .vote-btn {
+
+            height: 38px;
+
+            min-width: 115px;
+
+            padding: 0 15px;
+
+            border: 1px solid #9688ff;
+
+            border-radius: 6px;
+
+            background: white;
+
+            color: #3019ee;
+
+            font-size: 11px;
+
+            font-weight: 500;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+        }
+
+
+        .vote-btn:hover {
+
+            background: #f7f5ff;
+        }
+
+
+        .save-btn {
+
+            width: 40px;
+
+            height: 38px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #405577;
+
+            font-size: 18px;
+
+            cursor: pointer;
+        }
+
+
+        .save-btn:hover {
+
+            color: #3019ee;
+        }
+
+
+        .save-btn.saved {
+
+            color: #3019ee;
+        }
+
+
+
+        /* =========================================
+           PAGINATION
+        ========================================= */
+
+        .pagination {
+
+            margin-top: 20px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 7px;
+        }
+
+
+        .page-btn {
+
+            width: 34px;
+            height: 34px;
+
+            border: 1px solid #e0e5ee;
+
+            background: white;
+
+            border-radius: 6px;
+
+            color: #304467;
+
+            font-size: 12px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .page-btn:hover {
+
+            border-color: #7d6cff;
+
+            color: #3019ee;
+        }
+
+
+        .page-btn.active {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #3514ef,
+                    #5432ff
+                );
+
+            border-color: #3514ef;
+
+            color: white;
+        }
+
+
+        .page-dots {
+
+            width: 30px;
+
+            text-align: center;
+
+            color: #596b89;
+
+            font-size: 12px;
+        }
+
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1200px) {
+
+            .filter-row {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .filter-btn {
+
+                margin-top: 4px;
+            }
+
+
+            .question-card {
+
+                grid-template-columns:
+                    55px
+                    1fr;
+            }
+
+
+            .question-actions {
+
+                grid-column: 2;
+
+                justify-content: flex-start;
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .navbar {
+
+                padding: 0 18px;
+            }
+
+
+            .main {
+
+                padding: 0 15px 30px;
+            }
+
+
+            .page-header {
+
+                padding-left: 2px;
+            }
+
+
+            .page-header h1 {
+
+                font-size: 22px;
+            }
+
+
+            .filter-row {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .filter-btn {
+
+                width: 100%;
+            }
+
+
+            .result-header {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 10px;
+            }
+
+
+            .question-card {
+
+                padding: 15px;
+
+                grid-template-columns:
+                    48px
+                    1fr;
+            }
+
+
+            .question-icon {
+
+                width: 44px;
+                height: 44px;
+
+                font-size: 19px;
+            }
+
+
+            .question-title {
+
+                font-size: 14px;
+            }
+
+
+            .question-actions {
+
+                grid-column: 1 / -1;
+
+                width: 100%;
+
+                display: grid;
+
+                grid-template-columns:
+                    1fr 1fr 40px;
+            }
+
+
+            .view-btn,
+            .vote-btn {
+
+                width: 100%;
+
+                min-width: 0;
+            }
+
+
+            .pagination {
+
+                gap: 4px;
+            }
+        }
+
+
+        /* School Mode Specific Styles */
+        .school-page-header { padding: 28px 0 20px; }
+        .school-page-title { font-size: 27px; color: #10183b; margin-bottom: 5px; }
+        .school-breadcrumb { display: flex; align-items: center; gap: 9px; font-size: 12px; color: #647493; }
+
+        .school-filter-box { border: 1px solid #e4e8f1; border-radius: 10px; padding: 17px; background: white; margin-bottom: 25px; position: relative; }
+        .school-reset-btn { background: none; border: none; color: #3019ee; font-size: 12px; font-weight: 500; cursor: pointer; position: absolute; right: 20px; top: -35px; }
+        .school-filter-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; align-items: end; margin-bottom: 15px; }
+        .school-filter-row-5 { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 100px; gap: 15px; align-items: end; }
+        .school-filter-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; align-items: end; margin-bottom: 15px; }
+
+        .school-filter-label { display: block; font-size: 12px; font-weight: 600; color: #152043; margin-bottom: 7px; }
+        .school-filter-select-wrapper { position: relative; }
+        .school-filter-select { width: 100%; height: 42px; border: 1px solid #e2e6ef; border-radius: 7px; padding: 0 35px 0 12px; font-size: 13px; color: #172044; background: white; appearance: none; outline: none; cursor: pointer; }
+        .school-filter-icon { position: absolute; right: 12px; top: 15px; font-size: 11px; color: #415477; pointer-events: none; }
+        .school-search-btn { height: 42px; border: none; border-radius: 7px; background: linear-gradient(90deg, #3a16f3, #4529ff); color: white; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+
+        .school-container { min-height: 200px; }
+        .school-empty-state { background: white; border: 1px solid #e4e8f1; border-radius: 10px; padding: 40px; text-align: center; color: #647493; }
+        .school-empty-icon { font-size: 35px; color: #a0abc0; margin-bottom: 15px; }
+        .school-empty-title { color: #10183b; font-size: 18px; margin-bottom: 8px; }
+        .school-empty-desc { font-size: 13px; max-width: 400px; margin: 0 auto; }
+
+        .school-results-header { margin-bottom: 20px; }
+        .school-results-title { font-size: 20px; color: #10183b; margin-bottom: 4px; }
+        .school-results-subtitle { font-size: 13px; color: #647493; }
+
+        .school-qb-card { border: 1px solid #e4e8f1; border-radius: 9px; padding: 20px; background: white; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .school-qb-card-badge-row { display: flex; gap: 10px; margin-bottom: 8px; }
+        .school-qb-card-badge { padding: 3px 9px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+        .school-qb-card-subject { color: #647493; font-size: 12px; font-weight: 500; }
+        .school-qb-card-subject i { margin-right: 4px; }
+        .school-qb-card-title { font-size: 16px; color: #111a3f; margin-bottom: 5px; }
+        .school-qb-card-meta { font-size: 12px; color: #647493; margin: 0; }
+        .school-qb-card-actions { display: flex; gap: 10px; align-items: center; }
+        .school-qb-vote-btn { height: 38px; padding: 0 15px; background: white; color: #647493; border: 1px solid #e4e8f1; border-radius: 7px; font-size: 13px; font-weight: 500; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+        .school-qb-save-btn { height: 38px; width: 38px; display: flex; align-items: center; justify-content: center; background: white; color: #647493; border: 1px solid #e4e8f1; border-radius: 7px; font-size: 14px; cursor: pointer; transition: 0.2s; }
+        .school-qb-view-btn { height: 38px; padding: 0 15px; background: #3019ee; color: white; border: none; border-radius: 7px; font-size: 13px; font-weight: 500; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+
+        /* College Mode Specific Styles */
+        .college-qb-page-header { padding: 28px 0 20px; }
+        .college-qb-page-title { font-size: 27px; color: #10183b; margin-bottom: 5px; }
+        .college-qb-breadcrumb { display: flex; align-items: center; gap: 9px; font-size: 12px; color: #647493; }
+
+        .college-qb-filter-box { border: 1px solid #e4e8f1; border-radius: 10px; padding: 17px; background: white; margin-bottom: 25px; }
+        .college-qb-filter-row { display: flex; gap: 15px; align-items: flex-end; flex-wrap: nowrap; margin-bottom: 15px; overflow-x: auto; padding-bottom: 5px; }
+        .college-qb-filter-row:last-child { margin-bottom: 0; }
+        .college-qb-filter-field { flex: 1; min-width: 120px; }
+
+        #collegeBoardContainer { min-width: 120px; }
+        #collegeCollegeContainer { min-width: 120px; }
+        #collegeSubjectContainer { min-width: 140px; }
+        #collegeExamTypeContainer { min-width: 150px; }
+        #collegeExamYearContainer { min-width: 90px; }
+        #collegeSearchContainer { min-width: 100px; }
+
+        .college-qb-filter-label { display: block; font-size: 12px; font-weight: 600; color: #152043; margin-bottom: 7px; }
+        .college-qb-search-label { visibility: hidden; }
+        .college-qb-filter-select-wrapper { position: relative; }
+        .college-qb-filter-select { width: 100%; height: 42px; border: 1px solid #e2e6ef; border-radius: 7px; padding: 0 35px 0 12px; font-size: 13px; color: #172044; background: white; appearance: none; outline: none; cursor: pointer; }
+        .college-qb-filter-select:disabled { background: #f8f9fc; color: #a0abc0; cursor: not-allowed; }
+        .college-qb-filter-icon { position: absolute; right: 12px; top: 15px; font-size: 11px; color: #415477; pointer-events: none; }
+
+        .college-qb-search-btn { width: 100%; height: 42px; border: none; border-radius: 7px; background: linear-gradient(90deg, #3a16f3, #4529ff); color: white; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+
+        .college-qb-container { min-height: 200px; }
+        .college-qb-empty-state { background: white; border: 1px solid #e4e8f1; border-radius: 10px; padding: 40px; text-align: center; color: #647493; }
+        .college-qb-empty-icon { font-size: 35px; margin-bottom: 15px; }
+        .college-qb-empty-title { color: #10183b; font-size: 18px; margin-bottom: 8px; }
+        .college-qb-empty-desc { font-size: 13px; max-width: 400px; margin: 0 auto; }
+
+        .college-qb-results-header { margin-bottom: 20px; font-size: 14px; font-weight: 600; color: #152043; }
+
+        .college-qb-result-row { background: white; border: 1px solid #e4e8f1; border-radius: 8px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; transition: 0.2s; }
+        .college-qb-result-row:hover { border-color: #3019ee; box-shadow: 0 4px 12px rgba(48, 25, 238, 0.05); }
+        .college-qb-result-info { flex: 1; }
+        .college-qb-result-title { font-size: 16px; font-weight: 600; color: #10183b; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        .college-qb-result-subtitle { font-size: 14px; color: #415477; margin-bottom: 6px; }
+        .college-qb-result-meta { font-size: 12px; color: #647493; display: flex; gap: 8px; align-items: center; }
+
+        .college-qb-badge-board { display: inline-block; padding: 4px 10px; border-radius: 4px; background: #f0efff; color: #3b21ee; font-size: 11px; font-weight: 600; }
+        .college-qb-badge-college { display: inline-block; padding: 4px 10px; border-radius: 4px; background: #fff4e5; color: #e88b00; font-size: 11px; font-weight: 600; }
+
+        .college-qb-view-btn { height: 36px; padding: 0 16px; border: none; border-radius: 6px; background: #f4f6fa; color: #3019ee; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; white-space: nowrap; margin-left: 15px; }
+        .college-qb-view-btn:hover { background: #3019ee; color: white; }
+
+        .hidden { display: none !important; }
+
+        @media (max-width: 768px) {
+            .college-qb-filter-field { min-width: 100%; }
+            .college-qb-result-row { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .college-qb-view-btn { margin-left: 0; width: 100%; }
+        }
+
+        /* =========================================
+           NATIONAL UNIVERSITY MODE
+        ========================================= */
+        .nu-qb-page-header { margin-bottom: 25px; padding-top: 25px; }
+        .nu-qb-page-title { font-size: 26px; color: #101a3b; margin-bottom: 5px; font-weight: 700; }
+        .nu-qb-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #647493; }
+
+        .nu-qb-filter-box { background: white; border: 1px solid #e4e8f1; border-radius: 12px; padding: 22px; margin-bottom: 30px; }
+
+        .nu-qb-filter-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 15px; }
+        .nu-qb-filter-row:last-child { margin-bottom: 0; }
+
+        .nu-qb-filter-field { display: flex; flex-direction: column; gap: 8px; }
+        .nu-qb-filter-label { font-size: 12px; font-weight: 600; color: #152043; }
+        .nu-qb-filter-select-wrapper { position: relative; }
+        .nu-qb-filter-select { width: 100%; height: 42px; padding: 0 14px; border: 1px solid #e2e6ef; border-radius: 8px; font-size: 13px; color: #172044; background: white; appearance: none; cursor: pointer; outline: none; }
+        .nu-qb-filter-select:disabled { background: #f8f9fb; color: #a1abc0; cursor: not-allowed; }
+        .nu-qb-filter-icon { position: absolute; right: 14px; top: 15px; font-size: 12px; color: #415477; pointer-events: none; }
+
+        .nu-qb-search-btn { height: 42px; background: #3019ee; color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; align-self: end; width: 100%; }
+        .nu-qb-search-btn:disabled { background: #c6cbea; cursor: not-allowed; }
+        .nu-qb-search-btn:not(:disabled):hover { background: #2614bd; }
+
+        .nu-qb-container { display: flex; flex-direction: column; gap: 12px; }
+
+        .nu-qb-empty-state { text-align: center; padding: 50px 20px; background: white; border: 1px solid #e4e8f1; border-radius: 12px; color: #647493; }
+        .nu-qb-empty-icon { font-size: 40px; margin-bottom: 15px; color: #a0abc0; }
+        .nu-qb-empty-title { color: #10183b; font-size: 18px; margin-bottom: 8px; font-weight: 600; }
+        .nu-qb-empty-desc { font-size: 13px; max-width: 400px; margin: 0 auto; }
+
+        .nu-qb-card { display: flex; justify-content: space-between; align-items: center; background: white; border: 1px solid #e4e8f1; border-radius: 10px; padding: 18px 22px; transition: 0.2s; }
+        .nu-qb-card:hover { border-color: #d0d6e5; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); }
+        .nu-qb-card-info { display: flex; flex-direction: column; gap: 6px; }
+        .nu-qb-card-title { font-size: 16px; font-weight: 600; color: #101a3b; display: flex; align-items: center; gap: 8px; }
+        .nu-qb-card-subtitle { font-size: 13px; color: #415477; font-weight: 500; }
+        .nu-qb-card-tags { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 5px; }
+        .nu-qb-badge { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+        .nu-qb-badge-national { background: #f0efff; color: #3019ee; }
+        .nu-qb-badge-college { background: #e5f6fd; color: #0288d1; }
+        .nu-qb-badge-meta { background: #f8f9fb; color: #647493; border: 1px solid #e4e8f1; }
+
+        .nu-qb-card-actions { display: flex; gap: 10px; }
+        .nu-qb-view-btn { height: 34px; padding: 0 16px; background: #3019ee; color: white; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+
+        @media (max-width: 768px) {
+            .nu-qb-card { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .nu-qb-card-actions { width: 100%; justify-content: flex-end; }
+        }
+
+        /* =========================================
+           MEDICAL QUESTION BANK
+        ========================================= */
+        .medical-question-bank { display: none; }
+        .medical-question-header { margin-bottom: 20px; }
+        .medical-question-header h1 { font-size: 24px; color: #10183b; margin-bottom: 6px; }
+        .medical-question-header .breadcrumb { font-size: 13px; color: #647493; }
+        .medical-question-filters { background: white; border: 1px solid #e4e8f1; border-radius: 10px; padding: 20px; margin-bottom: 25px; }
+        .medical-filter-row { display: flex; flex-wrap: wrap; gap: 15px; align-items: flex-end; }
+        .medical-filter-group { flex: 1; min-width: 150px; }
+        .medical-filter-group label { display: block; font-size: 12px; font-weight: 600; color: #152043; margin-bottom: 6px; }
+        .medical-filter-group select { width: 100%; height: 40px; border: 1px solid #e0e5ee; border-radius: 7px; padding: 0 12px; font-size: 13px; outline: none; background: white; }
+        .medical-filter-actions { display: flex; gap: 10px; }
+        .medical-search-btn { height: 40px; padding: 0 25px; background: linear-gradient(90deg, #3a16f3, #4529ff); color: white; border: none; border-radius: 7px; font-size: 13px; font-weight: 600; cursor: pointer; }
+        .medical-search-btn:disabled { background: #a5b1c2; cursor: not-allowed; }
+        .medical-reset-btn { height: 40px; padding: 0 20px; background: #f1f3f8; color: #415477; border: none; border-radius: 7px; font-size: 13px; font-weight: 600; cursor: pointer; }
+        .medical-question-results { margin-top: 10px; }
+        .medical-question-card { background: white; border: 1px solid #e4e8f1; border-radius: 10px; padding: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .medical-question-info { flex: 1; }
+        .medical-question-title { font-size: 16px; font-weight: 600; color: #10183b; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+        .medical-question-subtitle { font-size: 13px; color: #556783; margin-bottom: 8px; }
+        .medical-question-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+        .medical-question-badge { padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+        .medical-badge-card { background: #eef2ff; color: #3019ee; }
+        .medical-badge-term { background: #fff4e5; color: #ff9800; }
+        .medical-badge-prof { background: #fdf2f8; color: #e91e63; }
+        .medical-badge-meta { background: #f1f5f9; color: #475569; }
+        .medical-question-actions { margin-left: 20px; }
+        .medical-view-btn { height: 36px; padding: 0 16px; background: #3019ee; color: white; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+        .medical-empty-state { text-align: center; padding: 50px 20px; background: white; border: 1px solid #e4e8f1; border-radius: 10px; }
+        .medical-empty-state h3 { font-size: 18px; color: #10183b; margin: 15px 0 5px; }
+        .medical-empty-state p { font-size: 14px; color: #647493; }
+
+        .medical-contribute-btn { display: inline-block; margin-top: 15px; height: 36px; line-height: 36px; padding: 0 20px; background: #eef2ff; color: #3019ee; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid #d4dcf5; }
+        .medical-contribute-btn:hover { background: #e0e7ff; }
+        .medical-contribute-btn i { margin-right: 6px; }
+        .medical-mb-15 { margin-bottom: 15px; }
+        .medical-icon-large { font-size: 40px; }
+
+        @media (max-width: 768px) {
+            .medical-filter-row { flex-direction: column; align-items: stretch; }
+            .medical-question-card { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .medical-question-actions { margin-left: 0; width: 100%; display: flex; justify-content: flex-end; }
+        }
+
+
+    /* =========================================
+       POLYTECHNIC QUESTION BANK
+    ========================================= */
+    .polytechnic-question-bank {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .poly-qb-header {
+        margin-bottom: 25px;
+    }
+    .poly-qb-title {
+        font-size: 24px;
+        color: #10183b;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+    .poly-qb-subtitle {
+        font-size: 14px;
+        color: #647493;
+    }
+
+    .poly-qb-filter-card {
+        background: #fff;
+        border: 1px solid #e6e9f1;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .poly-qb-filter-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        align-items: flex-end;
+    }
+
+    .poly-qb-filter-group {
+        flex: 1;
+        min-width: 160px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .poly-qb-filter-group label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #10183b;
+    }
+    .poly-qb-filter-group select {
+        padding: 10px 12px;
+        border: 1px solid #d0d5dd;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #10183b;
+        background-color: #fff;
+        outline: none;
+        appearance: auto;
+        width: 100%;
+        box-sizing: border-box;
+        text-overflow: ellipsis;
+    }
+    .poly-qb-filter-group select:disabled {
+        background-color: #f8fafc;
+        color: #94a3b8;
+    }
+    .poly-qb-filter-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+        width: 100%;
+        justify-content: flex-end;
+    }
+    .poly-qb-btn {
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s;
+    }
+    .poly-qb-search-btn {
+        background: #3019ee;
+        color: #fff;
+    }
+    .poly-qb-search-btn:disabled {
+        background: #94a3b8;
+        cursor: not-allowed;
+    }
+    .poly-qb-reset-btn {
+        background: #f1f5f9;
+        color: #475569;
+    }
+    .poly-qb-reset-btn:hover {
+        background: #e2e8f0;
+    }
+
+    .poly-qb-empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        background: #fff;
+        border-radius: 12px;
+        border: 1px solid #e6e9f1;
+    }
+    .poly-qb-empty-icon {
+        font-size: 48px;
+        margin-bottom: 15px;
+    }
+    .poly-qb-empty-state h3 {
+        font-size: 18px;
+        color: #10183b;
+        margin-bottom: 8px;
+    }
+    .poly-qb-empty-state p {
+        font-size: 14px;
+        color: #647493;
+        margin-bottom: 20px;
+    }
+
+    /* Result rows */
+    .poly-qb-result-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    .poly-qb-result-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #10183b;
+    }
+    .poly-qb-result-row {
+        background: #fff;
+        border: 1px solid #e6e9f1;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .poly-qb-result-row:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        transform: translateY(-2px);
+    }
+    .poly-qb-result-left {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .poly-qb-result-paper-name {
+        font-size: 16px;
+        font-weight: 600;
+        color: #10183b;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .poly-qb-result-paper-meta {
+        font-size: 13px;
+        color: #647493;
+    }
+    .poly-qb-result-paper-meta span {
+        margin-right: 10px;
+    }
+    .poly-qb-result-badges {
+        display: flex;
+        gap: 8px;
+        margin-top: 5px;
+    }
+    .poly-qb-badge {
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        background: #f1f5f9;
+        color: #475569;
+    }
+    .poly-qb-badge-ct { background: #e0e7ff; color: #4338ca; }
+    .poly-qb-badge-mid { background: #fef3c7; color: #d97706; }
+    .poly-qb-badge-final { background: #dce7ff; color: #3019ee; }
+    .poly-qb-badge-lab { background: #ecfccb; color: #4d7c0f; }
+
+    .poly-qb-result-right button {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 8px 16px;
+        border-radius: 6px;
+        color: #3019ee;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .poly-qb-result-right button:hover {
+        background: #eff6ff;
+        border-color: #bfdbfe;
+    }
+
+    @media(max-width: 768px) {
+        .poly-qb-filter-row {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .poly-qb-result-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        .poly-qb-result-right {
+            width: 100%;
+        }
+        .poly-qb-result-right button {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+</style>
+
+    <link rel="stylesheet" href="css/shared.css">
+</head>
+
+
+<body>
+
+
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+
+<header class="navbar">
+
+
+    <div class="nav-left">
+
+
+        <button type="button"
+            class="hamburger"
+            id="hamburgerBtn"
+            aria-label="Open menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+
+        <a
+            href="home.html"
+            class="logo">
+
+
+            <div class="logo-icon">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+            </div>
+
+
+            <div class="logo-text">
+
+                <h2>
+                    StudyNest
+                </h2>
+
+                <p>
+                    Learn. Share. Grow.
+                </p>
+
+            </div>
+
+        </a>
+
+    </div>
+
+
+
+    <div class="nav-right">
+
+
+        <div class="nav-icon">
+
+            <i class="fa-regular fa-bell"></i>
+
+            <span class="badge">
+                3
+            </span>
+
+        </div>
+
+
+        <div class="nav-divider"></div>
+
+
+        <div class="profile">
+
+
+            <div class="profile-img">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+
+            <div class="profile-info">
+
+                <strong id="userName">
+                    Anik
+                </strong>
+
+                <span>
+                    DIU Student
+                </span>
+
+            </div>
+
+
+            <div class="profile-arrow">
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<section class="main" id="universityMain" aria-label="University Question Bank">
+
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="page-header">
+
+
+        <h1>
+            Campus Question Bank
+        </h1>
+
+
+        <div class="breadcrumb">
+
+            <span>
+                Home
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+            <span class="active">
+                Campus Question Bank
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         FILTERS
+    ========================================= -->
+
+    <section class="filter-box">
+
+
+        <div class="filter-row">
+
+
+            <!-- UNIVERSITY -->
+
+            <div class="filter-group">
+
+                <label>
+                    University
+                </label>
+
+
+                <div class="select-wrapper">
+
+                    <select id="universitySelect">
+
+                        <option>
+                            Daffodil International University
+                        </option>
+
+                        <option>
+                            University of Dhaka
+                        </option>
+
+                        <option>
+                            Bangladesh University of Engineering and Technology
+                        </option>
+
+                        <option>
+                            BRAC University
+                        </option>
+
+                    </select>
+
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- DEPARTMENT -->
+
+            <div class="filter-group">
+
+                <label>
+                    Department
+                </label>
+
+
+                <div class="select-wrapper">
+
+                    <select id="departmentSelect">
+
+                        <option>
+                            All Departments
+                        </option>
+
+                        <option>
+                            Computer Science &amp; Engineering (CSE)
+                        </option>
+
+                        <option>
+                            Software Engineering
+                        </option>
+
+                        <option>
+                            Electrical &amp; Electronic Engineering
+                        </option>
+
+                        <option>
+                            Civil Engineering
+                        </option>
+
+                        <option>
+                            Business Administration
+                        </option>
+
+                    </select>
+
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- COURSE -->
+
+            <div class="filter-group">
+
+                <label>
+                    Course / Subject
+                </label>
+
+
+                <div class="select-wrapper">
+
+                    <select id="courseSelect">
+
+                        <option>
+                            All Courses
+                        </option>
+
+                        <option>
+                            Data Structures
+                        </option>
+
+                        <option>
+                            Object Oriented Programming
+                        </option>
+
+                        <option>
+                            Database Management System
+                        </option>
+
+                        <option>
+                            Discrete Mathematics
+                        </option>
+
+                        <option>
+                            Computer Networks
+                        </option>
+
+                        <option>
+                            Computer Graphics
+                        </option>
+
+                    </select>
+
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SEMESTER -->
+
+            <div class="filter-group">
+
+                <label>
+                    Semester / Year / Class
+                </label>
+
+
+                <div class="select-wrapper">
+
+                    <select id="semesterSelect">
+
+                        <option>
+                            All Semesters / Years / Classes
+                        </option>
+
+                        <option>
+                            Summer 2026
+                        </option>
+
+                        <option>
+                            Spring 2026
+                        </option>
+
+                        <option>
+                            Fall 2025
+                        </option>
+
+                        <option>
+                            Final
+                        </option>
+
+                        <option>
+                            Mid Term
+                        </option>
+
+                    </select>
+
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FILTER -->
+
+            <button type="button"
+                class="filter-btn"
+                onclick="applyFilter()">
+
+                <i class="fa-solid fa-filter"></i>
+
+                Filter
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         RESULT HEADER
+    ========================================= -->
+
+    <div class="result-header">
+
+
+        <div class="result-count">
+
+            <strong id="resultCount">
+                1,511
+            </strong>
+
+            papers found
+
+        </div>
+
+
+
+        <div class="result-right">
+
+            <span class="sort-label">
+                Sort by:
+            </span>
+
+
+            <select
+                class="sort-select"
+                id="sortSelect">
+
+                <option>
+                    Latest
+                </option>
+
+                <option>
+                    Most Voted
+                </option>
+
+                <option>
+                    Most Viewed
+                </option>
+
+                <option>
+                    Oldest
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         QUESTION LIST
+    ========================================= -->
+
+    <section class="question-list">
+
+
+
+        <!-- QUESTION 1 -->
+
+        <div class="question-card">
+
+
+            <div class="question-icon">
+
+                <i class="fa-solid fa-code"></i>
+
+            </div>
+
+
+            <div class="question-info">
+
+
+                <div class="question-title">
+
+                    Programming and Problem Solving
+
+                </div>
+
+
+                <div class="question-subtitle">
+
+                    CSE 201 — Object Oriented Programming
+
+                </div>
+
+
+                <div class="question-tags">
+
+                    <span class="tag">
+                        CSE
+                    </span>
+
+                    <span class="tag semester">
+                        Summer 26
+                    </span>
+
+                    <span class="tag exam">
+                        Final
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="question-actions">
+
+
+                <button type="button" class="view-btn" onclick="window.location.href='question_paper.html?subject=Programming%20and%20Problem%20Solving'">
+
+                    <i class="fa-regular fa-file-pdf"></i>
+
+                    View PDF
+
+                </button>
+
+
+                <button type="button" class="vote-btn">
+
+                    <i class="fa-regular fa-thumbs-up"></i>
+
+                    Vote (128)
+
+                </button>
+
+
+                <button type="button" class="save-btn" aria-label="Save">
+
+                    <i class="fa-regular fa-bookmark"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUESTION 2 -->
+
+        <div class="question-card">
+
+
+            <div class="question-icon green">
+
+                <i class="fa-solid fa-database"></i>
+
+            </div>
+
+
+            <div class="question-info">
+
+
+                <div class="question-title">
+
+                    Data Structure
+
+                </div>
+
+
+                <div class="question-subtitle">
+
+                    CSE 204 — Data Structures
+
+                </div>
+
+
+                <div class="question-tags">
+
+                    <span class="tag">
+                        CSE
+                    </span>
+
+                    <span class="tag semester">
+                        Summer 26
+                    </span>
+
+                    <span class="tag exam">
+                        Final
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="question-actions">
+
+
+                <button type="button" class="view-btn" onclick="window.location.href='question_paper.html?subject=Data%20Structure'">
+
+                    <i class="fa-regular fa-file-pdf"></i>
+
+                    View PDF
+
+                </button>
+
+
+                <button type="button" class="vote-btn">
+
+                    <i class="fa-regular fa-thumbs-up"></i>
+
+                    Vote (96)
+
+                </button>
+
+
+                <button type="button" class="save-btn" aria-label="Save">
+
+                    <i class="fa-regular fa-bookmark"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUESTION 3 -->
+
+        <div class="question-card">
+
+
+            <div class="question-icon orange">
+
+                <i class="fa-solid fa-square-root-variable"></i>
+
+            </div>
+
+
+            <div class="question-info">
+
+
+                <div class="question-title">
+
+                    Discrete Mathematics
+
+                </div>
+
+
+                <div class="question-subtitle">
+
+                    MAT 103 — Discrete Mathematics
+
+                </div>
+
+
+                <div class="question-tags">
+
+                    <span class="tag">
+                        CSE
+                    </span>
+
+                    <span class="tag semester">
+                        Fall 25
+                    </span>
+
+                    <span class="tag mid">
+                        Mid Term
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="question-actions">
+
+
+                <button type="button" class="view-btn" onclick="window.location.href='question_paper.html?subject=Discrete%20Mathematics'">
+
+                    <i class="fa-regular fa-file-pdf"></i>
+
+                    View PDF
+
+                </button>
+
+
+                <button type="button" class="vote-btn">
+
+                    <i class="fa-regular fa-thumbs-up"></i>
+
+                    Vote (142)
+
+                </button>
+
+
+                <button type="button" class="save-btn" aria-label="Save">
+
+                    <i class="fa-regular fa-bookmark"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUESTION 4 -->
+
+        <div class="question-card">
+
+
+            <div class="question-icon blue">
+
+                <i class="fa-solid fa-code"></i>
+
+            </div>
+
+
+            <div class="question-info">
+
+
+                <div class="question-title">
+
+                    Object Oriented Programming (OOP)
+
+                </div>
+
+
+                <div class="question-subtitle">
+
+                    CSE 201 — Object Oriented Programming
+
+                </div>
+
+
+                <div class="question-tags">
+
+                    <span class="tag">
+                        CSE
+                    </span>
+
+                    <span class="tag semester">
+                        Spring 25
+                    </span>
+
+                    <span class="tag exam">
+                        Final
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="question-actions">
+
+
+                <button type="button" class="view-btn" onclick="window.location.href='question_paper.html?subject=Object%20Oriented%20Programming%20(OOP)'">
+
+                    <i class="fa-regular fa-file-pdf"></i>
+
+                    View PDF
+
+                </button>
+
+
+                <button type="button" class="vote-btn">
+
+                    <i class="fa-regular fa-thumbs-up"></i>
+
+                    Vote (87)
+
+                </button>
+
+
+                <button type="button" class="save-btn" aria-label="Save">
+
+                    <i class="fa-regular fa-bookmark"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUESTION 5 -->
+
+        <div class="question-card">
+
+
+            <div class="question-icon purple">
+
+                <i class="fa-solid fa-table"></i>
+
+            </div>
+
+
+            <div class="question-info">
+
+
+                <div class="question-title">
+
+                    Database Management System
+
+                </div>
+
+
+                <div class="question-subtitle">
+
+                    CSE 303 — Database Management System
+
+                </div>
+
+
+                <div class="question-tags">
+
+                    <span class="tag">
+                        CSE
+                    </span>
+
+                    <span class="tag semester">
+                        Summer 26
+                    </span>
+
+                    <span class="tag exam">
+                        Final
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="question-actions">
+
+
+                <button type="button" class="view-btn" onclick="window.location.href='question_paper.html?subject=Database%20Management%20System'">
+
+                    <i class="fa-regular fa-file-pdf"></i>
+
+                    View PDF
+
+                </button>
+
+
+                <button type="button" class="vote-btn">
+
+                    <i class="fa-regular fa-thumbs-up"></i>
+
+                    Vote (64)
+
+                </button>
+
+
+                <button type="button" class="save-btn" aria-label="Save">
+
+                    <i class="fa-regular fa-bookmark"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUESTION 6 -->
+
+        <div class="question-card">
+
+
+            <div class="question-icon yellow">
+
+                <i class="fa-solid fa-microchip"></i>
+
+            </div>
+
+
+            <div class="question-info">
+
+
+                <div class="question-title">
+
+                    Digital Logic Design
+
+                </div>
+
+
+                <div class="question-subtitle">
+
+                    EEE 201 — Digital Logic Design
+
+                </div>
+
+
+                <div class="question-tags">
+
+                    <span class="tag">
+                        EEE
+                    </span>
+
+                    <span class="tag semester">
+                        Fall 25
+                    </span>
+
+                    <span class="tag exam">
+                        Final
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="question-actions">
+
+
+                <button type="button" class="view-btn" onclick="window.location.href='question_paper.html?subject=Digital%20Logic%20Design'">
+
+                    <i class="fa-regular fa-file-pdf"></i>
+
+                    View PDF
+
+                </button>
+
+
+                <button type="button" class="vote-btn">
+
+                    <i class="fa-regular fa-thumbs-up"></i>
+
+                    Vote (71)
+
+                </button>
+
+
+                <button type="button" class="save-btn" aria-label="Save">
+
+                    <i class="fa-regular fa-bookmark"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =========================================
+         PAGINATION
+    ========================================= -->
+
+    <div class="pagination">
+
+
+        <button type="button"
+            class="page-btn" aria-label="Previous Page">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+
+
+        <button type="button"
+            class="page-btn active">
+
+            1
+
+        </button>
+
+
+        <button type="button"
+            class="page-btn">
+
+            2
+
+        </button>
+
+
+        <button type="button"
+            class="page-btn">
+
+            3
+
+        </button>
+
+
+        <button type="button"
+            class="page-btn">
+
+            4
+
+        </button>
+
+
+        <button type="button"
+            class="page-btn">
+
+            5
+
+        </button>
+
+
+        <span class="page-dots">
+            ...
+        </span>
+
+
+        <button type="button"
+            class="page-btn">
+
+            16
+
+        </button>
+
+
+        <button type="button"
+            class="page-btn" aria-label="Next Page">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+    </div>
+
+
+
+    </section>
+
+    <!-- =========================================
+         SCHOOL MAIN
+    ========================================= -->
+    <section class="main school-mode" id="schoolMain" aria-label="School Question Bank" style="display: none;">
+
+        <!-- PAGE HEADER -->
+        <section class="page-header">
+            <h1 >School Question Bank</h1>
+            <div class="breadcrumb">
+                Find question papers by board, school, subject and examination.
+            </div>
+        </section>
+
+        <!-- FILTER BOX -->
+        <section class="filter-box">
+
+
+            <div class="filter-row" id="qbFirstRow">
+
+                <!-- CLASS -->
+                <div class="filter-group">
+                    <label >Class</label>
+                    <div class="select-wrapper">
+                        <select id="qbSchoolClassSelect"  onchange="onQbClassChange()"></select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <!-- QUESTION TYPE (Class 10) -->
+                <div class="filter-group" id="qbQuestionTypeGroup" style="display: none;">
+                    <label >Question Type</label>
+                    <div class="select-wrapper">
+                        <select id="qbQuestionTypeSelect"  onchange="onQbQuestionTypeChange()">
+                            <option value="School Question">School Question</option>
+                            <option value="Board Question">Board Question</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <!-- BOARD -->
+                <div class="filter-group">
+                    <label >Board</label>
+                    <div class="select-wrapper">
+                        <select id="qbBoardSelect"  onchange="onQbBoardChange()" disabled></select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-row" id="qbSecondRow">
+
+                <!-- SCHOOL -->
+                <div class="filter-group" id="qbSchoolGroup">
+                    <label >School</label>
+                    <div class="select-wrapper">
+                        <select id="qbSchoolSelect"  disabled>
+                            <option value="">Select Board First</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <!-- SUBJECT -->
+                <div class="filter-group">
+                    <label >Subject</label>
+                    <div class="select-wrapper">
+                        <select id="qbSubjectSelect"  disabled>
+                            <option value="">Select Class First</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <!-- TERM / EXAM TYPE -->
+                <div class="filter-group" id="qbTermGroup">
+                    <label >Exam Type</label>
+                    <div class="select-wrapper">
+                        <select id="qbTermSelect"  disabled>
+                            <option value="">Select Class First</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <!-- YEAR -->
+                <div class="filter-group">
+                    <label >Year</label>
+                    <div class="select-wrapper">
+                        <select id="qbYearSelect" >
+                            <option value="2026">2026</option>
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <!-- SEARCH -->
+                <button type="button" class="filter-btn" onclick="searchSchoolQuestions()">
+                    Search
+                </button>
+            </div>
+        </section>
+
+        <!-- QUESTIONS CONTAINER / RESULTS -->
+        <section id="schoolQuestionsContainer" class="school-container">
+            <!-- Initial Empty State -->
+            <div class="school-empty-state">
+                <div class="school-empty-icon"><i class="fa-regular fa-file-lines"></i></div>
+                <h3 class="school-empty-title">Find Question Papers</h3>
+                <p class="school-empty-desc">Select your class and the required filters to search for question papers.</p>
+            </div>
+        </section>
+    </section>
+
+
+
+
+
+
+
+
+
+    <!-- =========================================
+         COLLEGE MAIN
+    ========================================= -->
+    <section class="main college-mode" id="collegeMain" aria-label="College Question Bank" style="display: none;">
+
+        <section class="college-qb-page-header">
+            <h1 class="college-qb-page-title">College Question Bank</h1>
+            <div class="college-qb-breadcrumb">
+                Find board and college question papers for your courses.
+            </div>
+        </section>
+
+                                <section class="college-qb-filter-box">
+
+            <div class="college-qb-filter-row">
+                <!-- BOARD -->
+                <div class="filter-group college-qb-filter-field" id="collegeBoardContainer">
+                    <label class="college-qb-filter-label">Board</label>
+                    <div class="college-qb-filter-select-wrapper">
+                        <select id="collegeBoardSelect" class="college-qb-filter-select" onchange="onCollegeBoardChange()">
+                            <option value="">Select Board</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down college-qb-filter-icon"></i>
+                    </div>
+                </div>
+
+                <!-- COLLEGE -->
+                <div class="filter-group college-qb-filter-field" id="collegeCollegeContainer">
+                    <label class="college-qb-filter-label">College</label>
+                    <div class="college-qb-filter-select-wrapper">
+                        <select id="collegeCollegeSelect" class="college-qb-filter-select" disabled>
+                            <option value="">Select Board First</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down college-qb-filter-icon"></i>
+                    </div>
+                </div>
+
+                <!-- SUBJECT -->
+                <div class="filter-group college-qb-filter-field" id="collegeSubjectContainer">
+                    <label class="college-qb-filter-label">Subject</label>
+                    <div class="college-qb-filter-select-wrapper">
+                        <select id="collegeSubjectSelect" class="college-qb-filter-select">
+                            <option value="">Select Subject</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down college-qb-filter-icon"></i>
+                    </div>
+                </div>
+                <!-- EXAM TYPE -->
+                <div class="filter-group college-qb-filter-field" id="collegeExamTypeContainer">
+                    <label class="college-qb-filter-label">Exam Type</label>
+                    <div class="college-qb-filter-select-wrapper">
+                        <select id="collegeExamTypeSelect" class="college-qb-filter-select" onchange="onCollegeExamTypeChange()">
+                            <option value="">Select Exam Type</option>
+                            <option value="Half-Yearly Examination">Half-Yearly Examination (1st Year)</option>
+                            <option value="Year Final Examination">Year Final Examination (1st Year)</option>
+                            <option value="Pre-Test Examination">Pre-Test Examination (2nd Year)</option>
+                            <option value="Test Examination">Test Examination (2nd Year)</option>
+                            <option value="HSC Board Examination">HSC Board Examination</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down college-qb-filter-icon"></i>
+                    </div>
+                </div>
+
+                <!-- EXAM YEAR -->
+                <div class="filter-group college-qb-filter-field" id="collegeExamYearContainer">
+                    <label class="college-qb-filter-label">Exam Year</label>
+                    <div class="college-qb-filter-select-wrapper">
+                        <select id="collegeExamYearSelect" class="college-qb-filter-select">
+                            <option value="">Select Year</option>
+                            <option value="2026">2026</option>
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down college-qb-filter-icon"></i>
+                    </div>
+                </div>
+                <!-- SEARCH BUTTON -->
+                <div class="filter-group college-qb-filter-field" id="collegeSearchContainer">
+                    <label class="college-qb-filter-label college-qb-search-label">Search</label>
+                    <button type="button" class="college-qb-search-btn" onclick="searchCollegeQb()">Search</button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- RESULTS CONTAINER -->
+        <section id="collegeQbResultsContainer" class="college-qb-container">
+            <!-- Initial Empty State -->
+            <div class="college-qb-empty-state">
+                <div class="college-qb-empty-icon">📚</div>
+                <h3 class="college-qb-empty-title">Find College Question Papers</h3>
+                <p class="college-qb-empty-desc">Select your year and question type to search for board or college question papers.</p>
+            </div>
+        </section>
+    </section>
+
+    <!-- =========================================
+         NATIONAL UNIVERSITY MAIN
+    ========================================= -->
+    <section class="main nu-mode" id="nuMain" aria-label="National University Question Bank" style="display: none;">
+        <section class="nu-qb-page-header">
+            <h1 class="nu-qb-page-title">National University Question Bank</h1>
+            <div class="nu-qb-breadcrumb">
+                Find question papers for your program, year and subject.
+            </div>
+        </section>
+
+        <section class="nu-qb-filter-box">
+            <!-- Row 1: Program Type, Program, Structure/Year -->
+            <div class="nu-qb-filter-row">
+                <div class="filter-group nu-qb-filter-field">
+                    <label class="nu-qb-filter-label">Program Type</label>
+                    <div class="nu-qb-filter-select-wrapper">
+                        <div class="select-wrapper">
+                        <select id="nuProgramTypeSelect" class="nu-qb-filter-select" onchange="onNuProgramTypeChange()">
+                            <option value="">Select Type</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                        <i class="fa-solid fa-chevron-down nu-qb-filter-icon"></i>
+                    </div>
+                </div>
+
+                <div class="filter-group nu-qb-filter-field">
+                    <label class="nu-qb-filter-label">Program / Department</label>
+                    <div class="nu-qb-filter-select-wrapper">
+                        <div class="select-wrapper">
+                        <select id="nuProgramSelect" class="nu-qb-filter-select" onchange="onNuProgramChange()" disabled>
+                            <option value="">Select Program</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                        <i class="fa-solid fa-chevron-down nu-qb-filter-icon"></i>
+                    </div>
+                </div>
+
+                <div class="filter-group nu-qb-filter-field" id="nuYearContainer">
+                    <label class="nu-qb-filter-label" id="nuYearLabel">Year / Semester</label>
+                    <div class="nu-qb-filter-select-wrapper">
+                        <div class="select-wrapper">
+                        <select id="nuYearSelect" class="nu-qb-filter-select" onchange="onNuYearChange()" disabled>
+                            <option value="">Select</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                        <i class="fa-solid fa-chevron-down nu-qb-filter-icon"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Subject, Exam Type, College, Exam Year, Search -->
+            <div class="nu-qb-filter-row">
+                <div class="filter-group nu-qb-filter-field">
+                    <label class="nu-qb-filter-label">Subject</label>
+                    <div class="nu-qb-filter-select-wrapper">
+                        <div class="select-wrapper">
+                        <select id="nuSubjectSelect" class="nu-qb-filter-select" onchange="onNuSubjectChange()" disabled>
+                            <option value="">Select Subject</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                        <i class="fa-solid fa-chevron-down nu-qb-filter-icon"></i>
+                    </div>
+                </div>
+
+                <div class="filter-group nu-qb-filter-field">
+                    <label class="nu-qb-filter-label">Exam Type</label>
+                    <div class="nu-qb-filter-select-wrapper">
+                        <div class="select-wrapper">
+                        <select id="nuExamTypeSelect" class="nu-qb-filter-select" onchange="onNuExamTypeChange()" disabled>
+                            <option value="">Select Exam</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                        <i class="fa-solid fa-chevron-down nu-qb-filter-icon"></i>
+                    </div>
+                </div>
+
+                <div class="filter-group nu-qb-filter-field" id="nuCollegeContainer" style="display: none;">
+                    <label class="nu-qb-filter-label">College</label>
+                    <div class="nu-qb-filter-select-wrapper">
+                        <div class="select-wrapper">
+                        <select id="nuCollegeSelect" class="nu-qb-filter-select" onchange="onNuFilterReady()">
+                            <option value="">Select College</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                        <i class="fa-solid fa-chevron-down nu-qb-filter-icon"></i>
+                    </div>
+                </div>
+
+                <div class="filter-group nu-qb-filter-field">
+                    <label class="nu-qb-filter-label">Exam Year</label>
+                    <div class="nu-qb-filter-select-wrapper">
+                        <div class="select-wrapper">
+                        <select id="nuExamYearSelect" class="nu-qb-filter-select" onchange="onNuFilterReady()" disabled>
+                            <option value="">Select Year</option>
+                            <option value="2026">2026</option>
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                        <i class="fa-solid fa-chevron-down nu-qb-filter-icon"></i>
+                    </div>
+                </div>
+
+                <div class="nu-qb-filter-field">
+                    <button type="button" id="nuSearchBtn" class="nu-qb-search-btn" onclick="searchNuQb()" disabled>
+                        Search
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESULTS CONTAINER -->
+        <section id="nuQbResultsContainer" class="nu-qb-container">
+            <div class="nu-qb-empty-state">
+                <div class="nu-qb-empty-icon">📚</div>
+                <h3 class="nu-qb-empty-title">Find National University Question Papers</h3>
+                <p class="nu-qb-empty-desc">Select your program and academic year to search for question papers.</p>
+            </div>
+        </section>
+    </section>
+
+
+    <!-- =========================================
+         MEDICAL MAIN
+    ========================================= -->
+    <section class="main medical-question-bank" id="medicalMain" aria-label="Medical Question Bank" style="display: none;">
+        <div class="medical-question-header">
+            <h1>Medical Question Bank</h1>
+            <div class="breadcrumb">
+                Find question papers for MBBS and BDS programs.
+            </div>
+        </div>
+
+        <div class="medical-question-filters">
+            <div class="medical-filter-row medical-mb-15">
+                <div class="filter-group medical-filter-group">
+                    <label>Program</label>
+                    <div class="select-wrapper">
+                        <select id="medProgram" onchange="onMedProgramChange()">
+                        <option value="MBBS">MBBS</option>
+                        <option value="BDS">BDS</option>
+                    </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="filter-group medical-filter-group">
+                    <label>Professional Phase</label>
+                    <div class="select-wrapper">
+                        <select id="medPhase" onchange="onMedPhaseChange()" disabled>
+                        <option value="">Select Phase</option>
+                    </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="filter-group medical-filter-group">
+                    <label>Subject</label>
+                    <div class="select-wrapper">
+                        <select id="medSubject" onchange="onMedSubjectChange()" disabled>
+                        <option value="">Select Subject</option>
+                    </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="filter-group medical-filter-group">
+                    <label>Exam Type</label>
+                    <div class="select-wrapper">
+                        <select id="medExamType" onchange="onMedExamTypeChange()" disabled>
+                        <option value="">Select Exam</option>
+                    </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="medical-filter-row">
+                <div class="filter-group medical-filter-group" id="medCollegeGroup" style="display: none;">
+                    <label>Medical/Dental College</label>
+                    <div class="select-wrapper">
+                        <select id="medCollege" onchange="onMedFilterReady()">
+                        <option value="">Select College</option>
+                    </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="filter-group medical-filter-group" id="medAffiliationGroup" style="display: none;">
+                    <label>Affiliating Medical University</label>
+                    <div class="select-wrapper">
+                        <select id="medAffiliation" onchange="onMedFilterReady()">
+                        <option value="">Select University</option>
+                    </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="filter-group medical-filter-group">
+                    <label>Exam Year</label>
+                    <div class="select-wrapper">
+                        <select id="medYear" onchange="onMedFilterReady()" disabled>
+                        <option value="">Select Year</option>
+                        <option value="2026">2026</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                    </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="medical-filter-actions">
+
+                    <div class="filter-actions">
+                    <button type="button" class="filter-btn" id="medSearchBtn" onclick="searchMedQb()" disabled>
+                        <i class="fa-solid fa-magnifying-glass"></i> Search
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="medResults" class="medical-question-results">
+            <div class="medical-empty-state">
+                <div class="nu-qb-empty-icon medical-icon-large">🩺</div>
+                <h3>Find Medical Question Papers</h3>
+                <p>Select a professional phase, subject and exam type to search for question papers.</p>
+                <a href="contribute.html" class="medical-contribute-btn">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Contribute Question
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- =========================================
+         POLYTECHNIC QUESTION BANK
+    ========================================= -->
+    <section class="main polytechnic-question-bank" id="polyMain" aria-label="Polytechnic Question Bank" style="display: none;">
+
+        <div class="poly-qb-header">
+            <h1 class="poly-qb-title">Polytechnic Question Bank</h1>
+            <p class="poly-qb-subtitle">Find question papers by technology, semester, subject and exam type.</p>
+        </div>
+
+        <div class="filter-box">
+            <div class="filter-row" id="polyFirstRow">
+                <div class="filter-group">
+                    <label>Technology / Department</label>
+                    <div class="select-wrapper">
+                        <select id="polyQbTech" onchange="onPolyQbTechChange()">
+                        <option value="">Select Technology</option>
+                    </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Semester</label>
+                    <div class="select-wrapper">
+                        <select id="polyQbSem" onchange="onPolyQbSemChange()" disabled>
+                        <option value="">Select Semester</option>
+                    </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Subject</label>
+                    <div class="select-wrapper">
+                        <select id="polyQbSubj" onchange="onPolyQbSubjChange()" disabled>
+                        <option value="">Select Subject</option>
+                    </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-row">
+
+
+                <div class="filter-group">
+                    <label>Exam Type</label>
+                    <div class="select-wrapper">
+                        <select id="polyQbExamType" onchange="onPolyQbExamChange()" disabled>
+                        <option value="">Select Exam Type</option>
+                        <option value="Class Test">Class Test</option>
+                        <option value="Quiz">Quiz</option>
+                        <option value="Mid-term">Mid-term</option>
+                        <option value="Semester Final">Semester Final</option>
+                        <option value="Practical">Practical</option>
+                    </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="filter-group" id="polyQbInstituteGroup" style="display: none;">
+                    <label>Polytechnic Institute</label>
+                    <div class="select-wrapper">
+                        <select id="polyQbInstitute">
+                        <option value="">All Institutes</option>
+                        <option value="Dhaka Polytechnic Institute">Dhaka Polytechnic Institute</option>
+                        <option value="Feni Computer Institute">Feni Computer Institute</option>
+                        <option value="Chittagong Polytechnic Institute">Chittagong Polytechnic Institute</option>
+                        <option value="Rajshahi Polytechnic Institute">Rajshahi Polytechnic Institute</option>
+                        <option value="Sylhet Polytechnic Institute">Sylhet Polytechnic Institute</option>
+                    </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Exam Year</label>
+                    <div class="select-wrapper">
+                        <select id="polyQbYear" onchange="onPolyQbYearChange()" disabled>
+                        <option value="">Select Year</option>
+                        <option value="2026">2026</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                    </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poly-qb-filter-actions">
+
+                <div class="filter-actions">
+                    <button type="button" class="filter-btn" id="polyQbSearchBtn" onclick="searchPolyQb()" disabled>
+                        <i class="fa-solid fa-magnifying-glass"></i> Search
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="polyQbResultsContainer">
+            <div class="poly-qb-empty-state">
+                <div class="poly-qb-empty-icon">📄</div>
+                <h3>Find Polytechnic Question Papers</h3>
+                <p>Select your technology, semester, subject and exam type to search for question papers.</p>
+            </div>
+        </div>
+    </section>
+
+<!-- =========================================
+     OVERLAY
+========================================= -->
+
+<div
+    class="overlay"
+    id="overlay">
+</div>
+
+
+
+<!-- =========================================
+     SIDEBAR
+========================================= -->
+
+<aside
+    class="sidebar"
+    id="sidebar" aria-label="Main Navigation">
+
+
+    <!-- SIDEBAR HEADER -->
+
+    <div class="sidebar-header">
+
+
+        <div class="sidebar-logo">
+
+
+            <div class="sidebar-logo-icon">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    StudyNest
+                </h3>
+
+                <p>
+                    Learn. Share. Grow.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button type="button"
+            class="close-sidebar"
+            id="closeSidebar" aria-label="Close Sidebar">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- SIDEBAR MENU -->
+
+    <div class="sidebar-menu">
+
+
+        <!-- HOME -->
+
+        <a
+            href="home.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                Home
+            </span>
+
+        </a>
+
+
+
+        <!-- ACADEMIC COURSES -->
+
+        <a
+            href="academic_courses.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-graduation-cap"></i>
+
+            <span>
+                Academic Courses
+            </span>
+
+        </a>
+
+
+
+        <!-- QUESTION BANK -->
+
+        <a
+            href="question_bank.html"
+            class="menu-item active">
+
+            <i class="fa-regular fa-file-lines"></i>
+
+            <span>
+                Campus Question Bank
+            </span>
+
+        </a>
+
+
+
+        <!-- LEADERBOARDS -->
+
+        <a
+            href="leaderboard.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-trophy"></i>
+
+            <span>
+                Leaderboards
+            </span>
+
+        </a>
+
+
+
+        <!-- CONTRIBUTE -->
+
+        <a
+            href="contribute.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-users"></i>
+
+            <span>
+                Contribute
+            </span>
+
+        </a>
+
+
+
+        <!-- MY LIBRARY -->
+
+        <a
+            href="my_library.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            <span>
+                My Library
+            </span>
+
+        </a>
+
+
+
+        <!-- SETTINGS -->
+
+        <a
+            href="settings.html"
+            class="menu-item">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <span>
+                Settings
+            </span>
+
+        </a>
+
+
+
+        <!-- DIVIDER -->
+
+        <div class="sidebar-divider"></div>
+
+
+
+        <!-- ABOUT -->
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <span>
+                About Us
+            </span>
+
+        </a>
+
+
+
+        <!-- CONTACT -->
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <i class="fa-regular fa-envelope"></i>
+
+            <span>
+                Contact Us
+            </span>
+
+        </a>
+
+
+
+        <!-- TERMS -->
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <i class="fa-regular fa-file-lines"></i>
+
+            <span>
+                Terms of Service
+            </span>
+
+        </a>
+
+
+
+        <!-- PRIVACY -->
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <span>
+                Privacy Policy
+            </span>
+
+        </a>
+
+
+
+        <!-- HELP -->
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <i class="fa-regular fa-circle-question"></i>
+
+            <span>
+                Help &amp; FAQ
+            </span>
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script>
+
+
+    /* =========================================
+       USER NAME
+    ========================================= */
+
+    const savedName =
+        localStorage.getItem(
+            "studynest_user_name"
+        );
+
+
+    if (savedName) {
+
+        document.getElementById(
+            "userName"
+        ).textContent = savedName;
+
+    }
+
+
+
+    /* =========================================
+       SAVE QUESTION
+    ========================================= */
+    const saveButtons = document.querySelectorAll(".save-btn");
+    saveButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            const qItem = button.closest('.question-item');
+            const titleEl = qItem ? qItem.querySelector('.question-title') : null;
+            const title = titleEl ? titleEl.textContent.trim() : 'Unknown Question';
+            const id = 'question-' + title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+
+            const icon = button.querySelector("i");
+            if (button.classList.contains("saved")) {
+                button.classList.remove("saved");
+                icon.className = "fa-regular fa-bookmark";
+                DataStore.removeFromLibrary(id, 'question-paper');
+            } else {
+                button.classList.add("saved");
+                icon.className = "fa-solid fa-bookmark";
+                DataStore.saveToLibrary({ id: id, type: 'question-paper', title: title });
+            }
+        });
+    });
+
+    /* =========================================
+       VOTE QUESTION
+    ========================================= */
+    const voteButtons = document.querySelectorAll(".vote-btn");
+    voteButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            const qItem = button.closest('.question-item');
+            const titleEl = qItem ? qItem.querySelector('.question-title') : null;
+            const title = titleEl ? titleEl.textContent.trim() : 'Unknown Question';
+            const id = 'question-' + title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+
+            const isVoted = DataStore.toggleVote(id);
+            const icon = button.querySelector('i');
+            if (isVoted) {
+                icon.className = 'fa-solid fa-thumbs-up';
+                button.style.color = '#321cff';
+            } else {
+                icon.className = 'fa-regular fa-thumbs-up';
+                button.style.color = '';
+            }
+        });
+    });
+/* =========================================
+       FILTER
+    ========================================= */
+
+    function applyFilter() {
+
+        const university =
+            document.getElementById(
+                "universitySelect"
+            ).value;
+
+
+        const department =
+            document.getElementById(
+                "departmentSelect"
+            ).value;
+
+
+        const course =
+            document.getElementById(
+                "courseSelect"
+            ).value;
+
+
+        const semester =
+            document.getElementById(
+                "semesterSelect"
+            ).value;
+
+
+        console.log(
+            "University:",
+            university
+        );
+
+        console.log(
+            "Department:",
+            department
+        );
+
+        console.log(
+            "Course:",
+            course
+        );
+
+        console.log(
+            "Semester:",
+            semester
+        );
+
+
+        /*
+            Later Django/DRF API will handle
+            the actual filtering.
+        */
+
+    }
+
+
+
+    /* =========================================
+       PAGINATION
+    ========================================= */
+
+    const pageButtons =
+        document.querySelectorAll(
+            ".pagination .page-btn"
+        );
+
+
+    pageButtons.forEach(
+        function (button) {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    if (
+                        button.querySelector(
+                            ".fa-chevron-left"
+                        ) ||
+                        button.querySelector(
+                            ".fa-chevron-right"
+                        )
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    document
+                        .querySelectorAll(
+                            ".pagination .page-btn"
+                        )
+                        .forEach(
+                            function (btn) {
+
+                                btn.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                    button.classList.add(
+                        "active"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+</script>
+
+
+
+    <!-- Shared JS Modules -->
+    <script src="js/routes.js"></script>
+    <script src="js/academic-data.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/shared-ui.js"></script>
+
+    <script>
+
+        function initMode() {
+            const user = DataStore.getUser();
+            const studyLevel = user.studyLevel || 'University';
+
+            document.getElementById('universityMain').style.display = 'none';
+            document.getElementById('schoolMain').style.display = 'none';
+            document.getElementById('collegeMain').style.display = 'none';
+            document.getElementById('nuMain').style.display = 'none';
+            document.getElementById('medicalMain').style.display = 'none';
+            if(document.getElementById('polyMain')) document.getElementById('polyMain').style.display = 'none';
+
+            if (studyLevel === 'School') {
+                document.getElementById('schoolMain').style.display = 'block';
+                initSchoolQbData();
+            } else if (studyLevel === 'College') {
+                document.getElementById('collegeMain').style.display = 'block';
+                initCollegeQbData();
+            } else if (studyLevel === 'National University') {
+                document.getElementById('nuMain').style.display = 'block';
+                initNuQbData();
+            } else if (studyLevel === 'Medical') {
+                document.getElementById('medicalMain').style.display = 'block';
+                initMedicalQbData();
+            } else if (studyLevel === 'Polytechnic') {
+                if (document.getElementById('polyMain')) document.getElementById('polyMain').style.display = 'block';
+                if (typeof initPolyQbData === 'function') initPolyQbData();
+            } else {
+                document.getElementById('universityMain').style.display = 'block';
+            }
+        }
+
+        function initSchoolQbData() {
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+
+            // Classes
+            const classes = AcademicData.getSchoolClasses(country);
+            const classSelect = document.getElementById('qbSchoolClassSelect');
+            classSelect.innerHTML = '<option value="">Select Class</option>';
+            classes.forEach(c => {
+                const option = document.createElement('option');
+                option.value = c;
+                option.textContent = c;
+                classSelect.appendChild(option);
+            });
+
+            // Boards
+            const boards = AcademicData.getBoards(country);
+            const boardSelect = document.getElementById('qbBoardSelect');
+            boardSelect.innerHTML = '<option value="">Select Board</option>';
+            boards.forEach(b => {
+                const option = document.createElement('option');
+                option.value = b;
+                option.textContent = b;
+                boardSelect.appendChild(option);
+            });
+        }
+
+        function onQbClassChange() {
+            const selectedClass = document.getElementById('qbSchoolClassSelect').value;
+            const qTypeGroup = document.getElementById('qbQuestionTypeGroup');
+            const termGroup = document.getElementById('qbTermGroup');
+            const schoolGroup = document.getElementById('qbSchoolGroup');
+            const subjectSelect = document.getElementById('qbSubjectSelect');
+            const termSelect = document.getElementById('qbTermSelect');
+            const boardSelect = document.getElementById('qbBoardSelect');
+            const firstRow = document.getElementById('qbFirstRow');
+
+            subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+            termSelect.innerHTML = '<option value="">Select Term</option>';
+
+            if (!selectedClass) {
+                subjectSelect.disabled = true;
+                termSelect.disabled = true;
+                boardSelect.disabled = true;
+                qTypeGroup.style.display = 'none';
+                firstRow.className = 'school-filter-row-2';
+                return;
+            }
+
+            subjectSelect.disabled = false;
+            termSelect.disabled = false;
+            boardSelect.disabled = false;
+
+            if (selectedClass === 'Class 10') {
+                qTypeGroup.style.display = 'block';
+                firstRow.className = 'school-filter-row-3';
+                document.getElementById('qbQuestionTypeSelect').value = 'School Question';
+            } else {
+                qTypeGroup.style.display = 'none';
+                firstRow.className = 'school-filter-row-2';
+            }
+
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+
+            // Subjects
+            const subjects = AcademicData.getSchoolSubjects(country, selectedClass);
+            subjects.forEach(s => {
+                const option = document.createElement('option');
+                option.value = s;
+                option.textContent = s;
+                subjectSelect.appendChild(option);
+            });
+
+            // Terms
+            const terms = AcademicData.getSchoolExamTypes(country);
+            terms.forEach(t => {
+                const option = document.createElement('option');
+                option.value = t;
+                option.textContent = t;
+                termSelect.appendChild(option);
+            });
+
+            onQbQuestionTypeChange();
+        }
+
+        function onQbQuestionTypeChange() {
+            const selectedClass = document.getElementById('qbSchoolClassSelect').value;
+            const qType = document.getElementById('qbQuestionTypeSelect').value;
+            const termGroup = document.getElementById('qbTermGroup');
+            const schoolGroup = document.getElementById('qbSchoolGroup');
+            const secondRow = document.getElementById('qbSecondRow');
+
+            if (selectedClass === 'Class 10' && qType === 'Board Question') {
+                termGroup.style.display = 'none';
+                schoolGroup.style.display = 'none';
+                secondRow.className = 'school-filter-row-3';
+            } else {
+                termGroup.style.display = 'block';
+                schoolGroup.style.display = 'block';
+                secondRow.className = 'school-filter-row-5';
+            }
+        }
+        function onQbBoardChange() {
+            const selectedBoard = document.getElementById('qbBoardSelect').value;
+            const schoolSelect = document.getElementById('qbSchoolSelect');
+
+            if (!selectedBoard) {
+                schoolSelect.innerHTML = '<option value="">Select Board First</option>';
+                schoolSelect.disabled = true;
+                return;
+            }
+
+            schoolSelect.disabled = false;
+            schoolSelect.innerHTML = '<option value="">Select School</option>';
+
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+            const schools = AcademicData.getSchoolsByBoard(country, selectedBoard);
+            schools.forEach(s => {
+                const option = document.createElement('option');
+                option.value = s;
+                option.textContent = s;
+                schoolSelect.appendChild(option);
+            });
+        }
+
+        function resetQbFilters() {
+            document.getElementById('qbSchoolClassSelect').value = '';
+            document.getElementById('qbBoardSelect').value = '';
+            document.getElementById('qbBoardSelect').disabled = true;
+            document.getElementById('qbSchoolSelect').innerHTML = '<option value="">Select Board First</option>';
+            document.getElementById('qbSchoolSelect').disabled = true;
+            document.getElementById('qbSubjectSelect').innerHTML = '<option value="">Select Class First</option>';
+            document.getElementById('qbSubjectSelect').disabled = true;
+            document.getElementById('qbTermSelect').innerHTML = '<option value="">Select Class First</option>';
+            document.getElementById('qbTermSelect').disabled = true;
+            document.getElementById('qbQuestionTypeGroup').style.display = 'none';
+
+            // Note: class update is handled by assigning classes directly
+            document.getElementById('qbFirstRow').className = 'school-filter-row-2';
+
+            onQbQuestionTypeChange();
+
+            document.getElementById('schoolQuestionsContainer').innerHTML = `
+                <div class="school-empty-state">
+                    <div class="school-empty-icon"><i class="fa-regular fa-file-lines"></i></div>
+                    <h3 class="school-empty-title">Find Question Papers</h3>
+                    <p class="school-empty-desc">Select your class and the required filters to search for question papers.</p>
+                </div>
+            `;
+        }
+
+        function searchSchoolQuestions() {
+            const cls = document.getElementById('qbSchoolClassSelect').value;
+            const board = document.getElementById('qbBoardSelect').value;
+            const school = document.getElementById('qbSchoolSelect').value;
+            const subject = document.getElementById('qbSubjectSelect').value;
+            const term = document.getElementById('qbTermSelect').value;
+            const year = document.getElementById('qbYearSelect').value;
+            const qType = document.getElementById('qbQuestionTypeSelect').value;
+            const container = document.getElementById('schoolQuestionsContainer');
+
+            let isValid = false;
+
+            if (cls === 'Class 10' && qType === 'Board Question') {
+                isValid = cls && board && subject && year;
+            } else {
+                isValid = cls && board && school && subject && term && year;
+            }
+
+            if (!isValid) {
+                container.innerHTML = `
+                    <div class="school-empty-state" style="text-align: center; padding: 40px; background: white; border-radius: 12px; border: 1px dashed #cbd5e1; margin-top: 20px;">
+                        <h3 style="margin-bottom: 10px; color: #1e293b;">No question papers found.</h3>
+                        <p style="color: #647493;">Try changing the filters or search for another subject.</p>
+                    </div>`;
+                return;
+            }
+
+            let isBoardQuestion = (cls === 'Class 10' && qType === 'Board Question');
+            let badgeText = isBoardQuestion ? 'Board Question' : 'School Question';
+            let title = isBoardQuestion ? `SSC ${year} ${subject}` : `${term} Examination ${year}`;
+            let subtitle = isBoardQuestion ? `${cls} — ${board}` : `${cls} — ${school} — ${board}`;
+
+            container.innerHTML = `
+                <div class="result-header">
+                    <div class="result-count">
+                        <strong>1</strong> papers found
+                    </div>
+                    <div class="result-right">
+                        <span class="sort-label">Sort by:</span>
+                        <select class="sort-select">
+                            <option>Latest</option>
+                            <option>Most Voted</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="question-list">
+                    <div class="question-card">
+                        <div class="question-icon blue">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        <div class="question-info">
+                            <div class="question-title">${subject} - ${title}</div>
+                            <div class="question-subtitle">${subtitle}</div>
+                            <div class="question-tags">
+                                <span class="tag">${badgeText}</span>
+                                <span class="tag semester">${year}</span>
+                            </div>
+                        </div>
+                        <div class="question-actions">
+                            <button type="button" class="view-btn" onclick="window.location.href='question_paper.html?subject=${encodeURIComponent(subject)}'">
+                                <i class="fa-regular fa-file-pdf"></i> View PDF
+                            </button>
+                            <button type="button" class="vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (142)
+                            </button>
+                            <button type="button" class="save-btn" aria-label="Save">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // =========================================
+        // COLLEGE QUESTION BANK LOGIC
+        // =========================================
+
+        function initCollegeQbData() {
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+
+            const boards = AcademicData.getBoards(country);
+            const boardSelect = document.getElementById('collegeBoardSelect');
+            boardSelect.innerHTML = '<option value="">Select Board</option>';
+            boards.forEach(b => {
+                const opt = document.createElement('option');
+                opt.value = b;
+                opt.textContent = b;
+                boardSelect.appendChild(opt);
+            });
+
+            const courses = AcademicData.getCollegeCourses(country);
+            const subjectSelect = document.getElementById('collegeSubjectSelect');
+            subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+            courses.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.id;
+                opt.textContent = c.name;
+                subjectSelect.appendChild(opt);
+            });
+        }
+
+                                function onCollegeExamTypeChange() {
+            const examType = document.getElementById('collegeExamTypeSelect').value;
+            const colCont = document.getElementById('collegeCollegeContainer');
+            const colSelect = document.getElementById('collegeCollegeSelect');
+            const board = document.getElementById('collegeBoardSelect').value;
+
+            if (examType === 'HSC Board Examination') {
+                colCont.style.display = 'none';
+                colSelect.disabled = true;
+                colSelect.value = '';
+            } else {
+                colCont.style.display = 'block';
+                if (!board) {
+                    colSelect.disabled = true;
+                    colSelect.options[0].text = 'Select Board First';
+                } else {
+                    colSelect.disabled = false;
+                    colSelect.options[0].text = 'Select College';
+                }
+            }
+        }
+
+        function onCollegeBoardChange() {
+            const board = document.getElementById('collegeBoardSelect').value;
+            const colSelect = document.getElementById('collegeCollegeSelect');
+            const examType = document.getElementById('collegeExamTypeSelect').value;
+
+            colSelect.innerHTML = '<option value="">Select College</option>';
+
+            if (board) {
+                const user = DataStore.getUser();
+                const country = user.country || 'Bangladesh';
+                const colleges = AcademicData.getCollegesByBoard(country, board);
+
+                colleges.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c;
+                    opt.textContent = c;
+                    colSelect.appendChild(opt);
+                });
+
+                if (examType !== 'HSC Board Examination') {
+                    colSelect.disabled = false;
+                }
+            } else {
+                colSelect.options[0].text = 'Select Board First';
+                colSelect.disabled = true;
+            }
+        }
+
+        function resetCollegeQbFilters() {
+            document.getElementById('collegeBoardSelect').value = '';
+            document.getElementById('collegeCollegeSelect').value = '';
+            document.getElementById('collegeCollegeSelect').disabled = true;
+            document.getElementById('collegeSubjectSelect').value = '';
+            document.getElementById('collegeExamTypeSelect').value = '';
+            document.getElementById('collegeExamYearSelect').value = '';
+
+            onCollegeExamTypeChange();
+            onCollegeBoardChange();
+
+            document.getElementById('collegeQbResultsContainer').innerHTML = `
+                <div class="college-qb-empty-state">
+                    <div class="college-qb-empty-icon">📚</div>
+                    <h3 class="college-qb-empty-title">Find College Question Papers</h3>
+                    <p class="college-qb-empty-desc">Select your board and exam type to search for question papers.</p>
+                </div>
+            `;
+        }
+
+                function searchCollegeQb() {
+            const examType = document.getElementById('collegeExamTypeSelect').value;
+            const board = document.getElementById('collegeBoardSelect').value;
+            const col = document.getElementById('collegeCollegeSelect').value;
+            const sub = document.getElementById('collegeSubjectSelect').value;
+            const examYear = document.getElementById('collegeExamYearSelect').value;
+
+            const subText = sub ? document.getElementById('collegeSubjectSelect').options[document.getElementById('collegeSubjectSelect').selectedIndex].text : '';
+
+            const container = document.getElementById('collegeQbResultsContainer');
+
+            if (examType === 'HSC Board Examination') {
+                if (!board || !sub || !examYear) {
+                    alert("Please select Board, Subject, and Exam Year.");
+                    return;
+                }
+            } else {
+                if (!board || !col || !sub || !examYear) {
+                    alert("Please select Board, College, Subject, and Exam Year.");
+                    return;
+                }
+            }
+
+            if (Math.random() < 0.2) {
+                container.innerHTML = `
+                    <div class="school-empty-state" style="text-align: center; padding: 40px; background: white; border-radius: 12px; border: 1px dashed #cbd5e1; margin-top: 20px;">
+                        <h3 style="margin-bottom: 10px; color: #1e293b;">No question papers found.</h3>
+                        <p style="color: #647493;">Try changing your filters or selecting another subject.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = `
+                <div class="result-header">
+                    <div class="result-count">
+                        <strong>2</strong> papers found
+                    </div>
+                    <div class="result-right">
+                        <span class="sort-label">Sort by:</span>
+                        <select class="sort-select">
+                            <option>Latest</option>
+                            <option>Most Voted</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="question-list">
+            `;
+
+            if (examType === 'HSC Board Examination') {
+                html += `
+                    <div class="question-card">
+                        <div class="question-icon blue">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div class="question-info">
+                            <div class="question-title">${subText}</div>
+                            <div class="question-subtitle">HSC Board Question ${examYear}</div>
+                            <div class="question-tags">
+                                <span class="tag">Board Question</span>
+                                <span class="tag semester">${board}</span>
+                            </div>
+                        </div>
+                        <div class="question-actions">
+                            <button type="button" class="view-btn" onclick="window.location.href='question_paper.html?subject=${encodeURIComponent(subText)}'">
+                                <i class="fa-regular fa-file-pdf"></i> View PDF
+                            </button>
+                            <button type="button" class="vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (152)
+                            </button>
+                            <button type="button" class="save-btn" aria-label="Save">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-icon blue">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div class="question-info">
+                            <div class="question-title">${subText}</div>
+                            <div class="question-subtitle">HSC Board Question ${parseInt(examYear)-1}</div>
+                            <div class="question-tags">
+                                <span class="tag">Board Question</span>
+                                <span class="tag semester">${board}</span>
+                            </div>
+                        </div>
+                        <div class="question-actions">
+                            <button type="button" class="view-btn" onclick="window.location.href='question_paper.html?subject=${encodeURIComponent(subText)}'">
+                                <i class="fa-regular fa-file-pdf"></i> View PDF
+                            </button>
+                            <button type="button" class="vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (110)
+                            </button>
+                            <button type="button" class="save-btn" aria-label="Save">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div class="question-card">
+                        <div class="question-icon green">
+                            <i class="fa-solid fa-school"></i>
+                        </div>
+                        <div class="question-info">
+                            <div class="question-title">${subText}</div>
+                            <div class="question-subtitle">${examType} ${examYear}</div>
+                            <div class="question-tags">
+                                <span class="tag">College Question</span>
+                                <span class="tag exam">${col}</span>
+                                <span class="tag semester">${board}</span>
+                            </div>
+                        </div>
+                        <div class="question-actions">
+                            <button type="button" class="view-btn" onclick="window.location.href='question_paper.html?subject=${encodeURIComponent(subText)}'">
+                                <i class="fa-regular fa-file-pdf"></i> View PDF
+                            </button>
+                            <button type="button" class="vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (45)
+                            </button>
+                            <button type="button" class="save-btn" aria-label="Save">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-icon orange">
+                            <i class="fa-solid fa-school"></i>
+                        </div>
+                        <div class="question-info">
+                            <div class="question-title">${subText}</div>
+                            <div class="question-subtitle">${examType} ${parseInt(examYear)-1}</div>
+                            <div class="question-tags">
+                                <span class="tag">College Question</span>
+                                <span class="tag exam">${col}</span>
+                                <span class="tag semester">${board}</span>
+                            </div>
+                        </div>
+                        <div class="question-actions">
+                            <button type="button" class="view-btn" onclick="window.location.href='question_paper.html?subject=${encodeURIComponent(subText)}'">
+                                <i class="fa-regular fa-file-pdf"></i> View PDF
+                            </button>
+                            <button type="button" class="vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (28)
+                            </button>
+                            <button type="button" class="save-btn" aria-label="Save">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        // ==========================================
+        // NATIONAL UNIVERSITY QUESTION BANK LOGIC
+        // ==========================================
+        function initNuQbData() {
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+            const programTypes = AcademicData.getNuProgramTypes(country);
+
+            const ptSelect = document.getElementById('nuProgramTypeSelect');
+            ptSelect.innerHTML = '<option value="">Select Type</option>';
+            programTypes.forEach(pt => {
+                ptSelect.innerHTML += `<option value="${pt.id}">${pt.name}</option>`;
+            });
+
+            // Populate colleges silently
+            const colleges = AcademicData.getNuColleges(country);
+            const colSelect = document.getElementById('nuCollegeSelect');
+            colSelect.innerHTML = '<option value="">Select College</option>';
+            colleges.forEach(col => {
+                colSelect.innerHTML += `<option value="${col}">${col}</option>`;
+            });
+        }
+
+        function onNuProgramTypeChange() {
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+            const pt = document.getElementById('nuProgramTypeSelect').value;
+
+            const progSelect = document.getElementById('nuProgramSelect');
+            const yearSelect = document.getElementById('nuYearSelect');
+            const subjSelect = document.getElementById('nuSubjectSelect');
+            const examSelect = document.getElementById('nuExamTypeSelect');
+            const colContainer = document.getElementById('nuCollegeContainer');
+            const yearExamSelect = document.getElementById('nuExamYearSelect');
+            const searchBtn = document.getElementById('nuSearchBtn');
+
+            progSelect.innerHTML = '<option value="">Select Program</option>';
+            yearSelect.innerHTML = '<option value="">Select</option>';
+            subjSelect.innerHTML = '<option value="">Select Subject</option>';
+            examSelect.innerHTML = '<option value="">Select Exam</option>';
+
+            progSelect.disabled = true;
+            yearSelect.disabled = true;
+            subjSelect.disabled = true;
+            examSelect.disabled = true;
+            yearExamSelect.disabled = true;
+            searchBtn.disabled = true;
+            colContainer.style.display = 'none';
+
+            if (pt) {
+                const programs = AcademicData.getNuPrograms(country, pt);
+                programs.forEach(p => {
+                    progSelect.innerHTML += `<option value="${p.id}" data-structure="${p.structure || pt}">${p.name}</option>`;
+                });
+                progSelect.disabled = false;
+            }
+        }
+
+        function onNuProgramChange() {
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+            const progSelect = document.getElementById('nuProgramSelect');
+            const pId = progSelect.value;
+
+            const yearSelect = document.getElementById('nuYearSelect');
+            const subjSelect = document.getElementById('nuSubjectSelect');
+            const examSelect = document.getElementById('nuExamTypeSelect');
+            const colContainer = document.getElementById('nuCollegeContainer');
+            const yearExamSelect = document.getElementById('nuExamYearSelect');
+            const searchBtn = document.getElementById('nuSearchBtn');
+            const yearLabel = document.getElementById('nuYearLabel');
+
+            yearSelect.innerHTML = '<option value="">Select</option>';
+            subjSelect.innerHTML = '<option value="">Select Subject</option>';
+            examSelect.innerHTML = '<option value="">Select Exam</option>';
+
+            yearSelect.disabled = true;
+            subjSelect.disabled = true;
+            examSelect.disabled = true;
+            yearExamSelect.disabled = true;
+            searchBtn.disabled = true;
+            colContainer.style.display = 'none';
+
+            if (pId) {
+                const structure = progSelect.options[progSelect.selectedIndex].getAttribute('data-structure');
+                yearLabel.textContent = structure === 'semester' ? 'Semester' : 'Year';
+
+                const years = AcademicData.getNuYears(country, structure);
+                years.forEach(y => {
+                    yearSelect.innerHTML += `<option value="${y}">${y}</option>`;
+                });
+                yearSelect.disabled = false;
+            }
+        }
+
+        function onNuYearChange() {
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+            const pId = document.getElementById('nuProgramSelect').value;
+            const y = document.getElementById('nuYearSelect').value;
+
+            const subjSelect = document.getElementById('nuSubjectSelect');
+            const examSelect = document.getElementById('nuExamTypeSelect');
+            const colContainer = document.getElementById('nuCollegeContainer');
+            const yearExamSelect = document.getElementById('nuExamYearSelect');
+            const searchBtn = document.getElementById('nuSearchBtn');
+
+            subjSelect.innerHTML = '<option value="">Select Subject</option>';
+            examSelect.innerHTML = '<option value="">Select Exam</option>';
+
+            subjSelect.disabled = true;
+            examSelect.disabled = true;
+            yearExamSelect.disabled = true;
+            searchBtn.disabled = true;
+            colContainer.style.display = 'none';
+
+            if (y && pId) {
+                const subjects = AcademicData.getNuSubjects(country, pId, y);
+                subjects.forEach(s => {
+                    subjSelect.innerHTML += `<option value="${s.id}" data-practical="${s.hasPractical ? 'true' : 'false'}">${s.name}</option>`;
+                });
+                subjSelect.disabled = false;
+            }
+        }
+
+        function onNuSubjectChange() {
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+            const sId = document.getElementById('nuSubjectSelect').value;
+            const examSelect = document.getElementById('nuExamTypeSelect');
+
+            examSelect.innerHTML = '<option value="">Select Exam</option>';
+            document.getElementById('nuExamYearSelect').disabled = true;
+            document.getElementById('nuSearchBtn').disabled = true;
+            document.getElementById('nuCollegeContainer').style.display = 'none';
+            document.getElementById('nuCollegeSelect').value = '';
+
+            if (sId) {
+                const subjOption = document.getElementById('nuSubjectSelect').options[document.getElementById('nuSubjectSelect').selectedIndex];
+                const hasPractical = subjOption.getAttribute('data-practical') === 'true';
+
+                const examTypes = AcademicData.getNuExamTypes(country);
+                examTypes.forEach(et => {
+                    if (et.requiresPractical && !hasPractical) return;
+                    examSelect.innerHTML += `<option value="${et.name}" data-scope="${et.scopeType}">${et.name}</option>`;
+                });
+                examSelect.disabled = false;
+            } else {
+                examSelect.disabled = true;
+            }
+        }
+
+        function onNuExamTypeChange() {
+            const examSelect = document.getElementById('nuExamTypeSelect');
+            const colContainer = document.getElementById('nuCollegeContainer');
+            const yearSelect = document.getElementById('nuExamYearSelect');
+            const colSelect = document.getElementById('nuCollegeSelect');
+
+            if (examSelect.value) {
+                const scope = examSelect.options[examSelect.selectedIndex].getAttribute('data-scope');
+                if (scope === 'INSTITUTION') {
+                    colContainer.style.display = 'flex';
+                } else {
+                    colContainer.style.display = 'none';
+                    colSelect.value = '';
+                }
+                yearSelect.disabled = false;
+            } else {
+                colContainer.style.display = 'none';
+                colSelect.value = '';
+                yearSelect.disabled = true;
+                yearSelect.value = '';
+            }
+            onNuFilterReady();
+        }
+
+        function onNuFilterReady() {
+            const exam = document.getElementById('nuExamTypeSelect');
+            const year = document.getElementById('nuExamYearSelect').value;
+            const col = document.getElementById('nuCollegeSelect').value;
+            const searchBtn = document.getElementById('nuSearchBtn');
+
+            if (!exam.value || !year) {
+                searchBtn.disabled = true;
+                return;
+            }
+
+            const scope = exam.options[exam.selectedIndex].getAttribute('data-scope');
+            if (scope === 'INSTITUTION' && !col) {
+                searchBtn.disabled = true;
+            } else {
+                searchBtn.disabled = false;
+            }
+        }
+
+        function searchNuQb() {
+            const prog = document.getElementById('nuProgramSelect');
+            const yearStr = document.getElementById('nuYearSelect');
+            const subj = document.getElementById('nuSubjectSelect');
+            const exam = document.getElementById('nuExamTypeSelect');
+            const examYear = document.getElementById('nuExamYearSelect').value;
+            const col = document.getElementById('nuCollegeSelect').value;
+
+            const progName = prog.options[prog.selectedIndex].text;
+            const yearName = yearStr.options[yearStr.selectedIndex].text;
+            const subjName = subj.options[subj.selectedIndex].text;
+            const examName = exam.options[exam.selectedIndex].text;
+            const scope = exam.options[exam.selectedIndex].getAttribute('data-scope');
+
+            const container = document.getElementById('nuQbResultsContainer');
+
+            if (Math.random() < 0.2) {
+                container.innerHTML = `
+                    <div class="school-empty-state" style="text-align: center; padding: 40px; background: white; border-radius: 12px; border: 1px dashed #cbd5e1; margin-top: 20px;">
+                        <h3 style="margin-bottom: 10px; color: #1e293b;">No question papers found.</h3>
+                        <p style="color: #647493;">Try changing the academic filters or selecting another subject.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = `
+                <div class="result-header">
+                    <div class="result-count">
+                        <strong>3</strong> papers found
+                    </div>
+                    <div class="result-right">
+                        <span class="sort-label">Sort by:</span>
+                        <select class="sort-select">
+                            <option>Latest</option>
+                            <option>Most Voted</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="question-list">
+            `;
+            for (let i = 0; i < 3; i++) {
+                const isCollege = scope === 'INSTITUTION';
+                const badgeText = isCollege ? 'College Question' : 'NU Final Examination';
+                const subtitleScope = isCollege ? col : 'National University';
+                const yearPrefix = isCollege ? '' : yearName + ' ';
+
+                html += `
+                    <div class="question-card">
+                        <div class="question-icon purple">
+                            <i class="fa-regular fa-file-lines"></i>
+                        </div>
+                        <div class="question-info">
+                            <div class="question-title">${subjName}</div>
+                            <div class="question-subtitle">${yearPrefix}${examName} ${examYear - i}</div>
+                            <div class="question-tags">
+                                <span class="tag">${badgeText}</span>
+                                <span class="tag semester">${progName}</span>
+                                <span class="tag exam">${subtitleScope}</span>
+                            </div>
+                        </div>
+                        <div class="question-actions">
+                            <button type="button" class="view-btn" onclick="window.location.href='question_paper.html?subject=${encodeURIComponent(subjName)}'">
+                                <i class="fa-regular fa-file-pdf"></i> View Paper
+                            </button>
+                            <button type="button" class="vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (${120 - i*15})
+                            </button>
+                            <button type="button" class="save-btn" aria-label="Save">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+            html += `</div>`;
+
+            container.innerHTML = html;
+        }
+    </script>
+
+    <script>
+
+        // Initialize shared UI components (header, sidebar, footer)
+        SharedUI.init('questionBank');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initMode();
+        });
+
+        /* =========================================
+           MEDICAL QUESTION BANK LOGIC
+        ========================================= */
+        function initMedicalQbData() {
+            const user = DataStore.getUser();
+            const program = user.program === 'BDS' ? 'BDS' : 'MBBS';
+            document.getElementById('medProgram').value = program;
+            loadMedPhases(program);
+
+            const country = user.country || 'Bangladesh';
+            let colleges = [];
+            let universities = [];
+
+            if (typeof AcademicData.getMedicalUniversities === 'function') {
+                const medData = AcademicData.getMedicalUniversities(country);
+                if (medData) {
+                    universities = Object.keys(medData);
+                    for (let uni in medData) {
+                        if (medData[uni]['MBBS']) colleges.push(...medData[uni]['MBBS']);
+                        if (medData[uni]['BDS']) colleges.push(...medData[uni]['BDS']);
+                    }
+                    colleges = [...new Set(colleges)].sort();
+                }
+            }
+
+            if (colleges.length === 0) {
+                colleges = ['Dhaka Medical College', 'Sir Salimullah Medical College', 'Mymensingh Medical College', 'Rajshahi Medical College', 'Chittagong Medical College'];
+            }
+            if (universities.length === 0) {
+                universities = ['Dhaka University', 'Rajshahi Medical University', 'Chittagong Medical University', 'Sylhet Medical University'];
+            }
+
+            const colSelect = document.getElementById('medCollege');
+            colSelect.innerHTML = '<option value="">Select College</option>';
+            colleges.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c; opt.textContent = c;
+                colSelect.appendChild(opt);
+            });
+            if (user.medicalCollegeId || user.college) {
+                colSelect.value = user.medicalCollegeId || user.college;
+            }
+
+            const affSelect = document.getElementById('medAffiliation');
+            affSelect.innerHTML = '<option value="">Select University</option>';
+            universities.forEach(u => {
+                const opt = document.createElement('option');
+                opt.value = u; opt.textContent = u;
+                affSelect.appendChild(opt);
+            });
+
+            if (user.affiliatingUniversityId) {
+                affSelect.value = user.affiliatingUniversityId;
+            } else if (user.medicalCollegeId || user.college) {
+                 const c = (user.medicalCollegeId || user.college).toLowerCase();
+                 if (c.includes('dhaka') || c.includes('salimullah') || c.includes('mymensingh')) affSelect.value = 'Dhaka University';
+                 else if (c.includes('rajshahi')) affSelect.value = 'Rajshahi Medical University';
+                 else if (c.includes('chittagong')) affSelect.value = 'Chittagong Medical University';
+                 else if (c.includes('sylhet')) affSelect.value = 'Sylhet Medical University';
+            }
+        }
+
+        function loadMedPhases(program) {
+            const phaseSelect = document.getElementById('medPhase');
+            phaseSelect.innerHTML = '<option value="">Select Phase</option>';
+            const phases = program === 'BDS' ?
+                ['1st Professional', '2nd Professional', '3rd Professional', 'Final Professional'] :
+                ['1st Professional', '2nd Professional', '3rd Professional', 'Final Professional'];
+
+            phases.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p; opt.textContent = p;
+                phaseSelect.appendChild(opt);
+            });
+            phaseSelect.disabled = false;
+
+            document.getElementById('medSubject').innerHTML = '<option value="">Select Subject</option>';
+            document.getElementById('medSubject').disabled = true;
+            document.getElementById('medExamType').innerHTML = '<option value="">Select Exam</option>';
+            document.getElementById('medExamType').disabled = true;
+            document.getElementById('medCollegeGroup').style.display = 'none';
+            document.getElementById('medAffiliationGroup').style.display = 'none';
+            document.getElementById('medYear').disabled = true;
+            document.getElementById('medYear').value = '';
+            document.getElementById('medSearchBtn').disabled = true;
+
+            document.getElementById('medResults').innerHTML = `
+                <div class="medical-empty-state">
+                    <div class="nu-qb-empty-icon" style="font-size:40px;">🩺</div>
+                    <h3>Find Medical Question Papers</h3>
+                    <p>Select a professional phase, subject and exam type to search for question papers.</p>
+                    <a href="contribute.html" class="medical-contribute-btn">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Contribute Question
+                    </a>
+                </div>
+            `;
+        }
+
+        function onMedProgramChange() {
+            const program = document.getElementById('medProgram').value;
+            loadMedPhases(program);
+        }
+
+        function onMedPhaseChange() {
+            const phase = document.getElementById('medPhase').value;
+            const program = document.getElementById('medProgram').value;
+            const subjectSelect = document.getElementById('medSubject');
+            subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+
+            if (phase) {
+                let subjects = [];
+                if (program === 'MBBS') {
+                    if (phase === '1st Professional') subjects = ['Anatomy', 'Physiology', 'Biochemistry'];
+                    else if (phase === '2nd Professional') subjects = ['Community Medicine', 'Forensic Medicine'];
+                    else if (phase === '3rd Professional') subjects = ['Pharmacology', 'Pathology', 'Microbiology'];
+                    else subjects = ['Medicine', 'Surgery', 'Obstetrics & Gynaecology'];
+                } else {
+                    if (phase === '1st Professional') subjects = ['Anatomy', 'Dental Anatomy', 'Physiology'];
+                    else if (phase === '2nd Professional') subjects = ['General Pharmacology', 'Dental Materials', 'Oral Pathology'];
+                    else if (phase === '3rd Professional') subjects = ['Medicine', 'Surgery', 'Periodontology'];
+                    else subjects = ['Oral Surgery', 'Conservative Dentistry', 'Prosthodontics', 'Orthodontics'];
+                }
+                subjects.forEach(s => {
+                    const opt = document.createElement('option');
+                    opt.value = s; opt.textContent = s;
+                    subjectSelect.appendChild(opt);
+                });
+                subjectSelect.disabled = false;
+            } else {
+                subjectSelect.disabled = true;
+            }
+            document.getElementById('medExamType').innerHTML = '<option value="">Select Exam</option>';
+            document.getElementById('medExamType').disabled = true;
+            document.getElementById('medCollegeGroup').style.display = 'none';
+            document.getElementById('medAffiliationGroup').style.display = 'none';
+            document.getElementById('medYear').disabled = true;
+            document.getElementById('medSearchBtn').disabled = true;
+        }
+
+        function onMedSubjectChange() {
+            const subject = document.getElementById('medSubject').value;
+            const examSelect = document.getElementById('medExamType');
+            examSelect.innerHTML = '<option value="">Select Exam</option>';
+
+            if (subject) {
+                examSelect.innerHTML += `
+                    <option value="Card">Card</option>
+                    <option value="Term">Term</option>
+                    <option value="Prof">Prof</option>
+                `;
+                examSelect.disabled = false;
+            } else {
+                examSelect.disabled = true;
+            }
+            document.getElementById('medCollegeGroup').style.display = 'none';
+            document.getElementById('medAffiliationGroup').style.display = 'none';
+            document.getElementById('medYear').disabled = true;
+            document.getElementById('medSearchBtn').disabled = true;
+        }
+
+        function onMedExamTypeChange() {
+            const examType = document.getElementById('medExamType').value;
+            const colGroup = document.getElementById('medCollegeGroup');
+            const affGroup = document.getElementById('medAffiliationGroup');
+            const yearSelect = document.getElementById('medYear');
+
+            if (examType === 'Card' || examType === 'Term') {
+                colGroup.style.display = 'block';
+                affGroup.style.display = 'none';
+                yearSelect.disabled = false;
+            } else if (examType === 'Prof') {
+                colGroup.style.display = 'none';
+                affGroup.style.display = 'block';
+                yearSelect.disabled = false;
+            } else {
+                colGroup.style.display = 'none';
+                affGroup.style.display = 'none';
+                yearSelect.disabled = true;
+                yearSelect.value = '';
+            }
+            onMedFilterReady();
+        }
+
+        function onMedFilterReady() {
+            const examType = document.getElementById('medExamType').value;
+            const year = document.getElementById('medYear').value;
+            const col = document.getElementById('medCollege').value;
+            const aff = document.getElementById('medAffiliation').value;
+            const searchBtn = document.getElementById('medSearchBtn');
+
+            if (!examType || !year) {
+                searchBtn.disabled = true;
+                return;
+            }
+            if ((examType === 'Card' || examType === 'Term') && !col) {
+                searchBtn.disabled = true;
+                return;
+            }
+            if (examType === 'Prof' && !aff) {
+                searchBtn.disabled = true;
+                return;
+            }
+            searchBtn.disabled = false;
+        }
+
+        function searchMedQb() {
+            const program = document.getElementById('medProgram').value;
+            const phase = document.getElementById('medPhase').value;
+            const subject = document.getElementById('medSubject').value;
+            const examType = document.getElementById('medExamType').value;
+            const year = document.getElementById('medYear').value;
+            const college = document.getElementById('medCollege').value;
+            const affiliation = document.getElementById('medAffiliation').value;
+
+            const resultsDiv = document.getElementById('medResults');
+
+            if (year === '2022' || Math.random() < 0.2) {
+                resultsDiv.innerHTML = `
+                    <div class="school-empty-state" style="text-align: center; padding: 40px; background: white; border-radius: 12px; border: 1px dashed #cbd5e1; margin-top: 20px;">
+                        <h3 style="margin-bottom: 10px; color: #1e293b;">No question papers found.</h3>
+                        <p style="color: #647493;">We couldn't find any papers matching your filters.</p>
+                        <a href="contribute.html" style="display:inline-block; margin-top: 15px; padding: 10px 20px; background: #3019ee; color: white; border-radius: 6px; text-decoration: none;">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Contribute Question
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = `
+                <div class="result-header">
+                    <div class="result-count">
+                        <strong>2</strong> papers found
+                    </div>
+                    <div class="result-right">
+                        <span class="sort-label">Sort by:</span>
+                        <select class="sort-select">
+                            <option>Latest</option>
+                            <option>Most Voted</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="question-list">
+            `;
+            for (let i = 0; i < 2; i++) {
+                let scopeName = (examType === 'Prof') ? affiliation : college;
+
+                html += `
+                    <div class="question-card">
+                        <div class="question-icon yellow">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+                        <div class="question-info">
+                            <div class="question-title">${subject}</div>
+                            <div class="question-subtitle">${examType} Examination ${year - i} &bull; ${program} &bull; ${phase} &bull; ${scopeName}</div>
+                            <div class="question-tags">
+                                <span class="tag">${examType.toUpperCase()}</span>
+                                <span class="tag semester">${scopeName}</span>
+                            </div>
+                        </div>
+                        <div class="question-actions">
+                            <button type="button" class="view-btn" onclick="window.location.href='question_paper.html?subject=${encodeURIComponent(subject)}'">
+                                <i class="fa-regular fa-file-pdf"></i> View Paper
+                            </button>
+                            <button type="button" class="vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (${95 - i*20})
+                            </button>
+                            <button type="button" class="save-btn" aria-label="Save">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+            html += `</div>`;
+            resultsDiv.innerHTML = html;
+        }
+
+        function resetMedFilters() {
+            initMedicalQbData();
+        }
+
+
+        /* =========================================
+           POLYTECHNIC QUESTION BANK LOGIC
+        ========================================= */
+        function initPolyQbData() {
+            const user = DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+
+            // Centralized data call
+            const polyData = AcademicData.getPolytechnicData(country);
+
+            const techSelect = document.getElementById('polyQbTech');
+            techSelect.innerHTML = '<option value="">Select Technology</option>';
+
+            if(polyData && polyData.departments) {
+                polyData.departments.forEach(dept => {
+                    const opt = document.createElement('option');
+                    opt.value = dept;
+                    opt.textContent = dept;
+                    techSelect.appendChild(opt);
+                });
+            }
+
+            resetPolyQbFields('tech');
+        }
+
+        function onPolyQbTechChange() {
+            const tech = document.getElementById('polyQbTech').value;
+            resetPolyQbFields('sem');
+
+            if(tech) {
+                const semSelect = document.getElementById('polyQbSem');
+                semSelect.disabled = false;
+                semSelect.innerHTML = '<option value="">Select Semester</option>';
+                // Typical poly semesters 1-8
+                const semesters = ['1st Semester', '2nd Semester', '3rd Semester', '4th Semester', '5th Semester', '6th Semester', '7th Semester', '8th Semester'];
+                semesters.forEach(s => {
+                    const opt = document.createElement('option');
+                    opt.value = s;
+                    opt.textContent = s;
+                    semSelect.appendChild(opt);
+                });
+            }
+        }
+
+        function onPolyQbSemChange() {
+            const tech = document.getElementById('polyQbTech').value;
+            const sem = document.getElementById('polyQbSem').value;
+            resetPolyQbFields('subj');
+
+            if(tech && sem) {
+                const subjSelect = document.getElementById('polyQbSubj');
+                subjSelect.disabled = false;
+
+                // Using centralized data
+                const user = DataStore.getUser();
+                const country = user.country || 'Bangladesh';
+                const polyData = AcademicData.getPolytechnicData(country);
+                let subjects = [];
+                if(polyData && polyData.subjects && polyData.subjects[tech] && polyData.subjects[tech][sem]) {
+                    subjects = polyData.subjects[tech][sem];
+                } else {
+                    // Fallbacks
+                    subjects = ['Data Communication', 'Database Management System', 'Object Oriented Programming', 'Microprocessor & Microcontroller'];
+                }
+
+                subjSelect.innerHTML = '<option value="">Select Subject</option>';
+                subjects.forEach(sub => {
+                    const opt = document.createElement('option');
+                    opt.value = sub;
+                    opt.textContent = sub;
+                    subjSelect.appendChild(opt);
+                });
+            }
+        }
+
+        function onPolyQbSubjChange() {
+            const subj = document.getElementById('polyQbSubj').value;
+            resetPolyQbFields('exam');
+
+            if(subj) {
+                document.getElementById('polyQbExamType').disabled = false;
+            }
+        }
+
+        function onPolyQbExamChange() {
+            const exam = document.getElementById('polyQbExamType').value;
+            resetPolyQbFields('year');
+
+            const instGroup = document.getElementById('polyQbInstituteGroup');
+            if(exam && exam !== 'Semester Final') {
+                if (instGroup) instGroup.style.display = 'block';
+            } else {
+                if (instGroup) instGroup.style.display = 'none';
+                const instSelect = document.getElementById('polyQbInstitute');
+                if (instSelect) instSelect.value = "";
+            }
+
+            if(exam) {
+                document.getElementById('polyQbYear').disabled = false;
+            }
+        }
+
+        function onPolyQbYearChange() {
+            const year = document.getElementById('polyQbYear').value;
+            if(year) {
+                document.getElementById('polyQbSearchBtn').disabled = false;
+            } else {
+                document.getElementById('polyQbSearchBtn').disabled = true;
+            }
+        }
+
+        function resetPolyQbFields(fromLevel) {
+            const semSelect = document.getElementById('polyQbSem');
+            const subjSelect = document.getElementById('polyQbSubj');
+            const examSelect = document.getElementById('polyQbExamType');
+            const yearSelect = document.getElementById('polyQbYear');
+            const searchBtn = document.getElementById('polyQbSearchBtn');
+            const resultsDiv = document.getElementById('polyQbResultsContainer');
+
+            if(fromLevel === 'tech') {
+                semSelect.innerHTML = '<option value="">Select Semester</option>';
+                semSelect.disabled = true;
+            }
+            if(fromLevel === 'tech' || fromLevel === 'sem') {
+                subjSelect.innerHTML = '<option value="">Select Subject</option>';
+                subjSelect.disabled = true;
+            }
+            if(fromLevel === 'tech' || fromLevel === 'sem' || fromLevel === 'subj') {
+                examSelect.value = "";
+                examSelect.disabled = true;
+
+                const instGroup = document.getElementById('polyQbInstituteGroup');
+                if (instGroup) instGroup.style.display = 'none';
+                const instSelect = document.getElementById('polyQbInstitute');
+                if (instSelect) instSelect.value = "";
+            }
+            if(fromLevel === 'tech' || fromLevel === 'sem' || fromLevel === 'subj' || fromLevel === 'exam') {
+                yearSelect.value = "";
+                yearSelect.disabled = true;
+            }
+
+            searchBtn.disabled = true;
+
+            resultsDiv.innerHTML = `
+                <div class="poly-qb-empty-state">
+                    <div class="poly-qb-empty-icon">📄</div>
+                    <h3>Find Polytechnic Question Papers</h3>
+                    <p>Select your technology, semester, subject and exam type to search for question papers.</p>
+                </div>
+            `;
+        }
+
+        function resetPolyQb() {
+            document.getElementById('polyQbTech').value = "";
+            resetPolyQbFields('tech');
+        }
+
+        function searchPolyQb() {
+            const tech = document.getElementById('polyQbTech').value;
+            const sem = document.getElementById('polyQbSem').value;
+            const subj = document.getElementById('polyQbSubj').value;
+            const exam = document.getElementById('polyQbExamType').value;
+            const year = document.getElementById('polyQbYear').value;
+            const inst = document.getElementById('polyQbInstitute') ? document.getElementById('polyQbInstitute').value : "";
+
+            const resultsDiv = document.getElementById('polyQbResultsContainer');
+
+            let instituteInfo1 = '';
+            let instituteInfo2 = '';
+            let scopeBadge = '';
+
+            if(exam === 'Class Test' || exam === 'Quiz' || exam === 'Mid-term' || exam === 'Practical') {
+                scopeBadge = 'INSTITUTE';
+            }
+            else if(exam === 'Semester Final') {
+                scopeBadge = 'COMMON (BTEB)';
+            }
+
+            if (exam !== 'Semester Final') {
+                instituteInfo1 = inst ? inst : "Dhaka Polytechnic Institute";
+                instituteInfo2 = inst ? inst : "Feni Computer Institute";
+            } else {
+                instituteInfo1 = 'BTEB';
+                instituteInfo2 = 'BTEB';
+            }
+
+            resultsDiv.innerHTML = `
+                <div class="result-header">
+                    <div class="result-count">
+                        <strong>2</strong> papers found
+                    </div>
+                    <div class="result-right">
+                        <span class="sort-label">Sort by:</span>
+                        <select class="sort-select">
+                            <option>Latest</option>
+                            <option>Most Voted</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="question-list">
+                    <div class="question-card">
+                        <div class="question-icon blue">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div class="question-info">
+                            <div class="question-title">${subj}</div>
+                            <div class="question-subtitle">${exam} ${year} &bull; ${tech} &bull; ${sem}</div>
+                            <div class="question-tags">
+                                <span class="tag">${exam.toUpperCase()}</span>
+                                <span class="tag semester">${scopeBadge}</span>
+                                <span class="tag exam">${instituteInfo1}</span>
+                            </div>
+                        </div>
+                        <div class="question-actions">
+                            <button type="button" class="view-btn" onclick="window.location.href='question_paper.html?subject=${encodeURIComponent(subj)}'">
+                                <i class="fa-regular fa-file-pdf"></i> View PDF
+                            </button>
+                            <button type="button" class="vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (130)
+                            </button>
+                            <button type="button" class="save-btn" aria-label="Save">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-icon blue">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <div class="question-info">
+                            <div class="question-title">${subj} (Alternative Set)</div>
+                            <div class="question-subtitle">${exam} ${year} &bull; ${tech} &bull; ${sem}</div>
+                            <div class="question-tags">
+                                <span class="tag">${exam.toUpperCase()}</span>
+                                <span class="tag semester">${scopeBadge}</span>
+                                <span class="tag exam">${instituteInfo2}</span>
+                            </div>
+                        </div>
+                        <div class="question-actions">
+                            <button type="button" class="view-btn" onclick="window.location.href='question_paper.html?subject=${encodeURIComponent(subj)}'">
+                                <i class="fa-regular fa-file-pdf"></i> View PDF
+                            </button>
+                            <button type="button" class="vote-btn">
+                                <i class="fa-regular fa-thumbs-up"></i> Vote (85)
+                            </button>
+                            <button type="button" class="save-btn" aria-label="Save">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+</script>
+</body>
+
+</html>
