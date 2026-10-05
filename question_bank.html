@@ -928,10 +928,11 @@
 
         .nu-qb-filter-field { display: flex; flex-direction: column; gap: 8px; }
         .nu-qb-filter-label { font-size: 12px; font-weight: 600; color: #152043; }
-        .nu-qb-filter-select-wrapper { position: relative; }
-        .nu-qb-filter-select { width: 100%; height: 42px; padding: 0 14px; border: 1px solid #e2e6ef; border-radius: 8px; font-size: 13px; color: #172044; background: white; appearance: none; cursor: pointer; outline: none; }
+        .nu-qb-filter-select-wrapper { position: relative; width: 100%; }
+        .nu-qb-filter-select { width: 100%; height: 42px; padding: 0 36px 0 14px; border: 1px solid #e2e6ef; border-radius: 8px; font-size: 13px; color: #172044; background: white; -webkit-appearance: none; -moz-appearance: none; appearance: none; cursor: pointer; outline: none; transition: border-color 0.2s; }
+        .nu-qb-filter-select:focus { border-color: #3019ee; }
         .nu-qb-filter-select:disabled { background: #f8f9fb; color: #a1abc0; cursor: not-allowed; }
-        .nu-qb-filter-icon { position: absolute; right: 14px; top: 15px; font-size: 12px; color: #415477; pointer-events: none; }
+        .nu-qb-filter-icon { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 11px; color: #415477; pointer-events: none; }
 
         .nu-qb-search-btn { height: 42px; background: #3019ee; color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; align-self: end; width: 100%; }
         .nu-qb-search-btn:disabled { background: #c6cbea; cursor: not-allowed; }
@@ -3070,12 +3071,9 @@
                 <div class="filter-group nu-qb-filter-field">
                     <label class="nu-qb-filter-label">Program Type</label>
                     <div class="nu-qb-filter-select-wrapper">
-                        <div class="select-wrapper">
                         <select id="nuProgramTypeSelect" class="nu-qb-filter-select" onchange="onNuProgramTypeChange()">
                             <option value="">Select Type</option>
                         </select>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
                         <i class="fa-solid fa-chevron-down nu-qb-filter-icon"></i>
                     </div>
                 </div>
@@ -3083,12 +3081,9 @@
                 <div class="filter-group nu-qb-filter-field">
                     <label class="nu-qb-filter-label">Program / Department</label>
                     <div class="nu-qb-filter-select-wrapper">
-                        <div class="select-wrapper">
                         <select id="nuProgramSelect" class="nu-qb-filter-select" onchange="onNuProgramChange()" disabled>
                             <option value="">Select Program</option>
                         </select>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
                         <i class="fa-solid fa-chevron-down nu-qb-filter-icon"></i>
                     </div>
                 </div>
@@ -3096,12 +3091,9 @@
                 <div class="filter-group nu-qb-filter-field" id="nuYearContainer">
                     <label class="nu-qb-filter-label" id="nuYearLabel">Year / Semester</label>
                     <div class="nu-qb-filter-select-wrapper">
-                        <div class="select-wrapper">
                         <select id="nuYearSelect" class="nu-qb-filter-select" onchange="onNuYearChange()" disabled>
                             <option value="">Select</option>
                         </select>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
                         <i class="fa-solid fa-chevron-down nu-qb-filter-icon"></i>
                     </div>
                 </div>
@@ -3112,12 +3104,9 @@
                 <div class="filter-group nu-qb-filter-field">
                     <label class="nu-qb-filter-label">Subject</label>
                     <div class="nu-qb-filter-select-wrapper">
-                        <div class="select-wrapper">
                         <select id="nuSubjectSelect" class="nu-qb-filter-select" onchange="onNuSubjectChange()" disabled>
                             <option value="">Select Subject</option>
                         </select>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
                         <i class="fa-solid fa-chevron-down nu-qb-filter-icon"></i>
                     </div>
                 </div>
@@ -3125,12 +3114,9 @@
                 <div class="filter-group nu-qb-filter-field">
                     <label class="nu-qb-filter-label">Exam Type</label>
                     <div class="nu-qb-filter-select-wrapper">
-                        <div class="select-wrapper">
                         <select id="nuExamTypeSelect" class="nu-qb-filter-select" onchange="onNuExamTypeChange()" disabled>
                             <option value="">Select Exam</option>
                         </select>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
                         <i class="fa-solid fa-chevron-down nu-qb-filter-icon"></i>
                     </div>
                 </div>
@@ -3138,12 +3124,9 @@
                 <div class="filter-group nu-qb-filter-field" id="nuCollegeContainer" style="display: none;">
                     <label class="nu-qb-filter-label">College</label>
                     <div class="nu-qb-filter-select-wrapper">
-                        <div class="select-wrapper">
                         <select id="nuCollegeSelect" class="nu-qb-filter-select" onchange="onNuFilterReady()">
                             <option value="">Select College</option>
                         </select>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
                         <i class="fa-solid fa-chevron-down nu-qb-filter-icon"></i>
                     </div>
                 </div>
@@ -3151,7 +3134,6 @@
                 <div class="filter-group nu-qb-filter-field">
                     <label class="nu-qb-filter-label">Exam Year</label>
                     <div class="nu-qb-filter-select-wrapper">
-                        <div class="select-wrapper">
                         <select id="nuExamYearSelect" class="nu-qb-filter-select" onchange="onNuFilterReady()" disabled>
                             <option value="">Select Year</option>
                             <option value="2026">2026</option>
@@ -3159,8 +3141,6 @@
                             <option value="2024">2024</option>
                             <option value="2023">2023</option>
                         </select>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
                         <i class="fa-solid fa-chevron-down nu-qb-filter-icon"></i>
                     </div>
                 </div>
