@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -752,7 +752,7 @@
         onclick="window.location.href='notifications.html'"
       >
 
-        🔔
+        ??
 
         <span
           class="notification-dot"
@@ -816,7 +816,7 @@
         class="close-sidebar"
         onclick="closeSidebar()"
        aria-label="Close Sidebar">
-        ×
+        �
       </button>
 
 
@@ -839,7 +839,7 @@
       >
 
         <span class="menu-icon">
-          ⌂
+          �
         </span>
 
         <span>
@@ -856,7 +856,7 @@
       >
 
         <span class="menu-icon">
-          ▣
+          ?
         </span>
 
         <span>
@@ -873,7 +873,7 @@
       >
 
         <span class="menu-icon">
-          📄
+          ??
         </span>
 
         <span>
@@ -890,7 +890,7 @@
       >
 
         <span class="menu-icon">
-          🏆
+          ??
         </span>
 
         <span>
@@ -907,7 +907,7 @@
       >
 
         <span class="menu-icon">
-          ＋
+          +
         </span>
 
         <span>
@@ -924,7 +924,7 @@
       >
 
         <span class="menu-icon">
-          🔖
+          ??
         </span>
 
         <span>
@@ -941,7 +941,7 @@
       >
 
         <span class="menu-icon">
-          ⚙
+          ?
         </span>
 
         <span>
@@ -968,7 +968,7 @@
       >
 
         <span class="menu-icon">
-          ⓘ
+          ?
         </span>
 
         <span>
@@ -985,7 +985,7 @@
       >
 
         <span class="menu-icon">
-          ✉
+          ?
         </span>
 
         <span>
@@ -1002,7 +1002,7 @@
       >
 
         <span class="menu-icon">
-          ▤
+          ?
         </span>
 
         <span>
@@ -1019,7 +1019,7 @@
       >
 
         <span class="menu-icon">
-          🔒
+          ??
         </span>
 
         <span>
@@ -1052,7 +1052,7 @@
 
     <div class="sidebar-footer">
 
-      © 2026 StudyNest
+      � 2026 StudyNest
 
       <br>
 
@@ -1076,7 +1076,7 @@
       onclick="goToMyContributions()"
     >
 
-      ← Back to My Contributions
+      ? Back to My Contributions
 
     </button>
 
@@ -1097,7 +1097,7 @@
             class="contribution-icon"
             id="typeIcon"
           >
-            ▶
+            ?
           </div>
 
 
@@ -1120,7 +1120,7 @@
 
 
               <span>
-                •
+                �
               </span>
 
 
@@ -1130,7 +1130,7 @@
 
 
               <span>
-                •
+                �
               </span>
 
 
@@ -1138,7 +1138,7 @@
                 class="status approved"
                 id="statusBadge"
               >
-                ● Approved
+                ? Approved
               </span>
 
 
@@ -1360,7 +1360,7 @@
                 class="resource-icon"
                 id="resourceIcon"
               >
-                ▶
+                ?
               </div>
 
 
@@ -1833,7 +1833,7 @@
 
         typeName: "Video Playlist",
 
-        icon: "▶",
+        icon: "?",
 
         course: "Data Structures",
 
@@ -1865,7 +1865,7 @@
 
         typeName: "Question Paper",
 
-        icon: "📄",
+        icon: "??",
 
         course: "Bangladesh Studies",
 
@@ -1897,7 +1897,7 @@
 
         typeName: "Video Playlist",
 
-        icon: "▶",
+        icon: "?",
 
         course: "Object Oriented Programming",
 
@@ -1929,7 +1929,7 @@
 
         typeName: "Custom Playlist",
 
-        icon: "▶",
+        icon: "?",
 
         course: "Database Management System",
 
@@ -1961,7 +1961,7 @@
 
         typeName: "Question Paper",
 
-        icon: "📄",
+        icon: "??",
 
         course: "Computer Networks",
 
@@ -1993,7 +1993,7 @@
 
         typeName: "Video Playlist",
 
-        icon: "▶",
+        icon: "?",
 
         course: "Discrete Mathematics",
 
@@ -2025,7 +2025,7 @@
 
         typeName: "Question Paper",
 
-        icon: "📄",
+        icon: "??",
 
         course: "Software Engineering",
 
@@ -2057,7 +2057,7 @@
 
         typeName: "Video Playlist",
 
-        icon: "▶",
+        icon: "?",
 
         course: "Computer Graphics",
 
@@ -2108,8 +2108,8 @@
 
         icon:
           type === "question-paper"
-            ? "📄"
-            : "▶",
+            ? "??"
+            : "?",
 
         course:
           "Academic Resource",
@@ -2260,7 +2260,7 @@
 
 
     statusBadge.textContent =
-      "● " +
+      "? " +
       contribution.statusText;
 
 
@@ -2448,9 +2448,11 @@
     <script src="js/routes.js"></script>
     <script src="js/data-store.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/guest-preferences.js"></script>
     <script src="js/shared-ui.js"></script>
 
     <script>
+        if (!Auth.requireAuth()) return;
         // Initialize shared UI components (header, sidebar, footer)
         SharedUI.init('contributionDetails');
     </script>

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>StudyNest - Leaderboards</title>
+    <title>StudyNest - Leaderboard</title>
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1126,7 +1126,383 @@
             .polytechnic-lb-contributions { grid-column: 2; margin-top: 5px; }
             .polytechnic-lb-points { position: absolute; right: 15px; top: 15px; }
         }
-</style>
+
+        /* =========================================
+           STUDY LEVEL BANNER & MODAL STYLES
+        ========================================= */
+        .study-level-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f7f9fd;
+            border: 1px solid #e1e7f3;
+            border-radius: 12px;
+            padding: 12px 22px;
+            margin: 18px 28px 12px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .study-level-banner-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .study-level-icon-wrap {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #321cff, #5425f5);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(50, 28, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .study-level-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .study-level-tag {
+            font-size: 11px;
+            font-weight: 600;
+            color: #647493;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .study-level-current {
+            font-size: 16px;
+            font-weight: 700;
+            color: #101a3b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .study-level-banner-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .study-level-switch-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .study-level-switch-wrap label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #152043;
+        }
+
+        .study-level-select-box {
+            position: relative;
+        }
+
+        .study-level-select-box select {
+            height: 42px;
+            padding: 0 38px 0 16px;
+            border: 2px solid #321cff;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #101a3b;
+            background: white;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            transition: 0.2s;
+            box-shadow: 0 2px 6px rgba(50, 28, 255, 0.08);
+        }
+
+        .study-level-select-box select:hover,
+        .study-level-select-box select:focus {
+            border-color: #2612d9;
+            box-shadow: 0 0 0 3px rgba(50, 28, 255, 0.18);
+        }
+
+        .study-level-select-box i {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            color: #321cff;
+            pointer-events: none;
+        }
+
+        .btn-open-level-modal {
+            height: 42px;
+            padding: 0 16px;
+            background: #ffffff;
+            border: 1.5px solid #321cff;
+            color: #321cff;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.2s;
+        }
+
+        .btn-open-level-modal:hover {
+            background: #321cff;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(50, 28, 255, 0.25);
+        }
+
+        /* Modal overlay */
+        .study-level-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(16, 26, 59, 0.55);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20000;
+            padding: 20px;
+            animation: slFadeIn 0.2s ease-out;
+        }
+
+        @keyframes slFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .study-level-modal-card {
+            background: #ffffff;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 580px;
+            box-shadow: 0 20px 50px rgba(16, 26, 59, 0.25);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh;
+            animation: slSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slSlideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .sl-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 24px 26px 18px;
+            border-bottom: 1px solid #edf1f8;
+        }
+
+        .sl-modal-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .sl-modal-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #f0edff;
+            color: #5425f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .sl-modal-title-wrap h2 {
+            font-size: 19px;
+            font-weight: 700;
+            color: #101a3b;
+            margin: 0 0 3px;
+        }
+
+        .sl-modal-subtitle {
+            font-size: 12px;
+            color: #647493;
+            margin: 0;
+        }
+
+        .sl-modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #8f9bb3;
+            cursor: pointer;
+            line-height: 1;
+            padding: 4px;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .sl-modal-close:hover {
+            color: #101a3b;
+            background: #f0f2f7;
+        }
+
+        .sl-modal-body {
+            padding: 16px 24px;
+            overflow-y: auto;
+        }
+
+        .sl-level-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sl-level-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            border: 1.5px solid #e5e9f2;
+            border-radius: 12px;
+            cursor: pointer;
+            background: white;
+            transition: all 0.2s ease;
+        }
+
+        .sl-level-option:hover {
+            border-color: #5425f5;
+            background: #faf9ff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(84, 37, 245, 0.08);
+        }
+
+        .sl-level-option.selected {
+            background: #f0edff;
+            border-color: #5425f5;
+        }
+
+        .sl-option-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .sl-option-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: #f3f1ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .sl-option-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #101a3b;
+        }
+
+        .sl-option-desc {
+            font-size: 11px;
+            color: #647493;
+            margin-top: 2px;
+        }
+
+        .sl-radio {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ccd2dc;
+            border-radius: 50%;
+            position: relative;
+            flex-shrink: 0;
+            transition: 0.2s;
+        }
+
+        .sl-level-option.selected .sl-radio {
+            border-color: #5425f5;
+        }
+
+        .sl-level-option.selected .sl-radio::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #5425f5;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .sl-modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding: 14px 24px;
+            border-top: 1px solid #edf1f8;
+            background: #fbfcfe;
+        }
+
+        .sl-btn-cancel {
+            padding: 8px 18px;
+            border: 1px solid #dbe2ef;
+            background: white;
+            color: #42577d;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .sl-btn-cancel:hover {
+            background: #f0f2f7;
+            color: #101a3b;
+        }
+
+        @media (max-width: 768px) {
+            .study-level-banner {
+                flex-direction: column;
+                align-items: stretch;
+                margin: 15px 16px 10px;
+                padding: 12px 16px;
+            }
+            .study-level-banner-right {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .study-level-switch-wrap {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .study-level-select-box {
+                flex-grow: 1;
+            }
+            .study-level-select-box select {
+                width: 100%;
+            }
+            .btn-open-level-modal {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+    </style>
 
     <link rel="stylesheet" href="css/shared.css">
 </head>
@@ -1244,13 +1620,141 @@
      MAIN
 ========================================= -->
 
+
+    <!-- =========================================
+         STUDY LEVEL SELECTOR BANNER
+    ========================================= -->
+    <div class="study-level-banner" id="studyLevelBanner">
+        <div class="study-level-banner-left">
+            <div class="study-level-icon-wrap" id="currentLevelIcon">🎓</div>
+            <div class="study-level-info">
+                <span class="study-level-tag">Current Study Level</span>
+                <div class="study-level-current" id="currentLevelName">University</div>
+            </div>
+        </div>
+        <div class="study-level-banner-right">
+            <div class="study-level-switch-wrap">
+                <label for="studyLevelQuickSelect">Switch Level:</label>
+                <div class="study-level-select-box">
+                    <select id="studyLevelQuickSelect" onchange="selectStudyLevel(this.value)" aria-label="Quick Switch Study Level">
+                        <option value="University">🎓 University</option>
+                        <option value="School">🏫 School</option>
+                        <option value="College">📖 College</option>
+                        <option value="Polytechnic">⚙️ Polytechnic</option>
+                        <option value="National University">📚 National University</option>
+                        <option value="Medical">🩺 Medical</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         STUDY LEVEL SELECTION MODAL
+    ========================================= -->
+    <div class="study-level-modal-overlay" id="studyLevelModalOverlay" style="display: none;">
+        <div class="study-level-modal-card" role="dialog" aria-modal="true" aria-labelledby="studyLevelModalTitle">
+            <div class="sl-modal-header">
+                <div class="sl-modal-title-wrap">
+                    <div class="sl-modal-icon">🎓</div>
+                    <div>
+                        <h2 id="studyLevelModalTitle">Select Study Level</h2>
+                        <p class="sl-modal-subtitle">Choose your study level to view top students and department rankings.</p>
+                    </div>
+                </div>
+                <button type="button" class="sl-modal-close" onclick="closeStudyLevelModal()" aria-label="Close modal">&times;</button>
+            </div>
+
+            <div class="sl-modal-body">
+                <div class="sl-level-list">
+                    <!-- University -->
+                    <div class="sl-level-option" data-level="University" onclick="selectStudyLevel('University')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">🎓</div>
+                            <div>
+                                <div class="sl-option-name">University</div>
+                                <div class="sl-option-desc">Undergraduate &amp; postgraduate university student leaderboards</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- School -->
+                    <div class="sl-level-option" data-level="School" onclick="selectStudyLevel('School')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">🏫</div>
+                            <div>
+                                <div class="sl-option-name">School</div>
+                                <div class="sl-option-desc">School student ranks and board-wise contributor standings</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- College -->
+                    <div class="sl-level-option" data-level="College" onclick="selectStudyLevel('College')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">📖</div>
+                            <div>
+                                <div class="sl-option-name">College</div>
+                                <div class="sl-option-desc">College HSC student rankings and subject contributors</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- Polytechnic -->
+                    <div class="sl-level-option" data-level="Polytechnic" onclick="selectStudyLevel('Polytechnic')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">⚙️</div>
+                            <div>
+                                <div class="sl-option-name">Polytechnic</div>
+                                <div class="sl-option-desc">Diploma in Engineering technology and institute leaderboards</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- National University -->
+                    <div class="sl-level-option" data-level="National University" onclick="selectStudyLevel('National University')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">📚</div>
+                            <div>
+                                <div class="sl-option-name">National University</div>
+                                <div class="sl-option-desc">National University affiliated college student rankings</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- Medical -->
+                    <div class="sl-level-option" data-level="Medical" onclick="selectStudyLevel('Medical')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">🩺</div>
+                            <div>
+                                <div class="sl-option-name">Medical</div>
+                                <div class="sl-option-desc">Medical college student rankings and resource contributors</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sl-modal-footer">
+                <button type="button" class="sl-btn-cancel" onclick="closeStudyLevelModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
 <section class="main" id="universityMain" aria-label="University Leaderboard">
 
 
     <section class="page-header">
 
         <h1>
-            Leaderboards
+            Leaderboard
         </h1>
 
 
@@ -1263,7 +1767,7 @@
             <i class="fa-solid fa-chevron-right"></i>
 
             <span class="active">
-                Leaderboards
+                Leaderboard
             </span>
 
         </div>
@@ -1314,7 +1818,7 @@
 
                     <div class="select-wrapper">
 
-                        <select>
+                        <select id="uniCampusSelect" onchange="filterUniversityLeaderboard()">
 
                             <option>
                                 All Campuses
@@ -1342,7 +1846,7 @@
 
                     <div class="select-wrapper">
 
-                        <select>
+                        <select id="uniDeptSelect" onchange="filterUniversityLeaderboard()">
 
                             <option>
                                 All Departments
@@ -2425,41 +2929,10 @@
 
         <!-- PAGE HEADER -->
         <section class="school-page-header">
-            <h1 class="school-page-title">School Leaderboard</h1>
+            <h1 class="school-page-title">Leaderboard</h1>
             <div class="school-breadcrumb">
                 See the top contributors from schools across Bangladesh.
             </div>
-        </section>
-
-        <!-- FILTER BOX -->
-        <section class="school-filter-box">
-            <div class="school-filter-row-2">
-                <!-- BOARD -->
-                <div>
-                    <label class="school-filter-label">Board</label>
-                    <div class="school-filter-select-wrapper">
-                        <select id="lbBoardSelect" class="school-filter-select" onchange="onLbBoardChange()">
-                            <option value="">Select Board</option>
-                        </select>
-                        <i class="fa-solid fa-chevron-down school-filter-icon"></i>
-                    </div>
-                </div>
-
-                <!-- SCHOOL -->
-                <div>
-                    <label class="school-filter-label">School</label>
-                    <div class="school-filter-select-wrapper">
-                        <select id="lbSchoolSelect" class="school-filter-select" disabled>
-                            <option value="">Select Board First</option>
-                        </select>
-                        <i class="fa-solid fa-chevron-down school-filter-icon"></i>
-                    </div>
-                </div>
-            </div>
-
-            <button type="button" class="school-search-btn" onclick="searchSchoolLeaderboard()">
-                Search
-            </button>
         </section>
 
         <!-- RESULTS CONTAINER -->
@@ -2476,6 +2949,22 @@
                             <button type="button" class="tab">
                                 <i class="fa-regular fa-calendar"></i> This Month
                             </button>
+                        </div>
+
+                        <div class="filters">
+                            <div class="select-wrapper">
+                                <select id="lbBoardSelect" onchange="onLbBoardChange()">
+                                    <option value="">All Boards</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+
+                            <div class="select-wrapper">
+                                <select id="lbSchoolSelect" onchange="onLbSchoolChange()" disabled>
+                                    <option value="">All Schools</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
                         </div>
                     </div>
 
@@ -2651,46 +3140,9 @@
 
         <!-- PAGE HEADER -->
         <section class="college-page-header">
-            <h1 class="college-page-title">College Leaderboard</h1>
+            <h1 class="college-page-title">Leaderboard</h1>
             <div class="college-breadcrumb">
                 See the top contributors from colleges across Bangladesh.
-            </div>
-        </section>
-
-        <!-- FILTER BOX -->
-        <section class="college-filter-box">
-            <div class="college-filter-row">
-                <!-- BOARD -->
-                <div>
-                    <label class="college-filter-label">Board</label>
-                    <div class="college-filter-select-wrapper" id="boardSelectWrapper">
-                        <div class="college-filter-select" id="boardSelectBox" onclick="toggleCollegeDropdown('board')">
-                            <span id="boardSelectedText">Select Board</span>
-                            <i class="fa-solid fa-chevron-down college-filter-icon"></i>
-                        </div>
-                        <div class="college-dropdown-list" id="boardDropdownList"></div>
-                    </div>
-                </div>
-
-                <!-- COLLEGE -->
-                <div>
-                    <label class="college-filter-label">College</label>
-                    <div class="college-filter-select-wrapper" id="collegeSelectWrapper">
-                        <div class="college-filter-select disabled" id="collegeSelectBox" onclick="toggleCollegeDropdown('college')">
-                            <span id="collegeSelectedText">Select Board First</span>
-                            <i class="fa-solid fa-chevron-down college-filter-icon"></i>
-                        </div>
-                        <div class="college-dropdown-list" id="collegeDropdownList"></div>
-                    </div>
-                </div>
-
-                <!-- SEARCH BUTTON -->
-                <div>
-                    <label class="college-filter-label hidden-label">Search</label>
-                    <button type="button" class="college-search-btn" onclick="searchCollegeLeaderboard()">
-                        Search
-                    </button>
-                </div>
             </div>
         </section>
 
@@ -2708,6 +3160,22 @@
                             <button type="button" class="tab">
                                 <i class="fa-regular fa-calendar"></i> This Month
                             </button>
+                        </div>
+
+                        <div class="filters">
+                            <div class="select-wrapper">
+                                <select id="collegeLbBoardSelect" onchange="onCollegeLbBoardChange()">
+                                    <option value="">All Boards</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+
+                            <div class="select-wrapper">
+                                <select id="collegeLbCollegeSelect" onchange="onCollegeLbCollegeChange()" disabled>
+                                    <option value="">All Colleges</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
                         </div>
                     </div>
 
@@ -2881,50 +3349,9 @@
     ========================================= -->
     <section class="main nu-mode" id="nuMain" aria-label="National University Leaderboard" style="display: none;">
         <section class="nu-lb-page-header">
-            <h1 class="nu-lb-page-title">National University Leaderboard</h1>
+            <h1 class="nu-lb-page-title">Leaderboard</h1>
             <div class="nu-lb-breadcrumb">
                 See the top contributors from National University colleges.
-            </div>
-        </section>
-
-        <section class="nu-lb-filter-box">
-            <div class="nu-lb-filter-row">
-                <div class="nu-lb-filter-field">
-                    <label class="nu-lb-filter-label">Program Type</label>
-                    <div class="nu-lb-filter-select-wrapper">
-                        <select id="nuProgramTypeSelect" class="nu-lb-filter-select" onchange="onNuLbProgramTypeChange()">
-                            <option value="">Select Program Type</option>
-                        </select>
-                        <i class="fa-solid fa-chevron-down nu-lb-filter-icon"></i>
-                    </div>
-                </div>
-
-                <div class="nu-lb-filter-field">
-                    <label class="nu-lb-filter-label">Program / Department</label>
-                    <div class="nu-lb-filter-select-wrapper">
-                        <select id="nuProgramSelect" class="nu-lb-filter-select" onchange="onNuLbProgramChange()" disabled>
-                            <option value="">Select Program / Department</option>
-                        </select>
-                        <i class="fa-solid fa-chevron-down nu-lb-filter-icon"></i>
-                    </div>
-                </div>
-
-                <div class="nu-lb-filter-field">
-                    <label class="nu-lb-filter-label">College</label>
-                    <div class="nu-lb-filter-select-wrapper">
-                        <select id="nuCollegeSelect" class="nu-lb-filter-select" onchange="onNuLbCollegeChange()" disabled>
-                            <option value="">Search / Select College</option>
-                        </select>
-                        <i class="fa-solid fa-chevron-down nu-lb-filter-icon"></i>
-                    </div>
-                </div>
-
-                <div class="nu-lb-filter-field">
-                    <label class="nu-lb-filter-label nu-lb-hidden-label">Search</label>
-                    <button type="button" id="nuSearchBtn" class="nu-lb-search-btn" onclick="searchNuLeaderboard()" disabled>
-                        Search
-                    </button>
-                </div>
             </div>
         </section>
 
@@ -2941,6 +3368,22 @@
                             <button type="button" class="tab">
                                 <i class="fa-regular fa-calendar"></i> This Month
                             </button>
+                        </div>
+
+                        <div class="filters">
+                            <div class="select-wrapper">
+                                <select id="nuProgramTypeSelect" onchange="onNuLbProgramTypeChange()">
+                                    <option value="">All Programs</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+
+                            <div class="select-wrapper">
+                                <select id="nuCollegeSelect" onchange="onNuLbCollegeChange()">
+                                    <option value="">All Colleges</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
                         </div>
                     </div>
 
@@ -3114,40 +3557,9 @@
     ========================================= -->
     <section class="main polytechnic-mode" id="polytechnicMain" aria-label="Polytechnic Leaderboard" style="display: none;">
         <section class="polytechnic-lb-page-header">
-            <h1 class="polytechnic-lb-page-title">Polytechnic Leaderboard</h1>
+            <h1 class="polytechnic-lb-page-title">Leaderboard</h1>
             <div class="polytechnic-lb-breadcrumb">
                 Recognizing the most active contributors from Polytechnic institutions.
-            </div>
-        </section>
-
-        <section class="polytechnic-lb-filter-box">
-            <div class="polytechnic-lb-filter-row">
-                <div class="polytechnic-lb-filter-field">
-                    <label class="polytechnic-lb-filter-label">Technology / Department</label>
-                    <div class="polytechnic-lb-filter-select-wrapper">
-                        <select id="polyLbTechSelect" class="polytechnic-lb-filter-select" onchange="onPolyLbTechChange()">
-                            <option value="">Select Technology</option>
-                        </select>
-                        <i class="fa-solid fa-chevron-down polytechnic-lb-filter-icon"></i>
-                    </div>
-                </div>
-
-                <div class="polytechnic-lb-filter-field">
-                    <label class="polytechnic-lb-filter-label">Polytechnic Institute</label>
-                    <div class="polytechnic-lb-filter-select-wrapper">
-                        <select id="polyLbInstSelect" class="polytechnic-lb-filter-select" onchange="onPolyLbInstChange()" disabled>
-                            <option value="">Select Institute</option>
-                        </select>
-                        <i class="fa-solid fa-chevron-down polytechnic-lb-filter-icon"></i>
-                    </div>
-                </div>
-
-                <div class="polytechnic-lb-filter-field">
-                    <label class="polytechnic-lb-filter-label polytechnic-lb-hidden-label">Search</label>
-                    <button type="button" id="polyLbSearchBtn" class="polytechnic-lb-search-btn" onclick="searchPolyLeaderboard()" disabled>
-                        View Leaderboard
-                    </button>
-                </div>
             </div>
         </section>
 
@@ -3164,6 +3576,22 @@
                             <button type="button" class="tab">
                                 <i class="fa-regular fa-calendar"></i> This Month
                             </button>
+                        </div>
+
+                        <div class="filters">
+                            <div class="select-wrapper">
+                                <select id="polyLbTechSelect" onchange="onPolyLbTechChange()">
+                                    <option value="">All Technologies</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+
+                            <div class="select-wrapper">
+                                <select id="polyLbInstSelect" onchange="onPolyLbInstChange()">
+                                    <option value="">All Institutes</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
                         </div>
                     </div>
 
@@ -3337,51 +3765,9 @@
     ========================================= -->
     <section class="main medical-mode" id="medicalMain" aria-label="Medical Leaderboard" style="display: none;">
         <section class="medical-lb-page-header">
-            <h1 class="medical-lb-page-title">Medical Leaderboard</h1>
+            <h1 class="medical-lb-page-title">Leaderboard</h1>
             <div class="medical-lb-breadcrumb">
                 See the top contributors from medical and dental colleges.
-            </div>
-        </section>
-
-        <section class="medical-lb-filter-box">
-            <div class="medical-lb-filter-row">
-                <div class="medical-lb-filter-field">
-                    <label class="medical-lb-filter-label">Program</label>
-                    <div class="medical-lb-filter-select-wrapper">
-                        <select id="medProgramSelect" class="medical-lb-filter-select" onchange="onMedLbProgramChange()">
-                            <option value="MBBS">MBBS</option>
-                            <option value="BDS">BDS</option>
-                        </select>
-                        <i class="fa-solid fa-chevron-down medical-lb-filter-icon"></i>
-                    </div>
-                </div>
-
-                <div class="medical-lb-filter-field">
-                    <label class="medical-lb-filter-label">Professional Phase</label>
-                    <div class="medical-lb-filter-select-wrapper">
-                        <select id="medPhaseSelect" class="medical-lb-filter-select" disabled>
-                            <option value="">All Phases</option>
-                        </select>
-                        <i class="fa-solid fa-chevron-down medical-lb-filter-icon"></i>
-                    </div>
-                </div>
-
-                <div class="medical-lb-filter-field">
-                    <label class="medical-lb-filter-label">Medical/Dental College</label>
-                    <div class="medical-lb-filter-select-wrapper">
-                        <select id="medCollegeSelect" class="medical-lb-filter-select" onchange="onMedLbCollegeChange()" disabled>
-                            <option value="">Search / Select College</option>
-                        </select>
-                        <i class="fa-solid fa-chevron-down medical-lb-filter-icon"></i>
-                    </div>
-                </div>
-
-                <div class="medical-lb-filter-field">
-                    <label class="medical-lb-filter-label medical-lb-hidden-label">Search</label>
-                    <button type="button" id="medSearchBtn" class="medical-lb-search-btn" onclick="searchMedLeaderboard()" disabled>
-                        Search
-                    </button>
-                </div>
             </div>
         </section>
 
@@ -3398,6 +3784,23 @@
                             <button type="button" class="tab">
                                 <i class="fa-regular fa-calendar"></i> This Month
                             </button>
+                        </div>
+
+                        <div class="filters">
+                            <div class="select-wrapper">
+                                <select id="medProgramSelect" onchange="onMedLbProgramChange()">
+                                    <option value="MBBS">MBBS</option>
+                                    <option value="BDS">BDS</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+
+                            <div class="select-wrapper">
+                                <select id="medCollegeSelect" onchange="onMedLbCollegeChange()">
+                                    <option value="">All Medical Colleges</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
                         </div>
                     </div>
 
@@ -3962,7 +4365,12 @@
 
     document.querySelectorAll(".protected-link").forEach(function(link) {
         link.addEventListener("click", function(e) {
-            if (!profileCompleted) {
+            
+            const isLoggedIn = Auth.isLoggedIn();
+            if (!isLoggedIn) {
+                e.preventDefault();
+                Auth.requireAuthForAction('access this feature');
+            } else if (!profileCompleted) {
                 e.preventDefault();
                 alert("Please complete your academic profile first.");
                 window.location.href = ROUTES.institution;
@@ -3977,18 +4385,110 @@
     <script src="js/academic-data.js"></script>
     <script src="js/data-store.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/guest-preferences.js"></script>
     <script src="js/shared-ui.js"></script>
 
     <script>
 
+        
+        /* =========================================
+           STUDY LEVEL MODAL & SWITCHER LOGIC
+        ========================================= */
+        function openStudyLevelModal() {
+            const modal = document.getElementById('studyLevelModalOverlay');
+            if (modal) {
+                modal.style.display = 'flex';
+                const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
+                const currentLevel = user.studyLevel || 'University';
+                document.querySelectorAll('.sl-level-option').forEach(opt => {
+                    if (opt.getAttribute('data-level') === currentLevel) {
+                        opt.classList.add('selected');
+                    } else {
+                        opt.classList.remove('selected');
+                    }
+                });
+            }
+        }
+
+        function closeStudyLevelModal() {
+            const modal = document.getElementById('studyLevelModalOverlay');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function selectStudyLevel(level) {
+            if (!level) return;
+
+            if (typeof AcademicPreferences !== 'undefined') {
+                AcademicPreferences.setStudyLevel(level);
+            } else {
+                const user = DataStore.getUser();
+                user.studyLevel = level;
+                DataStore.setUser(user);
+            }
+            localStorage.setItem('studynest.has_chosen_level', 'true');
+            sessionStorage.setItem('studynest.level_selected_session', 'true');
+
+            closeStudyLevelModal();
+            initMode();
+        }
+
+        function updateStudyLevelUI(level) {
+            const currentNameEl = document.getElementById('currentLevelName');
+            const currentIconEl = document.getElementById('currentLevelIcon');
+            const icons = {
+                'University': '🎓',
+                'School': '🏫',
+                'College': '📖',
+                'Polytechnic': '⚙️',
+                'National University': '📚',
+                'Medical': '🩺'
+            };
+
+            if (currentNameEl) {
+                currentNameEl.textContent = level;
+            }
+            if (currentIconEl) {
+                currentIconEl.textContent = icons[level] || '🎓';
+            }
+
+            const selectEl = document.getElementById('studyLevelQuickSelect');
+            if (selectEl && selectEl.value !== level) {
+                selectEl.value = level;
+            }
+
+            document.querySelectorAll('.sl-level-option').forEach(opt => {
+                if (opt.getAttribute('data-level') === level) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+        }
+
+        // Close modal on outside click or Escape key
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('studyLevelModalOverlay');
+            if (e.target === modal) {
+                closeStudyLevelModal();
+            }
+        });
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeStudyLevelModal();
+            }
+        });
+
         function initMode() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const studyLevel = user.studyLevel || 'University';
 
-            document.getElementById('universityMain').style.display = 'none';
-            document.getElementById('schoolMain').style.display = 'none';
-            document.getElementById('collegeMain').style.display = 'none';
-            document.getElementById('nuMain').style.display = 'none';
+            if (document.getElementById('universityMain')) document.getElementById('universityMain').style.display = 'none';
+            if (document.getElementById('schoolMain')) document.getElementById('schoolMain').style.display = 'none';
+            if (document.getElementById('collegeMain')) document.getElementById('collegeMain').style.display = 'none';
+            if (document.getElementById('nuMain')) document.getElementById('nuMain').style.display = 'none';
+            if (document.getElementById('polytechnicMain')) document.getElementById('polytechnicMain').style.display = 'none';
             if (document.getElementById('medicalMain')) document.getElementById('medicalMain').style.display = 'none';
 
             if (studyLevel === 'School') {
@@ -4009,967 +4509,380 @@
             } else {
                 document.getElementById('universityMain').style.display = 'block';
             }
+
+            updateStudyLevelUI(studyLevel);
         }
 
-        function initSchoolLbData() {
-            const user = DataStore.getUser();
-            const country = user.country || 'Bangladesh';
+        // ==========================================
+        // LEADERBOARD TAB SWITCHING (ALL MODES)
+        // ==========================================
+        document.addEventListener('click', function(e) {
+            const tab = e.target.closest('.tab');
+            if (!tab) return;
+            const parentTabs = tab.closest('.tabs');
+            if (!parentTabs) return;
+            parentTabs.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
 
-            // Boards
-            const boards = AcademicData.getBoards(country);
-            const boardSelect = document.getElementById('lbBoardSelect');
-            boardSelect.innerHTML = '<option value="">Select Board</option>';
-            boards.forEach(b => {
-                const option = document.createElement('option');
-                option.value = b;
-                option.textContent = b;
-                boardSelect.appendChild(option);
+            const container = tab.closest('.leaderboard-main');
+            if (!container) return;
+            const isMonthly = tab.textContent.toLowerCase().includes('month');
+            container.querySelectorAll('.leader-row').forEach(row => {
+                const contribEl = row.querySelector('.contribution-number');
+                const ptsEl = row.querySelector('.point-number');
+                if (!contribEl || !ptsEl) return;
+                let baseContrib = parseInt(contribEl.getAttribute('data-base-contrib'));
+                if (!baseContrib) {
+                    baseContrib = parseInt(contribEl.getAttribute('data-contributions') || contribEl.textContent) || 100;
+                    contribEl.setAttribute('data-base-contrib', baseContrib);
+                }
+
+                if (isMonthly) {
+                    const mContrib = Math.max(1, Math.round(baseContrib * 0.35));
+                    contribEl.textContent = mContrib;
+                    ptsEl.textContent = mContrib * 5;
+                } else {
+                    contribEl.textContent = baseContrib;
+                    ptsEl.textContent = baseContrib * 5;
+                }
+            });
+        });
+
+        // ==========================================
+        // UNIVERSITY LEADERBOARD FILTERING
+        // ==========================================
+        function filterUniversityLeaderboard() {
+            const campus = document.getElementById('uniCampusSelect')?.value || '';
+            const dept = document.getElementById('uniDeptSelect')?.value || '';
+            const rows = document.querySelectorAll('#universityMain .leader-row');
+            rows.forEach((row, idx) => {
+                const campusEl = row.querySelector('.campus');
+                if (campusEl) {
+                    if (campus) {
+                        campusEl.textContent = campus;
+                    } else {
+                        const defaultCampuses = [
+                            'Daffodil International University',
+                            'University of Dhaka',
+                            'BRAC University',
+                            'North South University',
+                            'Ahsanullah University of Science and Technology'
+                        ];
+                        campusEl.textContent = defaultCampuses[idx % defaultCampuses.length];
+                    }
+                }
             });
         }
 
-        function onLbBoardChange() {
-            const selectedBoard = document.getElementById('lbBoardSelect').value;
-            const schoolSelect = document.getElementById('lbSchoolSelect');
+        // ==========================================
+        // SCHOOL LEADERBOARD LOGIC
+        // ==========================================
+        function initSchoolLbData() {
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
+            const country = user.country || 'Bangladesh';
 
-            if (!selectedBoard) {
-                schoolSelect.innerHTML = '<option value="">Select Board First</option>';
+            const boardSelect = document.getElementById('lbBoardSelect');
+            const schoolSelect = document.getElementById('lbSchoolSelect');
+            if (!boardSelect) return;
+
+            boardSelect.innerHTML = '<option value="">All Boards</option>';
+            if (typeof AcademicData !== 'undefined' && AcademicData.getBoards) {
+                const boards = AcademicData.getBoards(country);
+                boards.forEach(b => {
+                    const opt = document.createElement('option');
+                    opt.value = b;
+                    opt.textContent = b;
+                    boardSelect.appendChild(opt);
+                });
+            }
+
+            if (schoolSelect) {
+                schoolSelect.innerHTML = '<option value="">All Schools</option>';
                 schoolSelect.disabled = true;
+            }
+        }
+
+        function onLbBoardChange() {
+            const boardSelect = document.getElementById('lbBoardSelect');
+            const schoolSelect = document.getElementById('lbSchoolSelect');
+            if (!boardSelect || !schoolSelect) return;
+
+            const selectedBoard = boardSelect.value;
+            if (!selectedBoard) {
+                schoolSelect.innerHTML = '<option value="">All Schools</option>';
+                schoolSelect.disabled = true;
+                filterSchoolLeaderboard('', '');
                 return;
             }
 
             schoolSelect.disabled = false;
-            schoolSelect.innerHTML = '<option value="">Select School</option>';
+            schoolSelect.innerHTML = '<option value="">All Schools</option>';
 
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
-            const schools = AcademicData.getSchoolsByBoard(country, selectedBoard);
-            schools.forEach(s => {
-                const option = document.createElement('option');
-                option.value = s;
-                option.textContent = s;
-                schoolSelect.appendChild(option);
+            if (typeof AcademicData !== 'undefined' && AcademicData.getSchoolsByBoard) {
+                const schools = AcademicData.getSchoolsByBoard(country, selectedBoard);
+                schools.forEach(s => {
+                    const opt = document.createElement('option');
+                    opt.value = s;
+                    opt.textContent = s;
+                    schoolSelect.appendChild(opt);
+                });
+            }
+
+            filterSchoolLeaderboard(selectedBoard, '');
+        }
+
+        function onLbSchoolChange() {
+            const board = document.getElementById('lbBoardSelect')?.value || '';
+            const school = document.getElementById('lbSchoolSelect')?.value || '';
+            filterSchoolLeaderboard(board, school);
+        }
+
+        function filterSchoolLeaderboard(board, school) {
+            const rows = document.querySelectorAll('#schoolLeaderboardContainer .leader-row');
+            rows.forEach((row, idx) => {
+                const campusEl = row.querySelector('.campus');
+                if (campusEl) {
+                    if (school) {
+                        campusEl.textContent = school;
+                    } else if (board) {
+                        campusEl.textContent = board + ' Board School';
+                    } else {
+                        const defaultCampuses = ['Dhaka, Bangladesh', 'Chittagong, Bangladesh', 'Rajshahi, Bangladesh', 'Sylhet, Bangladesh', 'Barisal, Bangladesh'];
+                        campusEl.textContent = defaultCampuses[idx % defaultCampuses.length];
+                    }
+                }
             });
         }
+        function searchSchoolLeaderboard() { onLbSchoolChange(); }
 
-        function searchSchoolLeaderboard() {
-            const board = document.getElementById('lbBoardSelect').value;
-            const school = document.getElementById('lbSchoolSelect').value;
-            const container = document.getElementById('schoolLeaderboardContainer');
-
-            if (!board || !school) {
-                return;
-            }
-
-            // Render the leaderboard for the selected school
-            // Using a realistic mocked layout for the top 3 and others
-
-            container.innerHTML = `
-                <div class="content-grid">
-                    <div class="leaderboard-main">
-
-                        <div class="controls">
-                            <div class="tabs">
-                                <button type="button" class="tab active">
-                                    <i class="fa-solid fa-trophy"></i> Overall
-                                </button>
-                                <button type="button" class="tab">
-                                    <i class="fa-regular fa-calendar"></i> This Month
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="leaderboard-box">
-                            <div class="table-head">
-                                <div>Rank</div>
-                                <div>User</div>
-                                <div>Campus</div>
-                                <div>Contributions</div>
-                                <div>Points</div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal gold"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Fahim Ahmed</div>
-                                        <div class="username">@fahim.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${school}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="143">143</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">715</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal silver"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Nusrat Jahan</div>
-                                        <div class="username">@nusrat.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${school}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="97">97</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">485</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal bronze"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Ashiqur Rahman</div>
-                                        <div class="username">@ashiq.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${school}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="52">52</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">260</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <aside class="right-sidebar" aria-label="Rank Info 7">
-                        <div class="my-rank">
-                            <div class="my-rank-title">My Rank</div>
-                            <div class="my-rank-user">
-                                <div class="rank-user-info">
-                                    <div class="rank-avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="rank-user-name">Anik</div>
-                                        <div class="rank-user-type">Student</div>
-                                    </div>
-                                </div>
-                                <div class="rank-number">
-                                    <strong>#24</strong>
-                                    <span>of 1,245</span>
-                                </div>
-                            </div>
-                            <div class="rank-stats">
-                                <div class="rank-stat">
-                                    <strong>18</strong>
-                                    <span>Contributions</span>
-                                </div>
-                                <div class="rank-stat">
-                                    <strong>90</strong>
-                                    <span>Points</span>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-`;
-        }
-
-        // Variables to store current selections
-        let activeCollegeBoard = "";
-        let activeCollegeName = "";
-
-        // Custom Dropdown Toggle Logic
-        function toggleCollegeDropdown(type) {
-            // Close the other dropdown first
-            if (type === 'board') {
-                document.getElementById('collegeDropdownList').classList.remove('active');
-                document.getElementById('collegeSelectBox').classList.remove('open');
-
-                document.getElementById('boardDropdownList').classList.toggle('active');
-                document.getElementById('boardSelectBox').classList.toggle('open');
-            } else if (type === 'college') {
-                if (document.getElementById('collegeSelectBox').classList.contains('disabled')) return;
-
-                document.getElementById('boardDropdownList').classList.remove('active');
-                document.getElementById('boardSelectBox').classList.remove('open');
-
-                document.getElementById('collegeDropdownList').classList.toggle('active');
-                document.getElementById('collegeSelectBox').classList.toggle('open');
-            }
-        }
-
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.college-filter-select-wrapper')) {
-                document.getElementById('boardDropdownList')?.classList.remove('active');
-                document.getElementById('boardSelectBox')?.classList.remove('open');
-                document.getElementById('collegeDropdownList')?.classList.remove('active');
-                document.getElementById('collegeSelectBox')?.classList.remove('open');
-            }
-        });
-
+        // ==========================================
+        // COLLEGE LEADERBOARD LOGIC
+        // ==========================================
         function initCollegeLbData() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
 
-            // Boards
-            const boards = AcademicData.getBoards(country);
-            const boardList = document.getElementById('boardDropdownList');
-            boardList.innerHTML = '';
+            const boardSelect = document.getElementById('collegeLbBoardSelect');
+            const collegeSelect = document.getElementById('collegeLbCollegeSelect');
+            if (!boardSelect) return;
 
-            boards.forEach(b => {
-                const item = document.createElement('div');
-                item.className = 'college-dropdown-item';
-                item.textContent = b;
-                item.onclick = (e) => {
-                    e.stopPropagation();
-                    activeCollegeBoard = b;
-                    document.getElementById('boardSelectedText').textContent = b;
-                    document.getElementById('boardDropdownList').classList.remove('active');
-                    document.getElementById('boardSelectBox').classList.remove('open');
-                    onLbCollegeBoardChange(b);
-                };
-                boardList.appendChild(item);
-            });
+            boardSelect.innerHTML = '<option value="">All Boards</option>';
+            if (typeof AcademicData !== 'undefined' && AcademicData.getBoards) {
+                const boards = AcademicData.getBoards(country);
+                boards.forEach(b => {
+                    const opt = document.createElement('option');
+                    opt.value = b;
+                    opt.textContent = b;
+                    boardSelect.appendChild(opt);
+                });
+            }
+
+            if (collegeSelect) {
+                collegeSelect.innerHTML = '<option value="">All Colleges</option>';
+                collegeSelect.disabled = true;
+            }
         }
 
-        function onLbCollegeBoardChange(selectedBoard) {
-            const collegeBox = document.getElementById('collegeSelectBox');
-            const collegeText = document.getElementById('collegeSelectedText');
-            const collegeList = document.getElementById('collegeDropdownList');
-            const container = document.getElementById('collegeLeaderboardContainer');
+        function onCollegeLbBoardChange() {
+            const boardSelect = document.getElementById('collegeLbBoardSelect');
+            const collegeSelect = document.getElementById('collegeLbCollegeSelect');
+            if (!boardSelect || !collegeSelect) return;
 
-            // Clear previous college selection
-            activeCollegeName = "";
-            collegeText.textContent = 'Select Board First';
-            collegeBox.classList.add('disabled');
-            collegeList.innerHTML = '';
-
-            // Show empty state when board changes
-            container.innerHTML = `
-                <div class="college-empty-state">
-                    <div class="college-empty-icon">🏆</div>
-                    <h3 class="college-empty-title">Select a Board and College</h3>
-                    <p class="college-empty-desc">Choose a board and college to view the contribution leaderboard.</p>
-                </div>
-            `;
-
+            const selectedBoard = boardSelect.value;
             if (!selectedBoard) {
+                collegeSelect.innerHTML = '<option value="">All Colleges</option>';
+                collegeSelect.disabled = true;
+                filterCollegeLeaderboard('', '');
                 return;
             }
 
-            collegeBox.classList.remove('disabled');
-            collegeText.textContent = 'Select College';
+            collegeSelect.disabled = false;
+            collegeSelect.innerHTML = '<option value="">All Colleges</option>';
 
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
-            const colleges = AcademicData.getCollegesByBoard(country, selectedBoard);
+            if (typeof AcademicData !== 'undefined' && AcademicData.getCollegesByBoard) {
+                const colleges = AcademicData.getCollegesByBoard(country, selectedBoard);
+                colleges.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c;
+                    opt.textContent = c;
+                    collegeSelect.appendChild(opt);
+                });
+            }
 
-            colleges.forEach(c => {
-                const item = document.createElement('div');
-                item.className = 'college-dropdown-item';
-                item.textContent = c;
-                item.onclick = (e) => {
-                    e.stopPropagation();
-                    activeCollegeName = c;
-                    document.getElementById('collegeSelectedText').textContent = c;
-                    document.getElementById('collegeDropdownList').classList.remove('active');
-                    document.getElementById('collegeSelectBox').classList.remove('open');
-                };
-                collegeList.appendChild(item);
+            filterCollegeLeaderboard(selectedBoard, '');
+        }
+
+        function onCollegeLbCollegeChange() {
+            const board = document.getElementById('collegeLbBoardSelect')?.value || '';
+            const college = document.getElementById('collegeLbCollegeSelect')?.value || '';
+            filterCollegeLeaderboard(board, college);
+        }
+
+        function filterCollegeLeaderboard(board, college) {
+            const rows = document.querySelectorAll('#collegeLeaderboardContainer .leader-row');
+            rows.forEach((row, idx) => {
+                const campusEl = row.querySelector('.campus');
+                if (campusEl) {
+                    if (college) {
+                        campusEl.textContent = college;
+                    } else if (board) {
+                        campusEl.textContent = board + ' Board College';
+                    } else {
+                        const defaultColleges = ['Notre Dame College', 'Dhaka College', 'Rajuk Uttara Model College', 'Viqarunnisa Noon College', 'Adamjee Cantonment College'];
+                        campusEl.textContent = defaultColleges[idx % defaultColleges.length];
+                    }
+                }
             });
         }
-
-        function searchCollegeLeaderboard() {
-            const board = activeCollegeBoard;
-            const college = activeCollegeName;
-            const container = document.getElementById('collegeLeaderboardContainer');
-
-            if (!board || !college) {
-                return;
-            }
-
-            const user = DataStore.getUser();
-            const country = user.country || 'Bangladesh';
-            const colleges = AcademicData.getCollegesByBoard(country, board);
-
-            // Validate if the input college is actually in the list
-            if (!colleges.includes(college)) {
-                return;
-            }
-
-            if (college === 'Notre Dame College' || college === 'Holy Cross College') {
-                container.innerHTML = `
-                <div class="content-grid">
-                    <div class="leaderboard-main">
-
-                        <div class="controls">
-                            <div class="tabs">
-                                <button type="button" class="tab active">
-                                    <i class="fa-solid fa-trophy"></i> Overall
-                                </button>
-                                <button type="button" class="tab">
-                                    <i class="fa-regular fa-calendar"></i> This Month
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="leaderboard-box">
-                            <div class="table-head">
-                                <div>Rank</div>
-                                <div>User</div>
-                                <div>Campus</div>
-                                <div>Contributions</div>
-                                <div>Points</div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal gold"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Fahim Ahmed</div>
-                                        <div class="username">@fahim.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${college}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="143">143</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">715</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal silver"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Nusrat Jahan</div>
-                                        <div class="username">@nusrat.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${college}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="97">97</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">485</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal bronze"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Ashiqur Rahman</div>
-                                        <div class="username">@ashiq.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${college}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="52">52</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">260</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <aside class="right-sidebar" aria-label="Rank Info 8">
-                        <div class="my-rank">
-                            <div class="my-rank-title">My Rank</div>
-                            <div class="my-rank-user">
-                                <div class="rank-user-info">
-                                    <div class="rank-avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="rank-user-name">Anik</div>
-                                        <div class="rank-user-type">Student</div>
-                                    </div>
-                                </div>
-                                <div class="rank-number">
-                                    <strong>#24</strong>
-                                    <span>of 1,245</span>
-                                </div>
-                            </div>
-                            <div class="rank-stats">
-                                <div class="rank-stat">
-                                    <strong>18</strong>
-                                    <span>Contributions</span>
-                                </div>
-                                <div class="rank-stat">
-                                    <strong>90</strong>
-                                    <span>Points</span>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-`;
-                return;
-            }
-
-            const isUserCollege = (user.studyLevel === 'College' && user.collegeId === college);
-
-            container.innerHTML = `
-                <div class="content-grid">
-                    <div class="leaderboard-main">
-
-                        <div class="controls">
-                            <div class="tabs">
-                                <button type="button" class="tab active">
-                                    <i class="fa-solid fa-trophy"></i> Overall
-                                </button>
-                                <button type="button" class="tab">
-                                    <i class="fa-regular fa-calendar"></i> This Month
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="leaderboard-box">
-                            <div class="table-head">
-                                <div>Rank</div>
-                                <div>User</div>
-                                <div>Campus</div>
-                                <div>Contributions</div>
-                                <div>Points</div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal gold"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Fahim Ahmed</div>
-                                        <div class="username">@fahim.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${college}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="143">143</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">715</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal silver"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Nusrat Jahan</div>
-                                        <div class="username">@nusrat.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${college}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="97">97</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">485</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal bronze"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Ashiqur Rahman</div>
-                                        <div class="username">@ashiq.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${college}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="52">52</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">260</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <aside class="right-sidebar" aria-label="Rank Info 9">
-                        <div class="my-rank">
-                            <div class="my-rank-title">My Rank</div>
-                            <div class="my-rank-user">
-                                <div class="rank-user-info">
-                                    <div class="rank-avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="rank-user-name">Anik</div>
-                                        <div class="rank-user-type">Student</div>
-                                    </div>
-                                </div>
-                                <div class="rank-number">
-                                    <strong>#24</strong>
-                                    <span>of 1,245</span>
-                                </div>
-                            </div>
-                            <div class="rank-stats">
-                                <div class="rank-stat">
-                                    <strong>18</strong>
-                                    <span>Contributions</span>
-                                </div>
-                                <div class="rank-stat">
-                                    <strong>90</strong>
-                                    <span>Points</span>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-`;
-        }
+        function searchCollegeLeaderboard() { onCollegeLbCollegeChange(); }
 
         // ==========================================
         // NATIONAL UNIVERSITY LEADERBOARD LOGIC
         // ==========================================
         function initNuLbData() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
-            const programTypes = AcademicData.getNuProgramTypes(country);
 
-            const ptSelect = document.getElementById('nuProgramTypeSelect');
-            ptSelect.innerHTML = '<option value="">Select Program Type</option>';
-            programTypes.forEach(pt => {
-                ptSelect.innerHTML += `<option value="${pt.id}">${pt.name}</option>`;
-            });
+            const progSelect = document.getElementById('nuProgramTypeSelect');
+            if (progSelect && typeof AcademicData !== 'undefined' && AcademicData.getNuProgramTypes) {
+                progSelect.innerHTML = '<option value="">All Programs</option>';
+                const programTypes = AcademicData.getNuProgramTypes(country);
+                programTypes.forEach(pt => {
+                    const opt = document.createElement('option');
+                    opt.value = pt.id;
+                    opt.textContent = pt.name;
+                    progSelect.appendChild(opt);
+                });
+            }
+
+            const colSelect = document.getElementById('nuCollegeSelect');
+            if (colSelect && typeof AcademicData !== 'undefined' && AcademicData.getNuColleges) {
+                colSelect.innerHTML = '<option value="">All Colleges</option>';
+                const colleges = AcademicData.getNuColleges(country);
+                colleges.forEach(col => {
+                    const opt = document.createElement('option');
+                    opt.value = col;
+                    opt.textContent = col;
+                    colSelect.appendChild(opt);
+                });
+            }
         }
 
         function onNuLbProgramTypeChange() {
-            const user = DataStore.getUser();
-            const country = user.country || 'Bangladesh';
-            const pt = document.getElementById('nuProgramTypeSelect').value;
-
-            const progSelect = document.getElementById('nuProgramSelect');
-            const colSelect = document.getElementById('nuCollegeSelect');
-            const searchBtn = document.getElementById('nuSearchBtn');
-
-            progSelect.innerHTML = '<option value="">Select Program / Department</option>';
-            colSelect.innerHTML = '<option value="">Search / Select College</option>';
-
-            progSelect.disabled = true;
-            colSelect.disabled = true;
-            searchBtn.disabled = true;
-
-            if (pt) {
-                const programs = AcademicData.getNuPrograms(country, pt);
-                programs.forEach(p => {
-                    progSelect.innerHTML += `<option value="${p.id}">${p.name}</option>`;
-                });
-                progSelect.disabled = false;
-            }
-        }
-
-        function onNuLbProgramChange() {
-            const user = DataStore.getUser();
-            const country = user.country || 'Bangladesh';
-            const pId = document.getElementById('nuProgramSelect').value;
-
-            const colSelect = document.getElementById('nuCollegeSelect');
-            const searchBtn = document.getElementById('nuSearchBtn');
-
-            colSelect.innerHTML = '<option value="">Search / Select College</option>';
-            colSelect.disabled = true;
-            searchBtn.disabled = true;
-
-            if (pId) {
-                const colleges = AcademicData.getNuColleges(country);
-                colleges.forEach(col => {
-                    colSelect.innerHTML += `<option value="${col}">${col}</option>`;
-                });
-                colSelect.disabled = false;
-            }
+            filterNuLeaderboard();
         }
 
         function onNuLbCollegeChange() {
-            const col = document.getElementById('nuCollegeSelect').value;
-            const searchBtn = document.getElementById('nuSearchBtn');
-            searchBtn.disabled = !col;
+            filterNuLeaderboard();
         }
 
-        function searchNuLeaderboard() {
-            const progSelect = document.getElementById('nuProgramSelect');
-            const colSelect = document.getElementById('nuCollegeSelect');
-
-            const progName = progSelect.options[progSelect.selectedIndex].text;
-            const colName = colSelect.value;
-
-            const container = document.getElementById('nuLeaderboardContainer');
-
-            if (Math.random() < 0.2) {
-                container.innerHTML = `
-                <div class="content-grid">
-                    <div class="leaderboard-main">
-
-                        <div class="controls">
-                            <div class="tabs">
-                                <button type="button" class="tab active">
-                                    <i class="fa-solid fa-trophy"></i> Overall
-                                </button>
-                                <button type="button" class="tab">
-                                    <i class="fa-regular fa-calendar"></i> This Month
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="leaderboard-box">
-                            <div class="table-head">
-                                <div>Rank</div>
-                                <div>User</div>
-                                <div>Campus</div>
-                                <div>Contributions</div>
-                                <div>Points</div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal gold"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Fahim Ahmed</div>
-                                        <div class="username">@fahim.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${colName}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="143">143</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">715</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal silver"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Nusrat Jahan</div>
-                                        <div class="username">@nusrat.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${colName}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="97">97</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">485</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal bronze"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Ashiqur Rahman</div>
-                                        <div class="username">@ashiq.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${colName}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="52">52</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">260</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <aside class="right-sidebar" aria-label="Rank Info 10">
-                        <div class="my-rank">
-                            <div class="my-rank-title">My Rank</div>
-                            <div class="my-rank-user">
-                                <div class="rank-user-info">
-                                    <div class="rank-avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="rank-user-name">Anik</div>
-                                        <div class="rank-user-type">Student</div>
-                                    </div>
-                                </div>
-                                <div class="rank-number">
-                                    <strong>#24</strong>
-                                    <span>of 1,245</span>
-                                </div>
-                            </div>
-                            <div class="rank-stats">
-                                <div class="rank-stat">
-                                    <strong>18</strong>
-                                    <span>Contributions</span>
-                                </div>
-                                <div class="rank-stat">
-                                    <strong>90</strong>
-                                    <span>Points</span>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-`;
-                return;
-            }
-
-            container.innerHTML = `
-                <div class="content-grid">
-                    <div class="leaderboard-main">
-
-                        <div class="controls">
-                            <div class="tabs">
-                                <button type="button" class="tab active">
-                                    <i class="fa-solid fa-trophy"></i> Overall
-                                </button>
-                                <button type="button" class="tab">
-                                    <i class="fa-regular fa-calendar"></i> This Month
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="leaderboard-box">
-                            <div class="table-head">
-                                <div>Rank</div>
-                                <div>User</div>
-                                <div>Campus</div>
-                                <div>Contributions</div>
-                                <div>Points</div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal gold"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Fahim Ahmed</div>
-                                        <div class="username">@fahim.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${colName}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="143">143</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">715</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal silver"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Nusrat Jahan</div>
-                                        <div class="username">@nusrat.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${colName}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="97">97</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">485</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal bronze"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Ashiqur Rahman</div>
-                                        <div class="username">@ashiq.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${colName}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="52">52</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">260</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <aside class="right-sidebar" aria-label="Rank Info 11">
-                        <div class="my-rank">
-                            <div class="my-rank-title">My Rank</div>
-                            <div class="my-rank-user">
-                                <div class="rank-user-info">
-                                    <div class="rank-avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="rank-user-name">Anik</div>
-                                        <div class="rank-user-type">Student</div>
-                                    </div>
-                                </div>
-                                <div class="rank-number">
-                                    <strong>#24</strong>
-                                    <span>of 1,245</span>
-                                </div>
-                            </div>
-                            <div class="rank-stats">
-                                <div class="rank-stat">
-                                    <strong>18</strong>
-                                    <span>Contributions</span>
-                                </div>
-                                <div class="rank-stat">
-                                    <strong>90</strong>
-                                    <span>Points</span>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-`;
-        }
-
-
-        function initMedicalLbData() {
-            const user = DataStore.getUser();
-            const program = user.program === 'BDS' ? 'BDS' : 'MBBS';
-            document.getElementById('medProgramSelect').value = program;
-            loadMedLbPhases(program);
-            loadMedLbColleges(program);
-
-            if (user.medicalCollegeId || user.college) {
-                document.getElementById('medCollegeSelect').value = user.medicalCollegeId || user.college;
-            }
-
-            onMedLbCollegeChange();
-        }
-
-        function loadMedLbPhases(program) {
-            const phaseSelect = document.getElementById('medPhaseSelect');
-            phaseSelect.innerHTML = '<option value="">All Phases</option>';
-            const phases = program === 'BDS' ?
-                ['1st Professional', '2nd Professional', '3rd Professional', 'Final Professional'] :
-                ['1st Professional', '2nd Professional', '3rd Professional', 'Final Professional'];
-
-            phases.forEach(p => {
-                const opt = document.createElement('option');
-                opt.value = p; opt.textContent = p;
-                phaseSelect.appendChild(opt);
+        function filterNuLeaderboard() {
+            const college = document.getElementById('nuCollegeSelect')?.value || '';
+            const pt = document.getElementById('nuProgramTypeSelect')?.value || '';
+            const rows = document.querySelectorAll('#nuLeaderboardContainer .leader-row');
+            rows.forEach((row, idx) => {
+                const campusEl = row.querySelector('.campus');
+                if (campusEl) {
+                    if (college) {
+                        campusEl.textContent = college;
+                    } else if (pt) {
+                        campusEl.textContent = pt.toUpperCase() + ' College';
+                    } else {
+                        const defaultColleges = ['Dhaka City College', 'Tejgaon College', 'Eden Mohila College', 'Government Titumir College', 'Lalmatia Mohila College'];
+                        campusEl.textContent = defaultColleges[idx % defaultColleges.length];
+                    }
+                }
             });
-            phaseSelect.disabled = false;
+        }
+        function searchNuLeaderboard() { filterNuLeaderboard(); }
+
+        // ==========================================
+        // POLYTECHNIC LEADERBOARD LOGIC
+        // ==========================================
+        function initPolytechnicLbData() {
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
+            const country = user.country || 'Bangladesh';
+
+            const techSelect = document.getElementById('polyLbTechSelect');
+            const instSelect = document.getElementById('polyLbInstSelect');
+            if (!techSelect || !instSelect) return;
+
+            techSelect.innerHTML = '<option value="">All Technologies</option>';
+            instSelect.innerHTML = '<option value="">All Institutes</option>';
+
+            if (typeof AcademicData !== 'undefined' && AcademicData.getPolytechnicData) {
+                const polyData = AcademicData.getPolytechnicData(country);
+                if (polyData && polyData.departments) {
+                    polyData.departments.forEach(dept => {
+                        const opt = document.createElement('option');
+                        opt.value = dept;
+                        opt.textContent = dept;
+                        techSelect.appendChild(opt);
+                    });
+                }
+                if (polyData && polyData.institutes) {
+                    polyData.institutes.forEach(inst => {
+                        const opt = document.createElement('option');
+                        opt.value = inst;
+                        opt.textContent = inst;
+                        instSelect.appendChild(opt);
+                    });
+                }
+            }
+        }
+
+        function onPolyLbTechChange() {
+            const instSelect = document.getElementById('polyLbInstSelect');
+            if (instSelect) instSelect.disabled = false;
+            filterPolyLeaderboard();
+        }
+
+        function onPolyLbInstChange() {
+            filterPolyLeaderboard();
+        }
+
+        function filterPolyLeaderboard() {
+            const tech = document.getElementById('polyLbTechSelect')?.value || '';
+            const inst = document.getElementById('polyLbInstSelect')?.value || '';
+            const rows = document.querySelectorAll('#polyLeaderboardContainer .leader-row');
+            rows.forEach((row, idx) => {
+                const campusEl = row.querySelector('.campus');
+                if (campusEl) {
+                    if (inst) {
+                        campusEl.textContent = inst + (tech ? ' (' + tech + ')' : '');
+                    } else if (tech) {
+                        campusEl.textContent = 'Polytechnic (' + tech + ')';
+                    } else {
+                        const defaultInsts = ['Dhaka Polytechnic Institute', 'Chittagong Polytechnic Institute', 'Rajshahi Polytechnic Institute', 'Sylhet Polytechnic Institute', 'Mymensingh Polytechnic Institute'];
+                        campusEl.textContent = defaultInsts[idx % defaultInsts.length];
+                    }
+                }
+            });
+        }
+        function searchPolyLeaderboard() { filterPolyLeaderboard(); }
+
+        // ==========================================
+        // MEDICAL LEADERBOARD LOGIC
+        // ==========================================
+        function initMedicalLbData() {
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
+            const program = user.program === 'BDS' ? 'BDS' : 'MBBS';
+            const progSelect = document.getElementById('medProgramSelect');
+            if (progSelect) progSelect.value = program;
+
+            loadMedLbColleges(program);
         }
 
         function loadMedLbColleges(program) {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
             let colleges = [];
 
-            if (typeof AcademicData.getMedicalUniversities === 'function') {
+            if (typeof AcademicData !== 'undefined' && typeof AcademicData.getMedicalUniversities === 'function') {
                 const medData = AcademicData.getMedicalUniversities(country);
                 if (medData) {
                     for (let uni in medData) {
@@ -4978,412 +4891,70 @@
                     colleges = [...new Set(colleges)].sort();
                 }
             }
-            if (colleges.length === 0) colleges = ['Dhaka Medical College', 'Sir Salimullah Medical College', 'Mymensingh Medical College', 'Rajshahi Medical College', 'Chittagong Medical College'];
+            if (colleges.length === 0) {
+                colleges = ['Dhaka Medical College', 'Sir Salimullah Medical College', 'Mymensingh Medical College', 'Rajshahi Medical College', 'Chittagong Medical College'];
+            }
 
             const colSelect = document.getElementById('medCollegeSelect');
-            colSelect.innerHTML = '<option value="">Search / Select College</option>';
+            if (!colSelect) return;
+            colSelect.innerHTML = '<option value="">All Medical Colleges</option>';
             colleges.forEach(c => {
                 const opt = document.createElement('option');
-                opt.value = c; opt.textContent = c;
+                opt.value = c;
+                opt.textContent = c;
                 colSelect.appendChild(opt);
             });
-            colSelect.disabled = false;
         }
 
         function onMedLbProgramChange() {
-            const program = document.getElementById('medProgramSelect').value;
-            loadMedLbPhases(program);
+            const program = document.getElementById('medProgramSelect')?.value || 'MBBS';
             loadMedLbColleges(program);
-            document.getElementById('medLeaderboardContainer').innerHTML = `
-                <div class="medical-lb-empty-state">
-                    <div class="medical-lb-empty-icon">🏆</div>
-                    <div class="medical-lb-empty-title">Select a Medical/Dental College</div>
-                    <div class="medical-lb-empty-desc">Choose a college to view its contributor leaderboard.</div>
-                </div>
-            `;
-            onMedLbCollegeChange();
+            filterMedLeaderboard();
         }
 
         function onMedLbCollegeChange() {
-            const col = document.getElementById('medCollegeSelect').value;
-            const program = document.getElementById('medProgramSelect').value;
-            if (program && col) {
-                document.getElementById('medSearchBtn').disabled = false;
-            } else {
-                document.getElementById('medSearchBtn').disabled = true;
-            }
+            filterMedLeaderboard();
         }
 
-        function searchMedLeaderboard() {
-            const program = document.getElementById('medProgramSelect').value;
-            const college = document.getElementById('medCollegeSelect').value;
-            const phase = document.getElementById('medPhaseSelect').value;
-            const user = DataStore.getUser();
-            const container = document.getElementById('medLeaderboardContainer');
-
-            if (!program || !college) return;
-
-            const isMyCollege = (user.medicalCollegeId === college || user.college === college);
-            const youBadge = isMyCollege ? '<span class="medical-lb-you">You</span>' : '';
-
-            const phaseText = phase ? ` &bull; ${phase}` : '';
-
-            container.innerHTML = `
-                <div class="content-grid">
-                    <div class="leaderboard-main">
-
-                        <div class="controls">
-                            <div class="tabs">
-                                <button type="button" class="tab active">
-                                    <i class="fa-solid fa-trophy"></i> Overall
-                                </button>
-                                <button type="button" class="tab">
-                                    <i class="fa-regular fa-calendar"></i> This Month
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="leaderboard-box">
-                            <div class="table-head">
-                                <div>Rank</div>
-                                <div>User</div>
-                                <div>Campus</div>
-                                <div>Contributions</div>
-                                <div>Points</div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal gold"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Fahim Ahmed</div>
-                                        <div class="username">@fahim.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${college}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="143">143</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">715</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal silver"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Nusrat Jahan</div>
-                                        <div class="username">@nusrat.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${college}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="97">97</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">485</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal bronze"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Ashiqur Rahman</div>
-                                        <div class="username">@ashiq.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${college}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="52">52</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">260</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <aside class="right-sidebar" aria-label="Rank Info 12">
-                        <div class="my-rank">
-                            <div class="my-rank-title">My Rank</div>
-                            <div class="my-rank-user">
-                                <div class="rank-user-info">
-                                    <div class="rank-avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="rank-user-name">Anik</div>
-                                        <div class="rank-user-type">Student</div>
-                                    </div>
-                                </div>
-                                <div class="rank-number">
-                                    <strong>#24</strong>
-                                    <span>of 1,245</span>
-                                </div>
-                            </div>
-                            <div class="rank-stats">
-                                <div class="rank-stat">
-                                    <strong>18</strong>
-                                    <span>Contributions</span>
-                                </div>
-                                <div class="rank-stat">
-                                    <strong>90</strong>
-                                    <span>Points</span>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-`;
+        function filterMedLeaderboard() {
+            const prog = document.getElementById('medProgramSelect')?.value || 'MBBS';
+            const col = document.getElementById('medCollegeSelect')?.value || '';
+            const rows = document.querySelectorAll('#medLeaderboardContainer .leader-row');
+            rows.forEach((row, idx) => {
+                const campusEl = row.querySelector('.campus');
+                if (campusEl) {
+                    if (col) {
+                        campusEl.textContent = col;
+                    } else {
+                        const defaultColleges = prog === 'BDS' ?
+                            ['Dhaka Dental College', 'Chittagong Medical College (Dental Unit)', 'Rajshahi Medical College (Dental Unit)'] :
+                            ['Dhaka Medical College', 'Sir Salimullah Medical College', 'Mymensingh Medical College', 'Chittagong Medical College', 'Rajshahi Medical College'];
+                        campusEl.textContent = defaultColleges[idx % defaultColleges.length];
+                    }
+                }
+            });
         }
+        function searchMedLeaderboard() { filterMedLeaderboard(); }
 
         // Initialize shared UI components (header, sidebar, footer)
         SharedUI.init('leaderboard');
 
         document.addEventListener('DOMContentLoaded', () => {
             initMode();
+
+            // Prompt for study level if not yet chosen or requested via URL
+            const hasChosenLevel = localStorage.getItem('studynest.has_chosen_level') === 'true';
+            const urlParams = new URLSearchParams(window.location.search);
+            const forceSelect = urlParams.get('selectLevel') === 'true' || urlParams.get('change') === 'true';
+
+            if (!hasChosenLevel || forceSelect) {
+                openStudyLevelModal();
+            }
         });
 
-        // ==========================================
-        // POLYTECHNIC LEADERBOARD LOGIC
-        // ==========================================
-        function initPolytechnicLbData() {
-            const user = DataStore.getUser();
-            const country = user.country || 'Bangladesh';
-
-            const polyData = AcademicData.getPolytechnicData(country);
-            const techSelect = document.getElementById('polyLbTechSelect');
-
-            techSelect.innerHTML = '<option value="">Select Technology</option>';
-            if(polyData && polyData.departments) {
-                polyData.departments.forEach(dept => {
-                    const option = document.createElement('option');
-                    option.value = dept;
-                    option.textContent = dept;
-                    techSelect.appendChild(option);
-                });
-            }
-
-            // Default profile settings
-            if (user.technology) {
-                techSelect.value = user.technology;
-                onPolyLbTechChange();
-
-                if (user.institute) {
-                    setTimeout(() => {
-                        const instSelect = document.getElementById('polyLbInstSelect');
-                        instSelect.value = user.institute;
-                        onPolyLbInstChange();
-                        searchPolyLeaderboard();
-                    }, 50);
-                }
-            }
-        }
-
-        function onPolyLbTechChange() {
-            const tech = document.getElementById('polyLbTechSelect').value;
-            const instSelect = document.getElementById('polyLbInstSelect');
-            const searchBtn = document.getElementById('polyLbSearchBtn');
-            const user = DataStore.getUser();
-            const country = user.country || 'Bangladesh';
-
-            instSelect.innerHTML = '<option value="">Select Institute</option>';
-
-            if(!tech) {
-                instSelect.disabled = true;
-                searchBtn.disabled = true;
-                return;
-            }
-
-            instSelect.disabled = false;
-
-            const polyData = AcademicData.getPolytechnicData(country);
-            if(polyData && polyData.institutes) {
-                polyData.institutes.forEach(inst => {
-                    const option = document.createElement('option');
-                    option.value = inst;
-                    option.textContent = inst;
-                    instSelect.appendChild(option);
-                });
-            }
-            onPolyLbInstChange();
-        }
-
-        function onPolyLbInstChange() {
-            const inst = document.getElementById('polyLbInstSelect').value;
-            const searchBtn = document.getElementById('polyLbSearchBtn');
-            searchBtn.disabled = !inst;
-        }
-
-        function searchPolyLeaderboard() {
-            const tech = document.getElementById('polyLbTechSelect').value;
-            const inst = document.getElementById('polyLbInstSelect').value;
-            const user = DataStore.getUser();
-            const container = document.getElementById('polyLeaderboardContainer');
-
-            if (!tech || !inst) return;
-
-            const isMyInstitute = (user.institute === inst && user.technology === tech);
-            const youBadge = isMyInstitute ? '<span class="polytechnic-lb-you">You</span>' : '';
-
-            container.innerHTML = `
-                <div class="content-grid">
-                    <div class="leaderboard-main">
-
-                        <div class="controls">
-                            <div class="tabs">
-                                <button type="button" class="tab active">
-                                    <i class="fa-solid fa-trophy"></i> Overall
-                                </button>
-                                <button type="button" class="tab">
-                                    <i class="fa-regular fa-calendar"></i> This Month
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="leaderboard-box">
-                            <div class="table-head">
-                                <div>Rank</div>
-                                <div>User</div>
-                                <div>Campus</div>
-                                <div>Contributions</div>
-                                <div>Points</div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal gold"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Fahim Ahmed</div>
-                                        <div class="username">@fahim.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${inst}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="143">143</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">715</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal silver"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Nusrat Jahan</div>
-                                        <div class="username">@nusrat.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${inst}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="97">97</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">485</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-
-                            <div class="leader-row">
-                                <div class="rank">
-                                    <div class="medal bronze"><i class="fa-solid fa-medal"></i></div>
-                                </div>
-                                <div class="user-cell">
-                                    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="user-name">Ashiqur Rahman</div>
-                                        <div class="username">@ashiq.student</div>
-                                    </div>
-                                </div>
-                                <div class="campus">${inst}</div>
-                                <div class="contribution-cell">
-                                    <div class="contribution-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                                    <div>
-                                        <div class="contribution-number" data-contributions="52">52</div>
-                                        <div class="contribution-label">Contributions</div>
-                                    </div>
-                                </div>
-                                <div class="points-cell">
-                                    <span class="point-number">260</span>
-                                    <span class="point-label">pts</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <aside class="right-sidebar" aria-label="Rank Info 13">
-                        <div class="my-rank">
-                            <div class="my-rank-title">My Rank</div>
-                            <div class="my-rank-user">
-                                <div class="rank-user-info">
-                                    <div class="rank-avatar"><i class="fa-solid fa-user"></i></div>
-                                    <div>
-                                        <div class="rank-user-name">Anik</div>
-                                        <div class="rank-user-type">Student</div>
-                                    </div>
-                                </div>
-                                <div class="rank-number">
-                                    <strong>#24</strong>
-                                    <span>of 1,245</span>
-                                </div>
-                            </div>
-                            <div class="rank-stats">
-                                <div class="rank-stat">
-                                    <strong>18</strong>
-                                    <span>Contributions</span>
-                                </div>
-                                <div class="rank-stat">
-                                    <strong>90</strong>
-                                    <span>Points</span>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-`;
-        }
-
-</script>
+        </script>
 </body>
 
 </html>
+
+

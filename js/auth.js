@@ -43,6 +43,91 @@ const Auth = {
     },
 
     /**
+     * Check auth for a specific user action (vote, save, contribute, etc.).
+     * If the user is NOT logged in, shows a friendly auth-prompt modal
+     * instead of silently failing or redirecting.
+     *
+     * @param {string} actionLabel – human-readable action name (e.g. 'save this playlist')
+     * @returns {boolean} true if authenticated, false if prompt was shown
+     */
+    requireAuthForAction(actionLabel) {
+        if (this.isLoggedIn()) return true;
+        this.showAuthPrompt(actionLabel);
+        return false;
+    },
+
+    /**
+     * Show a modal prompting the guest to sign in / register.
+     */
+    showAuthPrompt(actionLabel) {
+        // Remove existing prompt if any
+        this.hideAuthPrompt();
+
+        const overlay = document.createElement('div');
+        overlay.className = 'auth-prompt-overlay';
+        overlay.id = 'authPromptOverlay';
+
+        const label = actionLabel || 'use this feature';
+
+        overlay.innerHTML = `
+            <div class="auth-prompt-modal">
+                <button class="auth-prompt-close" id="authPromptClose" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="auth-prompt-icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="auth-prompt-title">Sign in required</h3>
+                <p class="auth-prompt-message">
+                    Please sign in to ${label}.
+                </p>
+                <div class="auth-prompt-actions">
+                    <a href="${ROUTES.login}" class="auth-prompt-btn auth-prompt-btn-primary">
+                        <i class="fa-solid fa-right-to-bracket"></i> Log In
+                    </a>
+                    <a href="${ROUTES.register}" class="auth-prompt-btn auth-prompt-btn-secondary">
+                        <i class="fa-solid fa-user-plus"></i> Register
+                    </a>
+                </div>
+                <p class="auth-prompt-note">
+                    You can continue browsing without an account.
+                </p>
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+
+        // Animate in
+        requestAnimationFrame(() => {
+            overlay.classList.add('active');
+        });
+
+        // Bind close events
+        document.getElementById('authPromptClose').addEventListener('click', () => this.hideAuthPrompt());
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) this.hideAuthPrompt();
+        });
+        document.addEventListener('keydown', this._authPromptEscHandler = (e) => {
+            if (e.key === 'Escape') this.hideAuthPrompt();
+        });
+    },
+
+    /**
+     * Hide / remove the auth prompt modal.
+     */
+    hideAuthPrompt() {
+        const overlay = document.getElementById('authPromptOverlay');
+        if (overlay) {
+            overlay.classList.remove('active');
+            setTimeout(() => overlay.remove(), 200);
+        }
+        if (this._authPromptEscHandler) {
+            document.removeEventListener('keydown', this._authPromptEscHandler);
+            this._authPromptEscHandler = null;
+        }
+    },
+
+    /**
      * Require profile completion – redirect to setup flow if incomplete.
      */
     requireProfileCompletion() {
@@ -58,7 +143,12 @@ const Auth = {
      * Clears all auth and session state, then redirects to login.
      */
     logoutUser() {
+        // Preserve guest academic preferences across logout
+        const guestPrefs = localStorage.getItem(GUEST_PREFS_KEY);
         DataStore.clearAll();
+        if (guestPrefs) {
+            localStorage.setItem(GUEST_PREFS_KEY, guestPrefs);
+        }
         window.location.href = ROUTES.login;
     },
 
@@ -96,6 +186,11 @@ const Auth = {
             email: email,
             name: name
         });
+
+        // Merge guest academic preferences into the user's profile
+        if (typeof AcademicPreferences !== 'undefined') {
+            AcademicPreferences.mergeGuestPrefsOnLogin();
+        }
 
         return true;
     },
@@ -137,6 +232,11 @@ const Auth = {
         let email = currentUser.email || 'anikanik@gmail.com';
 
         DataStore.setUser({ name: name, email: email });
+
+        // Merge guest academic preferences into the user's profile
+        if (typeof AcademicPreferences !== 'undefined') {
+            AcademicPreferences.mergeGuestPrefsOnLogin();
+        }
 
         if (isExistingUser) {
             window.location.href = ROUTES.home;

@@ -61,8 +61,9 @@ const SharedUI = {
         header.setAttribute('role', 'navigation');
         header.setAttribute('aria-label', 'Main navigation');
 
+        const isLoggedIn = Auth.isLoggedIn();
         const user = DataStore.getUser();
-        const unread = DataStore.getUnreadCount();
+        const unread = isLoggedIn ? DataStore.getUnreadCount() : 0;
 
         let hamburgerHTML = '';
         if (this.currentPage !== 'terms' && this.currentPage !== 'privacy') {
@@ -75,22 +76,11 @@ const SharedUI = {
                 </button>`;
         }
 
-        header.innerHTML = `
-            <div class="nav-left">
-                ${hamburgerHTML}
-
-                <a href="${ROUTES.home}" class="logo" aria-label="StudyNest home">
-                    <div class="logo-icon">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <div class="logo-text">
-                        <h2>StudyNest</h2>
-                        <p>Learn. Share. Grow.</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="nav-right">
+        // Build nav-right content based on auth state
+        let navRightHTML = '';
+        if (isLoggedIn) {
+            // Authenticated user: show notification bell + profile dropdown
+            navRightHTML = `
                 <a href="${ROUTES.notifications}" class="notification" id="notificationBtn"
                    aria-label="Notifications${unread > 0 ? ' (' + unread + ' unread)' : ''}">
                     <i class="fa-regular fa-bell"></i>
@@ -109,21 +99,56 @@ const SharedUI = {
                         <strong id="navUserName">${user.name || 'Student'}</strong>
                         <span id="navUserStatus">${user.studyLevel || 'Student'}</span>
                     </div>
-                    <i class="fa-solid fa-chevron-down profile-arrow"></i>
-                </div>
+                    <div class="profile-arrow">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
 
-                <div class="profile-dropdown" id="profileDropdown">
-                    <a href="${ROUTES.profile}" class="dropdown-item">
-                        <i class="fa-regular fa-user"></i> View Profile
-                    </a>
-                    <a href="${ROUTES.settings}" class="dropdown-item">
-                        <i class="fa-solid fa-gear"></i> Settings
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <button class="dropdown-item logout-btn" id="logoutBtn">
-                        <i class="fa-solid fa-right-from-bracket"></i> Log Out
-                    </button>
-                </div>
+                    <!-- Injected profile dropdown -->
+                    <div class="profile-dropdown" id="profileDropdown" role="menu">
+                        <div class="profile-dropdown-header">
+                            <div class="avatar" id="navAvatar">${(user.name || 'A').charAt(0).toUpperCase()}</div>
+                            <div class="info">
+                                <strong id="navName">${user.name || 'Student'}</strong>
+                                <span id="navEmail">${user.email || ''}</span>
+                            </div>
+                        </div>
+                        <div class="profile-dropdown-divider"></div>
+                        <a href="${ROUTES.profile}" class="profile-dropdown-item" role="menuitem">
+                            <i class="fa-regular fa-user"></i> View Profile
+                        </a>
+                        <a href="${ROUTES.settings}" class="profile-dropdown-item" role="menuitem">
+                            <i class="fa-solid fa-gear"></i> Settings
+                        </a>
+                        <div class="profile-dropdown-divider"></div>
+                        <a href="#" class="profile-dropdown-item danger" id="logoutBtn" role="menuitem">
+                            <i class="fa-solid fa-right-from-bracket"></i> Log Out
+                        </a>
+                    </div>
+                </div>`;
+        } else {
+            // Guest mode: show Log In and Sign Up buttons
+            navRightHTML = `
+                <a href="${ROUTES.login}" class="btn btn-outline" style="padding: 8px 18px; font-size: 13px;">Log In</a>
+                <a href="${ROUTES.register}" class="btn btn-primary" style="padding: 8px 18px; font-size: 13px; margin-left: 8px;">Sign Up</a>`;
+        }
+
+        header.innerHTML = `
+            <div class="nav-left">
+                ${hamburgerHTML}
+
+                <a href="${ROUTES.home}" class="logo" aria-label="StudyNest home">
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h2>StudyNest</h2>
+                        <p>Learn. Share. Grow.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="nav-right">
+                ${navRightHTML}
             </div>
         `;
 
@@ -136,6 +161,8 @@ const SharedUI = {
 
     _injectSidebar() {
         if (document.getElementById('sn-sidebar')) return;
+
+        const isLoggedIn = Auth.isLoggedIn();
 
         const sidebar = document.createElement('aside');
         sidebar.className = 'sidebar';
@@ -162,7 +189,18 @@ const SharedUI = {
             <div class="sidebar-menu">
         `;
 
-        const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+        // Find current page file for active state
+        const currentPath = window.location.pathname;
+        const currentFile = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'home.html';
+
+        const protectedHrefs = [
+            ROUTES.contribute,
+            ROUTES.myLibrary,
+            ROUTES.myContributions,
+            ROUTES.profile,
+            ROUTES.settings,
+            ROUTES.notifications
+        ];
 
         SIDEBAR_MENU.forEach(item => {
             if (item.divider) {
@@ -170,25 +208,49 @@ const SharedUI = {
                 return;
             }
             if (item.header) {
-                menuHTML += `<div class="sidebar-heading" style="padding: 14px 16px 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #8096bb; font-weight: 700; margin-top: 8px;">${item.header}</div>`;
+                menuHTML += `<div class="sidebar-header-label">${item.header}</div>`;
                 return;
             }
             if (item.action === 'logout') {
+                if (isLoggedIn) {
+                    menuHTML += `
+                        <a href="#" id="sidebarLogoutBtn" class="menu-item" style="color: #ff5252;">
+                            <i class="${item.icon}"></i>
+                            <span>${item.label}</span>
+                        </a>
+                    `;
+                } else {
+                    // Guest: show Login instead of Logout
+                    menuHTML += `
+                        <a href="${ROUTES.login}" class="menu-item" style="color: #5c43ff;">
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            <span>Log In / Register</span>
+                        </a>
+                    `;
+                }
+                return;
+            }
+
+            const isActive = item.href === currentFile;
+            const isProtected = !isLoggedIn && protectedHrefs.includes(item.href);
+
+            if (isProtected) {
+                // Guest clicking a protected sidebar item → show auth prompt
                 menuHTML += `
-                    <a href="#" id="sidebarLogoutBtn" class="menu-item" style="color: #ff5252;">
+                    <a href="#" class="menu-item sidebar-auth-gate${isActive ? ' active' : ''}" data-action="${item.label.toLowerCase()}">
+                        <i class="${item.icon}"></i>
+                        <span>${item.label}</span>
+                        <i class="fa-solid fa-lock" style="margin-left: auto; font-size: 11px; color: #8096bb;"></i>
+                    </a>
+                `;
+            } else {
+                menuHTML += `
+                    <a href="${item.href}" class="menu-item${isActive ? ' active' : ''}">
                         <i class="${item.icon}"></i>
                         <span>${item.label}</span>
                     </a>
                 `;
-                return;
             }
-            const isActive = item.href === currentFile;
-            menuHTML += `
-                <a href="${item.href}" class="menu-item${isActive ? ' active' : ''}">
-                    <i class="${item.icon}"></i>
-                    <span>${item.label}</span>
-                </a>
-            `;
         });
 
         menuHTML += '</div>';
@@ -292,36 +354,51 @@ const SharedUI = {
         const profileDropdown = document.getElementById('profileDropdown');
         const logoutBtn = document.getElementById('logoutBtn');
 
-        // Sidebar open
-        if (hamburger && sidebar && overlay) {
-            hamburger.addEventListener('click', () => {
-                sidebar.classList.add('active');
-                overlay.classList.add('active');
-                hamburger.setAttribute('aria-expanded', 'true');
-                document.body.style.overflow = 'hidden';
-            });
-        }
+        // Sidebar open (robust delegated handler for all hamburger elements)
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('#hamburgerBtn, .hamburger');
+            if (btn) {
+                e.stopPropagation();
+                const sb = document.getElementById('sn-sidebar') || document.getElementById('sidebar');
+                const ov = document.getElementById('sn-overlay') || document.getElementById('overlay') || document.querySelector('.overlay');
+                if (sb) {
+                    sb.classList.add('active');
+                    if (ov) ov.classList.add('active');
+                    btn.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        });
 
         // Sidebar close
         const closeSidebar = () => {
-            if (sidebar) sidebar.classList.remove('active');
-            if (overlay) overlay.classList.remove('active');
-            if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+            const sb = document.getElementById('sn-sidebar') || document.getElementById('sidebar');
+            const ov = document.getElementById('sn-overlay') || document.getElementById('overlay') || document.querySelector('.overlay');
+            const btn = document.getElementById('hamburgerBtn') || document.querySelector('.hamburger');
+            if (sb) sb.classList.remove('active');
+            if (ov) ov.classList.remove('active');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
         };
 
-        if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
-        if (overlay) overlay.addEventListener('click', closeSidebar);
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('#closeSidebar, .close-sidebar') || (e.target.classList && e.target.classList.contains('overlay')) || e.target.id === 'sn-overlay' || e.target.id === 'overlay') {
+                closeSidebar();
+            }
+        });
 
         // Escape key closes sidebar and dropdown
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeSidebar();
-                if (profileDropdown) profileDropdown.classList.remove('active');
+                if (profileDropdown) {
+                    profileDropdown.classList.remove('active');
+                    if (profileBtn) profileBtn.setAttribute('aria-expanded', 'false');
+                }
             }
         });
 
-        // Profile dropdown toggle
+        // Profile dropdown toggle (only for authenticated users)
         if (profileBtn && profileDropdown) {
             profileBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -334,6 +411,7 @@ const SharedUI = {
             document.addEventListener('click', (e) => {
                 if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
                     profileDropdown.classList.remove('active');
+                    profileBtn.setAttribute('aria-expanded', 'false');
                 }
             });
         }
@@ -353,6 +431,16 @@ const SharedUI = {
                 Auth.logoutUser();
             });
         }
+
+        // Guest: sidebar auth-gated items
+        document.querySelectorAll('.sidebar-auth-gate').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeSidebar();
+                const action = link.getAttribute('data-action') || 'access this feature';
+                Auth.requireAuthForAction(action);
+            });
+        });
     },
 
 
@@ -372,7 +460,11 @@ const SharedUI = {
     },
 
     _loadUserInfo() {
+        const isLoggedIn = Auth.isLoggedIn();
         const user = DataStore.getUser();
+        
+        // Get academic preferences (works for both guests and authenticated users)
+        const prefs = (typeof AcademicPreferences !== 'undefined') ? AcademicPreferences.get() : {};
         
         // Helper to update elements by ID or Class
         const updateText = (selector, text) => {
@@ -380,26 +472,59 @@ const SharedUI = {
             document.querySelectorAll(selector).forEach(el => el.textContent = text);
         };
 
-        const name = user.name || 'Akhtaruzzaman Anik';
-        const initial = name.charAt(0).toUpperCase();
+        if (isLoggedIn) {
+            const name = user.name || 'Akhtaruzzaman Anik';
+            const initial = name.charAt(0).toUpperCase();
 
-        updateText('#navUserName, #navName, #userName, #welcomeName, #profileFullName, #displayName', name);
-        updateText('#navUserStatus, #displayStudyLevel, #overviewStudyLevel', user.studyLevel || 'University');
-        updateText('#userEmail, #profileEmail, #displayEmail', user.email || 'anikanik@gmail.com');
-        updateText('#navAvatar, #bigAvatar, #largeAvatar, #profileAvatar, .avatar', initial);
-        updateText('#userCountry, #displayCountry, #overviewCountry', user.country || 'Bangladesh');
-        updateText('#userStudyLevel', user.studyLevel || 'University');
-        updateText('#userInstitution, #displayInstitution, #overviewInstitution', user.institution || 'Daffodil International University');
-        updateText('#userDepartment, #displayDepartment, #overviewDepartment', user.department || 'Computer Science & Engineering');
+            updateText('#navUserName, #navName, #userName, #welcomeName, #profileFullName, #displayName', name);
+            updateText('#navUserStatus, #displayStudyLevel, #overviewStudyLevel', prefs.studyLevel || user.studyLevel || 'University');
+            updateText('#userEmail, #profileEmail, #displayEmail, #navEmail', user.email || 'anikanik@gmail.com');
 
-        // Prepopulate input fields if on settings page
-        const fullNameInput = document.getElementById('fullName');
-        if (fullNameInput && !fullNameInput.value) {
-            fullNameInput.value = name;
-        }
-        const emailInput = document.getElementById('email');
-        if (emailInput && !emailInput.value) {
-            emailInput.value = user.email || 'anikanik@gmail.com';
+            const avatarUrl = user.avatar || localStorage.getItem('studynest_avatar');
+            if (avatarUrl) {
+                document.querySelectorAll('#navAvatar, #bigAvatar, #largeAvatar, #profileAvatar').forEach(el => {
+                    el.innerHTML = `<img src="${avatarUrl}" alt="Avatar" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">`;
+                });
+                document.querySelectorAll('.profile-img').forEach(el => {
+                    el.innerHTML = `<img src="${avatarUrl}" alt="Avatar" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">`;
+                });
+            } else {
+                updateText('#navAvatar, #bigAvatar, #largeAvatar, #profileAvatar, .avatar', initial);
+            }
+            updateText('#userCountry, #displayCountry, #overviewCountry', prefs.country || user.country || 'Bangladesh');
+            updateText('#userStudyLevel', prefs.studyLevel || user.studyLevel || 'University');
+            updateText('#userInstitution, #displayInstitution, #overviewInstitution', prefs.institution || user.institution || 'Daffodil International University');
+            updateText('#userDepartment, #displayDepartment, #overviewDepartment', prefs.department || user.department || 'Computer Science & Engineering');
+
+            // Prepopulate input fields if on settings page
+            const fullNameInput = document.getElementById('fullName');
+            if (fullNameInput && !fullNameInput.value) {
+                fullNameInput.value = name;
+            }
+            const emailInput = document.getElementById('email');
+            if (emailInput && !emailInput.value) {
+                emailInput.value = user.email || 'anikanik@gmail.com';
+            }
+        } else {
+            // Guest mode: populate only academic preference fields
+            updateText('#navUserStatus, #displayStudyLevel, #overviewStudyLevel', prefs.studyLevel || 'University');
+            updateText('#userCountry, #displayCountry, #overviewCountry', prefs.country || 'Bangladesh');
+            updateText('#userStudyLevel', prefs.studyLevel || 'University');
+            updateText('#userInstitution, #displayInstitution, #overviewInstitution', prefs.institution || '');
+            updateText('#userDepartment, #displayDepartment, #overviewDepartment', prefs.department || '');
+
+            // Set guest placeholders for name-related elements
+            updateText('#userName, #welcomeName', 'Guest');
+
+            const avatarUrl = user.avatar || localStorage.getItem('studynest_avatar');
+            if (avatarUrl) {
+                document.querySelectorAll('#navAvatar, #bigAvatar, #largeAvatar, #profileAvatar').forEach(el => {
+                    el.innerHTML = `<img src="${avatarUrl}" alt="Avatar">`;
+                });
+                document.querySelectorAll('.profile-img').forEach(el => {
+                    el.innerHTML = `<img src="${avatarUrl}" alt="Avatar">`;
+                });
+            }
         }
     },
 

@@ -123,10 +123,11 @@
             display: grid;
 
             grid-template-columns:
-                1.25fr
+                1.2fr
                 1fr
                 1fr
-                1.1fr
+                1fr
+                1fr
                 100px;
 
             gap: 12px;
@@ -498,12 +499,13 @@
         /* QUESTION ACTIONS */
 
         .question-actions {
-
             display: flex;
-
             align-items: center;
-
             gap: 11px;
+            margin-left: auto;
+            justify-content: flex-end;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
 
@@ -697,12 +699,12 @@
            RESPONSIVE
         ========================================= */
 
-        @media (max-width: 1200px) {
+        @media (max-width: 1350px) {
 
             .filter-row {
 
                 grid-template-columns:
-                    1fr 1fr;
+                    1fr 1fr 1fr;
             }
 
 
@@ -710,26 +712,16 @@
 
                 margin-top: 4px;
             }
-
-
-            .question-card {
-
-                grid-template-columns:
-                    55px
-                    1fr;
-            }
-
-
-            .question-actions {
-
-                grid-column: 2;
-
-                justify-content: flex-start;
-            }
         }
 
 
-        @media (max-width: 700px) {
+        @media (max-width: 900px) {
+            .filter-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
 
             .navbar {
 
@@ -803,15 +795,12 @@
 
 
             .question-actions {
-
                 grid-column: 1 / -1;
-
                 width: 100%;
-
-                display: grid;
-
-                grid-template-columns:
-                    1fr 1fr 40px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-top: 6px;
             }
 
 
@@ -1245,7 +1234,383 @@
         }
     }
 
-</style>
+
+        /* =========================================
+           STUDY LEVEL BANNER & MODAL STYLES
+        ========================================= */
+        .study-level-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f7f9fd;
+            border: 1px solid #e1e7f3;
+            border-radius: 12px;
+            padding: 12px 22px;
+            margin: 18px 28px 12px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .study-level-banner-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .study-level-icon-wrap {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #321cff, #5425f5);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(50, 28, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .study-level-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .study-level-tag {
+            font-size: 11px;
+            font-weight: 600;
+            color: #647493;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .study-level-current {
+            font-size: 16px;
+            font-weight: 700;
+            color: #101a3b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .study-level-banner-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .study-level-switch-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .study-level-switch-wrap label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #152043;
+        }
+
+        .study-level-select-box {
+            position: relative;
+        }
+
+        .study-level-select-box select {
+            height: 42px;
+            padding: 0 38px 0 16px;
+            border: 2px solid #321cff;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #101a3b;
+            background: white;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            transition: 0.2s;
+            box-shadow: 0 2px 6px rgba(50, 28, 255, 0.08);
+        }
+
+        .study-level-select-box select:hover,
+        .study-level-select-box select:focus {
+            border-color: #2612d9;
+            box-shadow: 0 0 0 3px rgba(50, 28, 255, 0.18);
+        }
+
+        .study-level-select-box i {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            color: #321cff;
+            pointer-events: none;
+        }
+
+        .btn-open-level-modal {
+            height: 42px;
+            padding: 0 16px;
+            background: #ffffff;
+            border: 1.5px solid #321cff;
+            color: #321cff;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.2s;
+        }
+
+        .btn-open-level-modal:hover {
+            background: #321cff;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(50, 28, 255, 0.25);
+        }
+
+        /* Modal overlay */
+        .study-level-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(16, 26, 59, 0.55);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20000;
+            padding: 20px;
+            animation: slFadeIn 0.2s ease-out;
+        }
+
+        @keyframes slFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .study-level-modal-card {
+            background: #ffffff;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 580px;
+            box-shadow: 0 20px 50px rgba(16, 26, 59, 0.25);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh;
+            animation: slSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slSlideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .sl-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 24px 26px 18px;
+            border-bottom: 1px solid #edf1f8;
+        }
+
+        .sl-modal-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .sl-modal-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #f0edff;
+            color: #5425f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .sl-modal-title-wrap h2 {
+            font-size: 19px;
+            font-weight: 700;
+            color: #101a3b;
+            margin: 0 0 3px;
+        }
+
+        .sl-modal-subtitle {
+            font-size: 12px;
+            color: #647493;
+            margin: 0;
+        }
+
+        .sl-modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #8f9bb3;
+            cursor: pointer;
+            line-height: 1;
+            padding: 4px;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .sl-modal-close:hover {
+            color: #101a3b;
+            background: #f0f2f7;
+        }
+
+        .sl-modal-body {
+            padding: 16px 24px;
+            overflow-y: auto;
+        }
+
+        .sl-level-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sl-level-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            border: 1.5px solid #e5e9f2;
+            border-radius: 12px;
+            cursor: pointer;
+            background: white;
+            transition: all 0.2s ease;
+        }
+
+        .sl-level-option:hover {
+            border-color: #5425f5;
+            background: #faf9ff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(84, 37, 245, 0.08);
+        }
+
+        .sl-level-option.selected {
+            background: #f0edff;
+            border-color: #5425f5;
+        }
+
+        .sl-option-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .sl-option-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: #f3f1ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .sl-option-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #101a3b;
+        }
+
+        .sl-option-desc {
+            font-size: 11px;
+            color: #647493;
+            margin-top: 2px;
+        }
+
+        .sl-radio {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ccd2dc;
+            border-radius: 50%;
+            position: relative;
+            flex-shrink: 0;
+            transition: 0.2s;
+        }
+
+        .sl-level-option.selected .sl-radio {
+            border-color: #5425f5;
+        }
+
+        .sl-level-option.selected .sl-radio::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #5425f5;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .sl-modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding: 14px 24px;
+            border-top: 1px solid #edf1f8;
+            background: #fbfcfe;
+        }
+
+        .sl-btn-cancel {
+            padding: 8px 18px;
+            border: 1px solid #dbe2ef;
+            background: white;
+            color: #42577d;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .sl-btn-cancel:hover {
+            background: #f0f2f7;
+            color: #101a3b;
+        }
+
+        @media (max-width: 768px) {
+            .study-level-banner {
+                flex-direction: column;
+                align-items: stretch;
+                margin: 15px 16px 10px;
+                padding: 12px 16px;
+            }
+            .study-level-banner-right {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .study-level-switch-wrap {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .study-level-select-box {
+                flex-grow: 1;
+            }
+            .study-level-select-box select {
+                width: 100%;
+            }
+            .btn-open-level-modal {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+    </style>
 
     <link rel="stylesheet" href="css/shared.css">
 </head>
@@ -1366,6 +1731,134 @@
      MAIN
 ========================================= -->
 
+
+    <!-- =========================================
+         STUDY LEVEL SELECTOR BANNER
+    ========================================= -->
+    <div class="study-level-banner" id="studyLevelBanner">
+        <div class="study-level-banner-left">
+            <div class="study-level-icon-wrap" id="currentLevelIcon">🎓</div>
+            <div class="study-level-info">
+                <span class="study-level-tag">Current Study Level</span>
+                <div class="study-level-current" id="currentLevelName">University</div>
+            </div>
+        </div>
+        <div class="study-level-banner-right">
+            <div class="study-level-switch-wrap">
+                <label for="studyLevelQuickSelect">Switch Level:</label>
+                <div class="study-level-select-box">
+                    <select id="studyLevelQuickSelect" onchange="selectStudyLevel(this.value)" aria-label="Quick Switch Study Level">
+                        <option value="University">🎓 University</option>
+                        <option value="School">🏫 School</option>
+                        <option value="College">📖 College</option>
+                        <option value="Polytechnic">⚙️ Polytechnic</option>
+                        <option value="National University">📚 National University</option>
+                        <option value="Medical">🩺 Medical</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         STUDY LEVEL SELECTION MODAL
+    ========================================= -->
+    <div class="study-level-modal-overlay" id="studyLevelModalOverlay" style="display: none;">
+        <div class="study-level-modal-card" role="dialog" aria-modal="true" aria-labelledby="studyLevelModalTitle">
+            <div class="sl-modal-header">
+                <div class="sl-modal-title-wrap">
+                    <div class="sl-modal-icon">🎓</div>
+                    <div>
+                        <h2 id="studyLevelModalTitle">Select Study Level</h2>
+                        <p class="sl-modal-subtitle">Choose your study level to explore question papers and solutions.</p>
+                    </div>
+                </div>
+                <button type="button" class="sl-modal-close" onclick="closeStudyLevelModal()" aria-label="Close modal">&times;</button>
+            </div>
+
+            <div class="sl-modal-body">
+                <div class="sl-level-list">
+                    <!-- University -->
+                    <div class="sl-level-option" data-level="University" onclick="selectStudyLevel('University')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">🎓</div>
+                            <div>
+                                <div class="sl-option-name">University</div>
+                                <div class="sl-option-desc">Undergraduate &amp; postgraduate degrees, departments &amp; semesters</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- School -->
+                    <div class="sl-level-option" data-level="School" onclick="selectStudyLevel('School')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">🏫</div>
+                            <div>
+                                <div class="sl-option-name">School</div>
+                                <div class="sl-option-desc">Class 6 to 10 board exam papers &amp; test exam questions</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- College -->
+                    <div class="sl-level-option" data-level="College" onclick="selectStudyLevel('College')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">📖</div>
+                            <div>
+                                <div class="sl-option-name">College</div>
+                                <div class="sl-option-desc">HSC board exam questions, test papers &amp; subject solutions</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- Polytechnic -->
+                    <div class="sl-level-option" data-level="Polytechnic" onclick="selectStudyLevel('Polytechnic')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">⚙️</div>
+                            <div>
+                                <div class="sl-option-name">Polytechnic</div>
+                                <div class="sl-option-desc">Diploma in Engineering board questions by tech &amp; semester</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- National University -->
+                    <div class="sl-level-option" data-level="National University" onclick="selectStudyLevel('National University')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">📚</div>
+                            <div>
+                                <div class="sl-option-name">National University</div>
+                                <div class="sl-option-desc">B.A., B.S.S., B.B.S., B.Sc. year-wise board question papers</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- Medical -->
+                    <div class="sl-level-option" data-level="Medical" onclick="selectStudyLevel('Medical')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">🩺</div>
+                            <div>
+                                <div class="sl-option-name">Medical</div>
+                                <div class="sl-option-desc">MBBS &amp; BDS professional exam question banks &amp; solutions</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sl-modal-footer">
+                <button type="button" class="sl-btn-cancel" onclick="closeStudyLevelModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
 <section class="main" id="universityMain" aria-label="University Question Bank">
 
 
@@ -1376,22 +1869,12 @@
 
 
         <h1>
-            Campus Question Bank
+            University Question Bank
         </h1>
 
 
         <div class="breadcrumb">
-
-            <span>
-                Home
-            </span>
-
-            <i class="fa-solid fa-chevron-right"></i>
-
-            <span class="active">
-                Campus Question Bank
-            </span>
-
+            Find question papers by university, department, semester and examination.
         </div>
 
     </section>
@@ -1548,12 +2031,12 @@
 
 
 
-            <!-- SEMESTER -->
+            <!-- SEMESTER / YEAR -->
 
             <div class="filter-group">
 
                 <label>
-                    Semester / Year / Class
+                    Semester / Year
                 </label>
 
 
@@ -1561,28 +2044,76 @@
 
                     <select id="semesterSelect">
 
-                        <option>
-                            All Semesters / Years / Classes
+                        <option value="">
+                            All Semesters / Years
                         </option>
 
-                        <option>
-                            Summer 2026
-                        </option>
-
-                        <option>
+                        <option value="Spring 2026">
                             Spring 2026
                         </option>
 
-                        <option>
+                        <option value="Summer 2026">
+                            Summer 2026
+                        </option>
+
+                        <option value="Fall 2025">
                             Fall 2025
                         </option>
 
-                        <option>
-                            Final
+                        <option value="Spring 2025">
+                            Spring 2025
                         </option>
 
-                        <option>
-                            Mid Term
+                        <option value="Fall 2024">
+                            Fall 2024
+                        </option>
+
+                        <option value="1st Semester">
+                            1st Semester
+                        </option>
+
+                        <option value="2nd Semester">
+                            2nd Semester
+                        </option>
+
+                        <option value="3rd Semester">
+                            3rd Semester
+                        </option>
+
+                        <option value="4th Semester">
+                            4th Semester
+                        </option>
+
+                        <option value="5th Semester">
+                            5th Semester
+                        </option>
+
+                        <option value="6th Semester">
+                            6th Semester
+                        </option>
+
+                        <option value="7th Semester">
+                            7th Semester
+                        </option>
+
+                        <option value="8th Semester">
+                            8th Semester
+                        </option>
+
+                        <option value="1st Year">
+                            1st Year
+                        </option>
+
+                        <option value="2nd Year">
+                            2nd Year
+                        </option>
+
+                        <option value="3rd Year">
+                            3rd Year
+                        </option>
+
+                        <option value="4th Year">
+                            4th Year
                         </option>
 
                     </select>
@@ -1596,15 +2127,67 @@
 
 
 
-            <!-- FILTER -->
+            <!-- EXAM TYPE -->
+
+            <div class="filter-group">
+
+                <label>
+                    Exam Type
+                </label>
+
+
+                <div class="select-wrapper">
+
+                    <select id="examTypeSelect">
+
+                        <option value="">
+                            All Exam Types
+                        </option>
+
+                        <option value="Mid Term">
+                            Mid Term
+                        </option>
+
+                        <option value="Final">
+                            Final
+                        </option>
+
+                        <option value="Quiz">
+                            Quiz
+                        </option>
+
+                        <option value="Lab Final">
+                            Lab Final
+                        </option>
+
+                        <option value="Lab Mid">
+                            Lab Mid
+                        </option>
+
+                        <option value="Assignment">
+                            Assignment
+                        </option>
+
+                    </select>
+
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SEARCH -->
 
             <button type="button"
                 class="filter-btn"
                 onclick="applyFilter()">
 
-                <i class="fa-solid fa-filter"></i>
+                <i class="fa-solid fa-magnifying-glass"></i>
 
-                Filter
+                Search
 
             </button>
 
@@ -1700,7 +2283,7 @@
 
                 <div class="question-subtitle">
 
-                    CSE 201 — Object Oriented Programming
+                    CSE 101 — Programming and Problem Solving
 
                 </div>
 
@@ -3166,57 +3749,88 @@
     ========================================= */
 
     function applyFilter() {
+        const universityEl = document.getElementById("universitySelect");
+        const deptEl = document.getElementById("departmentSelect");
+        const courseEl = document.getElementById("courseSelect");
+        const semEl = document.getElementById("semesterSelect");
+        const examEl = document.getElementById("examTypeSelect");
 
-        const university =
-            document.getElementById(
-                "universitySelect"
-            ).value;
+        const department = deptEl ? deptEl.value.trim() : "";
+        const course = courseEl ? courseEl.value.trim() : "";
+        const semester = semEl ? semEl.value.trim() : "";
+        const examType = examEl ? examEl.value.trim() : "";
 
+        const universityMain = document.getElementById("universityMain");
+        if (!universityMain) return;
 
-        const department =
-            document.getElementById(
-                "departmentSelect"
-            ).value;
+        const cards = universityMain.querySelectorAll(".question-list .question-card");
+        let visibleCount = 0;
 
+        cards.forEach(card => {
+            const title = (card.querySelector(".question-title")?.textContent || "").toLowerCase();
+            const subtitle = (card.querySelector(".question-subtitle")?.textContent || "").toLowerCase();
+            const tags = Array.from(card.querySelectorAll(".tag")).map(t => t.textContent.trim().toLowerCase());
 
-        const course =
-            document.getElementById(
-                "courseSelect"
-            ).value;
+            let matchDept = true;
+            if (department && !department.startsWith("All")) {
+                const deptShort = department.includes("CSE") || department.toLowerCase().includes("computer") ? "cse"
+                    : department.includes("EEE") || department.toLowerCase().includes("electrical") ? "eee"
+                    : department.includes("Civil") ? "civil"
+                    : department.includes("Business") ? "business"
+                    : department.toLowerCase();
+                matchDept = tags.some(t => t.includes(deptShort)) || subtitle.includes(deptShort);
+            }
 
+            let matchCourse = true;
+            if (course && !course.startsWith("All")) {
+                const cQuery = course.toLowerCase().replace(/[^a-z0-9]/g, "");
+                const tText = (title + " " + subtitle).replace(/[^a-z0-9]/g, "");
+                matchCourse = tText.includes(cQuery);
+            }
 
-        const semester =
-            document.getElementById(
-                "semesterSelect"
-            ).value;
+            let matchSemester = true;
+            if (semester && !semester.startsWith("All")) {
+                const sClean = semester.toLowerCase().replace("20", "");
+                const semText = semester.toLowerCase();
+                matchSemester = tags.some(t => t.includes(semText) || t.includes(sClean) || (semText.includes("semester") && t.includes(semText)));
+            }
 
+            let matchExam = true;
+            if (examType && !examType.startsWith("All")) {
+                const eQuery = examType.toLowerCase();
+                matchExam = tags.some(t => t.includes(eQuery));
+            }
 
-        console.log(
-            "University:",
-            university
-        );
+            if (matchDept && matchCourse && matchSemester && matchExam) {
+                card.style.display = "grid";
+                visibleCount++;
+            } else {
+                card.style.display = "none";
+            }
+        });
 
-        console.log(
-            "Department:",
-            department
-        );
+        const resultCountEl = document.getElementById("resultCount");
+        if (resultCountEl) {
+            resultCountEl.textContent = (department.startsWith("All") && course.startsWith("All") && (!semester || semester.startsWith("All")) && (!examType || examType.startsWith("All")))
+                ? "1,511"
+                : visibleCount.toLocaleString();
+        }
 
-        console.log(
-            "Course:",
-            course
-        );
-
-        console.log(
-            "Semester:",
-            semester
-        );
-
-
-        /*
-            Later Django/DRF API will handle
-            the actual filtering.
-        */
-
+        const listContainer = universityMain.querySelector(".question-list");
+        let emptyMsg = document.getElementById("univNoPapersMsg");
+        if (visibleCount === 0) {
+            if (!emptyMsg && listContainer) {
+                emptyMsg = document.createElement("div");
+                emptyMsg.id = "univNoPapersMsg";
+                emptyMsg.style.cssText = "padding: 50px 20px; text-align: center; color: #647493; font-size: 14px; background: white;";
+                emptyMsg.innerHTML = '<i class="fa-solid fa-folder-open" style="font-size: 32px; color: #94a3b8; margin-bottom: 12px; display: block;"></i>No question papers found matching your criteria.<br><span style="font-size: 12px; color: #94a3b8;">Try changing your department, course, semester, or exam type.</span>';
+                listContainer.appendChild(emptyMsg);
+            } else if (emptyMsg) {
+                emptyMsg.style.display = "block";
+            }
+        } else if (emptyMsg) {
+            emptyMsg.style.display = "none";
+        }
     }
 
 
@@ -3286,12 +3900,103 @@
     <script src="js/academic-data.js"></script>
     <script src="js/data-store.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/guest-preferences.js"></script>
     <script src="js/shared-ui.js"></script>
 
     <script>
 
+        
+        /* =========================================
+           STUDY LEVEL MODAL & SWITCHER LOGIC
+        ========================================= */
+        function openStudyLevelModal() {
+            const modal = document.getElementById('studyLevelModalOverlay');
+            if (modal) {
+                modal.style.display = 'flex';
+                const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
+                const currentLevel = user.studyLevel || 'University';
+                document.querySelectorAll('.sl-level-option').forEach(opt => {
+                    if (opt.getAttribute('data-level') === currentLevel) {
+                        opt.classList.add('selected');
+                    } else {
+                        opt.classList.remove('selected');
+                    }
+                });
+            }
+        }
+
+        function closeStudyLevelModal() {
+            const modal = document.getElementById('studyLevelModalOverlay');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function selectStudyLevel(level) {
+            if (!level) return;
+
+            if (typeof AcademicPreferences !== 'undefined') {
+                AcademicPreferences.setStudyLevel(level);
+            } else {
+                const user = DataStore.getUser();
+                user.studyLevel = level;
+                DataStore.setUser(user);
+            }
+            localStorage.setItem('studynest.has_chosen_level', 'true');
+            sessionStorage.setItem('studynest.level_selected_session', 'true');
+
+            closeStudyLevelModal();
+            initMode();
+        }
+
+        function updateStudyLevelUI(level) {
+            const currentNameEl = document.getElementById('currentLevelName');
+            const currentIconEl = document.getElementById('currentLevelIcon');
+            const icons = {
+                'University': '🎓',
+                'School': '🏫',
+                'College': '📖',
+                'Polytechnic': '⚙️',
+                'National University': '📚',
+                'Medical': '🩺'
+            };
+
+            if (currentNameEl) {
+                currentNameEl.textContent = level;
+            }
+            if (currentIconEl) {
+                currentIconEl.textContent = icons[level] || '🎓';
+            }
+
+            const selectEl = document.getElementById('studyLevelQuickSelect');
+            if (selectEl && selectEl.value !== level) {
+                selectEl.value = level;
+            }
+
+            document.querySelectorAll('.sl-level-option').forEach(opt => {
+                if (opt.getAttribute('data-level') === level) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+        }
+
+        // Close modal on outside click or Escape key
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('studyLevelModalOverlay');
+            if (e.target === modal) {
+                closeStudyLevelModal();
+            }
+        });
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeStudyLevelModal();
+            }
+        });
+
         function initMode() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const studyLevel = user.studyLevel || 'University';
 
             document.getElementById('universityMain').style.display = 'none';
@@ -3319,10 +4024,12 @@
             } else {
                 document.getElementById('universityMain').style.display = 'block';
             }
+
+            updateStudyLevelUI(studyLevel);
         }
 
         function initSchoolQbData() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
 
             // Classes
@@ -3383,7 +4090,7 @@
                 firstRow.className = 'school-filter-row-2';
             }
 
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
 
             // Subjects
@@ -3437,7 +4144,7 @@
             schoolSelect.disabled = false;
             schoolSelect.innerHTML = '<option value="">Select School</option>';
 
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
             const schools = AcademicData.getSchoolsByBoard(country, selectedBoard);
             schools.forEach(s => {
@@ -3554,7 +4261,7 @@
         // =========================================
 
         function initCollegeQbData() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
 
             const boards = AcademicData.getBoards(country);
@@ -3608,7 +4315,7 @@
             colSelect.innerHTML = '<option value="">Select College</option>';
 
             if (board) {
-                const user = DataStore.getUser();
+                const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
                 const country = user.country || 'Bangladesh';
                 const colleges = AcademicData.getCollegesByBoard(country, board);
 
@@ -3813,7 +4520,7 @@
         // NATIONAL UNIVERSITY QUESTION BANK LOGIC
         // ==========================================
         function initNuQbData() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
             const programTypes = AcademicData.getNuProgramTypes(country);
 
@@ -3833,7 +4540,7 @@
         }
 
         function onNuProgramTypeChange() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
             const pt = document.getElementById('nuProgramTypeSelect').value;
 
@@ -3868,7 +4575,7 @@
         }
 
         function onNuProgramChange() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
             const progSelect = document.getElementById('nuProgramSelect');
             const pId = progSelect.value;
@@ -3905,7 +4612,7 @@
         }
 
         function onNuYearChange() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
             const pId = document.getElementById('nuProgramSelect').value;
             const y = document.getElementById('nuYearSelect').value;
@@ -3935,7 +4642,7 @@
         }
 
         function onNuSubjectChange() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
             const sId = document.getElementById('nuSubjectSelect').value;
             const examSelect = document.getElementById('nuExamTypeSelect');
@@ -4098,7 +4805,7 @@
            MEDICAL QUESTION BANK LOGIC
         ========================================= */
         function initMedicalQbData() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const program = user.program === 'BDS' ? 'BDS' : 'MBBS';
             document.getElementById('medProgram').value = program;
             loadMedPhases(program);
@@ -4381,7 +5088,7 @@
            POLYTECHNIC QUESTION BANK LOGIC
         ========================================= */
         function initPolyQbData() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
 
             // Centralized data call
@@ -4431,7 +5138,7 @@
                 subjSelect.disabled = false;
 
                 // Using centralized data
-                const user = DataStore.getUser();
+                const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
                 const country = user.country || 'Bangladesh';
                 const polyData = AcademicData.getPolytechnicData(country);
                 let subjects = [];
@@ -4636,3 +5343,5 @@
 </body>
 
 </html>
+
+

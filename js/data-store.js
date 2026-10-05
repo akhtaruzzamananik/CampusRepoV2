@@ -38,7 +38,11 @@ const DataStore = {
     },
 
     _set(key, value) {
-        localStorage.setItem(key, JSON.stringify(value));
+        try {
+            localStorage.setItem(key, JSON.stringify(value));
+        } catch (e) {
+            console.warn('DataStore._set failed for key ' + key, e);
+        }
     },
 
     _remove(key) {
@@ -95,6 +99,7 @@ const DataStore = {
         const legacyCourse = localStorage.getItem('studynest_course');
         const legacyMedUni = localStorage.getItem('studynest_medical_university');
         const legacyMedCollege = localStorage.getItem('studynest_medical_college');
+        const legacyAvatar = localStorage.getItem('studynest_avatar');
 
         let name = stored.name || legacyName || '';
         let email = stored.email || legacyEmail || '';
@@ -126,7 +131,7 @@ const DataStore = {
         return {
             name: name,
             email: email,
-            avatar: stored.avatar || '',
+            avatar: stored.avatar || legacyAvatar || '',
             country: country,
             studyLevel: studyLevel,
             institution: institution,
@@ -147,17 +152,28 @@ const DataStore = {
         this._set(STORAGE_KEYS.user, updated);
 
         // Always sync legacy localStorage keys so that any page or script reads the latest updated values
-        if (updated.name) localStorage.setItem('studynest_user_name', updated.name);
-        if (updated.email) localStorage.setItem('studynest_user_email', updated.email);
-        if (updated.country) localStorage.setItem('studynest_country', updated.country);
-        if (updated.studyLevel) localStorage.setItem('studynest_study_level', updated.studyLevel);
-        if (updated.institution) localStorage.setItem('studynest_institution', updated.institution);
-        if (updated.department) localStorage.setItem('studynest_department', updated.department);
-        if (updated.board) localStorage.setItem('studynest_board', updated.board);
-        if (updated.class) localStorage.setItem('studynest_class', updated.class);
-        if (updated.course) localStorage.setItem('studynest_course', updated.course);
-        if (updated.medicalUniversity) localStorage.setItem('studynest_medical_university', updated.medicalUniversity);
-        if (updated.college) localStorage.setItem('studynest_medical_college', updated.college);
+        try {
+            if (updated.name) localStorage.setItem('studynest_user_name', updated.name);
+            if (updated.email) localStorage.setItem('studynest_user_email', updated.email);
+            if (updated.country) localStorage.setItem('studynest_country', updated.country);
+            if (updated.studyLevel) localStorage.setItem('studynest_study_level', updated.studyLevel);
+            if (updated.institution) localStorage.setItem('studynest_institution', updated.institution);
+            if (updated.department) localStorage.setItem('studynest_department', updated.department);
+            if (updated.board) localStorage.setItem('studynest_board', updated.board);
+            if (updated.class) localStorage.setItem('studynest_class', updated.class);
+            if (updated.course) localStorage.setItem('studynest_course', updated.course);
+            if (updated.medicalUniversity) localStorage.setItem('studynest_medical_university', updated.medicalUniversity);
+            if (updated.college) localStorage.setItem('studynest_medical_college', updated.college);
+            if (updated.avatar !== undefined) {
+                if (updated.avatar) {
+                    localStorage.setItem('studynest_avatar', updated.avatar);
+                } else {
+                    localStorage.removeItem('studynest_avatar');
+                }
+            }
+        } catch (e) {
+            console.warn('Failed to sync legacy localStorage keys:', e);
+        }
 
         return updated;
     },
@@ -168,7 +184,7 @@ const DataStore = {
             'studynest_user_name', 'studynest_user_email', 'studynest_country',
             'studynest_study_level', 'studynest_institution', 'studynest_department',
             'studynest_board', 'studynest_class', 'studynest_course',
-            'studynest_medical_university', 'studynest_medical_college'
+            'studynest_medical_university', 'studynest_medical_college', 'studynest_avatar'
         ];
         legacyKeys.forEach(k => localStorage.removeItem(k));
     },

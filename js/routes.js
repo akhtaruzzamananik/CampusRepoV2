@@ -86,3 +86,58 @@ const PROFILE_DROPDOWN_ITEMS = [
     { label: 'Settings',      icon: 'fa-solid fa-gear',           href: ROUTES.settings },
     { label: 'Log Out',       icon: 'fa-solid fa-right-from-bracket', action: 'logout' }
 ];
+
+
+/**
+ * Pages that require authentication to access.
+ * Guests will be redirected to login when visiting these pages.
+ */
+const PROTECTED_PAGES = [
+    ROUTES.contribute,
+    ROUTES.myLibrary,
+    ROUTES.myContributions,
+    ROUTES.contributionDetails,
+    ROUTES.profile,
+    ROUTES.settings,
+    ROUTES.notifications
+];
+
+
+/**
+ * Pages that are freely accessible without authentication.
+ * Guests can browse these without logging in.
+ */
+const PUBLIC_PAGES = [
+    ROUTES.home,
+    ROUTES.academicCourses,
+    ROUTES.questionBank,
+    ROUTES.leaderboard,
+    ROUTES.about,
+    ROUTES.contact,
+    ROUTES.help,
+    ROUTES.terms,
+    ROUTES.privacy,
+    ROUTES.login,
+    ROUTES.register,
+    ROUTES.verifyEmail,
+    ROUTES.forgotPassword,
+    ROUTES.resetPassword,
+    ROUTES.country,
+    ROUTES.studyLevel,
+    ROUTES.institution
+];
+
+
+/**
+ * Actions that require authentication.
+ * When a guest triggers these, show an auth prompt instead of performing the action.
+ */
+const AUTH_REQUIRED_ACTIONS = {
+    vote:        'vote on content',
+    save:        'save to your library',
+    contribute:  'contribute resources',
+    bookmark:    'bookmark this item',
+    comment:     'post a comment',
+    download:    'download this resource'
+};
+

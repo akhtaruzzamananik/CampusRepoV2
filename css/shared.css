@@ -169,84 +169,183 @@
     margin-left: 30px;
     color: #405477;
     font-size: 19px;
-    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-arrow i {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-block;
+}
+
+.profile[aria-expanded="true"] .profile-arrow i,
+.profile.active .profile-arrow i {
+    transform: rotate(180deg);
 }
 
 
-/* PROFILE DROPDOWN */
+/* =========================================
+   PROFILE DROPDOWN
+========================================= */
 
 .profile-dropdown {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 12px);
     right: 0;
-    margin-top: 10px;
-    width: 220px;
-    background: white;
-    border: 1px solid #e1e6f2;
-    border-radius: 12px;
-    padding: 8px 0;
-    box-shadow: 0 12px 35px rgba(31, 35, 70, 0.12);
+    min-width: 250px;
+    width: max-content;
+    max-width: 300px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 8px;
+    box-shadow: 0 20px 40px -10px rgba(16, 26, 59, 0.16), 0 8px 16px -6px rgba(16, 26, 59, 0.08);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-8px);
-    transition: all 0.2s ease;
-    z-index: 100;
+    transform: translateY(-8px) scale(0.97);
+    transform-origin: top right;
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
+    z-index: 99999;
 }
 
 .profile-dropdown.active {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
+/* Dropdown Header with Avatar and User Info */
+.profile-dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: #f8fafc;
+    border-radius: 12px;
+    margin-bottom: 6px;
+}
+
+.profile-dropdown-header .avatar,
+#navAvatar.avatar,
+.profile-dropdown .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #321cff, #5425f5);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(50, 28, 255, 0.25);
+    text-transform: uppercase;
+}
+
+.profile-dropdown-header .info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex-grow: 1;
+}
+
+.profile-dropdown-header .info strong,
+#navName {
+    font-size: 14px;
+    font-weight: 700;
+    color: #101a3b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.profile-dropdown-header .info span,
+#navEmail {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: #647493;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 2px;
+    line-height: 1.2;
+}
+
+/* Dividers */
+.profile-dropdown-divider,
+.dropdown-divider {
+    height: 1px;
+    background: #edf2f7;
+    margin: 5px 4px;
+}
+
+/* Menu Items */
+.profile-dropdown-item,
 .dropdown-item {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 12px 18px;
-    font-size: 14px;
-    color: #333;
+    padding: 10px 14px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #2d3748;
     text-decoration: none;
+    border-radius: 10px;
     cursor: pointer;
     border: none;
     background: none;
     width: 100%;
+    box-sizing: border-box;
     font-family: inherit;
-    transition: background 0.15s;
+    transition: all 0.15s ease;
 }
 
+.profile-dropdown-item i,
+.dropdown-item i {
+    width: 20px;
+    font-size: 15px;
+    color: #718096;
+    text-align: center;
+    flex-shrink: 0;
+    transition: color 0.15s, transform 0.15s;
+}
+
+.profile-dropdown-item:hover,
 .dropdown-item:hover {
-    background: #f5f3ff;
+    background: #f2efff;
     color: #321cff;
 }
 
-.dropdown-item i {
-    width: 18px;
-    text-align: center;
-    font-size: 15px;
-    color: #52658b;
-}
-
+.profile-dropdown-item:hover i,
 .dropdown-item:hover i {
     color: #321cff;
+    transform: scale(1.1);
 }
 
-.dropdown-divider {
-    height: 1px;
-    background: #e8ecf4;
-    margin: 6px 12px;
-}
-
+/* Danger / Log Out Item */
+.profile-dropdown-item.danger,
 .logout-btn {
-    color: #dc3545 !important;
+    color: #e53e3e !important;
 }
 
+.profile-dropdown-item.danger i,
 .logout-btn i {
-    color: #dc3545 !important;
+    color: #e53e3e !important;
 }
 
+.profile-dropdown-item.danger:hover,
 .logout-btn:hover {
-    background: #fff5f5 !important;
+    background: #fff1f2 !important;
+    color: #e53e3e !important;
+}
+
+.profile-dropdown-item.danger:hover i,
+.logout-btn:hover i {
+    color: #e53e3e !important;
+    transform: scale(1.1);
 }
 
 
@@ -633,5 +732,190 @@
         gap: 8px;
         padding: 14px 10px;
         text-align: center;
+    }
+}
+
+/* =========================================
+   GUEST NAV BUTTONS
+========================================= */
+
+.guest-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.guest-nav-btn-login {
+    color: #5c43ff;
+    background: #f0f1ff;
+}
+
+.guest-nav-btn-login:hover {
+    background: #e1e4ff;
+}
+
+.guest-nav-btn-register {
+    color: white;
+    background: linear-gradient(135deg, #4620ff, #694dff);
+    box-shadow: 0 4px 12px rgba(70, 32, 255, 0.25);
+}
+
+.guest-nav-btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(70, 32, 255, 0.35);
+}
+
+
+/* =========================================
+   AUTH PROMPT MODAL
+========================================= */
+
+.auth-prompt-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 15, 32, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.auth-prompt-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.auth-prompt-modal {
+    background: white;
+    width: 90%;
+    max-width: 420px;
+    border-radius: 20px;
+    padding: 35px 30px;
+    text-align: center;
+    position: relative;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.auth-prompt-overlay.active .auth-prompt-modal {
+    transform: translateY(0) scale(1);
+}
+
+.auth-prompt-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #f0f4f8;
+    border-radius: 50%;
+    color: #64748b;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.auth-prompt-close:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.auth-prompt-icon {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #f0f1ff, #e1e4ff);
+    color: #5c43ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 20px;
+}
+
+.auth-prompt-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+.auth-prompt-message {
+    font-size: 15px;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.auth-prompt-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.auth-prompt-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.auth-prompt-btn-primary {
+    background: linear-gradient(135deg, #4620ff, #694dff);
+    color: white;
+    box-shadow: 0 4px 12px rgba(70, 32, 255, 0.25);
+}
+
+.auth-prompt-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(70, 32, 255, 0.35);
+}
+
+.auth-prompt-btn-secondary {
+    background: #f8fafc;
+    color: #334155;
+    border: 1px solid #e2e8f0;
+}
+
+.auth-prompt-btn-secondary:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.auth-prompt-note {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+@media (max-width: 600px) {
+    .guest-nav-btn span {
+        display: none;
+    }
+    
+    .guest-nav-btn {
+        padding: 10px;
     }
 }

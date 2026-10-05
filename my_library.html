@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -2547,7 +2547,7 @@
 
                             <i class="fa-solid fa-star"></i>
 
-                            ${item.rating || "—"}
+                            ${item.rating || "�"}
 
                         </span>
 
@@ -3003,9 +3003,11 @@
     <script src="js/routes.js"></script>
     <script src="js/data-store.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/guest-preferences.js"></script>
     <script src="js/shared-ui.js"></script>
 
     <script>
+        if (!Auth.requireAuth()) return;
         // Initialize shared UI components (header, sidebar, footer)
         SharedUI.init('myLibrary');
     </script>

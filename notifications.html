@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -358,7 +358,7 @@
         <div class="nav-right">
 
             <button type="button" class="notification-btn" onclick="window.location.href='notifications.html'">
-                🔔
+                ??
                 <span class="notification-dot" id="navDot"></span>
             </button>
 
@@ -384,43 +384,43 @@
         <div class="sidebar-header">
             <div class="sidebar-logo">StudyNest</div>
 
-            <button type="button" class="close-btn" onclick="closeSidebar()">×</button>
+            <button type="button" class="close-btn" onclick="closeSidebar()">�</button>
         </div>
 
         <div class="sidebar-section-title">Main Menu</div>
 
         <a href="home.html" class="sidebar-link">
-            <span class="sidebar-icon">⌂</span>
+            <span class="sidebar-icon">�</span>
             <span>Home</span>
         </a>
 
         <a href="academic_courses.html" class="sidebar-link">
-            <span class="sidebar-icon">📚</span>
+            <span class="sidebar-icon">??</span>
             <span>Academic Courses</span>
         </a>
 
         <a href="question_bank.html" class="sidebar-link">
-            <span class="sidebar-icon">📄</span>
+            <span class="sidebar-icon">??</span>
             <span>Campus Question Bank</span>
         </a>
 
         <a href="leaderboard.html" class="sidebar-link">
-            <span class="sidebar-icon">🏆</span>
+            <span class="sidebar-icon">??</span>
             <span>Leaderboards</span>
         </a>
 
         <a href="contribute.html" class="sidebar-link">
-            <span class="sidebar-icon">➕</span>
+            <span class="sidebar-icon">?</span>
             <span>Contribute</span>
         </a>
 
         <a href="my_library.html" class="sidebar-link">
-            <span class="sidebar-icon">🔖</span>
+            <span class="sidebar-icon">??</span>
             <span>My Library</span>
         </a>
 
         <a href="settings.html" class="sidebar-link">
-            <span class="sidebar-icon">⚙️</span>
+            <span class="sidebar-icon">??</span>
             <span>Settings</span>
         </a>
 
@@ -429,27 +429,27 @@
         <div class="sidebar-section-title">Information</div>
 
         <a href="about.html" class="sidebar-link">
-            <span class="sidebar-icon">ℹ️</span>
+            <span class="sidebar-icon">??</span>
             <span>About Us</span>
         </a>
 
         <a href="contact.html" class="sidebar-link">
-            <span class="sidebar-icon">✉️</span>
+            <span class="sidebar-icon">??</span>
             <span>Contact Us</span>
         </a>
 
         <a href="terms.html" class="sidebar-link">
-            <span class="sidebar-icon">📜</span>
+            <span class="sidebar-icon">??</span>
             <span>Terms of Service</span>
         </a>
 
         <a href="privacy.html" class="sidebar-link">
-            <span class="sidebar-icon">🔒</span>
+            <span class="sidebar-icon">??</span>
             <span>Privacy Policy</span>
         </a>
 
         <a href="help.html" class="sidebar-link">
-            <span class="sidebar-icon">❓</span>
+            <span class="sidebar-icon">?</span>
             <span>Help &amp; FAQ</span>
         </a>
 
@@ -507,7 +507,7 @@
             <div class="notification-card unread" data-read="false">
 
                 <div class="notification-icon icon-approved">
-                    🎉
+                    ??
                 </div>
 
                 <div class="notification-content">
@@ -544,7 +544,7 @@
             <div class="notification-card unread" data-read="false">
 
                 <div class="notification-icon icon-rejected">
-                    ⚠️
+                    ??
                 </div>
 
                 <div class="notification-content">
@@ -581,7 +581,7 @@
             <div class="notification-card unread" data-read="false">
 
                 <div class="notification-icon icon-vote">
-                    👍
+                    ??
                 </div>
 
                 <div class="notification-content">
@@ -618,7 +618,7 @@
             <div class="notification-card read" data-read="true">
 
                 <div class="notification-icon icon-system">
-                    ⚙️
+                    ??
                 </div>
 
                 <div class="notification-content">
@@ -656,7 +656,7 @@
 
         <div class="empty-state" id="emptyState">
 
-            <div class="empty-icon">🔔</div>
+            <div class="empty-icon">??</div>
 
             <div class="empty-title">
                 No unread notifications
@@ -896,9 +896,11 @@
     <script src="js/routes.js"></script>
     <script src="js/data-store.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/guest-preferences.js"></script>
     <script src="js/shared-ui.js"></script>
 
     <script>
+        if (!Auth.requireAuth()) return;
         // Initialize shared UI components (header, sidebar, footer)
         SharedUI.init('notifications');
     </script>

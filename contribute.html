@@ -348,7 +348,7 @@
             grid-column: 1 / -1;
         }
 
-        .field label {
+        .field label:not(.upload-area) {
             font-size: 10px;
 
             font-weight: 600;
@@ -414,28 +414,23 @@
            FILE UPLOAD
         ========================================= */
 
-        .upload-area {
-
+        .upload-area,
+        label.upload-area {
             border: 1.5px dashed #8a78ff;
-
             border-radius: 8px;
-
             background: #fbfaff;
-
             min-height: 125px;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            flex-direction: column;
-
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex-direction: column !important;
             cursor: pointer;
-
             transition: 0.2s;
-
             padding: 18px;
+            text-align: center !important;
+            margin-bottom: 0 !important;
+            box-sizing: border-box;
+            width: 100%;
         }
 
         .upload-area:hover {
@@ -444,36 +439,38 @@
 
         .upload-area i {
             font-size: 27px;
-
             color: #5331ff;
-
             margin-bottom: 8px;
+            display: inline-block;
         }
 
-        .upload-main {
+        .upload-main,
+        .upload-area .upload-main {
             font-size: 11px;
-
             font-weight: 600;
-
             color: #29385c;
+            display: block;
+            margin: 0;
+            text-align: center;
         }
 
-        .upload-sub {
+        .upload-sub,
+        .upload-area .upload-sub {
             font-size: 9px;
-
             color: #7a87a0;
-
             margin-top: 5px;
+            display: block;
+            text-align: center;
         }
 
-        .file-name {
+        .file-name,
+        .upload-area .file-name {
             margin-top: 8px;
-
             font-size: 10px;
-
             color: #321cff;
-
             font-weight: 500;
+            display: block;
+            text-align: center;
         }
 
 
@@ -1152,7 +1149,7 @@
         .school-contrib-hero-text p { font-size: 12px; line-height: 1.8; color: #50638a; max-width: 650px; }
         .school-contrib-hero-icon { width: 125px; height: 125px; border-radius: 50%; background: rgba(75, 43, 255, 0.08); display: flex; align-items: center; justify-content: center; color: #4824f5; font-size: 60px; margin-right: 80px; }
 
-        .school-contrib-box { border: 1px solid #e1e6ef; border-radius: 10px; background: white; overflow: hidden; margin-bottom: 40px; }
+        .school-contrib-box { border: 1px solid #e1e6ef; border-radius: 10px; background: white; overflow: hidden; margin-bottom: 0; }
         .school-contrib-tabs { display: flex; border-bottom: 1px solid #e7eaf1; padding: 0 12px; }
         .school-contrib-tab { height: 58px; padding: 0 22px; border: none; background: transparent; color: #4a5b7b; font-size: 12px; font-weight: 500; cursor: pointer; position: relative; }
         .school-contrib-tab i { margin-right: 8px; }
@@ -1168,7 +1165,7 @@
         .school-contrib-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 20px; }
         .school-contrib-field { display: flex; flex-direction: column; }
         .school-contrib-field.full { grid-column: 1 / -1; }
-        .school-contrib-field label { font-size: 10px; font-weight: 600; color: #26375a; margin-bottom: 7px; }
+        .school-contrib-field label:not(.upload-area) { font-size: 10px; font-weight: 600; color: #26375a; margin-bottom: 7px; }
         .school-contrib-required { color: #ef3159; }
 
         .school-contrib-input { width: 100%; height: 42px; padding: 0 12px; border: 1px solid #dce2ec; border-radius: 7px; background: white; color: #33476b; font-size: 11px; outline: none; transition: 0.2s; }
@@ -1219,7 +1216,7 @@
         .college-contrib-hero-text p { font-size: 12px; line-height: 1.8; color: #50638a; max-width: 650px; }
         .college-contrib-hero-icon { width: 125px; height: 125px; border-radius: 50%; background: rgba(75, 43, 255, 0.08); display: flex; align-items: center; justify-content: center; color: #4824f5; font-size: 60px; margin-right: 80px; }
 
-        .college-contrib-box { border: 1px solid #e1e6ef; border-radius: 10px; background: white; overflow: hidden; margin-bottom: 40px; }
+        .college-contrib-box { border: 1px solid #e1e6ef; border-radius: 10px; background: white; overflow: hidden; margin-bottom: 0; }
         .college-contrib-tabs { display: flex; border-bottom: 1px solid #e7eaf1; padding: 0 12px; }
         .college-contrib-tab { height: 58px; padding: 0 22px; border: none; background: transparent; color: #4a5b7b; font-size: 12px; font-weight: 500; cursor: pointer; position: relative; }
         .college-contrib-tab i { margin-right: 8px; }
@@ -1235,7 +1232,7 @@
         .college-contrib-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 20px; }
         .college-contrib-field { display: flex; flex-direction: column; }
         .college-contrib-field.full { grid-column: 1 / -1; }
-        .college-contrib-field label { font-size: 10px; font-weight: 600; color: #26375a; margin-bottom: 7px; }
+        .college-contrib-field label:not(.upload-area) { font-size: 10px; font-weight: 600; color: #26375a; margin-bottom: 7px; }
         .college-contrib-required { color: #ef3159; }
 
         .college-contrib-input { width: 100%; height: 42px; padding: 0 12px; border: 1px solid #dce2ec; border-radius: 7px; background: white; color: #33476b; font-size: 11px; outline: none; transition: 0.2s; }
@@ -1287,7 +1284,7 @@
         .nu-contrib-hero-text p { font-size: 12px; line-height: 1.8; color: #50638a; max-width: 650px; }
         .nu-contrib-hero-icon { width: 125px; height: 125px; border-radius: 50%; background: rgba(75, 43, 255, 0.08); display: flex; align-items: center; justify-content: center; color: #4824f5; font-size: 60px; margin-right: 80px; }
 
-        .nu-contrib-box { border: 1px solid #e1e6ef; border-radius: 10px; background: white; overflow: hidden; margin-bottom: 40px; }
+        .nu-contrib-box { border: 1px solid #e1e6ef; border-radius: 10px; background: white; overflow: hidden; margin-bottom: 0; }
         .nu-contrib-tabs { display: flex; border-bottom: 1px solid #e7eaf1; padding: 0 12px; margin-bottom: 0; gap: 0; }
         .nu-contrib-tab { height: 58px; padding: 0 22px; border: none; background: transparent; color: #4a5b7b; font-size: 12px; font-weight: 500; cursor: pointer; position: relative; display: inline-block; }
         .nu-contrib-tab i { margin-right: 8px; }
@@ -1304,7 +1301,7 @@
         .nu-contrib-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 20px; }
         .nu-contrib-field { display: flex; flex-direction: column; margin-bottom: 0; }
         .nu-contrib-field.full { grid-column: 1 / -1; }
-        .nu-contrib-field label { font-size: 10px; font-weight: 600; color: #26375a; margin-bottom: 7px; display: block; }
+        .nu-contrib-field label:not(.upload-area) { font-size: 10px; font-weight: 600; color: #26375a; margin-bottom: 7px; display: block; }
         .nu-contrib-required { color: #ef3159; }
         .nu-contrib-mt-10 { margin-top: 10px; }
 
@@ -1360,7 +1357,7 @@
         .medical-contrib-hero-text p { font-size: 12px; line-height: 1.8; color: #50638a; max-width: 650px; }
         .medical-contrib-hero-icon { width: 125px; height: 125px; border-radius: 50%; background: rgba(75, 43, 255, 0.08); display: flex; align-items: center; justify-content: center; color: #4824f5; font-size: 60px; margin-right: 80px; }
 
-        .medical-contrib-box { border: 1px solid #e1e6ef; border-radius: 10px; background: white; overflow: hidden; margin-bottom: 40px; }
+        .medical-contrib-box { border: 1px solid #e1e6ef; border-radius: 10px; background: white; overflow: hidden; margin-bottom: 0; }
         .medical-contrib-tabs { display: flex; border-bottom: 1px solid #e7eaf1; padding: 0 12px; }
         .medical-contrib-tab { height: 58px; padding: 0 22px; border: none; background: transparent; color: #4a5b7b; font-size: 12px; font-weight: 500; cursor: pointer; position: relative; }
         .medical-contrib-tab i { margin-right: 8px; }
@@ -1376,7 +1373,7 @@
         .medical-contrib-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 20px; }
         .medical-contrib-field { display: flex; flex-direction: column; }
         .medical-contrib-field.full { grid-column: 1 / -1; }
-        .medical-contrib-field label { font-size: 10px; font-weight: 600; color: #26375a; margin-bottom: 7px; }
+        .medical-contrib-field label:not(.upload-area) { font-size: 10px; font-weight: 600; color: #26375a; margin-bottom: 7px; }
         .medical-contrib-required { color: #ef3159; }
 
         .medical-contrib-input { width: 100%; height: 42px; padding: 0 12px; border: 1px solid #dce2ec; border-radius: 7px; background: white; color: #33476b; font-size: 11px; outline: none; transition: 0.2s; }
@@ -1430,7 +1427,7 @@
         .poly-contrib-hero-text p { font-size: 12px; line-height: 1.8; color: #50638a; max-width: 650px; }
         .poly-contrib-hero-icon { width: 125px; height: 125px; border-radius: 50%; background: rgba(75, 43, 255, 0.08); display: flex; align-items: center; justify-content: center; color: #4824f5; font-size: 60px; margin-right: 80px; }
 
-        .poly-contrib-box { border: 1px solid #e1e6ef; border-radius: 10px; background: white; overflow: hidden; margin-bottom: 40px; }
+        .poly-contrib-box { border: 1px solid #e1e6ef; border-radius: 10px; background: white; overflow: hidden; margin-bottom: 0; }
         .poly-contrib-tabs { display: flex; border-bottom: 1px solid #e7eaf1; padding: 0 12px; }
         .poly-contrib-tab { height: 58px; padding: 0 22px; border: none; background: transparent; color: #4a5b7b; font-size: 12px; font-weight: 500; cursor: pointer; position: relative; }
         .poly-contrib-tab i { margin-right: 8px; }
@@ -1447,7 +1444,7 @@
         .poly-contrib-grid-2-m0 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 0; }
         .poly-contrib-field { display: flex; flex-direction: column; }
         .poly-contrib-field.full { grid-column: 1 / -1; }
-        .poly-contrib-field label { font-size: 10px; font-weight: 600; color: #26375a; margin-bottom: 7px; }
+        .poly-contrib-field label:not(.upload-area) { font-size: 10px; font-weight: 600; color: #26375a; margin-bottom: 7px; }
         .poly-contrib-required { color: #ef3159; }
 
         .poly-contrib-input { width: 100%; height: 42px; padding: 0 12px; border: 1px solid #dce2ec; border-radius: 7px; background: white; color: #33476b; font-size: 11px; outline: none; transition: 0.2s; box-sizing: border-box; }
@@ -1511,6 +1508,381 @@
         .poly-contrib-upload-sm { min-height: 90px; padding: 12px; margin-top: 4px; }
         .poly-contrib-upload-sm-icon { font-size: 22px !important; margin-bottom: 5px !important; }
         .poly-contrib-video-item { border: 1px solid #e1e6ef; border-radius: 8px; padding: 18px; background: white; margin-bottom: 15px; position: relative; }
+
+        /* =========================================
+           STUDY LEVEL BANNER & MODAL STYLES
+        ========================================= */
+        .study-level-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f7f9fd;
+            border: 1px solid #e1e7f3;
+            border-radius: 12px;
+            padding: 12px 22px;
+            margin: 18px 30px 12px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .study-level-banner-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .study-level-icon-wrap {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #321cff, #5425f5);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(50, 28, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .study-level-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .study-level-tag {
+            font-size: 11px;
+            font-weight: 600;
+            color: #647493;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .study-level-current {
+            font-size: 16px;
+            font-weight: 700;
+            color: #101a3b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .study-level-banner-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .study-level-switch-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .study-level-switch-wrap label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #152043;
+        }
+
+        .study-level-select-box {
+            position: relative;
+        }
+
+        .study-level-select-box select {
+            height: 42px;
+            padding: 0 38px 0 16px;
+            border: 2px solid #321cff;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #101a3b;
+            background: white;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            transition: 0.2s;
+            box-shadow: 0 2px 6px rgba(50, 28, 255, 0.08);
+        }
+
+        .study-level-select-box select:hover,
+        .study-level-select-box select:focus {
+            border-color: #2612d9;
+            box-shadow: 0 0 0 3px rgba(50, 28, 255, 0.18);
+        }
+
+        .study-level-select-box i {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            color: #321cff;
+            pointer-events: none;
+        }
+
+        .btn-open-level-modal {
+            height: 42px;
+            padding: 0 16px;
+            background: #ffffff;
+            border: 1.5px solid #321cff;
+            color: #321cff;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.2s;
+        }
+
+        .btn-open-level-modal:hover {
+            background: #321cff;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(50, 28, 255, 0.25);
+        }
+
+        /* Modal overlay */
+        .study-level-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(16, 26, 59, 0.55);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20000;
+            padding: 20px;
+            animation: slFadeIn 0.2s ease-out;
+        }
+
+        @keyframes slFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .study-level-modal-card {
+            background: #ffffff;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 580px;
+            box-shadow: 0 20px 50px rgba(16, 26, 59, 0.25);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh;
+            animation: slSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slSlideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .sl-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 24px 26px 18px;
+            border-bottom: 1px solid #edf1f8;
+        }
+
+        .sl-modal-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .sl-modal-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #f0edff;
+            color: #5425f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .sl-modal-title-wrap h2 {
+            font-size: 19px;
+            font-weight: 700;
+            color: #101a3b;
+            margin: 0 0 3px;
+        }
+
+        .sl-modal-subtitle {
+            font-size: 12px;
+            color: #647493;
+            margin: 0;
+        }
+
+        .sl-modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #8f9bb3;
+            cursor: pointer;
+            line-height: 1;
+            padding: 4px;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .sl-modal-close:hover {
+            color: #101a3b;
+            background: #f0f2f7;
+        }
+
+        .sl-modal-body {
+            padding: 16px 24px;
+            overflow-y: auto;
+        }
+
+        .sl-level-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sl-level-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            border: 1.5px solid #e5e9f2;
+            border-radius: 12px;
+            cursor: pointer;
+            background: white;
+            transition: all 0.2s ease;
+        }
+
+        .sl-level-option:hover {
+            border-color: #5425f5;
+            background: #faf9ff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(84, 37, 245, 0.08);
+        }
+
+        .sl-level-option.selected {
+            background: #f0edff;
+            border-color: #5425f5;
+        }
+
+        .sl-option-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .sl-option-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: #f3f1ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .sl-option-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #101a3b;
+        }
+
+        .sl-option-desc {
+            font-size: 11px;
+            color: #647493;
+            margin-top: 2px;
+        }
+
+        .sl-radio {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ccd2dc;
+            border-radius: 50%;
+            position: relative;
+            flex-shrink: 0;
+            transition: 0.2s;
+        }
+
+        .sl-level-option.selected .sl-radio {
+            border-color: #5425f5;
+        }
+
+        .sl-level-option.selected .sl-radio::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #5425f5;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .sl-modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding: 14px 24px;
+            border-top: 1px solid #edf1f8;
+            background: #fbfcfe;
+        }
+
+        .sl-btn-cancel {
+            padding: 8px 18px;
+            border: 1px solid #dbe2ef;
+            background: white;
+            color: #42577d;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .sl-btn-cancel:hover {
+            background: #f0f2f7;
+            color: #101a3b;
+        }
+
+        @media (max-width: 768px) {
+            .study-level-banner {
+                flex-direction: column;
+                align-items: stretch;
+                margin: 15px 16px 10px;
+                padding: 12px 16px;
+            }
+            .study-level-banner-right {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .study-level-switch-wrap {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .study-level-select-box {
+                flex-grow: 1;
+            }
+            .study-level-select-box select {
+                width: 100%;
+            }
+            .btn-open-level-modal {
+                width: 100%;
+                justify-content: center;
+            }
+        }
 </style>
 
     <link rel="stylesheet" href="css/shared.css">
@@ -1625,6 +1997,136 @@
 </header>
 
 
+    <!-- =========================================
+         STUDY LEVEL SELECTOR BANNER
+    ========================================= -->
+    <div class="study-level-banner" id="studyLevelBanner">
+        <div class="study-level-banner-left">
+            <div class="study-level-icon-wrap" id="currentLevelIcon">🎓</div>
+            <div class="study-level-info">
+                <span class="study-level-tag">Current Study Level</span>
+                <div class="study-level-current" id="currentLevelName">University</div>
+            </div>
+        </div>
+        <div class="study-level-banner-right">
+            <div class="study-level-switch-wrap">
+                <label for="studyLevelQuickSelect">Switch Level:</label>
+                <div class="study-level-select-box">
+                    <select id="studyLevelQuickSelect" onchange="selectStudyLevel(this.value)" aria-label="Quick Switch Study Level">
+                        <option value="University">🎓 University</option>
+                        <option value="School">🏫 School</option>
+                        <option value="College">📖 College</option>
+                        <option value="Polytechnic">⚙️ Polytechnic</option>
+                        <option value="National University">📚 National University</option>
+                        <option value="Medical">🩺 Medical</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         STUDY LEVEL SELECTION MODAL
+    ========================================= -->
+    <div class="study-level-modal-overlay" id="studyLevelModalOverlay" style="display: none;">
+        <div class="study-level-modal-card" role="dialog" aria-modal="true" aria-labelledby="studyLevelModalTitle">
+            <div class="sl-modal-header">
+                <div class="sl-modal-title-wrap">
+                    <div class="sl-modal-icon">🎓</div>
+                    <div>
+                        <h2 id="studyLevelModalTitle">Select Study Level</h2>
+                        <p class="sl-modal-subtitle">Choose your study level to contribute resources, notes, and question papers.</p>
+                    </div>
+                </div>
+                <button type="button" class="sl-modal-close" onclick="closeStudyLevelModal()" aria-label="Close modal">&times;</button>
+            </div>
+
+            <div class="sl-modal-body">
+                <div class="sl-level-list">
+                    <!-- University -->
+                    <div class="sl-level-option" data-level="University" onclick="selectStudyLevel('University')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">🎓</div>
+                            <div>
+                                <div class="sl-option-name">University</div>
+                                <div class="sl-option-desc">Share undergraduate &amp; postgraduate question papers and course notes</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- School -->
+                    <div class="sl-level-option" data-level="School" onclick="selectStudyLevel('School')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">🏫</div>
+                            <div>
+                                <div class="sl-option-name">School</div>
+                                <div class="sl-option-desc">Contribute school test papers, board questions and subject materials</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- College -->
+                    <div class="sl-level-option" data-level="College" onclick="selectStudyLevel('College')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">📖</div>
+                            <div>
+                                <div class="sl-option-name">College</div>
+                                <div class="sl-option-desc">Upload HSC notes, college exam papers and subject guides</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- Polytechnic -->
+                    <div class="sl-level-option" data-level="Polytechnic" onclick="selectStudyLevel('Polytechnic')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">⚙️</div>
+                            <div>
+                                <div class="sl-option-name">Polytechnic</div>
+                                <div class="sl-option-desc">Contribute Diploma in Engineering technology notes and exam papers</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- National University -->
+                    <div class="sl-level-option" data-level="National University" onclick="selectStudyLevel('National University')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">📚</div>
+                            <div>
+                                <div class="sl-option-name">National University</div>
+                                <div class="sl-option-desc">Share Degree, Honours, and Masters question papers and solutions</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- Medical -->
+                    <div class="sl-level-option" data-level="Medical" onclick="selectStudyLevel('Medical')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">🩺</div>
+                            <div>
+                                <div class="sl-option-name">Medical</div>
+                                <div class="sl-option-desc">Upload MBBS &amp; BDS professional exam papers and medical resources</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sl-modal-footer">
+                <button type="button" class="sl-btn-cancel" onclick="closeStudyLevelModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
 
 <!-- =========================================
      MAIN
@@ -1632,29 +2134,6 @@
 
 <section class="main" id="universityMain" aria-label="University Contribute">
 
-
-    <section class="page-header">
-
-        <h1>
-            Contribute
-        </h1>
-
-
-        <div class="breadcrumb">
-
-            <span>
-                Home
-            </span>
-
-            <i class="fa-solid fa-chevron-right"></i>
-
-            <span class="active">
-                Contribute
-            </span>
-
-        </div>
-
-    </section>
 
 
 
@@ -1671,10 +2150,7 @@
 
 
             <p>
-                Share useful question papers, YouTube playlists,
-                lectures and study resources with students from
-                your university. Every approved contribution helps
-                the student community.
+                Share useful question papers, course playlists and study resources with students across Bangladesh.
             </p>
 
         </div>
@@ -1682,7 +2158,7 @@
 
         <div class="hero-icon">
 
-            <i class="fa-solid fa-hand-holding-heart"></i>
+            <i class="fa-solid fa-cloud-arrow-up"></i>
 
         </div>
 
@@ -2576,7 +3052,7 @@
              RIGHT SIDE
         ====================================== -->
 
-        <aside class="right-side" aria-label="Additional Information">
+        <aside class="right-side" aria-label="University Contribution Information">
 
 
             <!-- POINTS -->
@@ -2776,15 +3252,16 @@
         <section class="school-contrib-hero">
             <div class="school-contrib-hero-text">
                 <h2>Share Knowledge. Help Others. Grow Together.</h2>
-                <p>Share useful question papers, YouTube playlists and study resources with students across Bangladesh.</p>
+                <p>Share useful question papers, course playlists and study resources with students across Bangladesh.</p>
             </div>
             <div class="school-contrib-hero-icon">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
             </div>
         </section>
 
-        <!-- CONTRIBUTION BOX -->
-        <section class="school-contrib-box">
+        <div class="content-layout">
+            <!-- CONTRIBUTION BOX -->
+            <section class="school-contrib-box">
             <!-- TABS -->
             <div class="school-contrib-tabs">
                 <button type="button" class="school-contrib-tab active" id="scTabQP" onclick="switchSchoolTab('qp')">
@@ -2893,12 +3370,14 @@
                     </div>
 
                     <div class="school-contrib-field full">
-                        <label>Question Paper (PDF) <span class="school-contrib-required">*</span></label>
-                        <div class="school-contrib-upload">
-                            <i class="fa-regular fa-file-pdf"></i>
-                            <div class="school-contrib-upload-main">Click to browse or drag file here</div>
-                            <div class="school-contrib-upload-sub">PDF (Max 5MB)</div>
-                        </div>
+                        <label>Upload Question Paper <span class="school-contrib-required">*</span></label>
+                        <label class="upload-area" for="scQuestionFile">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <span class="upload-main">Click to upload PDF</span>
+                            <span class="upload-sub">PDF only • Maximum 20 MB</span>
+                            <span class="file-name" id="scQuestionFileName"></span>
+                        </label>
+                        <input id="scQuestionFile" type="file" accept=".pdf" hidden onchange="showSelectedFileName(this, 'scQuestionFileName')">
                     </div>
                 </div>
 
@@ -2989,13 +3468,94 @@
                 </div>
 
                 <!-- FORM ACTIONS -->
-                <div class="school-contrib-actions">
-                    <button type="button" class="school-contrib-cancel">Cancel</button>
-                    <button type="button" class="school-contrib-submit">Submit Contribution</button>
+                <div class="form-actions">
+                    <button class="cancel-btn" type="button" onclick="window.location.href='home.html'">Cancel</button>
+                    <button class="submit-btn" type="button" id="scSubmitBtn" onclick="submitSchoolContribution()">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Submit for Review
+                    </button>
                 </div>
 
             </div>
         </section>
+            <!-- =====================================
+                 RIGHT SIDE
+            ====================================== -->
+            <aside class="right-side" aria-label="School Contribution Information">
+
+                <!-- POINTS -->
+                <div class="side-card point-card">
+                    <h3>Contribution Points</h3>
+                    <div class="point-main">
+                        <div class="point-icon">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div>
+                            <strong>+5</strong>
+                            <span>points for each approved contribution</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTRIBUTION TYPES -->
+                <div class="side-card">
+                    <h3>What Can You Contribute?</h3>
+                    <div class="type-item">
+                        <div class="type-icon question-icon">
+                            <i class="fa-regular fa-file-pdf"></i>
+                        </div>
+                        <div>
+                            <strong>Question Papers</strong>
+                            <p>Share previous exam papers, quizzes and assignments.</p>
+                        </div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-icon playlist-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <div>
+                            <strong>Video Playlists</strong>
+                            <p>Share a complete YouTube playlist with optional resources.</p>
+                        </div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-icon custom-icon">
+                            <i class="fa-solid fa-list"></i>
+                        </div>
+                        <div>
+                            <strong>Custom Playlists</strong>
+                            <p>Create a playlist from individual videos and attach resources.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RULES -->
+                <div class="side-card">
+                    <h3>Before You Submit</h3>
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Make sure the content belongs to the selected class and subject.</span>
+                    </div>
+
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Use clear and accurate titles so other students can find the resource easily.</span>
+                    </div>
+
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Resources attached to videos can be PDF, DOC, DOCX, PPT or PPTX.</span>
+                    </div>
+
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Contributions are reviewed before they become publicly available.</span>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
     </section>
 
     <!-- =========================================
@@ -3013,8 +3573,9 @@
             </div>
         </section>
 
-        <!-- CONTRIBUTION BOX -->
-        <section class="college-contrib-box">
+        <div class="content-layout">
+            <!-- CONTRIBUTION BOX -->
+            <section class="college-contrib-box">
             <!-- TABS -->
             <div class="college-contrib-tabs">
                 <button type="button" class="college-contrib-tab active" id="cgTabQP" onclick="switchCollegeTab('qp')">
@@ -3044,22 +3605,19 @@
 
                 <!-- 1. QUESTION PAPER FORM -->
                 <div id="cgFormQP" style="display: block;">
-                    <div class="college-contrib-grid">
+                    <div class="college-contrib-grid" id="cgQpGrid">
                         <div class="college-contrib-field" id="cgQpTypeWrap">
                             <label>Question Type <span class="college-contrib-required">*</span></label>
                             <div class="college-contrib-select-wrap">
                                 <select class="college-contrib-select" id="cgQpType" onchange="cgQpTypeChange()">
-                                    <option value="">Select Type</option>
-                                    <option value="Board Question">Board Question</option>
+                                    <option value="Board Question" selected>Board Question</option>
                                     <option value="College Question">College Question</option>
                                 </select>
                                 <i class="fa-solid fa-chevron-down"></i>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="college-contrib-grid" id="cgQpFieldsWrap" style="display: none;">
-                        <div class="college-contrib-field">
+                        <div class="college-contrib-field" id="cgQpBoardWrap">
                             <label>Board <span class="college-contrib-required">*</span></label>
                             <div class="college-contrib-select-wrap">
                                 <select class="college-contrib-select" id="cgQpBoard" onchange="cgQpBoardChange()">
@@ -3069,7 +3627,7 @@
                             </div>
                         </div>
 
-                        <div class="college-contrib-field" id="cgQpCollegeWrap">
+                        <div class="college-contrib-field" id="cgQpCollegeWrap" style="display: none;">
                             <label>College <span class="college-contrib-required">*</span></label>
                             <div class="college-contrib-select-wrap">
                                 <select class="college-contrib-select" id="cgQpCollege" disabled>
@@ -3079,7 +3637,7 @@
                             </div>
                         </div>
 
-                        <div class="college-contrib-field">
+                        <div class="college-contrib-field" id="cgQpSubjectWrap">
                             <label>Subject <span class="college-contrib-required">*</span></label>
                             <div class="college-contrib-select-wrap">
                                 <select class="college-contrib-select" id="cgQpSubject">
@@ -3089,7 +3647,7 @@
                             </div>
                         </div>
 
-                        <div class="college-contrib-field" id="cgQpTermWrap">
+                        <div class="college-contrib-field" id="cgQpTermWrap" style="display: none;">
                             <label>Exam Type <span class="college-contrib-required">*</span></label>
                             <div class="college-contrib-select-wrap">
                                 <select class="college-contrib-select" id="cgQpTerm">
@@ -3099,7 +3657,7 @@
                             </div>
                         </div>
 
-                        <div class="college-contrib-field">
+                        <div class="college-contrib-field" id="cgQpYearWrap">
                             <label>Exam Year <span class="college-contrib-required">*</span></label>
                             <div class="college-contrib-select-wrap">
                                 <select class="college-contrib-select" id="cgQpYear">
@@ -3107,19 +3665,22 @@
                                     <option value="2025">2025</option>
                                     <option value="2024">2024</option>
                                     <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
                                 </select>
                                 <i class="fa-solid fa-chevron-down"></i>
                             </div>
                         </div>
                     </div>
 
-                    <div class="college-contrib-field full" id="cgQpUploadWrap" style="display: none;">
-                        <label>Question Paper (PDF) <span class="college-contrib-required">*</span></label>
-                        <div class="college-contrib-upload">
-                            <i class="fa-regular fa-file-pdf"></i>
-                            <div class="college-contrib-upload-main">Click to browse or drag file here</div>
-                            <div class="college-contrib-upload-sub">PDF (Max 5MB)</div>
-                        </div>
+                    <div class="college-contrib-field full" id="cgQpUploadWrap">
+                        <label>Upload Question Paper <span class="college-contrib-required">*</span></label>
+                        <label class="upload-area" for="cgQuestionFile">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <span class="upload-main">Click to upload PDF</span>
+                            <span class="upload-sub">PDF only • Maximum 20 MB</span>
+                            <span class="file-name" id="cgQuestionFileName"></span>
+                        </label>
+                        <input id="cgQuestionFile" type="file" accept=".pdf" hidden onchange="showSelectedFileName(this, 'cgQuestionFileName')">
                     </div>
                 </div>
 
@@ -3190,13 +3751,94 @@
                 </div>
 
                 <!-- FORM ACTIONS -->
-                <div class="college-contrib-actions">
-                    <button type="button" class="college-contrib-cancel" onclick="window.location.href='home.html'">Cancel</button>
-                    <button type="button" class="college-contrib-submit">Submit Contribution</button>
+                <div class="form-actions">
+                    <button class="cancel-btn" type="button" onclick="window.location.href='home.html'">Cancel</button>
+                    <button class="submit-btn" type="button" id="cgSubmitBtn" onclick="submitCollegeContribution()">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Submit for Review
+                    </button>
                 </div>
 
             </div>
         </section>
+            <!-- =====================================
+                 RIGHT SIDE
+            ====================================== -->
+            <aside class="right-side" aria-label="College Contribution Information">
+
+                <!-- POINTS -->
+                <div class="side-card point-card">
+                    <h3>Contribution Points</h3>
+                    <div class="point-main">
+                        <div class="point-icon">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div>
+                            <strong>+5</strong>
+                            <span>points for each approved contribution</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTRIBUTION TYPES -->
+                <div class="side-card">
+                    <h3>What Can You Contribute?</h3>
+                    <div class="type-item">
+                        <div class="type-icon question-icon">
+                            <i class="fa-regular fa-file-pdf"></i>
+                        </div>
+                        <div>
+                            <strong>Question Papers</strong>
+                            <p>Share previous exam papers, quizzes and assignments.</p>
+                        </div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-icon playlist-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <div>
+                            <strong>Video Playlists</strong>
+                            <p>Share a complete YouTube playlist with optional resources.</p>
+                        </div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-icon custom-icon">
+                            <i class="fa-solid fa-list"></i>
+                        </div>
+                        <div>
+                            <strong>Custom Playlists</strong>
+                            <p>Create a playlist from individual videos and attach resources.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RULES -->
+                <div class="side-card">
+                    <h3>Before You Submit</h3>
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Make sure the content belongs to the selected board, college and subject.</span>
+                    </div>
+
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Use clear and accurate titles so other students can find the resource easily.</span>
+                    </div>
+
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Resources attached to videos can be PDF, DOC, DOCX, PPT or PPTX.</span>
+                    </div>
+
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Contributions are reviewed before they become publicly available.</span>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
     </section>
 
     <!-- =========================================
@@ -3214,8 +3856,9 @@
             </div>
         </section>
 
-        <!-- CONTRIBUTION BOX -->
-        <section class="nu-contrib-box">
+        <div class="content-layout">
+            <!-- CONTRIBUTION BOX -->
+            <section class="nu-contrib-box">
             <!-- TABS -->
             <div class="nu-contrib-tabs">
                 <button type="button" class="nu-contrib-tab active" id="nuTabQP" onclick="switchNuTab('QP')">
@@ -3322,12 +3965,14 @@
                     </div>
 
                     <div class="nu-contrib-field full nu-contrib-mt-10">
-                        <label>Upload Question Paper (PDF) <span class="nu-contrib-required">*</span></label>
-                        <div class="nu-contrib-upload">
-                            <i class="fa-solid fa-file-arrow-up"></i>
-                            <div class="nu-contrib-upload-main">Click to browse or drag file here</div>
-                            <div class="nu-contrib-upload-sub">PDF ONLY (Max 10MB)</div>
-                        </div>
+                        <label>Upload Question Paper <span class="nu-contrib-required">*</span></label>
+                        <label class="upload-area" for="nuQuestionFile">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <span class="upload-main">Click to upload PDF</span>
+                            <span class="upload-sub">PDF only • Maximum 20 MB</span>
+                            <span class="file-name" id="nuQuestionFileName"></span>
+                        </label>
+                        <input id="nuQuestionFile" type="file" accept=".pdf" hidden onchange="showSelectedFileName(this, 'nuQuestionFileName')">
                     </div>
                 </div>
 
@@ -3458,12 +4103,93 @@
                 </div>
 
                 <!-- FORM ACTIONS -->
-                <div class="nu-contrib-actions">
-                    <button type="button" class="nu-contrib-cancel" onclick="window.location.href='index.html'">Cancel</button>
-                    <button type="button" class="nu-contrib-submit">Submit Contribution</button>
+                <div class="form-actions">
+                    <button class="cancel-btn" type="button" onclick="window.location.href='home.html'">Cancel</button>
+                    <button class="submit-btn" type="button" id="nuSubmitBtn" onclick="submitNuContribution()">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Submit for Review
+                    </button>
                 </div>
             </div>
         </section>
+            <!-- =====================================
+                 RIGHT SIDE
+            ====================================== -->
+            <aside class="right-side" aria-label="National University Contribution Information">
+
+                <!-- POINTS -->
+                <div class="side-card point-card">
+                    <h3>Contribution Points</h3>
+                    <div class="point-main">
+                        <div class="point-icon">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div>
+                            <strong>+5</strong>
+                            <span>points for each approved contribution</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTRIBUTION TYPES -->
+                <div class="side-card">
+                    <h3>What Can You Contribute?</h3>
+                    <div class="type-item">
+                        <div class="type-icon question-icon">
+                            <i class="fa-regular fa-file-pdf"></i>
+                        </div>
+                        <div>
+                            <strong>Question Papers</strong>
+                            <p>Share previous exam papers, quizzes and assignments.</p>
+                        </div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-icon playlist-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <div>
+                            <strong>Video Playlists</strong>
+                            <p>Share a complete YouTube playlist with optional resources.</p>
+                        </div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-icon custom-icon">
+                            <i class="fa-solid fa-list"></i>
+                        </div>
+                        <div>
+                            <strong>Custom Playlists</strong>
+                            <p>Create a playlist from individual videos and attach resources.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RULES -->
+                <div class="side-card">
+                    <h3>Before You Submit</h3>
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Make sure the content belongs to the selected program, college and subject.</span>
+                    </div>
+
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Use clear and accurate titles so other students can find the resource easily.</span>
+                    </div>
+
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Resources attached to videos can be PDF, DOC, DOCX, PPT or PPTX.</span>
+                    </div>
+
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Contributions are reviewed before they become publicly available.</span>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
     </section>
 
 
@@ -3474,16 +4200,17 @@
         <!-- HERO -->
         <section class="medical-contrib-hero">
             <div class="medical-contrib-hero-text">
-                <h2>Share Medical Knowledge. Help Others.</h2>
-                <p>Share useful question papers, video playlists and study resources with medical students across Bangladesh.</p>
+                <h2>Share Knowledge. Help Others. Grow Together.</h2>
+                <p>Share useful question papers, course playlists and study resources with students across Bangladesh.</p>
             </div>
             <div class="medical-contrib-hero-icon">
-                <i class="fa-solid fa-user-doctor"></i>
+                <i class="fa-solid fa-cloud-arrow-up"></i>
             </div>
         </section>
 
-        <!-- CONTRIBUTION BOX -->
-        <section class="medical-contrib-box">
+        <div class="content-layout">
+            <!-- CONTRIBUTION BOX -->
+            <section class="medical-contrib-box">
             <!-- TABS -->
             <div class="medical-contrib-tabs">
                 <button type="button" class="medical-contrib-tab active" id="medTabQP" onclick="switchMedTab('qp')">
@@ -3591,14 +4318,14 @@
                     </div>
 
                     <div class="medical-contrib-field full med-cp-mt-15">
-                        <label>Question Paper PDF <span class="medical-contrib-required">*</span></label>
-                        <div class="medical-contrib-upload" onclick="document.getElementById('medQpFile').click()">
+                        <label>Upload Question Paper <span class="medical-contrib-required">*</span></label>
+                        <label class="upload-area" for="medQpFile">
                             <i class="fa-solid fa-cloud-arrow-up"></i>
-                            <div class="medical-contrib-upload-main">Click to upload or drag and drop</div>
-                            <div class="medical-contrib-upload-sub">PDF only (Max 10MB)</div>
-                            <input type="file" id="medQpFile" style="display: none;" accept=".pdf" onchange="onMedFileSelected(this, 'medQpFileInfo')">
-                        </div>
-                        <div id="medQpFileInfo" class="med-cp-file-info"></div>
+                            <span class="upload-main">Click to upload PDF</span>
+                            <span class="upload-sub">PDF only • Maximum 20 MB</span>
+                            <span class="file-name" id="medQpFileName"></span>
+                        </label>
+                        <input type="file" id="medQpFile" accept=".pdf" hidden onchange="showSelectedFileName(this, 'medQpFileName')">
                     </div>
                 </div>
 
@@ -3649,13 +4376,94 @@
                 </div>
 
                 <!-- FORM ACTIONS -->
-                <div class="medical-contrib-actions">
-                    <button type="button" class="medical-contrib-cancel" onclick="window.location.href='index.html'">Cancel</button>
-                    <button type="button" class="medical-contrib-submit" onclick="submitMedContribution()">Submit Contribution</button>
+                <div class="form-actions">
+                    <button class="cancel-btn" type="button" onclick="window.location.href='home.html'">Cancel</button>
+                    <button class="submit-btn" type="button" id="medSubmitBtn" onclick="submitMedContribution()">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Submit for Review
+                    </button>
                 </div>
 
             </div>
         </section>
+            <!-- =====================================
+                 RIGHT SIDE
+            ====================================== -->
+            <aside class="right-side" aria-label="Medical Contribution Information">
+
+                <!-- POINTS -->
+                <div class="side-card point-card">
+                    <h3>Contribution Points</h3>
+                    <div class="point-main">
+                        <div class="point-icon">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div>
+                            <strong>+5</strong>
+                            <span>points for each approved contribution</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTRIBUTION TYPES -->
+                <div class="side-card">
+                    <h3>What Can You Contribute?</h3>
+                    <div class="type-item">
+                        <div class="type-icon question-icon">
+                            <i class="fa-regular fa-file-pdf"></i>
+                        </div>
+                        <div>
+                            <strong>Question Papers</strong>
+                            <p>Share previous exam papers, quizzes and assignments.</p>
+                        </div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-icon playlist-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <div>
+                            <strong>Video Playlists</strong>
+                            <p>Share a complete YouTube playlist with optional resources.</p>
+                        </div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-icon custom-icon">
+                            <i class="fa-solid fa-list"></i>
+                        </div>
+                        <div>
+                            <strong>Custom Playlists</strong>
+                            <p>Create a playlist from individual videos and attach resources.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RULES -->
+                <div class="side-card">
+                    <h3>Before You Submit</h3>
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Make sure the content belongs to the selected program, phase and subject.</span>
+                    </div>
+
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Use clear and accurate titles so other students can find the resource easily.</span>
+                    </div>
+
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Resources attached to videos can be PDF, DOC, DOCX, PPT or PPTX.</span>
+                    </div>
+
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Contributions are reviewed before they become publicly available.</span>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
     </section>
 
 
@@ -3664,20 +4472,21 @@
     <!-- =========================================
          POLYTECHNIC MAIN
     ========================================= -->
-    <section class="main poly-mode poly-cp-hide" id="polyMain" aria-label="Polytechnic Contribute">
+    <section class="main poly-mode" id="polyMain" aria-label="Polytechnic Contribute" style="display: none;">
         <!-- HERO -->
         <section class="poly-contrib-hero">
             <div class="poly-contrib-hero-text">
-                <h2>Share Polytechnic Knowledge. Help Others.</h2>
-                <p>Share useful question papers, video playlists and study resources with diploma engineering students across Bangladesh.</p>
+                <h2>Share Knowledge. Help Others. Grow Together.</h2>
+                <p>Share useful question papers, course playlists and study resources with students across Bangladesh.</p>
             </div>
             <div class="poly-contrib-hero-icon">
-                <i class="fa-solid fa-microchip"></i>
+                <i class="fa-solid fa-cloud-arrow-up"></i>
             </div>
         </section>
 
-        <!-- CONTRIBUTION BOX -->
-        <section class="poly-contrib-box">
+        <div class="content-layout">
+            <!-- CONTRIBUTION BOX -->
+            <section class="poly-contrib-box">
             <!-- TABS -->
             <div class="poly-contrib-tabs">
                 <button type="button" class="poly-contrib-tab active" id="polyTabQP" onclick="switchPolyTab('qp')">
@@ -3799,27 +4608,22 @@
                     </div>
 
                     <div class="poly-contrib-field poly-cp-mb-25">
-                        <label>Upload Question Paper (PDF) <span class="poly-contrib-required">*</span></label>
-                        <div class="poly-contrib-upload" id="polyQPUploadBox" onclick="document.getElementById('polyQPFile').click()">
+                        <label>Upload Question Paper <span class="poly-contrib-required">*</span></label>
+                        <label class="upload-area" for="polyQPFile">
                             <i class="fa-solid fa-cloud-arrow-up"></i>
-                            <div class="poly-contrib-upload-main">Click to browse or drag and drop</div>
-                            <div class="poly-contrib-upload-sub">PDF files only (Max 10MB)</div>
-                        </div>
-                        <input type="file" id="polyQPFile" accept=".pdf" class="poly-cp-upload-input" onchange="onPolyQPFileSelected(this)">
-
-                        <!-- Selected File Preview -->
-                        <div id="polyQPFilePreview" class="poly-cp-hide">
-                            <div class="poly-contrib-upload-selected">
-                                <i class="fa-regular fa-file-pdf"></i>
-                                <span id="polyQPFileName">document.pdf</span>
-                                <i class="fa-solid fa-xmark poly-cp-upload-close" onclick="clearPolyQPFile()"></i>
-                            </div>
-                        </div>
+                            <span class="upload-main">Click to upload PDF</span>
+                            <span class="upload-sub">PDF only • Maximum 20 MB</span>
+                            <span class="file-name" id="polyQPFileName"></span>
+                        </label>
+                        <input type="file" id="polyQPFile" accept=".pdf" hidden onchange="showSelectedFileName(this, 'polyQPFileName')">
                     </div>
 
-                    <button type="button" class="poly-contrib-btn" id="polyQPSubmitBtn" onclick="submitPolyQuestion()">
-                        Submit Question Paper
-                    </button>
+                    <div class="form-actions">
+                        <button class="cancel-btn" type="button" onclick="window.location.href='home.html'">Cancel</button>
+                        <button class="submit-btn" type="button" id="polyQPSubmitBtn" onclick="submitPolyQuestion()">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Submit for Review
+                        </button>
+                    </div>
                 </div>
 
                 <!-- ============================ -->
@@ -3894,6 +4698,85 @@
 
             </div>
         </section>
+            <!-- =====================================
+                 RIGHT SIDE
+            ====================================== -->
+            <aside class="right-side" aria-label="Polytechnic Contribution Information">
+
+                <!-- POINTS -->
+                <div class="side-card point-card">
+                    <h3>Contribution Points</h3>
+                    <div class="point-main">
+                        <div class="point-icon">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div>
+                            <strong>+5</strong>
+                            <span>points for each approved contribution</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTRIBUTION TYPES -->
+                <div class="side-card">
+                    <h3>What Can You Contribute?</h3>
+                    <div class="type-item">
+                        <div class="type-icon question-icon">
+                            <i class="fa-regular fa-file-pdf"></i>
+                        </div>
+                        <div>
+                            <strong>Question Papers</strong>
+                            <p>Share previous exam papers, quizzes and assignments.</p>
+                        </div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-icon playlist-icon">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <div>
+                            <strong>Video Playlists</strong>
+                            <p>Share a complete YouTube playlist with optional resources.</p>
+                        </div>
+                    </div>
+
+                    <div class="type-item">
+                        <div class="type-icon custom-icon">
+                            <i class="fa-solid fa-list"></i>
+                        </div>
+                        <div>
+                            <strong>Custom Playlists</strong>
+                            <p>Create a playlist from individual videos and attach resources.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RULES -->
+                <div class="side-card">
+                    <h3>Before You Submit</h3>
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Make sure the content belongs to the selected technology, semester and subject.</span>
+                    </div>
+
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Use clear and accurate titles so other students can find the resource easily.</span>
+                    </div>
+
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Resources attached to videos can be PDF, DOC, DOCX, PPT or PPTX.</span>
+                    </div>
+
+                    <div class="rule">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Contributions are reviewed before they become publicly available.</span>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
     </section>
 
 <!-- =========================================
@@ -4563,30 +5446,117 @@
 
 
     <!-- Shared JS Modules -->
-    <script src="js/routes.js">
-
-</script>
-    <script src="js/academic-data.js">
-
-</script>
-    <script src="js/data-store.js">
-
-</script>
-    <script src="js/auth.js">
-
-</script>
-    <script src="js/shared-ui.js">
-
-</script>
+    <script src="js/routes.js"></script>
+    <script src="js/academic-data.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/guest-preferences.js"></script>
+    <script src="js/shared-ui.js"></script>
 
     <script>
+        /* =========================================
+           STUDY LEVEL MODAL & SWITCHER LOGIC
+        ========================================= */
+        
+        function showSelectedFileName(input, nameId) {
+            const el = document.getElementById(nameId);
+            if (el && input.files && input.files[0]) {
+                el.textContent = input.files[0].name;
+            }
+        }
+
+        function openStudyLevelModal() {
+            const modal = document.getElementById('studyLevelModalOverlay');
+            if (modal) {
+                modal.style.display = 'flex';
+                const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
+                const currentLevel = user.studyLevel || 'University';
+                document.querySelectorAll('.sl-level-option').forEach(opt => {
+                    if (opt.getAttribute('data-level') === currentLevel) {
+                        opt.classList.add('selected');
+                    } else {
+                        opt.classList.remove('selected');
+                    }
+                });
+            }
+        }
+
+        function closeStudyLevelModal() {
+            const modal = document.getElementById('studyLevelModalOverlay');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function selectStudyLevel(level) {
+            if (!level) return;
+
+            if (typeof AcademicPreferences !== 'undefined') {
+                AcademicPreferences.setStudyLevel(level);
+            } else {
+                const user = DataStore.getUser();
+                user.studyLevel = level;
+                DataStore.setUser(user);
+            }
+            localStorage.setItem('studynest.has_chosen_level', 'true');
+            sessionStorage.setItem('studynest.level_selected_session', 'true');
+
+            closeStudyLevelModal();
+            initMode();
+        }
+
+        function updateStudyLevelUI(level) {
+            const currentNameEl = document.getElementById('currentLevelName');
+            const currentIconEl = document.getElementById('currentLevelIcon');
+            const icons = {
+                'University': '🎓',
+                'School': '🏫',
+                'College': '📖',
+                'Polytechnic': '⚙️',
+                'National University': '📚',
+                'Medical': '🩺'
+            };
+
+            if (currentNameEl) {
+                currentNameEl.textContent = level;
+            }
+            if (currentIconEl) {
+                currentIconEl.textContent = icons[level] || '🎓';
+            }
+
+            const selectEl = document.getElementById('studyLevelQuickSelect');
+            if (selectEl && selectEl.value !== level) {
+                selectEl.value = level;
+            }
+
+            document.querySelectorAll('.sl-level-option').forEach(opt => {
+                if (opt.getAttribute('data-level') === level) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+        }
+
+        // Close modal on outside click or Escape key
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('studyLevelModalOverlay');
+            if (e.target === modal) {
+                closeStudyLevelModal();
+            }
+        });
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeStudyLevelModal();
+            }
+        });
 
         function initMode() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const studyLevel = user.studyLevel || 'University';
 
-            document.getElementById('universityMain').style.display = 'none';
-            document.getElementById('schoolMain').style.display = 'none';
+            if (document.getElementById('universityMain')) document.getElementById('universityMain').style.display = 'none';
+            if (document.getElementById('schoolMain')) document.getElementById('schoolMain').style.display = 'none';
             if (document.getElementById('collegeMain')) document.getElementById('collegeMain').style.display = 'none';
             if (document.getElementById('nuMain')) document.getElementById('nuMain').style.display = 'none';
             if (document.getElementById('medicalMain')) document.getElementById('medicalMain').style.display = 'none';
@@ -4610,6 +5580,8 @@
             } else {
                 document.getElementById('universityMain').style.display = 'block';
             }
+
+            updateStudyLevelUI(studyLevel);
         }
 
         let scCpVideoCount = 0;
@@ -4629,6 +5601,20 @@
             if (tabId === 'cp' && scCpVideoCount === 0) {
                 addScCpVideo();
             }
+        }
+
+        
+        function submitSchoolContribution() {
+            alert('Your contribution has been submitted for review.');
+            window.location.href = 'home.html';
+        }
+        function submitCollegeContribution() {
+            alert('Your contribution has been submitted for review.');
+            window.location.href = 'home.html';
+        }
+        function submitNuContribution() {
+            alert('Your contribution has been submitted for review.');
+            window.location.href = 'home.html';
         }
 
         function initSchoolContribData() {
@@ -4845,13 +5831,14 @@
         }
 
         function initCollegeContribData() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
 
-            // Reset dynamic states
-            document.getElementById('cgQpFieldsWrap').style.display = 'none';
-            document.getElementById('cgQpUploadWrap').style.display = 'none';
-            document.getElementById('cgQpType').value = '';
+            // Ensure Question Type defaults to Board Question
+            const typeSelect = document.getElementById('cgQpType');
+            if (typeSelect && !typeSelect.value) {
+                typeSelect.value = 'Board Question';
+            }
 
             // Courses for VP, CP
             const courses = AcademicData.getCollegeCourses(country);
@@ -4880,6 +5867,18 @@
                 });
             }
 
+            // Populate subjects for QP
+            const subjectSelect = document.getElementById('cgQpSubject');
+            if (subjectSelect) {
+                subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+                courses.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c.id;
+                    opt.textContent = c.name;
+                    subjectSelect.appendChild(opt);
+                });
+            }
+
             // Terms for QP (College Internal)
             const terms = AcademicData.getCollegeExamTypes(country);
             const termSelect = document.getElementById('cgQpTerm');
@@ -4892,49 +5891,51 @@
                     termSelect.appendChild(opt);
                 });
             }
+
+            // Trigger type change to ensure proper field visibility
+            cgQpTypeChange();
         }
 
         function cgQpTypeChange() {
-            const qType = document.getElementById('cgQpType').value;
-            const fieldsWrap = document.getElementById('cgQpFieldsWrap');
-            const uploadWrap = document.getElementById('cgQpUploadWrap');
+            const typeSelect = document.getElementById('cgQpType');
+            const qType = typeSelect ? typeSelect.value : 'Board Question';
             const collegeWrap = document.getElementById('cgQpCollegeWrap');
             const termWrap = document.getElementById('cgQpTermWrap');
+            const uploadWrap = document.getElementById('cgQpUploadWrap');
             const subjectSelect = document.getElementById('cgQpSubject');
 
-            if (!qType) {
-                fieldsWrap.style.display = 'none';
-                uploadWrap.style.display = 'none';
-                return;
+            if (uploadWrap) {
+                uploadWrap.style.display = 'block';
             }
 
-            fieldsWrap.style.display = 'grid';
-            uploadWrap.style.display = 'flex';
-
-            if (qType === 'Board Question') {
-                collegeWrap.style.display = 'none';
-                termWrap.style.display = 'none';
+            if (qType === 'College Question') {
+                if (collegeWrap) collegeWrap.style.display = 'flex';
+                if (termWrap) termWrap.style.display = 'flex';
             } else {
-                collegeWrap.style.display = 'flex';
-                termWrap.style.display = 'flex';
+                // Board Question: College and Exam Type are internal to colleges, so not needed
+                if (collegeWrap) collegeWrap.style.display = 'none';
+                if (termWrap) termWrap.style.display = 'none';
             }
 
-            // Populate subjects
-            const user = DataStore.getUser();
-            const country = user.country || 'Bangladesh';
-            const courses = AcademicData.getCollegeCourses(country);
-            subjectSelect.innerHTML = '<option value="">Select Subject</option>';
-            courses.forEach(c => {
-                const opt = document.createElement('option');
-                opt.value = c.id;
-                opt.textContent = c.name;
-                subjectSelect.appendChild(opt);
-            });
+            // Ensure subjects are populated
+            if (subjectSelect && subjectSelect.options.length <= 1) {
+                const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
+                const country = user.country || 'Bangladesh';
+                const courses = AcademicData.getCollegeCourses(country);
+                subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+                courses.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c.id;
+                    opt.textContent = c.name;
+                    subjectSelect.appendChild(opt);
+                });
+            }
         }
 
         function cgQpBoardChange() {
             const board = document.getElementById('cgQpBoard').value;
             const college = document.getElementById('cgQpCollege');
+            if (!college) return;
 
             if (!board) {
                 college.disabled = true;
@@ -4944,15 +5945,19 @@
             college.disabled = false;
             college.innerHTML = '<option value="">Select College</option>';
 
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
             const colleges = AcademicData.getCollegesByBoard(country, board);
-            colleges.forEach(c => {
-                const opt = document.createElement('option');
-                opt.value = c;
-                opt.textContent = c;
-                college.appendChild(opt);
-            });
+            if (colleges && colleges.length > 0) {
+                colleges.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c;
+                    opt.textContent = c;
+                    college.appendChild(opt);
+                });
+            } else {
+                college.innerHTML = '<option value="">No colleges listed for this board</option>';
+            }
         }
 
         function addCgCpVideo() {
@@ -5537,6 +6542,15 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             initMode();
+
+            // Prompt for study level if not yet chosen or requested via URL
+            const hasChosenLevel = localStorage.getItem('studynest.has_chosen_level') === 'true';
+            const urlParams = new URLSearchParams(window.location.search);
+            const forceSelect = urlParams.get('selectLevel') === 'true' || urlParams.get('change') === 'true';
+
+            if (!hasChosenLevel || forceSelect) {
+                openStudyLevelModal();
+            }
         });
 
 

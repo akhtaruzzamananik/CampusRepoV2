@@ -800,7 +800,7 @@
 
                 <a
                     href="academic_courses.html"
-                    class="btn btn-primary protected-link">
+                    class="btn btn-primary">
 
                     <i class="fa-solid fa-book-open"></i>
 
@@ -813,7 +813,7 @@
 
                 <a
                     href="question_bank.html"
-                    class="btn btn-outline protected-link">
+                    class="btn btn-outline">
 
                     <i class="fa-regular fa-file-lines"></i>
 
@@ -889,7 +889,7 @@
         <!-- ACADEMIC COURSES -->
 
         <div
-            class="feature-card protected-link"
+            class="feature-card"
             data-link="academic_courses.html">
 
 
@@ -931,7 +931,7 @@
         <!-- QUESTION BANK -->
 
         <div
-            class="feature-card protected-link"
+            class="feature-card"
             data-link="question_bank.html">
 
 
@@ -993,7 +993,7 @@
                 <!-- LEADERBOARD -->
 
                 <div
-                    class="community-item protected-link"
+                    class="community-item"
                     data-link="leaderboard.html">
 
 
@@ -1233,7 +1233,7 @@
 
         <a
             href="academic_courses.html"
-            class="menu-item protected-link">
+            class="menu-item">
 
             <i class="fa-solid fa-book-open"></i>
 
@@ -1249,7 +1249,7 @@
 
         <a
             href="question_bank.html"
-            class="menu-item protected-link">
+            class="menu-item">
 
             <i class="fa-regular fa-square-question"></i>
 
@@ -1265,7 +1265,7 @@
 
         <a
             href="leaderboard.html"
-            class="menu-item protected-link">
+            class="menu-item">
 
             <i class="fa-solid fa-trophy"></i>
 
@@ -1421,6 +1421,7 @@
     <script src="js/routes.js"></script>
     <script src="js/data-store.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/guest-preferences.js"></script>
     <script src="js/shared-ui.js"></script>
 
 <script>
@@ -1458,9 +1459,36 @@
         const auth = DataStore.getAuth();
     const profileCompleted = auth ? auth.profileCompleted : false;
 
+        // Clickable feature cards and community items
+    document.querySelectorAll(".feature-card[data-link], .community-item[data-link]").forEach(function(card) {
+        card.style.cursor = 'pointer';
+        card.addEventListener("click", function(e) {
+            if (e.target.closest('a')) return;
+            const target = card.getAttribute('data-link');
+            if (target) {
+                if (card.classList.contains('protected-link') && !Auth.isLoggedIn()) {
+                    e.preventDefault();
+                    Auth.requireAuthForAction('access this feature');
+                    return;
+                }
+                window.location.href = target;
+            }
+        });
+    });
+
     document.querySelectorAll(".protected-link").forEach(function(link) {
         link.addEventListener("click", function(e) {
-            if (!profileCompleted) {
+            const href = link.getAttribute('href') || link.getAttribute('data-link') || '';
+            const publicPages = ['academic_courses.html', 'question_bank.html', 'leaderboard.html', 'home.html'];
+            if (publicPages.some(function(p) { return href.indexOf(p) !== -1; })) {
+                return;
+            }
+            
+            const isLoggedIn = Auth.isLoggedIn();
+            if (!isLoggedIn) {
+                e.preventDefault();
+                Auth.requireAuthForAction('access this feature');
+            } else if (!profileCompleted) {
                 e.preventDefault();
                 alert("Please complete your academic profile first.");
                 window.location.href = ROUTES.institution;
@@ -1479,3 +1507,4 @@
 </body>
 
 </html>
+

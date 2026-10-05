@@ -911,6 +911,380 @@
         @media (max-width: 768px) {
             .poly-academic-filter-row { grid-template-columns: 1fr; }
         }
+    
+        /* =========================================
+           STUDY LEVEL BANNER & MODAL STYLES
+        ========================================= */
+        .study-level-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f7f9fd;
+            border: 1px solid #e1e7f3;
+            border-radius: 12px;
+            padding: 12px 22px;
+            margin: 18px 28px 12px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .study-level-banner-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .study-level-icon-wrap {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #321cff, #5425f5);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(50, 28, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .study-level-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .study-level-tag {
+            font-size: 11px;
+            font-weight: 600;
+            color: #647493;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .study-level-current {
+            font-size: 16px;
+            font-weight: 700;
+            color: #101a3b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .study-level-banner-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .study-level-switch-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .study-level-switch-wrap label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #42577d;
+        }
+
+        .study-level-select-box {
+            position: relative;
+        }
+
+        .study-level-select-box select {
+            height: 38px;
+            padding: 0 32px 0 12px;
+            border: 1.5px solid #dbe2ef;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #101a3b;
+            background: white;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            transition: 0.2s;
+        }
+
+        .study-level-select-box select:hover,
+        .study-level-select-box select:focus {
+            border-color: #321cff;
+        }
+
+        .study-level-select-box i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 10px;
+            color: #647493;
+            pointer-events: none;
+        }
+
+        .btn-open-level-modal {
+            height: 38px;
+            padding: 0 16px;
+            background: #ffffff;
+            border: 1.5px solid #321cff;
+            color: #321cff;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.2s;
+        }
+
+        .btn-open-level-modal:hover {
+            background: #321cff;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(50, 28, 255, 0.25);
+        }
+
+        /* Modal overlay */
+        .study-level-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(16, 26, 59, 0.55);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20000;
+            padding: 20px;
+            animation: slFadeIn 0.2s ease-out;
+        }
+
+        @keyframes slFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .study-level-modal-card {
+            background: #ffffff;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 580px;
+            box-shadow: 0 20px 50px rgba(16, 26, 59, 0.25);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh;
+            animation: slSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slSlideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .sl-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 24px 26px 18px;
+            border-bottom: 1px solid #edf1f8;
+        }
+
+        .sl-modal-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .sl-modal-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #f0edff;
+            color: #5425f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .sl-modal-title-wrap h2 {
+            font-size: 19px;
+            font-weight: 700;
+            color: #101a3b;
+            margin: 0 0 3px;
+        }
+
+        .sl-modal-subtitle {
+            font-size: 12px;
+            color: #647493;
+            margin: 0;
+        }
+
+        .sl-modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #8f9bb3;
+            cursor: pointer;
+            line-height: 1;
+            padding: 4px;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .sl-modal-close:hover {
+            color: #101a3b;
+            background: #f0f2f7;
+        }
+
+        .sl-modal-body {
+            padding: 16px 24px;
+            overflow-y: auto;
+        }
+
+        .sl-level-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sl-level-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            border: 1.5px solid #e5e9f2;
+            border-radius: 12px;
+            cursor: pointer;
+            background: white;
+            transition: all 0.2s ease;
+        }
+
+        .sl-level-option:hover {
+            border-color: #5425f5;
+            background: #faf9ff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(84, 37, 245, 0.08);
+        }
+
+        .sl-level-option.selected {
+            background: #f0edff;
+            border-color: #5425f5;
+        }
+
+        .sl-option-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .sl-option-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: #f3f1ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .sl-option-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #101a3b;
+        }
+
+        .sl-option-desc {
+            font-size: 11px;
+            color: #647493;
+            margin-top: 2px;
+        }
+
+        .sl-radio {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ccd2dc;
+            border-radius: 50%;
+            position: relative;
+            flex-shrink: 0;
+            transition: 0.2s;
+        }
+
+        .sl-level-option.selected .sl-radio {
+            border-color: #5425f5;
+        }
+
+        .sl-level-option.selected .sl-radio::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #5425f5;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .sl-modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding: 14px 24px;
+            border-top: 1px solid #edf1f8;
+            background: #fbfcfe;
+        }
+
+        .sl-btn-cancel {
+            padding: 8px 18px;
+            border: 1px solid #dbe2ef;
+            background: white;
+            color: #42577d;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .sl-btn-cancel:hover {
+            background: #f0f2f7;
+            color: #101a3b;
+        }
+
+        @media (max-width: 768px) {
+            .study-level-banner {
+                flex-direction: column;
+                align-items: stretch;
+                margin: 15px 16px 10px;
+                padding: 12px 16px;
+            }
+            .study-level-banner-right {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .study-level-switch-wrap {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .study-level-select-box {
+                flex-grow: 1;
+            }
+            .study-level-select-box select {
+                width: 100%;
+            }
+            .btn-open-level-modal {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
     </style>
 
     <link rel="stylesheet" href="css/shared.css">
@@ -1019,6 +1393,134 @@
     <!-- =========================================
      MAIN
 ========================================= -->
+
+
+    <!-- =========================================
+         STUDY LEVEL SELECTOR BANNER
+    ========================================= -->
+    <div class="study-level-banner" id="studyLevelBanner">
+        <div class="study-level-banner-left">
+            <div class="study-level-icon-wrap" id="currentLevelIcon">🎓</div>
+            <div class="study-level-info">
+                <span class="study-level-tag">Current Study Level</span>
+                <div class="study-level-current" id="currentLevelName">University</div>
+            </div>
+        </div>
+        <div class="study-level-banner-right">
+            <div class="study-level-switch-wrap">
+                <label for="studyLevelQuickSelect">Switch Level:</label>
+                <div class="study-level-select-box">
+                    <select id="studyLevelQuickSelect" onchange="selectStudyLevel(this.value)" aria-label="Quick Switch Study Level">
+                        <option value="University">🎓 University</option>
+                        <option value="School">🏫 School</option>
+                        <option value="College">📖 College</option>
+                        <option value="Polytechnic">⚙️ Polytechnic</option>
+                        <option value="National University">📚 National University</option>
+                        <option value="Medical">🩺 Medical</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         STUDY LEVEL SELECTION MODAL
+    ========================================= -->
+    <div class="study-level-modal-overlay" id="studyLevelModalOverlay" style="display: none;">
+        <div class="study-level-modal-card" role="dialog" aria-modal="true" aria-labelledby="studyLevelModalTitle">
+            <div class="sl-modal-header">
+                <div class="sl-modal-title-wrap">
+                    <div class="sl-modal-icon">🎓</div>
+                    <div>
+                        <h2 id="studyLevelModalTitle">Select Study Level</h2>
+                        <p class="sl-modal-subtitle">Choose your study level to see courses and filters tailored for you.</p>
+                    </div>
+                </div>
+                <button type="button" class="sl-modal-close" onclick="closeStudyLevelModal()" aria-label="Close modal">&times;</button>
+            </div>
+
+            <div class="sl-modal-body">
+                <div class="sl-level-list">
+                    <!-- University -->
+                    <div class="sl-level-option" data-level="University" onclick="selectStudyLevel('University')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">🎓</div>
+                            <div>
+                                <div class="sl-option-name">University</div>
+                                <div class="sl-option-desc">Undergraduate &amp; postgraduate degrees, departments &amp; semesters</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- School -->
+                    <div class="sl-level-option" data-level="School" onclick="selectStudyLevel('School')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">🏫</div>
+                            <div>
+                                <div class="sl-option-name">School</div>
+                                <div class="sl-option-desc">Class 6 to 10 subjects, board syllabus &amp; lecture playlists</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- College -->
+                    <div class="sl-level-option" data-level="College" onclick="selectStudyLevel('College')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">📖</div>
+                            <div>
+                                <div class="sl-option-name">College</div>
+                                <div class="sl-option-desc">Higher secondary education (HSC) subjects &amp; resources</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- Polytechnic -->
+                    <div class="sl-level-option" data-level="Polytechnic" onclick="selectStudyLevel('Polytechnic')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">⚙️</div>
+                            <div>
+                                <div class="sl-option-name">Polytechnic</div>
+                                <div class="sl-option-desc">Diploma in Engineering technology, semesters &amp; subjects</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- National University -->
+                    <div class="sl-level-option" data-level="National University" onclick="selectStudyLevel('National University')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">📚</div>
+                            <div>
+                                <div class="sl-option-name">National University</div>
+                                <div class="sl-option-desc">B.A., B.S.S., B.B.S., B.Sc. programs, academic years &amp; courses</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+
+                    <!-- Medical -->
+                    <div class="sl-level-option" data-level="Medical" onclick="selectStudyLevel('Medical')">
+                        <div class="sl-option-left">
+                            <div class="sl-option-icon">🩺</div>
+                            <div>
+                                <div class="sl-option-name">Medical</div>
+                                <div class="sl-option-desc">MBBS &amp; BDS programs, professional phases &amp; medical subjects</div>
+                            </div>
+                        </div>
+                        <div class="sl-radio"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sl-modal-footer">
+                <button type="button" class="sl-btn-cancel" onclick="closeStudyLevelModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
 
     <section class="main" id="universityMain" aria-label="University Academic Courses">
 
@@ -2430,42 +2932,134 @@
         /* =========================================
            MODE SWITCHING (UNIVERSITY / SCHOOL)
         ========================================= */
+        
+        /* =========================================
+           STUDY LEVEL MODAL & SWITCHER LOGIC
+        ========================================= */
+        function openStudyLevelModal() {
+            const modal = document.getElementById('studyLevelModalOverlay');
+            if (modal) {
+                modal.style.display = 'flex';
+                const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
+                const currentLevel = user.studyLevel || 'University';
+                document.querySelectorAll('.sl-level-option').forEach(opt => {
+                    if (opt.getAttribute('data-level') === currentLevel) {
+                        opt.classList.add('selected');
+                    } else {
+                        opt.classList.remove('selected');
+                    }
+                });
+            }
+        }
+
+        function closeStudyLevelModal() {
+            const modal = document.getElementById('studyLevelModalOverlay');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function selectStudyLevel(level) {
+            if (!level) return;
+
+            if (typeof AcademicPreferences !== 'undefined') {
+                AcademicPreferences.setStudyLevel(level);
+            } else {
+                const user = DataStore.getUser();
+                user.studyLevel = level;
+                DataStore.setUser(user);
+            }
+            localStorage.setItem('studynest.has_chosen_level', 'true');
+            sessionStorage.setItem('studynest.level_selected_session', 'true');
+
+            closeStudyLevelModal();
+            initMode();
+        }
+
+        function updateStudyLevelUI(level) {
+            const currentNameEl = document.getElementById('currentLevelName');
+            const currentIconEl = document.getElementById('currentLevelIcon');
+            const icons = {
+                'University': '🎓',
+                'School': '🏫',
+                'College': '📖',
+                'Polytechnic': '⚙️',
+                'National University': '📚',
+                'Medical': '🩺'
+            };
+
+            if (currentNameEl) {
+                currentNameEl.textContent = level;
+            }
+            if (currentIconEl) {
+                currentIconEl.textContent = icons[level] || '🎓';
+            }
+
+            const selectEl = document.getElementById('studyLevelQuickSelect');
+            if (selectEl && selectEl.value !== level) {
+                selectEl.value = level;
+            }
+
+            document.querySelectorAll('.sl-level-option').forEach(opt => {
+                if (opt.getAttribute('data-level') === level) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+        }
+
+        // Close modal on outside click or Escape key
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('studyLevelModalOverlay');
+            if (e.target === modal) {
+                closeStudyLevelModal();
+            }
+        });
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeStudyLevelModal();
+            }
+        });
+
         function initMode() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
+            const studyLevel = user.studyLevel || 'University';
             
             document.getElementById('universityMain').style.display = 'none';
             document.getElementById('schoolMain').style.display = 'none';
             document.getElementById('collegeMain').style.display = 'none';
             if (document.getElementById('nuMain')) document.getElementById('nuMain').style.display = 'none';
             if (document.getElementById('medMain')) document.getElementById('medMain').style.display = 'none';
-            
             if (document.getElementById('polyMain')) document.getElementById('polyMain').style.display = 'none';
 
-            if (user.studyLevel === 'School') {
+            if (studyLevel === 'School') {
                 document.getElementById('schoolMain').style.display = 'block';
                 initSchoolData();
-            } else if (user.studyLevel === 'College') {
+            } else if (studyLevel === 'College') {
                 document.getElementById('collegeMain').style.display = 'block';
                 initCollegeData();
-            } else if (user.studyLevel === 'National University') {
+            } else if (studyLevel === 'National University') {
                 if (document.getElementById('nuMain')) document.getElementById('nuMain').style.display = 'block';
                 initNuData();
-            } else if (user.studyLevel === 'Medical') {
+            } else if (studyLevel === 'Medical') {
                 if (document.getElementById('medMain')) document.getElementById('medMain').style.display = 'block';
                 initMedData();
-            } else if (user.studyLevel === 'Polytechnic') {
+            } else if (studyLevel === 'Polytechnic') {
                 if (document.getElementById('polyMain')) document.getElementById('polyMain').style.display = 'block';
                 initPolyData();
             } else {
                 document.getElementById('universityMain').style.display = 'block';
             }
+
+            updateStudyLevelUI(studyLevel);
         }
 
         /* =========================================
            SCHOOL DATA LOGIC
         ========================================= */
         function initSchoolData() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
             const classes = AcademicData.getSchoolClasses(country);
 
@@ -2483,7 +3077,7 @@
         }
 
         function updateSchoolSubjects() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
             const selectedClass = document.getElementById('schoolClassSelect').value;
             const subjectSelect = document.getElementById('schoolSubjectSelect');
@@ -2773,7 +3367,7 @@
         // =========================================
 
         function initCollegeData() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
             
             const courses = AcademicData.getCollegeCourses(country);
@@ -2832,7 +3426,7 @@
                         <div class="college-empty-icon">📝</div>
                         <h3 class="college-empty-title">No resources available yet.</h3>
                         <p class="college-empty-desc">Be the first to contribute a useful playlist for this course.</p>
-                        <button class="college-card-btn-empty" onclick="window.location.href='contribute.html'">Contribute a Playlist</button>
+                        <button class="college-card-btn-empty" onclick="event.preventDefault(); if(Auth.requireAuthForAction('contribute a playlist')) window.location.href='contribute.html';">Contribute a Playlist</button>
                     </div>
                 `;
                 container.innerHTML = html;
@@ -2987,7 +3581,7 @@
            NATIONAL UNIVERSITY DATA LOGIC
         ========================================= */
         function initNuData() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
             const programs = AcademicData.getNuPrograms(country);
 
@@ -3024,7 +3618,7 @@
                 return;
             }
 
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
             const years = AcademicData.getNuYears(country);
             
@@ -3058,7 +3652,7 @@
                 return;
             }
 
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
             const subjects = AcademicData.getNuSubjects(country, programId, year);
             
@@ -3134,7 +3728,7 @@
                         <div class="nu-academic-empty-icon">📝</div>
                         <h3 class="nu-academic-empty-title">No resources available yet.</h3>
                         <p class="nu-academic-empty-desc">Be the first to contribute a useful playlist for this subject.</p>
-                        <button class="college-card-btn-empty" onclick="window.location.href='contribute.html'">Contribute a Playlist</button>
+                        <button class="college-card-btn-empty" onclick="event.preventDefault(); if(Auth.requireAuthForAction('contribute a playlist')) window.location.href='contribute.html';">Contribute a Playlist</button>
                     </div>
                 `;
                 
@@ -3369,7 +3963,7 @@
            POLYTECHNIC DATA LOGIC
         ========================================= */
         function initPolyData() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const country = user.country || 'Bangladesh';
             let polyData = { departments: ['Computer Technology', 'Civil Technology', 'Electrical Technology', 'Electronics Technology', 'Mechanical Technology'] };
             if (typeof AcademicData.getPolytechnicData === 'function') {
@@ -3626,7 +4220,7 @@
            MEDICAL DATA LOGIC
         ========================================= */
         function initMedData() {
-            const user = DataStore.getUser();
+            const user = (typeof AcademicPreferences !== "undefined" && !Auth.isLoggedIn()) ? AcademicPreferences.get() : DataStore.getUser();
             const programSelect = document.getElementById('medProgramSelect');
             
             // 1. Load Program Options
@@ -3777,7 +4371,7 @@
                         <div class="school-empty-icon"><i class="fa-solid fa-book-open"></i></div>
                         <h3 class="school-empty-title">No resources available yet.</h3>
                         <p class="school-empty-desc">Be the first to contribute a useful playlist for this subject.</p>
-                        <button type="button" class="college-card-btn-empty" onclick="window.location.href='contribute.html'">Contribute a Playlist</button>
+                        <button type="button" class="college-card-btn-empty" onclick="event.preventDefault(); if(Auth.requireAuthForAction('contribute a playlist')) window.location.href='contribute.html';">Contribute a Playlist</button>
                     </div>
                 `;
                 
@@ -4074,6 +4668,7 @@
     <script src="js/academic-data.js"></script>
     <script src="js/data-store.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/guest-preferences.js"></script>
     <script src="js/shared-ui.js"></script>
 
     <script>
@@ -4100,8 +4695,19 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             initMode();
+
+            // Prompt for study level if not yet chosen or requested via URL
+            const hasChosenLevel = localStorage.getItem('studynest.has_chosen_level') === 'true';
+            const urlParams = new URLSearchParams(window.location.search);
+            const forceSelect = urlParams.get('selectLevel') === 'true' || urlParams.get('change') === 'true';
+
+            if (!hasChosenLevel || forceSelect) {
+                openStudyLevelModal();
+            }
         });
     </script>
 </body>
 
 </html>
+
+

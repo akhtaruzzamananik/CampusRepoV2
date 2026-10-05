@@ -117,6 +117,15 @@
             font-size: 14px;
 
             font-weight: 600;
+            overflow: hidden;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
         }
 
 
@@ -344,33 +353,120 @@
         }
 
 
-        .large-avatar {
-
+        .avatar-upload-wrapper {
+            position: relative;
             width: 68px;
             height: 68px;
-
-            border-radius: 50%;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #5425f5,
-                    #8064ff
-                );
-
-            color: white;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 21px;
-
-            font-weight: 600;
-
             flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .avatar-upload-wrapper:hover .large-avatar {
+            transform: scale(1.02);
+        }
+
+        .large-avatar {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #5425f5, #8064ff);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+            font-weight: 600;
+            flex-shrink: 0;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .large-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .avatar-camera-btn {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #3e19f7;
+            color: white;
+            border: 2px solid #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease;
+            z-index: 2;
+        }
+
+        .avatar-camera-btn:hover {
+            background: #2b0bd6;
+            transform: scale(1.12);
+        }
+
+        .profile-photo-actions {
+            margin-top: 8px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-change-photo-settings {
+            font-size: 12px;
+            font-weight: 600;
+            color: #3e19f7;
+            background: #eef2ff;
+            border: 1px solid #c7d2fe;
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-change-photo-settings:hover {
+            background: #3e19f7;
+            color: #ffffff;
+            border-color: #3e19f7;
+        }
+
+        .btn-remove-photo-settings {
+            font-size: 12px;
+            font-weight: 500;
+            color: #dc2626;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-remove-photo-settings:hover {
+            background: #dc2626;
+            color: #ffffff;
+            border-color: #dc2626;
+        }
+
+        .hidden-file-input {
+            display: none;
         }
 
 
@@ -1287,11 +1383,28 @@
                     <div class="profile-section">
 
 
-                        <div
-                            class="large-avatar"
-                            id="largeAvatar"
-                        >
-                            A
+                        <div class="avatar-upload-wrapper" id="settingsAvatarWrapper" title="Change profile photo">
+                            <div
+                                class="large-avatar"
+                                id="largeAvatar"
+                            >
+                                A
+                            </div>
+                            <button
+                                type="button"
+                                class="avatar-camera-btn"
+                                id="settingsCameraBtn"
+                                title="Upload profile photo"
+                                aria-label="Upload profile photo"
+                            >
+                                <i class="fa-solid fa-camera"></i>
+                            </button>
+                            <input
+                                type="file"
+                                id="settingsAvatarFileInput"
+                                class="hidden-file-input"
+                                accept="image/png, image/jpeg, image/webp, image/gif"
+                            >
                         </div>
 
 
@@ -1304,6 +1417,15 @@
                             <p id="profileEmail">
                                 student@example.com
                             </p>
+
+                            <div class="profile-photo-actions">
+                                <button type="button" class="btn-change-photo-settings" id="settingsChangePhotoBtn">
+                                    <i class="fa-solid fa-camera"></i> Change Photo
+                                </button>
+                                <button type="button" class="btn-remove-photo-settings" id="settingsRemovePhotoBtn">
+                                    <i class="fa-regular fa-trash-can"></i> Remove
+                                </button>
+                            </div>
 
                         </div>
 
@@ -1387,6 +1509,20 @@
                                     type="text"
                                     id="fullName"
                                     placeholder="Your full name"
+                                >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="Your email address"
                                 >
 
                             </div>
@@ -2116,6 +2252,7 @@
     <script src="js/routes.js"></script>
     <script src="js/data-store.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/guest-preferences.js"></script>
     <script src="js/shared-ui.js"></script>
 
     <!-- =====================================================
@@ -2465,8 +2602,20 @@
                 if (el) el.textContent = val;
             };
 
-            setSafe("profileAvatar", letter);
-            setSafe("largeAvatar", letter);
+            const avatarUrl = user.avatar || localStorage.getItem('studynest_avatar');
+            const largeAv = document.getElementById("largeAvatar");
+            const profAv = document.getElementById("profileAvatar");
+            const settingsRemoveBtn = document.getElementById("settingsRemovePhotoBtn");
+            if (avatarUrl) {
+                const img = '<img src="' + avatarUrl + '" alt="Avatar">';
+                if (largeAv) largeAv.innerHTML = img;
+                if (profAv) profAv.innerHTML = img;
+                if (settingsRemoveBtn) settingsRemoveBtn.style.display = "inline-flex";
+            } else {
+                setSafe("profileAvatar", letter);
+                setSafe("largeAvatar", letter);
+                if (settingsRemoveBtn) settingsRemoveBtn.style.display = "none";
+            }
             setSafe("profileName", savedName);
             setSafe("profileFullName", savedName);
             setSafe("profileEmail", savedEmail);
@@ -2475,8 +2624,114 @@
 
         }
 
+        const settingsAvatarWrapper = document.getElementById("settingsAvatarWrapper");
+        const settingsCameraBtn = document.getElementById("settingsCameraBtn");
+        const settingsChangePhotoBtn = document.getElementById("settingsChangePhotoBtn");
+        const settingsRemovePhotoBtn = document.getElementById("settingsRemovePhotoBtn");
+        const settingsFileInput = document.getElementById("settingsAvatarFileInput");
+
+        function triggerSettingsPhotoUpload(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            if (settingsFileInput) {
+                settingsFileInput.value = '';
+                settingsFileInput.click();
+            }
+        }
+
+        if (settingsAvatarWrapper) {
+            settingsAvatarWrapper.addEventListener("click", function(e) {
+                if (e.target.tagName === "INPUT" || e.target.closest("#settingsCameraBtn")) return;
+                triggerSettingsPhotoUpload(e);
+            });
+        }
+        if (settingsCameraBtn) {
+            settingsCameraBtn.addEventListener("click", triggerSettingsPhotoUpload);
+        }
+        if (settingsChangePhotoBtn) {
+            settingsChangePhotoBtn.addEventListener("click", triggerSettingsPhotoUpload);
+        }
+
+        if (settingsRemovePhotoBtn) {
+            settingsRemovePhotoBtn.addEventListener("click", function(e) {
+                e.preventDefault();
+                if (typeof DataStore !== 'undefined') {
+                    DataStore.setUser({ avatar: '' });
+                }
+                localStorage.removeItem('studynest_avatar');
+                loadProfile();
+                showSuccess("Profile photo removed.");
+            });
+        }
+
+        function processAvatarFile(file, callback) {
+            if (!file) return;
+            const isImage = (file.type && file.type.startsWith('image/')) || /\.(jpe?g|png|webp|gif|bmp|jfif|svg)$/i.test(file.name || '');
+            if (!isImage) {
+                alert('Please select a valid image file (PNG, JPG, WEBP, GIF).');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    try {
+                        const canvas = document.createElement('canvas');
+                        const maxDim = 256;
+                        canvas.width = maxDim;
+                        canvas.height = maxDim;
+                        const ctx = canvas.getContext('2d');
+
+                        // Square center-crop
+                        const minSide = Math.min(img.width, img.height);
+                        const sx = (img.width - minSide) / 2;
+                        const sy = (img.height - minSide) / 2;
+
+                        ctx.drawImage(img, sx, sy, minSide, minSide, 0, 0, maxDim, maxDim);
+                        const optimizedDataUrl = canvas.toDataURL('image/jpeg', 0.88);
+                        callback(optimizedDataUrl);
+                    } catch (err) {
+                        console.error('Canvas processing error:', err);
+                        callback(e.target.result);
+                    }
+                };
+                img.onerror = function() {
+                    alert('Failed to load image file. Please try another image.');
+                };
+                img.src = e.target.result;
+            };
+            reader.onerror = function() {
+                alert('Error reading the selected file.');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        if (settingsFileInput) {
+            settingsFileInput.addEventListener("change", function(e) {
+                const file = e.target.files && e.target.files[0];
+                if (!file) return;
+
+                processAvatarFile(file, function(dataUrl) {
+                    try {
+                        if (typeof DataStore !== 'undefined') {
+                            DataStore.setUser({ avatar: dataUrl });
+                        }
+                        localStorage.setItem("studynest_avatar", dataUrl);
+                    } catch (err) {
+                        console.warn('Storage save warning:', err);
+                    }
+                    loadProfile();
+                    showSuccess("Profile photo updated successfully.");
+                    settingsFileInput.value = "";
+                });
+            });
+        }
 
         loadProfile();
+
 
 
         /* =====================================================
@@ -3717,6 +3972,7 @@
                 );
 
 
+            if (!box) return;
             box.textContent =
                 message;
 
@@ -3846,6 +4102,40 @@
         // Initialize shared UI components (header, sidebar, footer)
         if (typeof SharedUI !== 'undefined') {
             SharedUI.init('settings');
+        }
+
+        // Handle URL parameter to auto-open edit mode if navigated with ?edit=profile or ?edit=academic
+        function handleSettingsUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const editTarget = urlParams.get('edit');
+
+            if (editTarget === 'profile' || editTarget === 'true') {
+                if (typeof editProfile === 'function') {
+                    editProfile();
+                }
+                const profileSec = document.getElementById('profileSection');
+                if (profileSec) {
+                    profileSec.scrollIntoView({ behavior: 'smooth' });
+                }
+                const nameInput = document.getElementById('fullName');
+                if (nameInput) {
+                    setTimeout(() => nameInput.focus(), 250);
+                }
+            } else if (editTarget === 'academic') {
+                if (typeof editAcademicInformation === 'function') {
+                    editAcademicInformation();
+                }
+                const acadSec = document.getElementById('academicSection');
+                if (acadSec) {
+                    acadSec.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', handleSettingsUrlParams);
+        } else {
+            handleSettingsUrlParams();
         }
 
     </script>
