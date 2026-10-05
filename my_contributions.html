@@ -723,7 +723,7 @@
         class="close-sidebar"
         onclick="closeSidebar()"
        aria-label="Close Sidebar">
-        ×
+        Ã—
       </button>
 
     </div>
@@ -741,7 +741,7 @@
         class="menu-item"
       >
         <span class="menu-icon">
-          ¦
+          Â¦
         </span>
 
         <span>
@@ -916,7 +916,7 @@
 
     <div class="sidebar-footer">
 
-      © 2026 StudyNest
+      Â© 2026 StudyNest
       <br>
 
       Learn. Share. Grow Together.
@@ -1150,7 +1150,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1158,7 +1158,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1237,7 +1237,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1245,7 +1245,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1323,7 +1323,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1331,7 +1331,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1409,7 +1409,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1417,7 +1417,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1495,7 +1495,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1503,7 +1503,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1581,7 +1581,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1589,7 +1589,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1668,7 +1668,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1676,7 +1676,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1754,7 +1754,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1762,7 +1762,7 @@
               </span>
 
               <span class="dot">
-                •
+                â€¢
               </span>
 
               <span>
@@ -1855,7 +1855,7 @@
         class="page-btn"
         onclick="changePage(-1)"
       >
-        ‹
+        â€¹
       </button>
 
 
@@ -1878,7 +1878,7 @@
         class="page-btn"
         onclick="changePage(1)"
       >
-        ›
+        â€º
       </button>
 
     </div>
@@ -2184,9 +2184,12 @@
     <script src="js/shared-ui.js"></script>
 
     <script>
-        if (!Auth.requireAuth()) return;
-        // Initialize shared UI components (header, sidebar, footer)
-        SharedUI.init('myContributions');
+        if (typeof Auth !== 'undefined' && !Auth.requireAuth()) {
+            // Require auth redirects unauthenticated users to login
+        } else if (typeof SharedUI !== 'undefined') {
+            // Initialize shared UI components (header, sidebar, footer)
+            SharedUI.init('myContributions');
+        }
     </script>
 </body>
 </html>

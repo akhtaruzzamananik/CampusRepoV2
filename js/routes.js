@@ -23,6 +23,7 @@ const ROUTES = {
     home:               'home.html',
     academicCourses:    'academic_courses.html',
     questionBank:       'question_bank.html',
+    questionPaper:      'question_paper.html',
     leaderboard:        'leaderboard.html',
     contribute:         'contribute.html',
     contributionDetails:'contribution_details.html',

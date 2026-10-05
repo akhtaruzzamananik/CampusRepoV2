@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta
         name="viewport"
@@ -2547,7 +2548,7 @@
 
                             <i class="fa-solid fa-star"></i>
 
-                            ${item.rating || "�"}
+                            ${item.rating || "â€”"}
 
                         </span>
 
@@ -3007,9 +3008,12 @@
     <script src="js/shared-ui.js"></script>
 
     <script>
-        if (!Auth.requireAuth()) return;
-        // Initialize shared UI components (header, sidebar, footer)
-        SharedUI.init('myLibrary');
+        if (typeof Auth !== 'undefined' && !Auth.requireAuth()) {
+            // Require auth redirects unauthenticated users to login
+        } else if (typeof SharedUI !== 'undefined') {
+            // Initialize shared UI components (header, sidebar, footer)
+            SharedUI.init('myLibrary');
+        }
     </script>
 </body>
 
