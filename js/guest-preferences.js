@@ -1,12 +1,12 @@
-/**
- * StudyNest – Academic Preferences Module
+﻿/**
+ * Campus Repo – Academic Preferences Module
  * =========================================
  * Manages academic preferences (study level, institution, department, etc.)
  * independently of authentication state.
  *
  * Works for BOTH guest and logged-in users:
- * - Guests: preferences stored in localStorage under 'studynest.guest_prefs'
- * - Logged-in: preferences stored in the user object (studynest.user)
+ * - Guests: preferences stored in localStorage under 'Campus Repo.guest_prefs'
+ * - Logged-in: preferences stored in the user object (Campus Repo.user)
  *
  * This module provides a unified API so pages don't need to know
  * whether the user is a guest or authenticated.
@@ -14,7 +14,7 @@
  * Load AFTER: routes.js, data-store.js, auth.js
  */
 
-const GUEST_PREFS_KEY = 'studynest.guest_prefs';
+const GUEST_PREFS_KEY = 'Campus Repo.guest_prefs';
 
 const AcademicPreferences = {
 
@@ -110,7 +110,7 @@ const AcademicPreferences = {
      * Check if a study level has been explicitly chosen by the user/guest.
      */
     hasChosenStudyLevel() {
-        if (localStorage.getItem('studynest.has_chosen_level') === 'true') {
+        if (localStorage.getItem('Campus Repo.has_chosen_level') === 'true') {
             return true;
         }
         if (Auth.isLoggedIn()) {
@@ -137,7 +137,7 @@ const AcademicPreferences = {
             medicalUniversity: '',
             college: ''
         });
-        localStorage.setItem('studynest.has_chosen_level', 'true');
+        localStorage.setItem('Campus Repo.has_chosen_level', 'true');
     },
 
     setInstitution(institution) {
@@ -175,7 +175,7 @@ const AcademicPreferences = {
 
         // Only merge if the user doesn't already have preferences from a previous session
         // Check if user has explicitly set preferences already
-        const userRaw = DataStore._get('studynest.user');
+        const userRaw = DataStore._get('Campus Repo.user');
         const hasExistingPrefs = userRaw && userRaw.studyLevel;
 
         if (!hasExistingPrefs) {

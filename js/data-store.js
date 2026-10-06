@@ -1,18 +1,18 @@
-/**
- * StudyNest – Centralized Storage & Data Store
+﻿/**
+ * Campus Repo – Centralized Storage & Data Store
  * ==============================================
  * All localStorage interactions go through this module.
  * Structured JSON objects instead of scattered string keys.
  */
 
 const STORAGE_KEYS = {
-    auth: 'studynest.auth',
-    user: 'studynest.user',
-    library: 'studynest.library',
-    notifications: 'studynest.notifications',
-    contributions: 'studynest.contributions',
-    leaderboard: 'studynest.leaderboard',
-    votes: 'studynest.votes'
+    auth: 'Campus Repo.auth',
+    user: 'Campus Repo.user',
+    library: 'Campus Repo.library',
+    notifications: 'Campus Repo.notifications',
+    contributions: 'Campus Repo.contributions',
+    leaderboard: 'Campus Repo.leaderboard',
+    votes: 'Campus Repo.votes'
 };
 
 
@@ -68,13 +68,13 @@ const DataStore = {
 
         // Keep legacy keys synchronized
         if (updated.isLoggedIn !== undefined) {
-            localStorage.setItem('studynest_logged_in', updated.isLoggedIn ? 'true' : 'false');
+            localStorage.setItem('campus_repo_logged_in', updated.isLoggedIn ? 'true' : 'false');
         }
         if (updated.profileCompleted !== undefined) {
-            localStorage.setItem('studynest_profile_completed', updated.profileCompleted ? 'true' : 'false');
+            localStorage.setItem('campus_repo_profile_completed', updated.profileCompleted ? 'true' : 'false');
         }
         if (updated.isGoogleLogin !== undefined) {
-            localStorage.setItem('studynest_google_login', updated.isGoogleLogin ? 'true' : 'false');
+            localStorage.setItem('campus_repo_google_login', updated.isGoogleLogin ? 'true' : 'false');
         }
         return updated;
     },
@@ -88,18 +88,18 @@ const DataStore = {
 
     getUser() {
         const stored = this._get(STORAGE_KEYS.user) || {};
-        const legacyName = localStorage.getItem('studynest_user_name');
-        const legacyEmail = localStorage.getItem('studynest_user_email');
-        const legacyCountry = localStorage.getItem('studynest_country');
-        const legacyLevel = localStorage.getItem('studynest_study_level');
-        const legacyInst = localStorage.getItem('studynest_institution');
-        const legacyDept = localStorage.getItem('studynest_department');
-        const legacyBoard = localStorage.getItem('studynest_board');
-        const legacyClass = localStorage.getItem('studynest_class');
-        const legacyCourse = localStorage.getItem('studynest_course');
-        const legacyMedUni = localStorage.getItem('studynest_medical_university');
-        const legacyMedCollege = localStorage.getItem('studynest_medical_college');
-        const legacyAvatar = localStorage.getItem('studynest_avatar');
+        const legacyName = localStorage.getItem('campus_repo_user_name');
+        const legacyEmail = localStorage.getItem('campus_repo_user_email');
+        const legacyCountry = localStorage.getItem('campus_repo_country');
+        const legacyLevel = localStorage.getItem('campus_repo_study_level');
+        const legacyInst = localStorage.getItem('campus_repo_institution');
+        const legacyDept = localStorage.getItem('campus_repo_department');
+        const legacyBoard = localStorage.getItem('campus_repo_board');
+        const legacyClass = localStorage.getItem('campus_repo_class');
+        const legacyCourse = localStorage.getItem('campus_repo_course');
+        const legacyMedUni = localStorage.getItem('campus_repo_medical_university');
+        const legacyMedCollege = localStorage.getItem('campus_repo_medical_college');
+        const legacyAvatar = localStorage.getItem('campus_repo_avatar');
 
         let name = stored.name || legacyName || '';
         let email = stored.email || legacyEmail || '';
@@ -153,22 +153,22 @@ const DataStore = {
 
         // Always sync legacy localStorage keys so that any page or script reads the latest updated values
         try {
-            if (updated.name) localStorage.setItem('studynest_user_name', updated.name);
-            if (updated.email) localStorage.setItem('studynest_user_email', updated.email);
-            if (updated.country) localStorage.setItem('studynest_country', updated.country);
-            if (updated.studyLevel) localStorage.setItem('studynest_study_level', updated.studyLevel);
-            if (updated.institution) localStorage.setItem('studynest_institution', updated.institution);
-            if (updated.department) localStorage.setItem('studynest_department', updated.department);
-            if (updated.board) localStorage.setItem('studynest_board', updated.board);
-            if (updated.class) localStorage.setItem('studynest_class', updated.class);
-            if (updated.course) localStorage.setItem('studynest_course', updated.course);
-            if (updated.medicalUniversity) localStorage.setItem('studynest_medical_university', updated.medicalUniversity);
-            if (updated.college) localStorage.setItem('studynest_medical_college', updated.college);
+            if (updated.name) localStorage.setItem('campus_repo_user_name', updated.name);
+            if (updated.email) localStorage.setItem('campus_repo_user_email', updated.email);
+            if (updated.country) localStorage.setItem('campus_repo_country', updated.country);
+            if (updated.studyLevel) localStorage.setItem('campus_repo_study_level', updated.studyLevel);
+            if (updated.institution) localStorage.setItem('campus_repo_institution', updated.institution);
+            if (updated.department) localStorage.setItem('campus_repo_department', updated.department);
+            if (updated.board) localStorage.setItem('campus_repo_board', updated.board);
+            if (updated.class) localStorage.setItem('campus_repo_class', updated.class);
+            if (updated.course) localStorage.setItem('campus_repo_course', updated.course);
+            if (updated.medicalUniversity) localStorage.setItem('campus_repo_medical_university', updated.medicalUniversity);
+            if (updated.college) localStorage.setItem('campus_repo_medical_college', updated.college);
             if (updated.avatar !== undefined) {
                 if (updated.avatar) {
-                    localStorage.setItem('studynest_avatar', updated.avatar);
+                    localStorage.setItem('campus_repo_avatar', updated.avatar);
                 } else {
-                    localStorage.removeItem('studynest_avatar');
+                    localStorage.removeItem('campus_repo_avatar');
                 }
             }
         } catch (e) {
@@ -181,10 +181,10 @@ const DataStore = {
     clearUser() {
         this._remove(STORAGE_KEYS.user);
         const legacyKeys = [
-            'studynest_user_name', 'studynest_user_email', 'studynest_country',
-            'studynest_study_level', 'studynest_institution', 'studynest_department',
-            'studynest_board', 'studynest_class', 'studynest_course',
-            'studynest_medical_university', 'studynest_medical_college', 'studynest_avatar'
+            'campus_repo_user_name', 'campus_repo_user_email', 'campus_repo_country',
+            'campus_repo_study_level', 'campus_repo_institution', 'campus_repo_department',
+            'campus_repo_board', 'campus_repo_class', 'campus_repo_course',
+            'campus_repo_medical_university', 'campus_repo_medical_college', 'campus_repo_avatar'
         ];
         legacyKeys.forEach(k => localStorage.removeItem(k));
     },
@@ -242,7 +242,7 @@ const DataStore = {
             {
                 id: 'n2',
                 type: 'system',
-                title: 'Welcome to StudyNest!',
+                title: 'Welcome to Campus Repo!',
                 message: 'Start exploring academic resources and contribute to help fellow students.',
                 createdAt: new Date(Date.now() - 86400000).toISOString(),
                 read: false,
@@ -338,14 +338,14 @@ const DataStore = {
     // ── Migrate legacy localStorage keys ──
 
     migrateLegacy() {
-        const isMigrated = localStorage.getItem('studynest._migrated');
+        const isMigrated = localStorage.getItem('Campus Repo._migrated');
         if (isMigrated === 'true') {
             return;
         }
 
-        const legacyLoggedIn = localStorage.getItem('studynest_logged_in');
-        const legacyGoogle = localStorage.getItem('studynest_google_login');
-        const legacyProfile = localStorage.getItem('studynest_profile_completed');
+        const legacyLoggedIn = localStorage.getItem('campus_repo_logged_in');
+        const legacyGoogle = localStorage.getItem('campus_repo_google_login');
+        const legacyProfile = localStorage.getItem('campus_repo_profile_completed');
 
         const existingAuth = this._get(STORAGE_KEYS.auth);
         if (!existingAuth && legacyLoggedIn === 'true') {
@@ -357,21 +357,21 @@ const DataStore = {
             });
         }
 
-        const legacyName = localStorage.getItem('studynest_user_name');
-        const legacyEmail = localStorage.getItem('studynest_user_email');
+        const legacyName = localStorage.getItem('campus_repo_user_name');
+        const legacyEmail = localStorage.getItem('campus_repo_user_email');
         const existingUser = this._get(STORAGE_KEYS.user);
         if (!existingUser && (legacyName || legacyEmail)) {
             this.setUser({
                 name: legacyName || '',
                 email: legacyEmail || '',
-                country: localStorage.getItem('studynest_country') || '',
-                studyLevel: localStorage.getItem('studynest_study_level') || '',
-                institution: localStorage.getItem('studynest_institution') || '',
-                department: localStorage.getItem('studynest_department') || ''
+                country: localStorage.getItem('campus_repo_country') || '',
+                studyLevel: localStorage.getItem('campus_repo_study_level') || '',
+                institution: localStorage.getItem('campus_repo_institution') || '',
+                department: localStorage.getItem('campus_repo_department') || ''
             });
         }
 
-        localStorage.setItem('studynest._migrated', 'true');
+        localStorage.setItem('Campus Repo._migrated', 'true');
     },
 
 
@@ -381,13 +381,13 @@ const DataStore = {
         Object.values(STORAGE_KEYS).forEach(key => this._remove(key));
         // Also clear legacy keys
         const legacyKeys = [
-            'studynest_user_name', 'studynest_user_email',
-            'studynest_logged_in', 'studynest_google_login',
-            'studynest_profile_completed', 'studynest_country',
-            'studynest_study_level', 'studynest_institution',
-            'studynest_department', 'studynest_board', 'studynest_class',
-            'studynest_course', 'studynest_medical_university', 'studynest_medical_college',
-            'studynest._migrated'
+            'campus_repo_user_name', 'campus_repo_user_email',
+            'campus_repo_logged_in', 'campus_repo_google_login',
+            'campus_repo_profile_completed', 'campus_repo_country',
+            'campus_repo_study_level', 'campus_repo_institution',
+            'campus_repo_department', 'campus_repo_board', 'campus_repo_class',
+            'campus_repo_course', 'campus_repo_medical_university', 'campus_repo_medical_college',
+            'Campus Repo._migrated'
         ];
         legacyKeys.forEach(k => localStorage.removeItem(k));
     }

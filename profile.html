@@ -11,7 +11,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>StudyNest - Profile</title>
+    <title>Campus Repo - Profile</title>
 
 
     <!-- Google Font -->
@@ -1394,7 +1394,7 @@
 
                 <div class="logo-text">
 
-                    <h2>StudyNest</h2>
+                    <h2>Campus Repo</h2>
 
                     <p>Learn. Share. Grow.</p>
 
@@ -1781,7 +1781,7 @@
 
 
                         <p class="overview-text">
-                            Student profile on StudyNest. Contributions shared by this student help other learners discover useful academic resources.
+                            Student profile on Campus Repo. Contributions shared by this student help other learners discover useful academic resources.
                         </p>
 
 
@@ -2067,7 +2067,7 @@
                 <div>
 
                     <h3>
-                        StudyNest
+                        Campus Repo
                     </h3>
 
                     <p>
@@ -2308,38 +2308,38 @@
         const currentUser = (typeof DataStore !== 'undefined' && DataStore.getUser()) || {};
         const userName = currentUser.name ||
             localStorage.getItem(
-                "studynest_user_name"
+                "campus_repo_user_name"
             ) || "Akhtaruzzaman Anik";
 
 
         const userEmail = currentUser.email ||
             localStorage.getItem(
-                "studynest_user_email"
+                "campus_repo_user_email"
             ) || "anikanik@gmail.com";
 
 
         const country = currentUser.country ||
             localStorage.getItem(
-                "studynest_country"
+                "campus_repo_country"
             ) || "Bangladesh";
 
 
         const studyLevel = currentUser.studyLevel ||
             localStorage.getItem(
-                "studynest_study_level"
+                "campus_repo_study_level"
             ) || "University";
 
 
         const institution = currentUser.institution ||
             localStorage.getItem(
-                "studynest_institution"
+                "campus_repo_institution"
             ) ||
             "Daffodil International University";
 
 
         const department = currentUser.department ||
             localStorage.getItem(
-                "studynest_department"
+                "campus_repo_department"
             ) ||
             "Computer Science & Engineering";
 
@@ -2377,7 +2377,7 @@
             }
         }
 
-        const storedAvatar = (typeof DataStore !== 'undefined' && DataStore.getUser().avatar) || localStorage.getItem('studynest_avatar') || '';
+        const storedAvatar = (typeof DataStore !== 'undefined' && DataStore.getUser().avatar) || localStorage.getItem('campus_repo_avatar') || '';
         renderProfileAvatar(storedAvatar, initial);
 
         // Toast Helper
@@ -2431,7 +2431,7 @@
                 if (typeof DataStore !== 'undefined') {
                     DataStore.setUser({ avatar: '' });
                 }
-                localStorage.removeItem('studynest_avatar');
+                localStorage.removeItem('campus_repo_avatar');
                 renderProfileAvatar('', initial);
                 showAvatarToast('Profile photo removed.');
             });
@@ -2448,7 +2448,7 @@
                 if (typeof DataStore !== 'undefined') {
                     DataStore.setUser({ avatar: '' });
                 }
-                localStorage.removeItem('studynest_avatar');
+                localStorage.removeItem('campus_repo_avatar');
                 renderProfileAvatar('', initial);
                 showAvatarToast('Profile photo removed.');
                 const modal = document.getElementById('avatarModalOverlay');
@@ -2516,7 +2516,7 @@
                         if (typeof DataStore !== 'undefined') {
                             DataStore.setUser({ avatar: dataUrl });
                         }
-                        localStorage.setItem('studynest_avatar', dataUrl);
+                        localStorage.setItem('campus_repo_avatar', dataUrl);
                     } catch (err) {
                         console.warn('Storage save warning:', err);
                     }
@@ -2688,7 +2688,7 @@
         const library =
             JSON.parse(
                 localStorage.getItem(
-                    "studynest_library"
+                    "campus_repo_library"
                 )
             ) || [];
 

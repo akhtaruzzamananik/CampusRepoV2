@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>StudyNest - Academic Courses</title>
+    <title>Campus Repo - Academic Courses</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1325,7 +1325,7 @@
 
                 <div class="logo-text">
 
-                    <h2>StudyNest</h2>
+                    <h2>Campus Repo</h2>
 
                     <p>
                         Learn. Share. Grow.
@@ -2720,7 +2720,7 @@
                 <div>
 
                     <h3>
-                        StudyNest
+                        Campus Repo
                     </h3>
 
                     <p>
@@ -2969,8 +2969,8 @@
                 user.studyLevel = level;
                 DataStore.setUser(user);
             }
-            localStorage.setItem('studynest.has_chosen_level', 'true');
-            sessionStorage.setItem('studynest.level_selected_session', 'true');
+            localStorage.setItem('Campus Repo.has_chosen_level', 'true');
+            sessionStorage.setItem('Campus Repo.level_selected_session', 'true');
 
             closeStudyLevelModal();
             initMode();
@@ -3173,7 +3173,7 @@
                             <span class="playlist-type">Full Playlist</span>
                             <div class="playlist-name">
                                 ${subject} Basic Concepts
-                                <span>by StudyNest Academic</span>
+                                <span>by Campus Repo Academic</span>
                             </div>
                             <div class="playlist-meta">
                                 <span class="rating">
@@ -3281,7 +3281,7 @@
 
         const savedName =
             localStorage.getItem(
-                "studynest_user_name"
+                "campus_repo_user_name"
             );
 
 
@@ -4128,7 +4128,7 @@
                             <span class="playlist-type">Full Playlist</span>
                             <div class="playlist-name">
                                 ${sub} Basic Concepts
-                                <span>by StudyNest Academic</span>
+                                <span>by Campus Repo Academic</span>
                             </div>
                             <div class="playlist-meta">
                                 <span class="rating">
@@ -4516,7 +4516,7 @@
                             <span class="playlist-type">Full Playlist</span>
                             <div class="playlist-name">
                                 ${subjectName} Basic Concepts
-                                <span>by StudyNest Academic</span>
+                                <span>by Campus Repo Academic</span>
                             </div>
                             <div class="playlist-meta">
                                 <span class="rating">
@@ -4697,7 +4697,7 @@
             initMode();
 
             // Prompt for study level if not yet chosen or requested via URL
-            const hasChosenLevel = localStorage.getItem('studynest.has_chosen_level') === 'true';
+            const hasChosenLevel = localStorage.getItem('Campus Repo.has_chosen_level') === 'true';
             const urlParams = new URLSearchParams(window.location.search);
             const forceSelect = urlParams.get('selectLevel') === 'true' || urlParams.get('change') === 'true';
 

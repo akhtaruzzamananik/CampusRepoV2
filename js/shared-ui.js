@@ -1,5 +1,5 @@
-/**
- * StudyNest – Shared UI Components
+﻿/**
+ * Campus Repo – Shared UI Components
  * ==================================
  * Injects consistent header, sidebar, footer, profile dropdown,
  * and notification badge across ALL authenticated pages.
@@ -136,12 +136,12 @@ const SharedUI = {
             <div class="nav-left">
                 ${hamburgerHTML}
 
-                <a href="${ROUTES.home}" class="logo" aria-label="StudyNest home">
+                <a href="${ROUTES.home}" class="logo" aria-label="Campus Repo home">
                     <div class="logo-icon">
                         <i class="fa-solid fa-graduation-cap"></i>
                     </div>
                     <div class="logo-text">
-                        <h2>StudyNest</h2>
+                        <h2>Campus Repo</h2>
                         <p>Learn. Share. Grow.</p>
                     </div>
                 </a>
@@ -177,7 +177,7 @@ const SharedUI = {
                         <i class="fa-solid fa-graduation-cap"></i>
                     </div>
                     <div>
-                        <h3>StudyNest</h3>
+                        <h3>Campus Repo</h3>
                         <p>Learn. Share. Grow.</p>
                     </div>
                 </div>
@@ -294,7 +294,7 @@ const SharedUI = {
                             <i class="fa-solid fa-graduation-cap"></i>
                         </div>
                         <div>
-                            <h3>StudyNest</h3>
+                            <h3>Campus Repo</h3>
                             <p>Learn. Share. Grow.</p>
                         </div>
                     </div>
@@ -324,7 +324,7 @@ const SharedUI = {
                             <i class="fa-regular fa-envelope"></i>
                         </div>
                         <div>
-                            <div class="contact-email">support@studynest.com</div>
+                            <div class="contact-email">support@campusrepo.com</div>
                             <div class="contact-sub">We'd love to hear from you!</div>
                         </div>
                     </div>
@@ -332,7 +332,7 @@ const SharedUI = {
             </div>
 
             <div class="footer-bottom">
-                <div>© 2026 StudyNest. All rights reserved.</div>
+                <div>© 2026 Campus Repo. All rights reserved.</div>
                 <div class="made">
                     <span>♥</span>&nbsp; Made for students, by students.
                 </div>
@@ -480,7 +480,7 @@ const SharedUI = {
             updateText('#navUserStatus, #displayStudyLevel, #overviewStudyLevel', prefs.studyLevel || user.studyLevel || 'University');
             updateText('#userEmail, #profileEmail, #displayEmail, #navEmail', user.email || 'anikanik@gmail.com');
 
-            const avatarUrl = user.avatar || localStorage.getItem('studynest_avatar');
+            const avatarUrl = user.avatar || localStorage.getItem('campus_repo_avatar');
             if (avatarUrl) {
                 document.querySelectorAll('#navAvatar, #bigAvatar, #largeAvatar, #profileAvatar').forEach(el => {
                     el.innerHTML = `<img src="${avatarUrl}" alt="Avatar" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;">`;
@@ -516,7 +516,7 @@ const SharedUI = {
             // Set guest placeholders for name-related elements
             updateText('#userName, #welcomeName', 'Guest');
 
-            const avatarUrl = user.avatar || localStorage.getItem('studynest_avatar');
+            const avatarUrl = user.avatar || localStorage.getItem('campus_repo_avatar');
             if (avatarUrl) {
                 document.querySelectorAll('#navAvatar, #bigAvatar, #largeAvatar, #profileAvatar').forEach(el => {
                     el.innerHTML = `<img src="${avatarUrl}" alt="Avatar">`;

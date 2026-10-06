@@ -11,7 +11,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>StudyNest - My Library</title>
+    <title>Campus Repo - My Library</title>
 
 
     <!-- Google Font -->
@@ -1068,7 +1068,7 @@
 
                 <div class="logo-text">
 
-                    <h2>StudyNest</h2>
+                    <h2>Campus Repo</h2>
 
                     <p>Learn. Share. Grow.</p>
 
@@ -1253,7 +1253,7 @@
 
 
             <p>
-                Save playlists or question papers from StudyNest and they will appear here.
+                Save playlists or question papers from Campus Repo and they will appear here.
             </p>
 
 
@@ -1322,7 +1322,7 @@
                 <div>
 
                     <h3>
-                        StudyNest
+                        Campus Repo
                     </h3>
 
                     <p>
@@ -1543,7 +1543,7 @@
 
         const userName =
             localStorage.getItem(
-                "studynest_user_name"
+                "campus_repo_user_name"
             ) || "Student";
 
 
@@ -1786,7 +1786,7 @@
         let libraryItems =
             JSON.parse(
                 localStorage.getItem(
-                    "studynest_library"
+                    "campus_repo_library"
                 )
             ) || demoLibrary;
 
@@ -1798,12 +1798,12 @@
 
         if (
             !localStorage.getItem(
-                "studynest_library"
+                "campus_repo_library"
             )
         ) {
 
             localStorage.setItem(
-                "studynest_library",
+                "campus_repo_library",
                 JSON.stringify(
                     libraryItems
                 )
@@ -2788,7 +2788,7 @@
 
 
             localStorage.setItem(
-                "studynest_library",
+                "campus_repo_library",
                 JSON.stringify(
                     libraryItems
                 )

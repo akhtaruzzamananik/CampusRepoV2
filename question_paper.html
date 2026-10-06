@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Question Paper - StudyNest</title>
+    <title>Question Paper - Campus Repo</title>
 
     <style>
 
@@ -994,7 +994,7 @@
 
 
             <div class="logo">
-                StudyNest
+                Campus Repo
             </div>
 
         </div>
@@ -1065,7 +1065,7 @@
         <div class="sidebar-header">
 
             <div class="sidebar-logo">
-                StudyNest
+                Campus Repo
             </div>
 
 
@@ -1926,7 +1926,7 @@
 
 
             <p class="info-text">
-                This question paper was contributed by a StudyNest
+                This question paper was contributed by a Campus Repo
                 student. Multiple students may submit the same
                 examination paper, and each submission is kept
                 separately so students can choose the available
@@ -1949,7 +1949,7 @@
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
                 <div>
-                    <h3>StudyNest</h3>
+                    <h3>Campus Repo</h3>
                     <p>Learn. Share. Grow.</p>
                 </div>
             </div>
@@ -1983,7 +1983,7 @@
                     <i class="fa-regular fa-envelope"></i>
                 </div>
                 <div>
-                    <div class="contact-email">support@studynest.com</div>
+                    <div class="contact-email">support@campusrepo.com</div>
                     <div class="contact-sub">We'd love to hear from you!</div>
                 </div>
             </div>
@@ -1991,7 +1991,7 @@
     </div>
 
     <div class="footer-bottom">
-        <div>&copy; 2026 StudyNest. All rights reserved.</div>
+        <div>&copy; 2026 Campus Repo. All rights reserved.</div>
         <div class="made">
             <span>&hearts;</span>&nbsp; Made for students, by students.
         </div>
@@ -2017,7 +2017,7 @@
         /* ================= USER ================= */
 
         const savedName =
-            localStorage.getItem("studynest_user_name")
+            localStorage.getItem("campus_repo_user_name")
             || "Student";
 
 
@@ -2388,7 +2388,7 @@
             let library =
                 JSON.parse(
                     localStorage.getItem(
-                        "studynest_library"
+                        "campus_repo_library"
                     ) || "[]"
                 );
 
@@ -2414,7 +2414,7 @@
 
 
                 localStorage.setItem(
-                    "studynest_library",
+                    "campus_repo_library",
                     JSON.stringify(library)
                 );
 
@@ -2477,7 +2477,7 @@
 
 
             localStorage.setItem(
-                "studynest_library",
+                "campus_repo_library",
                 JSON.stringify(library)
             );
 
@@ -2506,7 +2506,7 @@
             const library =
                 JSON.parse(
                     localStorage.getItem(
-                        "studynest_library"
+                        "campus_repo_library"
                     ) || "[]"
                 );
 
@@ -2626,7 +2626,7 @@
         if (subject) {
             document.getElementById('paperTitle').textContent = subject;
             document.getElementById('breadcrumbTitle').textContent = subject;
-            document.title = subject + ' - StudyNest';
+            document.title = subject + ' - Campus Repo';
         }
 
         // Initialize shared UI components (header, sidebar, footer)

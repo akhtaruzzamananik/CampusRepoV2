@@ -11,7 +11,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>StudyNest - Settings</title>
+    <title>Campus Repo - Settings</title>
 
 
     <!-- Google Font -->
@@ -1221,7 +1221,7 @@
 
                 <div class="logo-text">
 
-                    <h2>StudyNest</h2>
+                    <h2>Campus Repo</h2>
 
                     <p>Learn. Share. Grow.</p>
 
@@ -1375,7 +1375,7 @@
                         </h2>
 
                         <p>
-                            Manage your basic StudyNest profile information.
+                            Manage your basic Campus Repo profile information.
                         </p>
 
                     </div>
@@ -1941,7 +1941,7 @@
                         </h2>
 
                         <p>
-                            Manage your StudyNest account.
+                            Manage your Campus Repo account.
                         </p>
 
                     </div>
@@ -1953,7 +1953,7 @@
                         <div class="danger-info">
 
                             <h3>
-                                Log out of StudyNest
+                                Log out of Campus Repo
                             </h3>
 
                             <p>
@@ -2041,7 +2041,7 @@
                 <div>
 
                     <h3>
-                        StudyNest
+                        Campus Repo
                     </h3>
 
                     <p>
@@ -2272,28 +2272,28 @@
         let savedName =
             initialUser.name ||
             localStorage.getItem(
-                "studynest_user_name"
+                "campus_repo_user_name"
             ) || "Akhtaruzzaman Anik";
 
 
         let savedEmail =
             initialUser.email ||
             localStorage.getItem(
-                "studynest_user_email"
+                "campus_repo_user_email"
             ) || "anikanik@gmail.com";
 
 
         let savedCountry =
             initialUser.country ||
             localStorage.getItem(
-                "studynest_country"
+                "campus_repo_country"
             ) || "Bangladesh";
 
 
         let savedStudyLevel =
             initialUser.studyLevel ||
             localStorage.getItem(
-                "studynest_study_level"
+                "campus_repo_study_level"
             ) || "University";
 
 
@@ -2603,7 +2603,7 @@
                 if (el) el.textContent = val;
             };
 
-            const avatarUrl = user.avatar || localStorage.getItem('studynest_avatar');
+            const avatarUrl = user.avatar || localStorage.getItem('campus_repo_avatar');
             const largeAv = document.getElementById("largeAvatar");
             const profAv = document.getElementById("profileAvatar");
             const settingsRemoveBtn = document.getElementById("settingsRemovePhotoBtn");
@@ -2661,7 +2661,7 @@
                 if (typeof DataStore !== 'undefined') {
                     DataStore.setUser({ avatar: '' });
                 }
-                localStorage.removeItem('studynest_avatar');
+                localStorage.removeItem('campus_repo_avatar');
                 loadProfile();
                 showSuccess("Profile photo removed.");
             });
@@ -2720,7 +2720,7 @@
                         if (typeof DataStore !== 'undefined') {
                             DataStore.setUser({ avatar: dataUrl });
                         }
-                        localStorage.setItem("studynest_avatar", dataUrl);
+                        localStorage.setItem("campus_repo_avatar", dataUrl);
                     } catch (err) {
                         console.warn('Storage save warning:', err);
                     }
@@ -2819,8 +2819,8 @@
                     email: savedEmail
                 });
             } else {
-                localStorage.setItem("studynest_user_name", savedName);
-                localStorage.setItem("studynest_user_email", savedEmail);
+                localStorage.setItem("campus_repo_user_name", savedName);
+                localStorage.setItem("campus_repo_user_email", savedEmail);
             }
 
 
@@ -2851,8 +2851,8 @@
         function editAcademicInformation() {
 
             const user = (typeof DataStore !== 'undefined' && DataStore.getUser()) || {};
-            savedCountry = user.country || localStorage.getItem("studynest_country") || "Bangladesh";
-            savedStudyLevel = user.studyLevel || localStorage.getItem("studynest_study_level") || "University";
+            savedCountry = user.country || localStorage.getItem("campus_repo_country") || "Bangladesh";
+            savedStudyLevel = user.studyLevel || localStorage.getItem("campus_repo_study_level") || "University";
 
             document.getElementById(
                 "academicView"
@@ -2902,14 +2902,14 @@
             const country =
                 user.country ||
                 localStorage.getItem(
-                    "studynest_country"
+                    "campus_repo_country"
                 ) || "Bangladesh";
 
 
             const level =
                 user.studyLevel ||
                 localStorage.getItem(
-                    "studynest_study_level"
+                    "campus_repo_study_level"
                 ) || "University";
 
             savedCountry = country;
@@ -2926,9 +2926,9 @@
             ).textContent = level;
 
 
-            let institution = user.institution || localStorage.getItem("studynest_institution") || "Daffodil International University";
+            let institution = user.institution || localStorage.getItem("campus_repo_institution") || "Daffodil International University";
 
-            let department = user.department || localStorage.getItem("studynest_department") || "Computer Science & Engineering";
+            let department = user.department || localStorage.getItem("campus_repo_department") || "Computer Science & Engineering";
 
 
             if (level === "Medical") {
@@ -2937,19 +2937,19 @@
                     user.college ||
                     user.institution ||
                     localStorage.getItem(
-                        "studynest_medical_college"
+                        "campus_repo_medical_college"
                     ) || "Not set";
 
                 const course =
                     user.course ||
                     localStorage.getItem(
-                        "studynest_course"
+                        "campus_repo_course"
                     ) || "MBBS";
 
                 const uni =
                     user.medicalUniversity ||
                     localStorage.getItem(
-                        "studynest_medical_university"
+                        "campus_repo_medical_university"
                     ) || "";
 
                 department =
@@ -2966,21 +2966,21 @@
                 institution =
                     user.institution ||
                     localStorage.getItem(
-                        "studynest_institution"
+                        "campus_repo_institution"
                     ) || "Not set";
 
 
                 const board =
                     user.board ||
                     localStorage.getItem(
-                        "studynest_board"
+                        "campus_repo_board"
                     ) || "";
 
 
                 const classValue =
                     user.class ||
                     localStorage.getItem(
-                        "studynest_class"
+                        "campus_repo_class"
                     ) || "";
 
 
@@ -3046,14 +3046,14 @@
                 const institution =
                     user.institution ||
                     localStorage.getItem(
-                        "studynest_institution"
+                        "campus_repo_institution"
                     ) || "Daffodil International University";
 
 
                 const department =
                     user.department ||
                     localStorage.getItem(
-                        "studynest_department"
+                        "campus_repo_department"
                     ) || "Computer Science & Engineering";
 
 
@@ -3117,20 +3117,20 @@
                 const medicalUniversity =
                     user.medicalUniversity ||
                     localStorage.getItem(
-                        "studynest_medical_university"
+                        "campus_repo_medical_university"
                     ) || "";
 
                 const medicalCourse =
                     user.course ||
                     localStorage.getItem(
-                        "studynest_course"
+                        "campus_repo_course"
                     ) || "MBBS";
 
                 const savedCollege =
                     user.college ||
                     user.institution ||
                     localStorage.getItem(
-                        "studynest_medical_college"
+                        "campus_repo_medical_college"
                     ) || "";
 
 
@@ -3222,14 +3222,14 @@
                 const institution =
                     user.institution ||
                     localStorage.getItem(
-                        "studynest_institution"
+                        "campus_repo_institution"
                     ) || "";
 
 
                 const department =
                     user.department ||
                     localStorage.getItem(
-                        "studynest_department"
+                        "campus_repo_department"
                     ) || "";
 
 
@@ -3296,14 +3296,14 @@
                 const institution =
                     user.institution ||
                     localStorage.getItem(
-                        "studynest_institution"
+                        "campus_repo_institution"
                     ) || "";
 
 
                 const department =
                     user.department ||
                     localStorage.getItem(
-                        "studynest_department"
+                        "campus_repo_department"
                     ) || "";
 
 
@@ -3363,21 +3363,21 @@
                 const board =
                     user.board ||
                     localStorage.getItem(
-                        "studynest_board"
+                        "campus_repo_board"
                     ) || "";
 
 
                 const institution =
                     user.institution ||
                     localStorage.getItem(
-                        "studynest_institution"
+                        "campus_repo_institution"
                     ) || "";
 
 
                 const classValue =
                     user.class ||
                     localStorage.getItem(
-                        "studynest_class"
+                        "campus_repo_class"
                     ) || "";
 
 
@@ -3464,21 +3464,21 @@
                 const board =
                     user.board ||
                     localStorage.getItem(
-                        "studynest_board"
+                        "campus_repo_board"
                     ) || "";
 
 
                 const institution =
                     user.institution ||
                     localStorage.getItem(
-                        "studynest_institution"
+                        "campus_repo_institution"
                     ) || "";
 
 
                 const classValue =
                     user.class ||
                     localStorage.getItem(
-                        "studynest_class"
+                        "campus_repo_class"
                     ) || "";
 
 
@@ -3910,10 +3910,10 @@
             if (typeof DataStore !== 'undefined') {
                 DataStore.setUser(academicData);
             } else {
-                localStorage.setItem("studynest_country", country);
-                localStorage.setItem("studynest_study_level", level);
-                if (academicData.institution) localStorage.setItem("studynest_institution", academicData.institution);
-                if (academicData.department) localStorage.setItem("studynest_department", academicData.department);
+                localStorage.setItem("campus_repo_country", country);
+                localStorage.setItem("campus_repo_study_level", level);
+                if (academicData.institution) localStorage.setItem("campus_repo_institution", academicData.institution);
+                if (academicData.department) localStorage.setItem("campus_repo_department", academicData.department);
             }
 
 
@@ -4083,12 +4083,12 @@
 
 
             localStorage.removeItem(
-                "studynest_logged_in"
+                "campus_repo_logged_in"
             );
 
 
             localStorage.removeItem(
-                "studynest_google_login"
+                "campus_repo_google_login"
             );
 
 

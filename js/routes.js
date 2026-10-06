@@ -1,5 +1,5 @@
-/**
- * StudyNest – Centralized Route Configuration
+﻿/**
+ * Campus Repo – Centralized Route Configuration
  * =============================================
  * Single source of truth for ALL internal page routes.
  * Every navigation in the project must reference these constants.

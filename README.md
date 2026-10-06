@@ -1,8 +1,8 @@
-# StudyNest
+﻿# Campus Repo
 
 > Learn. Share. Grow.
 
-StudyNest is a student-focused academic resource platform designed to help students discover academic courses, access question papers, contribute learning resources, save useful materials, and participate in academic leaderboards.
+Campus Repo is a student-focused academic resource platform designed to help students discover academic courses, access question papers, contribute learning resources, save useful materials, and participate in academic leaderboards.
 
 The current version is a **frontend prototype** built with HTML, CSS, and JavaScript. It uses browser `localStorage` for demo authentication, user information, library items, notifications, contributions, votes, and leaderboard-related data.
 
@@ -46,7 +46,7 @@ The project is designed with a future **Django + Django REST Framework (DRF)** b
 
 # 📚 Project Overview
 
-StudyNest is intended to become a centralized learning platform where students can:
+Campus Repo is intended to become a centralized learning platform where students can:
 
 - Find academic learning resources
 - Browse academic courses

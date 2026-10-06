@@ -1,5 +1,5 @@
-/**
- * StudyNest – Route Validation Script
+﻿/**
+ * Campus Repo – Route Validation Script
  * ======================================
  * Run with: node js/validate-routes.js
  * Checks all HTML files for broken internal links.

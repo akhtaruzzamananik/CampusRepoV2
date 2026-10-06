@@ -1,5 +1,5 @@
-/**
- * StudyNest – Authentication Module
+﻿/**
+ * Campus Repo – Authentication Module
  * ===================================
  * Centralized auth state handling.
  * All pages use these functions instead of direct localStorage calls.

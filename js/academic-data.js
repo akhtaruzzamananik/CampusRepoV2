@@ -1,5 +1,5 @@
-/**
- * StudyNest – Academic Data
+﻿/**
+ * Campus Repo – Academic Data
  * ==========================
  * Central academic data structure for institutions, departments, etc.
  * Used by institution.html, contribute.html, settings.html, profile.html, etc.
